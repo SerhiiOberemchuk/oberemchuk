@@ -14,17 +14,16 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 w-full border-b bg-white/90 backdrop-blur-sm z-40">
       <div className="container mx-auto">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-medium">
-            <div className="relative h-8 w-8">
+          <Link href="/" className="flex items-center gap-2 font-medium group">
+            <div className="relative h-12 w-auto transition-transform duration-300 group-hover:scale-105 group-hover:brightness-110">
               <Image
-                src="/logo-so.png"
+                src="/LogoSO.png"
                 alt="Serhii Oberemchuk Logo"
-                width={32}
-                height={32}
+                width={140}
+                height={48}
                 className="object-contain"
               />
             </div>
-            <span>Oberemchuk Serhii</span>
           </Link>
 
           <nav className="hidden md:flex gap-6">

@@ -28,7 +28,7 @@ export function useCookieConsent() {
         const parsedConsent = JSON.parse(savedConsent)
         setConsentState(parsedConsent)
 
-        // Якщо аналіт��ка дозволена, ініціалізуємо GA
+        // Якщо аналіт����ка дозволена, ініціалізуємо GA
         if (parsedConsent.settings.analytics) {
           enableAnalytics()
         }

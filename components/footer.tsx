@@ -23,16 +23,15 @@ export default function Footer() {
           {/* Колонка 1: Логотип та інформація */}
           <div className="flex flex-col space-y-4">
             <Link href="/" className="flex items-center gap-2 font-medium">
-              <div className="relative h-8 w-8">
-                <Image
-                  src="/logo-so.png"
-                  alt="Serhii Oberemchuk Logo"
-                  width={32}
-                  height={32}
-                  className="object-contain"
-                />
+              <div className="relative h-10 w-auto">
+                 <Image
+                src="/LogoSO.png"
+                alt="Serhii Oberemchuk Logo"
+                width={140}
+                height={48}
+                className="object-contain"
+              />
               </div>
-              <span>Oberemchuk Serhii</span>
             </Link>
             <p className="text-sm text-gray-500 max-w-xs">
               Професійна розробка вебсайтів, які допомагають вашому бізнесу зростати та залучати нових клієнтів.
