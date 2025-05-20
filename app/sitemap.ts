@@ -5,10 +5,10 @@ import type { MetadataRoute } from "next";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.SITE_URL || "https://www.oberemchuk.site";
 
-  let projects: any[] = [];
+  let projects: Project[] = [];
   try {
     const response = await axiosInstanceAdmin.get(`/api/projects`);
-    const projects: Project[] = response.data.data;
+    projects = response.data.data;
   } catch (error) {
     console.error("Помилка отримання проектів для sitemap:", error);
   }
@@ -54,7 +54,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const projectPages = projects.map((project) => ({
     url: `${baseUrl}/portfolio/${project.slug}`,
-    lastModified: project.updatedAt ? new Date(project.updatedAt) : new Date(),
+    lastModified: project.updated_at
+      ? new Date(project.updated_at)
+      : new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
