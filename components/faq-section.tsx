@@ -1,27 +1,31 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ChevronDown, ChevronUp } from "lucide-react"
-import AnimationWrapper from "@/components/animation-wrapper"
-import JsonLd from "@/components/json-ld"
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import AnimationWrapper from "@/components/animation-wrapper";
+import JsonLd from "@/components/json-ld";
 
 interface FaqItem {
-  question: string
-  answer: string
+  question: string;
+  answer: string;
 }
 
 interface FaqSectionProps {
-  title?: string
-  subtitle?: string
-  faqs: FaqItem[]
+  title?: string;
+  subtitle?: string;
+  faqs: FaqItem[];
 }
 
-export default function FaqSection({ title = "Часті запитання", subtitle, faqs }: FaqSectionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+export default function FaqSection({
+  title = "Часті запитання",
+  subtitle,
+  faqs,
+}: FaqSectionProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   // Структуровані дані для FAQ
   const faqJsonLd = {
@@ -35,7 +39,7 @@ export default function FaqSection({ title = "Часті запитання", su
         text: faq.answer,
       },
     })),
-  }
+  };
 
   return (
     <section className="w-full py-12 md:py-24 bg-white overflow-hidden">
@@ -43,8 +47,12 @@ export default function FaqSection({ title = "Часті запитання", su
       <div className="container mx-auto">
         <AnimationWrapper animation="slide-up">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700">FAQ</div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{title}</h2>
+            <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700">
+              FAQ
+            </div>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              {title}
+            </h2>
             {subtitle && (
               <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 {subtitle}
@@ -55,7 +63,11 @@ export default function FaqSection({ title = "Часті запитання", su
 
         <div className="mx-auto max-w-3xl mt-12 space-y-4">
           {faqs.map((faq, index) => (
-            <AnimationWrapper key={index} animation="fade-in" delay={index * 100}>
+            <AnimationWrapper
+              key={index}
+              animation="fade-in"
+              delay={(index * 100) as 0 | 100 | 200 | 300 | 400 | 500}
+            >
               <div className="border rounded-lg overflow-hidden">
                 <button
                   className="flex items-center justify-between w-full p-4 text-left bg-white hover:bg-gray-50 transition-colors"
@@ -74,7 +86,9 @@ export default function FaqSection({ title = "Часті запитання", su
                     openIndex === index ? "max-h-96 p-4 pt-0" : "max-h-0"
                   }`}
                 >
-                  <div className="prose prose-gray max-w-none pt-4 border-t">{faq.answer}</div>
+                  <div className="prose prose-gray max-w-none pt-4 border-t">
+                    {faq.answer}
+                  </div>
                 </div>
               </div>
             </AnimationWrapper>
@@ -82,5 +96,5 @@ export default function FaqSection({ title = "Часті запитання", su
         </div>
       </div>
     </section>
-  )
+  );
 }

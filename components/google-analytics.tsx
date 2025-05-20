@@ -1,28 +1,34 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { usePathname } from "next/navigation"
-import Script from "next/script"
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Script from "next/script";
 
-export default function GoogleAnalytics({ measurementId }: { measurementId: string }) {
-  const pathname = usePathname()
+export default function GoogleAnalytics({
+  measurementId,
+}: {
+  measurementId: string;
+}) {
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (!measurementId || !window.gtag) return
+    if (!measurementId || !window.gtag) return;
 
-    // Відправляємо pageview при зміні маршруту
     window.gtag("config", measurementId, {
       page_path: pathname,
-    })
-  }, [pathname, measurementId])
+    });
+  }, [pathname, measurementId]);
 
   if (!measurementId) {
-    return null
+    return null;
   }
 
   return (
     <>
-      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`} />
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+      />
       <Script
         id="google-analytics"
         strategy="afterInteractive"
@@ -46,5 +52,5 @@ export default function GoogleAnalytics({ measurementId }: { measurementId: stri
         }}
       />
     </>
-  )
+  );
 }

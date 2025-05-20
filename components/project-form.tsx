@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { useToast } from "@/components/ui/use-toast"
-import { trackContactFormSubmission } from "@/lib/analytics"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useToast } from "@/components/ui/use-toast";
+import { trackContactFormSubmission } from "@/lib/analytics";
 
 interface FormData {
-  name: string
-  email: string
-  phone: string
-  websiteType: string
-  platform: string
-  timeline: string
-  budget: string
-  message: string
+  name: string;
+  email: string;
+  phone: string;
+  websiteType: string;
+  platform: string;
+  timeline: string;
+  budget: string;
+  message: string;
 }
 
 export default function ProjectForm() {
-  const { toast } = useToast()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -35,20 +35,22 @@ export default function ProjectForm() {
     timeline: "",
     budget: "",
     message: "",
-  })
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleRadioChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/contact", {
@@ -57,20 +59,18 @@ export default function ProjectForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Щось пішло не так")
+        throw new Error(data.error || "Щось пішло не так");
       }
 
-      // Відстежуємо успішну відправку форми
-      trackContactFormSubmission()
+      trackContactFormSubmission();
 
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      // Очистити форму
+      setIsSubmitting(false);
+      setIsSubmitted(true);
       setFormData({
         name: "",
         email: "",
@@ -80,32 +80,40 @@ export default function ProjectForm() {
         timeline: "",
         budget: "",
         message: "",
-      })
+      });
 
       toast({
         title: "Дякуємо за ваше повідомлення!",
         description: "Ми зв'яжемося з вами найближчим часом.",
-      })
+      });
     } catch (error) {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
       toast({
         title: "Помилка",
-        description: error instanceof Error ? error.message : "Виникла помилка при відправці повідомлення",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Виникла помилка при відправці повідомлення",
         variant: "destructive",
-      })
+      });
     }
-  }
+  };
 
   if (isSubmitted) {
     return (
       <div className="bg-white p-8 rounded-lg shadow-md text-center">
-        <h3 className="text-2xl font-bold text-green-600 mb-4">Дякуємо за ваше повідомлення!</h3>
+        <h3 className="text-2xl font-bold text-green-600 mb-4">
+          Дякуємо за ваше повідомлення!
+        </h3>
         <p className="text-gray-600 mb-6">
-          Ми отримали вашу заявку і зв'яжемося з вами найближчим часом для обговорення деталей вашого проекту.
+          Ми отримали вашу заявку і зв'яжемося з вами найближчим часом для
+          обговорення деталей вашого проекту.
         </p>
-        <Button onClick={() => setIsSubmitted(false)}>Надіслати ще одне повідомлення</Button>
+        <Button onClick={() => setIsSubmitted(false)}>
+          Надіслати ще одне повідомлення
+        </Button>
       </div>
-    )
+    );
   }
 
   return (
@@ -146,7 +154,9 @@ export default function ProjectForm() {
             onChange={handleChange}
             placeholder="Введіть ваш номер телефону"
           />
-          <p className="text-xs text-gray-500">Необов'язково, але допоможе нам швидше зв'язатися з вами</p>
+          <p className="text-xs text-gray-500">
+            Необов'язково, але допоможе нам швидше зв'язатися з вами
+          </p>
         </div>
       </div>
 
@@ -204,7 +214,9 @@ export default function ProjectForm() {
       </div>
 
       <div className="mb-8">
-        <Label className="mb-4 block text-lg font-medium">Бажана платформа *</Label>
+        <Label className="mb-4 block text-lg font-medium">
+          Бажана платформа *
+        </Label>
         <RadioGroup
           value={formData.platform}
           onValueChange={(value) => handleRadioChange("platform", value)}
@@ -257,7 +269,9 @@ export default function ProjectForm() {
       </div>
 
       <div className="mb-8">
-        <Label className="mb-4 block text-lg font-medium">Бажані терміни виконання *</Label>
+        <Label className="mb-4 block text-lg font-medium">
+          Бажані терміни виконання *
+        </Label>
         <RadioGroup
           value={formData.timeline}
           onValueChange={(value) => handleRadioChange("timeline", value)}
@@ -310,7 +324,9 @@ export default function ProjectForm() {
       </div>
 
       <div className="mb-8">
-        <Label className="mb-4 block text-lg font-medium">Бюджет проєкту *</Label>
+        <Label className="mb-4 block text-lg font-medium">
+          Бюджет проєкту *
+        </Label>
         <RadioGroup
           value={formData.budget}
           onValueChange={(value) => handleRadioChange("budget", value)}
@@ -388,5 +404,5 @@ export default function ProjectForm() {
         . Ваші дані будуть надіслані на serhiioberemchuk@gmail.com
       </p>
     </form>
-  )
+  );
 }

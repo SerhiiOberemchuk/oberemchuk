@@ -1,50 +1,41 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import type { Project } from "@/data/projects"
-// Імпортуємо Swiper та його компоненти
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Autoplay, Pagination } from "swiper/modules"
-// Імпортуємо стилі Swiper
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import type { Project } from "@/types/projects";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface ProjectsSliderProps {
-  projects: Project[]
+  projects: Project[];
 }
 
 export default function ProjectsSlider({ projects }: ProjectsSliderProps) {
-  const [domLoaded, setDomLoaded] = useState(false)
+  const [domLoaded, setDomLoaded] = useState(false);
 
-  // Переконуємося, що Swiper ініціалізується тільки на клієнті
   useEffect(() => {
-    setDomLoaded(true)
-  }, [])
+    setDomLoaded(true);
+  }, []);
 
-  // Додаємо логування
-  useEffect(() => {
-    console.log(`Кількість проектів у слайдері: ${projects.length}`)
-  }, [projects])
+  if (!projects.length) return null;
 
-  if (!projects.length) return null
-
-  // Налаштовуємо унікальні ідентифікатори для кнопок навігації
-  const navigationPrevId = "swiper-prev"
-  const navigationNextId = "swiper-next"
+  const navigationPrevId = "swiper-prev";
+  const navigationNextId = "swiper-next";
 
   return (
     <div className="relative">
       {domLoaded && (
         <Swiper
           modules={[Navigation, Autoplay, Pagination]}
-          spaceBetween={24} // Відступ між слайдами
-          slidesPerView={1} // Базова кількість слайдів
-          loop={true} // Зациклювання слайдера
+          spaceBetween={24}
+          slidesPerView={1}
+          loop={true}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
@@ -59,7 +50,6 @@ export default function ProjectsSlider({ projects }: ProjectsSliderProps) {
             type: "bullets",
           }}
           breakpoints={{
-            // Налаштування для різних розмірів екрану
             640: {
               slidesPerView: 2,
               spaceBetween: 20,
@@ -73,23 +63,28 @@ export default function ProjectsSlider({ projects }: ProjectsSliderProps) {
         >
           {projects.map((project) => (
             <SwiperSlide key={project.slug}>
-              <Link href={`/portfolio/${project.slug}`} className="group block overflow-hidden rounded-lg h-full">
+              <Link
+                href={`/portfolio/${project.slug}`}
+                className="group block overflow-hidden rounded-lg h-full"
+              >
                 <div className="aspect-video relative overflow-hidden h-full">
                   <Image
-                    src={project.imageSrc || "/placeholder.svg"}
+                    src={project.image_src || "/placeholder.svg"}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100 flex flex-col justify-end p-4">
-                    <h3 className="text-lg font-bold text-white">{project.title}</h3>
+                    <h3 className="text-lg font-bold text-white">
+                      {project.title}
+                    </h3>
                     <p className="text-sm text-white/80">{project.category}</p>
                   </div>
                 </div>
               </Link>
             </SwiperSlide>
           ))}
-          {/* Додаємо контейнер для пагінації */}
+
           <div className="swiper-pagination mt-4"></div>
         </Swiper>
       )}
@@ -115,5 +110,5 @@ export default function ProjectsSlider({ projects }: ProjectsSliderProps) {
         </Button>
       </div>
     </div>
-  )
+  );
 }

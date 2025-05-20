@@ -1,70 +1,75 @@
-import { notFound } from "next/navigation"
-import Image from "next/image"
-import Link from "next/link"
-import type { Metadata, ResolvingMetadata } from "next"
-import { getProjectBySlug, getRelatedProjects } from "@/data/projects"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, ArrowLeft } from "lucide-react"
-import ProjectsSlider from "@/components/projects-slider"
-import JsonLd from "@/components/json-ld"
-import AnimationWrapper from "@/components/animation-wrapper"
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import type { Metadata, ResolvingMetadata } from "next";
+import { Project } from "@/types/projects";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, ArrowLeft } from "lucide-react";
+import ProjectsSlider from "@/components/projects-slider";
+import JsonLd from "@/components/json-ld";
+import AnimationWrapper from "@/components/animation-wrapper";
+import axiosInstanceAdmin from "@/data/axios";
 
-// Типи для параметрів
 interface ProjectPageProps {
-  params: {
-    slug: string
-  }
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
-// Генерація метаданих для сторінки
-export async function generateMetadata({ params }: ProjectPageProps, parent: ResolvingMetadata): Promise<Metadata> {
-  // Знаходимо проект за slug
-  const project = await getProjectBySlug(params.slug)
+export async function generateMetadata(
+  { params }: ProjectPageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug } = await params;
+  const response = await axiosInstanceAdmin.get(
+    `/api/projects/by-slug/${slug}`
+  );
+  const project: Project = response.data.data;
 
-  // Якщо проект не знайдено, використовуємо стандартні метадані
   if (!project) {
     return {
       title: "Проект не знайдено | Oberemchuk Serhii",
       description: "Проект не знайдено в нашому портфоліо.",
-    }
+    };
   }
 
   return {
     title: `${project.title} | Портфоліо | Oberemchuk Serhii`,
     description: project.description,
     alternates: {
-      canonical: `/portfolio/${params.slug}`,
+      canonical: `/portfolio/${slug}`,
     },
     openGraph: {
       title: `${project.title} | Портфоліо | Oberemchuk Serhii`,
       description: project.description,
-      url: `/portfolio/${params.slug}`,
-      images: [project.imageSrc],
+      url: `/portfolio/${slug}`,
+      images: [project.image_src],
     },
-  }
+  };
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  // Знаходимо проект за slug
-  const project = await getProjectBySlug(params.slug)
+  const { slug } = await params;
+  const response = await axiosInstanceAdmin.get(
+    `/api/projects/by-slug/${slug}`
+  );
+  const project: Project = response.data.data;
 
-  // Якщо проект не знайдено, повертаємо 404
   if (!project) {
-    notFound()
+    notFound();
   }
 
-  // Отримуємо пов'язані проекти для слайдера (всі, крім поточного)
-  const relatedProjects = await getRelatedProjects(params.slug)
-
-  // Структуровані дані для сторінки проекту
+  const responseAll = await axiosInstanceAdmin.get(`/api/projects`);
+  const allProjects: Project[] = responseAll.data.data;
+  const relatedProjects = allProjects.filter((item) => item.slug !== slug);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: project.title,
     description: project.description,
     url: `https://www.oberemchuk.site/portfolio/${project.slug}`,
-    image: project.imageSrc,
-    datePublished: project.createdAt || new Date().toISOString(),
+    image: project.image_src,
+    datePublished: project.created_at || new Date().toISOString(),
     creator: {
       "@type": "Person",
       name: "Oberemchuk Serhii",
@@ -73,18 +78,21 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     workExample: {
       "@type": "WebSite",
       name: project.title,
-      url: project.websiteUrl,
+      url: project.website_url,
       description: project.description,
       dateCreated: project.year,
     },
-  }
+  };
 
   return (
     <div className="container mx-auto py-12 md:py-24">
       <JsonLd data={jsonLd} />
 
       <div className="mb-8">
-        <Link href="/portfolio" className="inline-flex items-center text-green-600 hover:underline">
+        <Link
+          href="/portfolio"
+          className="inline-flex items-center text-green-600 hover:underline"
+        >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Назад до портфоліо
         </Link>
@@ -94,7 +102,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <AnimationWrapper animation="slide-right">
           <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-lg">
             <Image
-              src={project.imageSrc || "/placeholder.svg?height=600&width=800&query=project"}
+              src={project.image_src}
               alt={project.title}
               fill
               className="object-cover"
@@ -109,7 +117,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700 mb-2">
                 {project.category}
               </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">{project.title}</h1>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                {project.title}
+              </h1>
             </div>
 
             <p className="text-gray-500">{project.description}</p>
@@ -126,7 +136,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             <div>
-              <h3 className="text-sm font-medium text-gray-500 mb-2">Технології</h3>
+              <h3 className="text-sm font-medium text-gray-500 mb-2">
+                Технології
+              </h3>
               <ul className="space-y-1 list-disc pl-5">
                 {project.technologies.map((tech) => (
                   <li key={tech} className="text-gray-700">
@@ -136,10 +148,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </ul>
             </div>
 
-            {project.websiteUrl && (
+            {project.website_url && (
               <Button asChild className="mt-4">
                 <a
-                  href={project.websiteUrl}
+                  href={project.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center"
@@ -178,5 +190,5 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       )}
     </div>
-  )
+  );
 }

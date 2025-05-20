@@ -1,23 +1,23 @@
-import HeroSection from "@/components/sections/hero-section"
-import ServicesSection from "@/components/sections/services-section"
-import PortfolioSection from "@/components/sections/portfolio-section"
-import AboutSection from "@/components/sections/about-section"
-import ContactSection from "@/components/sections/contact-section"
-import FaqSection from "@/components/faq-section"
-import JsonLd from "@/components/json-ld"
-import SeoSection from "@/components/sections/seo-section"
+import HeroSection from "@/components/sections/hero-section";
+import ServicesSection from "@/components/sections/services-section";
+import PortfolioSection from "@/components/sections/portfolio-section";
+import AboutSection from "@/components/sections/about-section";
+import ContactSection from "@/components/sections/contact-section";
+import FaqSection from "@/components/faq-section";
+import JsonLd from "@/components/json-ld";
+import SeoSection from "@/components/sections/seo-section";
 
 export default function Home() {
-  // Структуровані дані для головної сторінки
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Oberemchuk Serhii - Професійна розробка вебсайтів",
-    description: "Створюємо швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати",
+    description:
+      "Створюємо швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати",
     url: "https://www.oberemchuk.site",
     logo: "https://www.oberemchuk.site/icon.png",
     image: "https://www.oberemchuk.site/og-image.png",
-    telephone: "+380XXXXXXXXX",
+    telephone: "+393516648498",
     email: "serhiioberemchuk@gmail.com",
     address: {
       "@type": "PostalAddress",
@@ -25,7 +25,10 @@ export default function Home() {
     },
     priceRange: "$$",
     openingHours: "Mo,Tu,We,Th,Fr 09:00-18:00",
-    sameAs: ["https://www.linkedin.com/in/serhii-oberemchuk", "https://github.com/oberemchuk"],
+    sameAs: [
+      "https://www.linkedin.com/in/serhii-oberemchuk",
+      "https://github.com/oberemchuk",
+    ],
     serviceType: ["Web Development", "Web Design", "SEO Optimization"],
     areaServed: {
       "@type": "Country",
@@ -49,13 +52,13 @@ export default function Home() {
         {
           "@type": "Service",
           name: "SEO-оптимізація",
-          description: "Оптимізуємо ваш сайт для пошукових систем, щоб збільшити органічний трафік та видимість.",
+          description:
+            "Оптимізуємо ваш сайт для пошукових систем, щоб збільшити органічний трафік та видимість.",
         },
       ],
     },
-  }
+  };
 
-  // Дані для FAQ секції
   const faqs = [
     {
       question: "Скільки коштує розробка вебсайту?",
@@ -87,7 +90,7 @@ export default function Home() {
       answer:
         "Так, ми пропонуємо послуги з оновлення та модернізації існуючих вебсайтів. Це може включати оновлення дизайну, покращення функціональності, оптимізацію швидкості завантаження, адаптацію для мобільних пристроїв та інші покращення. Ми проведемо аудит вашого поточного сайту і запропонуємо оптимальне рішення.",
     },
-  ]
+  ];
 
   return (
     <>
@@ -104,5 +107,5 @@ export default function Home() {
       <ContactSection />
       <SeoSection />
     </>
-  )
+  );
 }

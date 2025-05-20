@@ -1,16 +1,24 @@
-import Image from "next/image"
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
 interface PortfolioItemProps {
-  imageSrc: string
-  title: string
-  category: string
-  slug: string // Тепер slug є обов'язковим параметром
+  imageSrc: string;
+  title: string;
+  category: string;
+  slug: string;
 }
 
-export default function PortfolioItem({ imageSrc, title, category, slug }: PortfolioItemProps) {
+export default function PortfolioItem({
+  imageSrc,
+  title,
+  category,
+  slug,
+}: PortfolioItemProps) {
   return (
-    <Link href={`/portfolio/${slug}`} className="group relative overflow-hidden rounded-lg">
+    <Link
+      href={`/portfolio/${slug}`}
+      className="group relative overflow-hidden rounded-lg"
+    >
       <div className="aspect-video w-full overflow-hidden rounded-lg">
         <Image
           src={imageSrc || "/placeholder.svg"}
@@ -25,5 +33,5 @@ export default function PortfolioItem({ imageSrc, title, category, slug }: Portf
         <p className="text-sm text-white/80">{category}</p>
       </div>
     </Link>
-  )
+  );
 }

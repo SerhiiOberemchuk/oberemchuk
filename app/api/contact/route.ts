@@ -1,19 +1,17 @@
-import { NextResponse } from "next/server"
-import nodemailer from "nodemailer"
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
-// Типи для даних форми
 interface ContactFormData {
-  name: string
-  email: string
-  phone?: string
-  websiteType: string
-  platform: string
-  timeline: string
-  budget: string
-  message: string
+  name: string;
+  email: string;
+  phone?: string;
+  websiteType: string;
+  platform: string;
+  timeline: string;
+  budget: string;
+  message: string;
 }
 
-// Функція для перетворення значень з форми на читабельний текст
 function getReadableValue(key: string, value: string): string {
   const websiteTypes: Record<string, string> = {
     landing: "Лендінг",
@@ -22,7 +20,7 @@ function getReadableValue(key: string, value: string): string {
     blog: "Блог",
     portfolio: "Портфоліо",
     other: "Інше",
-  }
+  };
 
   const platforms: Record<string, string> = {
     custom: "Кастомне рішення",
@@ -32,7 +30,7 @@ function getReadableValue(key: string, value: string): string {
     wix: "Wix",
     other: "Інше",
     undecided: "Ще не визначився",
-  }
+  };
 
   const timelines: Record<string, string> = {
     urgent: "Терміново (до 2 тижнів)",
@@ -41,26 +39,24 @@ function getReadableValue(key: string, value: string): string {
     "3months": "2-3 місяці",
     flexible: "Гнучкі терміни",
     undecided: "Ще не визначився",
-  }
+  };
 
   if (key === "websiteType" && value in websiteTypes) {
-    return websiteTypes[value]
+    return websiteTypes[value];
   }
 
   if (key === "platform" && value in platforms) {
-    return platforms[value]
+    return platforms[value];
   }
 
   if (key === "timeline" && value in timelines) {
-    return timelines[value]
+    return timelines[value];
   }
 
-  return value
+  return value;
 }
 
-// Створення транспортера Nodemailer
 const transporter = nodemailer.createTransport({
-  //service: "gmail",
   host: "smtp.gmail.com",
   port: 465,
   secure: true,
@@ -68,22 +64,40 @@ const transporter = nodemailer.createTransport({
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_PASS,
   },
-    tls: {
+  tls: {
     rejectUnauthorized: false,
   },
-})
+});
 
 export async function POST(request: Request) {
   try {
-    // Отримання даних з запиту
-    const data: ContactFormData = await request.json()
-    const { name, email, phone, websiteType, platform, timeline, budget, message } = data
+    const data: ContactFormData = await request.json();
+    const {
+      name,
+      email,
+      phone,
+      websiteType,
+      platform,
+      timeline,
+      budget,
+      message,
+    } = data;
 
-    if (!name || !email || !websiteType || !platform || !timeline || !budget || !message) {
-      return NextResponse.json({ error: "Будь ласка, заповніть всі обов'язкові поля" }, { status: 400 })
+    if (
+      !name ||
+      !email ||
+      !websiteType ||
+      !platform ||
+      !timeline ||
+      !budget ||
+      !message
+    ) {
+      return NextResponse.json(
+        { error: "Будь ласка, заповніть всі обов'язкові поля" },
+        { status: 400 }
+      );
     }
 
-    // Налаштування листа для адміністратора (вас)
     const adminMailOptions = {
       from: process.env.GMAIL_USER,
       to: process.env.GMAIL_USER,
@@ -93,16 +107,24 @@ export async function POST(request: Request) {
         <p><strong>Ім'я:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Телефон:</strong> ${phone || "Не вказано"}</p>
-        <p><strong>Тип сайту:</strong> ${getReadableValue("websiteType", websiteType)}</p>
-        <p><strong>Платформа:</strong> ${getReadableValue("platform", platform)}</p>
-        <p><strong>Бажані терміни виконання:</strong> ${getReadableValue("timeline", timeline)}</p>
+        <p><strong>Тип сайту:</strong> ${getReadableValue(
+          "websiteType",
+          websiteType
+        )}</p>
+        <p><strong>Платформа:</strong> ${getReadableValue(
+          "platform",
+          platform
+        )}</p>
+        <p><strong>Бажані терміни виконання:</strong> ${getReadableValue(
+          "timeline",
+          timeline
+        )}</p>
         <p><strong>Бюджет проєкту:</strong> ${budget}</p>
         <p><strong>Деталі проєкту:</strong></p>
         <p>${message.replace(/\n/g, "<br>")}</p>
       `,
-    }
+    };
 
-    // Налаштування листа для клієнта
     const clientMailOptions = {
       from: process.env.GMAIL_USER,
       to: email,
@@ -112,9 +134,18 @@ export async function POST(request: Request) {
         <p>Шановний(а) ${name},</p>
         <p>Ми отримали ваше повідомлення та зв'яжемося з вами найближчим часом.</p>
         <p>Ось копія вашого запиту:</p>
-        <p><strong>Тип сайту:</strong> ${getReadableValue("websiteType", websiteType)}</p>
-        <p><strong>Платформа:</strong> ${getReadableValue("platform", platform)}</p>
-        <p><strong>Бажані терміни виконання:</strong> ${getReadableValue("timeline", timeline)}</p>
+        <p><strong>Тип сайту:</strong> ${getReadableValue(
+          "websiteType",
+          websiteType
+        )}</p>
+        <p><strong>Платформа:</strong> ${getReadableValue(
+          "platform",
+          platform
+        )}</p>
+        <p><strong>Бажані терміни виконання:</strong> ${getReadableValue(
+          "timeline",
+          timeline
+        )}</p>
         <p><strong>Бюджет проєкту:</strong> ${budget}</p>
         <p><strong>Деталі проєкту:</strong></p>
         <p>${message.replace(/\n/g, "<br>")}</p>
@@ -123,14 +154,19 @@ export async function POST(request: Request) {
         <p>Oberemchuk Serhii</p>
         <p>Email: serhiioberemchuk@gmail.com</p>
       `,
-    }
+    };
 
-    // Відправка листів
-    await Promise.all([transporter.sendMail(adminMailOptions), transporter.sendMail(clientMailOptions)])
+    await Promise.all([
+      transporter.sendMail(adminMailOptions),
+      transporter.sendMail(clientMailOptions),
+    ]);
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Помилка відправки листа:", error)
-    return NextResponse.json({ error: "Виникла помилка при відправці повідомлення" }, { status: 500 })
+    console.error("Помилка відправки листа:", error);
+    return NextResponse.json(
+      { error: "Виникла помилка при відправці повідомлення" },
+      { status: 500 }
+    );
   }
 }
