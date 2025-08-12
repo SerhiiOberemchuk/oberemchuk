@@ -1,106 +1,150 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import PortfolioItem from "@/components/portfolio-item";
-import AnimationWrapper from "@/components/animation-wrapper";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import type { Project } from "@/types/projects";
-import axiosInstanceAdmin from "@/data/axios";
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import PortfolioItem from "@/components/portfolio-item"
+import AnimationWrapper from "@/components/animation-wrapper"
+
+interface Project {
+  id: number
+  slug: string
+  title: string
+  category: string
+  image_src: string
+  description: string
+  technologies: string[]
+  features: string[]
+  year: string
+  client: string
+  website_url: string
+  created_at: string
+  updated_at: string
+}
 
 export default function PortfolioSection() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [projects, setProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const responseAxios = await axiosInstanceAdmin.get(`/api/projects`);
+        setLoading(true)
+        setError(null)
 
-        if (responseAxios.status === 200) {
-          const data: Project[] = await responseAxios.data.data;
+        // Спочатку спробуємо внутрішнє API
+        const response = await fetch("/api/projects")
 
-          const sortedProjects = data
-            .sort((a: Project, b: Project) => {
-              return (
-                new Date(b.created_at || 0).getTime() -
-                new Date(a.created_at || 0).getTime()
-              );
-            })
-            .slice(0, 3);
-
-          setProjects(sortedProjects);
-        } else {
-          console.error("Помилка отримання проектів");
+        if (response.ok) {
+          const data = await response.json()
+          if (data.success) {
+            setProjects(data.data.slice(0, 3)) // Показуємо лише 3 проекти
+            return
+          }
         }
-      } catch (error) {
-        console.error("Помилка:", error);
+
+        // Fallback: спробуємо зовнішнє API
+        const fallbackResponse = await fetch("https://v0-adminca-bk.vercel.app/api/projects")
+        if (fallbackResponse.ok) {
+          const fallbackData = await fallbackResponse.json()
+          if (fallbackData.success) {
+            setProjects(fallbackData.data.slice(0, 3))
+            return
+          }
+        }
+
+        throw new Error("Не вдалося завантажити проекти")
+      } catch (err) {
+        console.error("Помилка завантаження проектів:", err)
+        setError("Не вдалося завантажити проекти")
       } finally {
-        setIsLoading(false);
+        setLoading(false)
       }
     }
 
-    fetchProjects();
-  }, []);
+    fetchProjects()
+  }, [])
+
+  if (loading) {
+    return (
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700 mb-4">Портфоліо</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Наші роботи</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Ознайомтеся з деякими з наших останніх проектів</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+                <div className="bg-gray-200 h-48 rounded-lg mb-4"></div>
+                <div className="bg-gray-200 h-4 rounded mb-2"></div>
+                <div className="bg-gray-200 h-4 rounded w-2/3"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Наші роботи</h2>
+            <p className="text-red-600 mb-4">{error}</p>
+            <Button onClick={() => window.location.reload()}>Спробувати знову</Button>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
-    <section
-      id="portfolio"
-      className="w-full py-12 md:py-24 lg:py-32 bg-gray-50"
-    >
-      <div className="container mx-auto">
+    <section className="py-24 bg-gray-50">
+      <div className="container mx-auto px-4">
         <AnimationWrapper animation="slide-up">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700">
-              Портфоліо
-            </div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Наші останні роботи
-            </h2>
-            <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Перегляньте приклади наших проєктів, які демонструють наш підхід
-              та якість роботи
+          <div className="text-center mb-16">
+            <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700 mb-4">Портфоліо</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Наші роботи</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Ознайомтеся з деякими з наших останніх проектів та переконайтеся в якості нашої роботи
             </p>
           </div>
         </AnimationWrapper>
 
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mt-12">
-          {isLoading
-            ? Array(3)
-                .fill(0)
-                .map((_, index) => (
-                  <AnimationWrapper
-                    key={index}
-                    animation="fade-in"
-                    delay={(index * 100) as 0 | 100 | 200 | 300 | 400 | 500}
-                  >
-                    <div className="aspect-video w-full overflow-hidden rounded-lg bg-gray-200 animate-pulse"></div>
-                  </AnimationWrapper>
-                ))
-            : projects.map((project, index) => (
-                <AnimationWrapper
-                  key={project.slug}
-                  animation="fade-in"
-                  delay={(index * 100) as 0 | 100 | 200 | 300 | 400 | 500}
-                >
-                  <PortfolioItem
-                    slug={project.slug}
-                    imageSrc={project.image_src}
-                    title={project.title}
-                    category={project.category}
-                  />
-                </AnimationWrapper>
-              ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {projects.map((project, index) => (
+            <AnimationWrapper
+              key={project.slug}
+              animation="fade-in"
+              delay={(index * 100) as 0 | 100 | 200 | 300 | 400 | 500}
+            >
+              <PortfolioItem
+                slug={project.slug}
+                imageSrc={project.image_src}
+                title={project.title}
+                category={project.category}
+              />
+            </AnimationWrapper>
+          ))}
         </div>
 
         <AnimationWrapper animation="slide-up" delay={400}>
-          <div className="flex justify-center mt-12">
-            <Button asChild variant="outline" size="lg">
-              <Link href="/portfolio">Переглянути всі проєкти</Link>
+          <div className="text-center">
+            <Button asChild size="lg">
+              <Link href="/portfolio">
+                Переглянути всі проекти
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
           </div>
         </AnimationWrapper>
       </div>
     </section>
-  );
+  )
 }

@@ -1,194 +1,218 @@
-import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import type { Metadata, ResolvingMetadata } from "next";
-import { Project } from "@/types/projects";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, ArrowLeft } from "lucide-react";
-import ProjectsSlider from "@/components/projects-slider";
-import JsonLd from "@/components/json-ld";
-import AnimationWrapper from "@/components/animation-wrapper";
-import axiosInstanceAdmin from "@/data/axios";
+import type { Metadata } from "next"
+import { notFound } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
+import { ArrowLeft, ExternalLink, Calendar, User } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import JsonLd from "@/components/json-ld"
+import AnimationWrapper from "@/components/animation-wrapper"
 
-interface ProjectPageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+interface Project {
+  id: number
+  slug: string
+  title: string
+  category: string
+  image_src: string
+  description: string
+  technologies: string[]
+  features: string[]
+  year: string
+  client: string
+  website_url: string
+  created_at: string
+  updated_at: string
 }
 
-export async function generateMetadata(
-  { params }: ProjectPageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  const { slug } = await params;
-  const response = await axiosInstanceAdmin.get(
-    `/api/projects/by-slug/${slug}`
-  );
-  const project: Project = response.data.data;
+async function getProject(slug: string): Promise<Project | null> {
+  try {
+    // Спочатку спробуємо внутрішнє API
+    const response = await fetch(`/api/projects/${slug}`, {
+      cache: "no-store",
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      if (data.success) {
+        return data.data
+      }
+    }
+
+    // Fallback: отримуємо всі проекти та знаходимо потрібний
+    const allProjectsResponse = await fetch("https://v0-adminca-bk.vercel.app/api/projects")
+    if (allProjectsResponse.ok) {
+      const allProjectsData = await allProjectsResponse.json()
+      if (allProjectsData.success) {
+        const project = allProjectsData.data.find((p: Project) => p.slug === slug)
+        return project || null
+      }
+    }
+
+    return null
+  } catch (error) {
+    console.error("Помилка отримання проекту:", error)
+    return null
+  }
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const project = await getProject(params.slug)
 
   if (!project) {
     return {
       title: "Проект не знайдено | Oberemchuk Serhii",
-      description: "Проект не знайдено в нашому портфоліо.",
-    };
+      description: "Запитуваний проект не знайдено.",
+    }
   }
 
   return {
-    title: `${project.title} | Портфоліо | Oberemchuk Serhii`,
+    title: `${project.title} | Oberemchuk Serhii - Веб-розробка`,
     description: project.description,
-    alternates: {
-      canonical: `/portfolio/${slug}`,
-    },
+    keywords: `${project.title}, ${project.category}, веб-розробка, ${project.technologies.join(", ")}`,
     openGraph: {
-      title: `${project.title} | Портфоліо | Oberemchuk Serhii`,
+      title: `${project.title} | Oberemchuk Serhii - Веб-розробка`,
       description: project.description,
-      url: `/portfolio/${slug}`,
-      images: [project.image_src],
+      images: [
+        {
+          url: project.image_src,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
+      type: "website",
     },
-  };
+  }
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
-  const response = await axiosInstanceAdmin.get(
-    `/api/projects/by-slug/${slug}`
-  );
-  const project: Project = response.data.data;
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
+  const project = await getProject(params.slug)
 
   if (!project) {
-    notFound();
+    notFound()
   }
 
-  const responseAll = await axiosInstanceAdmin.get(`/api/projects`);
-  const allProjects: Project[] = responseAll.data.data;
-  const relatedProjects = allProjects.filter((item) => item.slug !== slug);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: project.title,
     description: project.description,
-    url: `https://www.oberemchuk.site/portfolio/${project.slug}`,
     image: project.image_src,
-    datePublished: project.created_at || new Date().toISOString(),
+    url: `https://www.oberemchuk.site/portfolio/${project.slug}`,
     creator: {
       "@type": "Person",
       name: "Oberemchuk Serhii",
     },
+    dateCreated: project.created_at,
+    dateModified: project.updated_at,
+    genre: project.category,
     keywords: project.technologies.join(", "),
-    workExample: {
-      "@type": "WebSite",
-      name: project.title,
-      url: project.website_url,
-      description: project.description,
-      dateCreated: project.year,
-    },
-  };
+  }
 
   return (
-    <div className="container mx-auto py-12 md:py-24">
+    <div className="min-h-screen bg-white">
       <JsonLd data={jsonLd} />
 
-      <div className="mb-8">
-        <Link
-          href="/portfolio"
-          className="inline-flex items-center text-green-600 hover:underline"
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Назад до портфоліо
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-        <AnimationWrapper animation="slide-right">
-          <div className="relative aspect-video w-full overflow-hidden rounded-lg shadow-lg">
-            <Image
-              src={project.image_src}
-              alt={project.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </AnimationWrapper>
-
-        <AnimationWrapper animation="slide-left">
-          <div className="space-y-6">
-            <div>
-              <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700 mb-2">
-                {project.category}
-              </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
-                {project.title}
-              </h1>
-            </div>
-
-            <p className="text-gray-500">{project.description}</p>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <h3 className="text-sm font-medium text-gray-500">Рік</h3>
-                <p>{project.year}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-gray-500">Клієнт</h3>
-                <p>{project.client}</p>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-medium text-gray-500 mb-2">
-                Технології
-              </h3>
-              <ul className="space-y-1 list-disc pl-5">
-                {project.technologies.map((tech) => (
-                  <li key={tech} className="text-gray-700">
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {project.website_url && (
-              <Button asChild className="mt-4">
-                <a
-                  href={project.website_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center"
-                >
-                  Відвідати сайт
-                  <ExternalLink className="h-4 w-4 ml-2" />
-                </a>
-              </Button>
-            )}
-          </div>
-        </AnimationWrapper>
-      </div>
-
-      <div className="mb-16">
+      <div className="container mx-auto px-4 py-8">
         <AnimationWrapper animation="slide-up">
-          <h2 className="text-2xl font-bold mb-6">Особливості проекту</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {project.features.map((feature, index) => (
-              <li key={index} className="flex items-start">
-                <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-700 mr-3 mt-0.5">
-                  {index + 1}
-                </span>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="mb-8">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center text-green-600 hover:text-green-700 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Назад до портфоліо
+            </Link>
+          </div>
         </AnimationWrapper>
-      </div>
 
-      {relatedProjects.length > 0 && (
-        <div>
-          <AnimationWrapper animation="slide-up">
-            <h2 className="text-2xl font-bold mb-6">Інші проекти</h2>
-            <ProjectsSlider projects={relatedProjects} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <AnimationWrapper animation="slide-left">
+            <div className="space-y-6">
+              <div>
+                <Badge variant="secondary" className="mb-4">
+                  {project.category}
+                </Badge>
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{project.title}</h1>
+                <p className="text-xl text-gray-600 leading-relaxed">{project.description}</p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                <div className="flex items-center space-x-3">
+                  <Calendar className="w-5 h-5 text-green-600" />
+                  <div>
+                    <p className="text-sm text-gray-500">Рік</p>
+                    <p className="font-semibold">{project.year}</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <User className="w-5 h-5 text-green-600" />
+                  <div>
+                    <p className="text-sm text-gray-500">Клієнт</p>
+                    <p className="font-semibold">{project.client}</p>
+                  </div>
+                </div>
+              </div>
+
+              {project.website_url && (
+                <Button asChild className="w-full sm:w-auto">
+                  <a href={project.website_url} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Переглянути сайт
+                  </a>
+                </Button>
+              )}
+            </div>
+          </AnimationWrapper>
+
+          <AnimationWrapper animation="slide-right">
+            <div className="relative">
+              <Image
+                src={project.image_src || "/placeholder.svg"}
+                alt={project.title}
+                width={600}
+                height={400}
+                className="rounded-lg shadow-lg w-full h-auto"
+                unoptimized={true}
+              />
+            </div>
           </AnimationWrapper>
         </div>
-      )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+          <AnimationWrapper animation="fade-in" delay={200}>
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-4">Технології</h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, index) => (
+                    <Badge key={index} variant="outline">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </AnimationWrapper>
+
+          <AnimationWrapper animation="fade-in" delay={300}>
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-4">Особливості</h3>
+                <ul className="space-y-2">
+                  {project.features.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </AnimationWrapper>
+        </div>
+      </div>
     </div>
-  );
+  )
 }

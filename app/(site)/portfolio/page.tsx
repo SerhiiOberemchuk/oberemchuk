@@ -1,10 +1,24 @@
 import type { Metadata } from "next"
-import type { Project } from "@/types/projects"
 import PortfolioItem from "@/components/portfolio-item"
 import JsonLd from "@/components/json-ld"
 import AnimationWrapper from "@/components/animation-wrapper"
 import SeoText from "@/components/seo-text"
-import axiosInstanceAdmin from "@/data/axios"
+
+interface Project {
+  id: number
+  slug: string
+  title: string
+  category: string
+  image_src: string
+  description: string
+  technologies: string[]
+  features: string[]
+  year: string
+  client: string
+  website_url: string
+  created_at: string
+  updated_at: string
+}
 
 export const metadata: Metadata = {
   title: "Портфоліо | Oberemchuk Serhii - Професійна розробка вебсайтів",
@@ -19,9 +33,42 @@ export const metadata: Metadata = {
   },
 }
 
+async function getProjects(): Promise<Project[]> {
+  try {
+    // Використовуємо відносний URL для внутрішнього API
+    const response = await fetch("/api/projects", {
+      cache: "no-store",
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      if (data.success) {
+        return data.data
+      }
+    }
+
+    console.error("Failed to fetch projects:", response.status, response.statusText)
+    return []
+  } catch (error) {
+    console.error("Помилка отримання проектів:", error)
+    // Fallback: спробуємо отримати дані напряму з зовнішнього API
+    try {
+      const directResponse = await fetch("https://v0-adminca-bk.vercel.app/api/projects")
+      if (directResponse.ok) {
+        const directData = await directResponse.json()
+        if (directData.success) {
+          return directData.data
+        }
+      }
+    } catch (fallbackError) {
+      console.error("Fallback також не спрацював:", fallbackError)
+    }
+    return []
+  }
+}
+
 export default async function PortfolioPage() {
-  const response = await axiosInstanceAdmin.get(`/api/projects`)
-  const projects: Project[] = response.data.data
+  const projects = await getProjects()
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -63,8 +110,12 @@ export default async function PortfolioPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.length > 0 ? (
-          projects.map((project) => (
-            <AnimationWrapper key={project.slug} animation="fade-in" delay={100}>
+          projects.map((project, index) => (
+            <AnimationWrapper
+              key={project.slug}
+              animation="fade-in"
+              delay={((index % 3) * 100) as 0 | 100 | 200 | 300 | 400 | 500}
+            >
               <PortfolioItem
                 slug={project.slug}
                 imageSrc={project.image_src}
