@@ -4,12 +4,13 @@ import type React from "react"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Loader2, CheckCircle, Mail, MessageCircle } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { CheckCircle, Mail, MessageCircle } from "lucide-react"
+import Link from "next/link"
 
 interface FormData {
   name: string
@@ -50,7 +51,9 @@ export default function ContactForm() {
 
     if (!formData.name.trim()) newErrors.name = "Ім'я обов'язкове"
     if (!formData.email.trim()) newErrors.email = "Email обов'язковий"
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Невірний формат email"
+    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Невірний формат email"
+    }
     if (!formData.message.trim()) newErrors.message = "Повідомлення обов'язкове"
 
     setErrors(newErrors)
@@ -95,30 +98,27 @@ export default function ContactForm() {
 
   if (isSubmitted) {
     return (
-      <Card>
-        <CardContent className="p-8 text-center">
-          <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Дякую за звернення!</h3>
+      <Card className="text-center p-8">
+        <CardContent className="p-0">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="h-8 w-8 text-green-600" />
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Дякую за звернення!</h3>
           <p className="text-gray-600 mb-6">
-            Ваше повідомлення успішно відправлено. Я зв'яжуся з вами найближчим часом для обговорення деталей проекту.
+            Ваше повідомлення отримано. Я зв'яжуся з вами протягом 24 годин для обговорення деталей проекту.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild variant="outline">
-              <a href="mailto:serhiioberemchuk@gmail.com" className="flex items-center">
+              <Link href="mailto:serhii.oberemchuk@gmail.com">
                 <Mail className="h-4 w-4 mr-2" />
                 Написати email
-              </a>
+              </Link>
             </Button>
-            <Button asChild variant="outline">
-              <a
-                href="https://t.me/SerhiiOberemchuk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center"
-              >
+            <Button asChild>
+              <Link href="https://t.me/SerhiiOberemchuk" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="h-4 w-4 mr-2" />
                 Telegram
-              </a>
+              </Link>
             </Button>
           </div>
         </CardContent>
@@ -127,140 +127,136 @@ export default function ContactForm() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Розкажіть про свій проект</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">
-                Ім'я <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={(e) => handleInputChange("name", e.target.value)}
-                placeholder="Ваше ім'я"
-                className={errors.name ? "border-red-500" : ""}
-              />
-              {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">
-                Email <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => handleInputChange("email", e.target.value)}
-                placeholder="your@email.com"
-                className={errors.email ? "border-red-500" : ""}
-              />
-              {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
-            </div>
-          </div>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="name">
+            Ім'я <span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="name"
+            type="text"
+            placeholder="Ваше ім'я"
+            value={formData.name}
+            onChange={(e) => handleInputChange("name", e.target.value)}
+            className={errors.name ? "border-red-500" : ""}
+          />
+          {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="email">
+            Email <span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="your@email.com"
+            value={formData.email}
+            onChange={(e) => handleInputChange("email", e.target.value)}
+            className={errors.email ? "border-red-500" : ""}
+          />
+          {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+        </div>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="phone">Телефон</Label>
-              <Input
-                id="phone"
-                value={formData.phone}
-                onChange={(e) => handleInputChange("phone", e.target.value)}
-                placeholder="+380..."
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="company">Компанія</Label>
-              <Input
-                id="company"
-                value={formData.company}
-                onChange={(e) => handleInputChange("company", e.target.value)}
-                placeholder="Назва компанії"
-              />
-            </div>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="phone">Телефон</Label>
+          <Input
+            id="phone"
+            type="tel"
+            placeholder="+380 XX XXX XX XX"
+            value={formData.phone}
+            onChange={(e) => handleInputChange("phone", e.target.value)}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="company">Компанія</Label>
+          <Input
+            id="company"
+            type="text"
+            placeholder="Назва компанії"
+            value={formData.company}
+            onChange={(e) => handleInputChange("company", e.target.value)}
+          />
+        </div>
+      </div>
 
-          <div className="space-y-2">
-            <Label>Тип проекту</Label>
-            <Select value={formData.projectType} onValueChange={(value) => handleInputChange("projectType", value)}>
-              <SelectTrigger>
-                <SelectValue placeholder="Оберіть тип проекту" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="landing">Лендінг пейдж</SelectItem>
-                <SelectItem value="corporate">Корпоративний сайт</SelectItem>
-                <SelectItem value="ecommerce">Інтернет-магазин</SelectItem>
-                <SelectItem value="redesign">Редизайн існуючого сайту</SelectItem>
-                <SelectItem value="optimization">SEO-оптимізація</SelectItem>
-                <SelectItem value="other">Інше</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+      <div className="space-y-2">
+        <Label>Тип проекту</Label>
+        <Select value={formData.projectType} onValueChange={(value) => handleInputChange("projectType", value)}>
+          <SelectTrigger>
+            <SelectValue placeholder="Оберіть тип проекту" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="landing">Лендінг сторінка</SelectItem>
+            <SelectItem value="corporate">Корпоративний сайт</SelectItem>
+            <SelectItem value="ecommerce">Інтернет-магазин</SelectItem>
+            <SelectItem value="webapp">Веб-додаток</SelectItem>
+            <SelectItem value="redesign">Редизайн існуючого сайту</SelectItem>
+            <SelectItem value="other">Інше</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Терміни</Label>
-              <Select value={formData.timeline} onValueChange={(value) => handleInputChange("timeline", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Коли потрібно завершити?" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="asap">Якнайшвидше</SelectItem>
-                  <SelectItem value="1-2weeks">1-2 тижні</SelectItem>
-                  <SelectItem value="1month">1 місяць</SelectItem>
-                  <SelectItem value="2-3months">2-3 місяці</SelectItem>
-                  <SelectItem value="flexible">Гнучкі терміни</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label>Бюджет</Label>
-              <Select value={formData.budget} onValueChange={(value) => handleInputChange("budget", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Орієнтовний бюджет" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="500-1000">$500 - $1000</SelectItem>
-                  <SelectItem value="1000-2000">$1000 - $2000</SelectItem>
-                  <SelectItem value="2000-5000">$2000 - $5000</SelectItem>
-                  <SelectItem value="5000+">$5000+</SelectItem>
-                  <SelectItem value="discuss">Обговоримо</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label>Терміни</Label>
+          <Select value={formData.timeline} onValueChange={(value) => handleInputChange("timeline", value)}>
+            <SelectTrigger>
+              <SelectValue placeholder="Коли потрібно завершити?" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="asap">Якомога швидше</SelectItem>
+              <SelectItem value="1month">До 1 місяця</SelectItem>
+              <SelectItem value="2months">1-2 місяці</SelectItem>
+              <SelectItem value="3months">2-3 місяці</SelectItem>
+              <SelectItem value="flexible">Гнучкі терміни</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="space-y-2">
+          <Label>Бюджет</Label>
+          <Select value={formData.budget} onValueChange={(value) => handleInputChange("budget", value)}>
+            <SelectTrigger>
+              <SelectValue placeholder="Орієнтовний бюджет" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="500-1000">$500 - $1,000</SelectItem>
+              <SelectItem value="1000-2000">$1,000 - $2,000</SelectItem>
+              <SelectItem value="2000-5000">$2,000 - $5,000</SelectItem>
+              <SelectItem value="5000+">$5,000+</SelectItem>
+              <SelectItem value="discuss">Обговоримо</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="message">
-              Опис проекту <span className="text-red-500">*</span>
-            </Label>
-            <Textarea
-              id="message"
-              value={formData.message}
-              onChange={(e) => handleInputChange("message", e.target.value)}
-              placeholder="Розкажіть детальніше про ваш проект, цілі та побажання..."
-              rows={4}
-              className={errors.message ? "border-red-500" : ""}
-            />
-            {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
-          </div>
+      <div className="space-y-2">
+        <Label htmlFor="message">
+          Опис проекту <span className="text-red-500">*</span>
+        </Label>
+        <Textarea
+          id="message"
+          placeholder="Розкажіть детальніше про ваш проект, цілі та побажання..."
+          rows={5}
+          value={formData.message}
+          onChange={(e) => handleInputChange("message", e.target.value)}
+          className={errors.message ? "border-red-500" : ""}
+        />
+        {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
+      </div>
 
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Відправляю...
-              </>
-            ) : (
-              "Відправити повідомлення"
-            )}
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+      <Button type="submit" className="w-full" disabled={isSubmitting}>
+        {isSubmitting ? "Відправляю..." : "Відправити повідомлення"}
+      </Button>
+
+      <p className="text-sm text-gray-500 text-center">
+        Натискаючи кнопку, ви погоджуєтесь з{" "}
+        <Link href="/privacy-policy" className="text-blue-600 hover:underline">
+          політикою конфіденційності
+        </Link>
+      </p>
+    </form>
   )
 }

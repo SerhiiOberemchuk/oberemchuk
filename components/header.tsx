@@ -34,7 +34,7 @@ export default function Header() {
               Портфоліо
             </Link>
             <Link href="/#about" className="text-sm font-medium hover:text-green-600 transition-colors">
-              Про нас
+              Про мене
             </Link>
             <Link href="/#contact" className="text-sm font-medium hover:text-green-600 transition-colors">
               Контакти

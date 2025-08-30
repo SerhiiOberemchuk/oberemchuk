@@ -49,7 +49,7 @@ export default function Footer() {
                 Портфоліо
               </Link>
               <Link href="/#about" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
-                Про нас
+                Про мене
               </Link>
               <Link href="/#contact" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
                 Контакти

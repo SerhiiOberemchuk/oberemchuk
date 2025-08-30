@@ -1,11 +1,11 @@
 import HeroSection from "@/components/sections/hero-section"
 import AboutSection from "@/components/sections/about-section"
 import ServicesSection from "@/components/sections/services-section"
-import ContactSection from "@/components/sections/contact-section"
 import FaqSection from "@/components/faq-section"
+import ContactSection from "@/components/sections/contact-section"
 import JsonLd from "@/components/json-ld"
 
-export default function Home() {
+export default function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -87,7 +87,7 @@ export default function Home() {
   ]
 
   return (
-    <>
+    <main>
       <JsonLd data={jsonLd} />
       <HeroSection />
       <AboutSection />
@@ -98,6 +98,6 @@ export default function Home() {
         faqs={faqs}
       />
       <ContactSection />
-    </>
+    </main>
   )
 }
