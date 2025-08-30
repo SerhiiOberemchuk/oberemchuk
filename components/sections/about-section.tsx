@@ -120,7 +120,7 @@ export default function AboutSection() {
         {/* Design Process */}
         <AnimationWrapper delay={0.4}>
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Як ми працюємо з дизайнерами</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Як ми працюєм з дизайнерами</h3>
             <div className="grid md:grid-cols-3 gap-8">
               {designProcess.map((process, index) => (
                 <div key={index} className="text-center">
