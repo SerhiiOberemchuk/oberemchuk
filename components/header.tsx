@@ -27,22 +27,22 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex gap-6">
-            <a href="/#services" className="text-sm font-medium hover:text-green-600 transition-colors">
+            <Link href="/#services" className="text-sm font-medium hover:text-green-600 transition-colors">
               Послуги
-            </a>
-            <a href="/#portfolio" className="text-sm font-medium hover:text-green-600 transition-colors">
+            </Link>
+            <Link href="/portfolio" className="text-sm font-medium hover:text-green-600 transition-colors">
               Портфоліо
-            </a>
-            <a href="/#about" className="text-sm font-medium hover:text-green-600 transition-colors">
+            </Link>
+            <Link href="/#about" className="text-sm font-medium hover:text-green-600 transition-colors">
               Про нас
-            </a>
-            <a href="/#contact" className="text-sm font-medium hover:text-green-600 transition-colors">
+            </Link>
+            <Link href="/#contact" className="text-sm font-medium hover:text-green-600 transition-colors">
               Контакти
-            </a>
+            </Link>
           </nav>
 
           <Button asChild className="hidden md:inline-flex">
-            <a href="/#contact">Замовити сайт</a>
+            <Link href="/#contact">Замовити сайт</Link>
           </Button>
 
           <Button

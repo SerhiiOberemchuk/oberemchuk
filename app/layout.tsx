@@ -1,25 +1,25 @@
-import type React from "react";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import GoogleAnalytics from "@/components/google-analytics";
-import CookieConsentBanner from "@/components/cookie-consent-banner";
-import ScrollToTop from "@/components/scroll-to-top";
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import { Toaster } from "@/components/ui/toaster"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import GoogleAnalytics from "@/components/google-analytics"
+import CookieConsentBanner from "@/components/cookie-consent-banner"
+import ScrollToTop from "@/components/scroll-to-top"
 
-const inter = Inter({ subsets: ["latin", "cyrillic"] });
+const inter = Inter({ subsets: ["latin", "cyrillic"] })
 
 export const metadata: Metadata = {
-  title: "Oberemchuk Serhii - Професійна розробка вебсайтів",
+  title: "Serhii Oberemchuk - Веб-розробник | Створюю сучасні сайти",
   description:
-    "Створюємо швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати",
+    "Я Serhii Oberemchuk - професійний веб-розробник з України. Створюю швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати.",
   keywords:
-    "веб-розробка, веб-дизайн, сайти, лендінги, інтернет-магазини, SEO оптимізація, Україна",
-  authors: [{ name: "Oberemchuk Serhii" }],
-  creator: "Oberemchuk Serhii",
-  publisher: "Oberemchuk Serhii",
+    "Serhii Oberemchuk, веб-розробник, веб-дизайн, сайти, лендінги, інтернет-магазини, SEO оптимізація, Україна, фрілансер",
+  authors: [{ name: "Serhii Oberemchuk" }],
+  creator: "Serhii Oberemchuk",
+  publisher: "Serhii Oberemchuk",
   formatDetection: {
     email: false,
     address: false,
@@ -30,17 +30,17 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Oberemchuk Serhii - Професійна розробка вебсайтів",
+    title: "Serhii Oberemchuk - Веб-розробник | Створюю сучасні сайти",
     description:
-      "Створюємо швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати",
+      "Я Serhii Oberemchuk - професійний веб-розробник з України. Створюю швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати.",
     url: "/",
-    siteName: "Oberemchuk Serhii",
+    siteName: "Serhii Oberemchuk - Веб-розробник",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Oberemchuk Serhii - Професійна розробка вебсайтів",
+        alt: "Serhii Oberemchuk - Професійний веб-розробник",
       },
     ],
     locale: "uk_UA",
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Oberemchuk Serhii - Професійна розробка вебсайтів",
+    title: "Serhii Oberemchuk - Веб-розробник | Створюю сучасні сайти",
     description:
-      "Створюємо швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати",
+      "Я Serhii Oberemchuk - професійний веб-розробник з України. Створюю швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -63,20 +63,18 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
     generator: 'v0.app'
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="uk">
       <body className={inter.className}>
         {/* Додаємо Google Analytics */}
-        <GoogleAnalytics
-          measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ""}
-        />
+        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ""} />
         <div className="flex min-h-screen flex-col pt-16">
           <Header />
           <main className="flex-1">{children}</main>
@@ -87,5 +85,5 @@ export default function RootLayout({
         <Toaster />
       </body>
     </html>
-  );
+  )
 }

@@ -1,93 +1,128 @@
 "use client"
 
-import { Code, Cpu, Globe, Layers, Zap } from "lucide-react"
-import ServiceCard from "@/components/service-card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Monitor, Smartphone, Search, ShoppingCart, Building, Palette } from "lucide-react"
 import AnimationWrapper from "@/components/animation-wrapper"
+import SmoothScrollLink from "@/components/smooth-scroll-link"
 
 export default function ServicesSection() {
+  const services = [
+    {
+      icon: Monitor,
+      title: "Лендінг пейдж",
+      description: "Одностороінкові сайти для презентації продукту або послуги з високою конверсією",
+      price: "від $800",
+      features: ["Адаптивний дизайн", "SEO-оптимізація", "Форма зворотного зв'язку", "Швидке завантаження"],
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
+    },
+    {
+      icon: Building,
+      title: "Корпоративний сайт",
+      description: "Професійні багатосторінкові сайти для представлення компанії та її послуг",
+      price: "від $1200",
+      features: ["Багато сторінок", "CMS система", "Блог", "Інтеграція з соцмережами"],
+      color: "text-green-600",
+      bgColor: "bg-green-100",
+    },
+    {
+      icon: ShoppingCart,
+      title: "Інтернет-магазин",
+      description: "Повнофункціональні e-commerce рішення з системою оплати та управління товарами",
+      price: "від $1500",
+      features: ["Каталог товарів", "Кошик покупок", "Система оплати", "Панель адміністратора"],
+      color: "text-purple-600",
+      bgColor: "bg-purple-100",
+    },
+    {
+      icon: Smartphone,
+      title: "Мобільна оптимізація",
+      description: "Адаптація існуючих сайтів для мобільних пристроїв та покращення UX",
+      price: "від $400",
+      features: ["Responsive дизайн", "Швидкість завантаження", "Touch-friendly", "PWA можливості"],
+      color: "text-orange-600",
+      bgColor: "bg-orange-100",
+    },
+    {
+      icon: Search,
+      title: "SEO-оптимізація",
+      description: "Комплексна оптимізація сайту для пошукових систем та збільшення трафіку",
+      price: "від $300",
+      features: ["Технічний аудит", "Оптимізація контенту", "Мета-теги", "Структуровані дані"],
+      color: "text-red-600",
+      bgColor: "bg-red-100",
+    },
+    {
+      icon: Palette,
+      title: "Редизайн сайту",
+      description: "Оновлення дизайну та функціональності існуючих сайтів для покращення UX",
+      price: "від $600",
+      features: ["Сучасний дизайн", "Покращена навігація", "Оптимізація швидкості", "Нові функції"],
+      color: "text-indigo-600",
+      bgColor: "bg-indigo-100",
+    },
+  ]
+
   return (
-    <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-white">
-      <div className="container mx-auto">
+    <section id="services" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
         <AnimationWrapper animation="slide-up">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700">Наші послуги</div>
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Що ми пропонуємо</h2>
-            <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Повний спектр послуг з розробки вебсайтів, від дизайну до запуску та підтримки
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Мої послуги</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Пропоную повний спектр послуг з веб-розробки - від простих лендінгів до складних інтернет-магазинів
             </p>
           </div>
         </AnimationWrapper>
 
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12 auto-rows-fr">
-          <AnimationWrapper animation="scale" delay={100}>
-            <ServiceCard
-              icon={<Layers className="h-10 w-10 text-green-600" />}
-              title="Веб-дизайн"
-              description="Створюємо унікальний, сучасний дизайн, який відображає вашу індивідуальність та цінності бренду."
-              className="h-full"
-            />
-          </AnimationWrapper>
-
-          <AnimationWrapper animation="scale" delay={200}>
-            <ServiceCard
-              icon={<Code className="h-10 w-10 text-green-600" />}
-              title="Розробка"
-              description="Розробляємо функціональні вебсайти з чистим кодом, семантичною версткою та оптимальною швидкістю."
-              className="h-full"
-            />
-          </AnimationWrapper>
-
-          <AnimationWrapper animation="scale" delay={300}>
-            <ServiceCard
-              icon={<Globe className="h-10 w-10 text-green-600" />}
-              title="SEO-оптимізація"
-              description="Оптимізуємо ваш сайт для пошукових систем, щоб збільшити органічний трафік та видимість."
-              className="h-full"
-            />
-          </AnimationWrapper>
-
-          <AnimationWrapper animation="scale" delay={100}>
-            <ServiceCard
-              icon={<Zap className="h-10 w-10 text-green-600" />}
-              title="Швидкість роботи"
-              description="Забезпечуємо блискавичну швидкість завантаження сайту для кращого користувацького досвіду."
-              className="h-full"
-            />
-          </AnimationWrapper>
-
-          <AnimationWrapper animation="scale" delay={200}>
-            <ServiceCard
-              icon={<Cpu className="h-10 w-10 text-green-600" />}
-              title="Інтеграції"
-              description="Інтегруємо необхідні сервіси та API для розширення функціональності вашого сайту."
-              className="h-full"
-            />
-          </AnimationWrapper>
-
-          <AnimationWrapper animation="scale" delay={300}>
-            <ServiceCard
-              icon={
-                <svg
-                  className="h-10 w-10 text-green-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              }
-              title="Підтримка"
-              description="Надаємо технічну підтримку та оновлення для забезпечення безперебійної роботи вашого сайту."
-              className="h-full"
-            />
-          </AnimationWrapper>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {services.map((service, index) => {
+            const Icon = service.icon
+            return (
+              <AnimationWrapper key={index} animation="slide-up" delay={index * 100}>
+                <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+                  <CardHeader>
+                    <div className={`w-12 h-12 ${service.bgColor} rounded-lg flex items-center justify-center mb-4`}>
+                      <Icon className={`h-6 w-6 ${service.color}`} />
+                    </div>
+                    <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                    <Badge variant="outline" className="w-fit">
+                      {service.price}
+                    </Badge>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <ul className="space-y-2">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </AnimationWrapper>
+            )
+          })}
         </div>
+
+        <AnimationWrapper animation="fade-in">
+          <div className="text-center">
+            <p className="text-gray-600 mb-6">
+              Готові почати свій проект? Зв'яжіться зі мною для детальної консультації та розрахунку вартості.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700"
+            >
+              <SmoothScrollLink href="#contact">Замовити консультацію</SmoothScrollLink>
+            </Button>
+          </div>
+        </AnimationWrapper>
       </div>
     </section>
   )

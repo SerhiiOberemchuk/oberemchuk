@@ -1,5 +1,5 @@
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import type { ReactNode } from "react"
-import { cn } from "@/lib/utils"
 
 interface ServiceCardProps {
   icon: ReactNode
@@ -10,15 +10,12 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ icon, title, description, className }: ServiceCardProps) {
   return (
-    <div
-      className={cn(
-        "group relative overflow-hidden rounded-lg border bg-white p-6 shadow-sm transition-all hover:shadow-md flex flex-col",
-        className,
-      )}
-    >
-      <div className="mb-4">{icon}</div>
-      <h3 className="text-xl font-bold">{title}</h3>
-      <p className="mt-2 text-gray-500 flex-grow">{description}</p>
-    </div>
+    <Card className={`hover:shadow-lg transition-shadow duration-300 ${className || ""}`}>
+      <CardHeader>
+        <div className="mb-4">{icon}</div>
+        <CardTitle className="text-xl">{title}</CardTitle>
+        <CardDescription className="text-gray-600">{description}</CardDescription>
+      </CardHeader>
+    </Card>
   )
 }

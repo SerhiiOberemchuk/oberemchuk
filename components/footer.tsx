@@ -42,18 +42,18 @@ export default function Footer() {
           <div className="flex flex-col space-y-4">
             <h3 className="font-semibold text-gray-900">Навігація</h3>
             <div className="flex flex-col space-y-2">
-              <a href="/#services" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              <Link href="/#services" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
                 Послуги
-              </a>
-              <a href="/#portfolio" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              </Link>
+              <Link href="/portfolio" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
                 Портфоліо
-              </a>
-              <a href="/#about" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              </Link>
+              <Link href="/#about" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
                 Про нас
-              </a>
-              <a href="/#contact" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              </Link>
+              <Link href="/#contact" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
                 Контакти
-              </a>
+              </Link>
             </div>
           </div>
 

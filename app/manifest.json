@@ -1,26 +1,33 @@
 {
-  "name": "Oberemchuk Serhii - Професійна розробка вебсайтів",
-  "short_name": "Oberemchuk Serhii",
+  "name": "Serhii Oberemchuk - Веб-розробник",
+  "short_name": "Serhii Oberemchuk",
+  "description": "Професійний веб-розробник, який створює швидкі, сучасні та функціональні вебсайти. Співпрацює з дизайнерами для створення рішень під ключ.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "uk",
+  "categories": ["business", "productivity", "utilities"],
   "icons": [
     {
       "src": "/icon.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/apple-icon.png",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
-  ],
-  "theme_color": "#10b981",
-  "background_color": "#FFFFFF",
-  "start_url": "/",
-  "display": "standalone",
-  "orientation": "portrait"
+  ]
 }
