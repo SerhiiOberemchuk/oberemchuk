@@ -87,7 +87,7 @@ export default function HomePage() {
   ]
 
   return (
-    <main>
+    <main className="min-h-screen">
       <JsonLd data={jsonLd} />
       <HeroSection />
       <AboutSection />
