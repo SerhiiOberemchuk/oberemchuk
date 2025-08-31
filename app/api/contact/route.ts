@@ -5,11 +5,11 @@ interface ContactFormData {
   name: string;
   email: string;
   phone?: string;
-  websiteType: string;
-  platform: string;
-  timeline: string;
-  budget: string;
-  message: string;
+  service?: string;
+  platform?: string;
+  timeline?: string;
+  budget?: string;
+  message?: string;
 }
 
 function getReadableValue(key: string, value: string): string {
@@ -65,7 +65,7 @@ const transporter = nodemailer.createTransport({
     pass: process.env.GMAIL_PASS,
   },
   tls: {
-    rejectUnauthorized: true,
+    rejectUnauthorized: false,
   },
 });
 
@@ -76,22 +76,12 @@ export async function POST(request: Request) {
       name,
       email,
       phone,
-      websiteType,
-      platform,
-      timeline,
-      budget,
+      service = "не вказано",
+      budget = "не вказано",
       message,
     } = data;
 
-    if (
-      !name ||
-      !email ||
-      !websiteType ||
-      !platform ||
-      !timeline ||
-      !budget ||
-      !message
-    ) {
+    if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Будь ласка, заповніть всі обов'язкові поля" },
         { status: 400 }
@@ -107,17 +97,9 @@ export async function POST(request: Request) {
         <p><strong>Ім'я:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Телефон:</strong> ${phone || "Не вказано"}</p>
-        <p><strong>Тип сайту:</strong> ${getReadableValue(
+        <p><strong>Тип послуги:</strong> ${getReadableValue(
           "websiteType",
-          websiteType
-        )}</p>
-        <p><strong>Платформа:</strong> ${getReadableValue(
-          "platform",
-          platform
-        )}</p>
-        <p><strong>Бажані терміни виконання:</strong> ${getReadableValue(
-          "timeline",
-          timeline
+          service
         )}</p>
         <p><strong>Бюджет проєкту:</strong> ${budget}</p>
         <p><strong>Деталі проєкту:</strong></p>
@@ -134,17 +116,10 @@ export async function POST(request: Request) {
         <p>Шановний(а) ${name},</p>
         <p>Ми отримали ваше повідомлення та зв'яжемося з вами найближчим часом.</p>
         <p>Ось копія вашого запиту:</p>
-        <p><strong>Тип сайту:</strong> ${getReadableValue(
+        <p><strong>Телефон:</strong> ${phone || "Не вказано"}</p>
+        <p><strong>Тип послуги:</strong> ${getReadableValue(
           "websiteType",
-          websiteType
-        )}</p>
-        <p><strong>Платформа:</strong> ${getReadableValue(
-          "platform",
-          platform
-        )}</p>
-        <p><strong>Бажані терміни виконання:</strong> ${getReadableValue(
-          "timeline",
-          timeline
+          service
         )}</p>
         <p><strong>Бюджет проєкту:</strong> ${budget}</p>
         <p><strong>Деталі проєкту:</strong></p>
