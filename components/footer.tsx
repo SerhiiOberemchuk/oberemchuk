@@ -112,7 +112,7 @@ export default function Footer() {
         <div className="mt-8 border-t border-gray-200 pt-6">
           <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
             <p className="text-sm text-gray-500">© {currentYear} Oberemchuk Serhii. Всі права захищені.</p>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-slate-950">
               Розроблено з <span className="text-green-600">❤</span> в Україні
             </p>
           </div>
