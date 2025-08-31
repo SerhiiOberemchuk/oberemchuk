@@ -129,7 +129,7 @@ export default function CookieConsentBanner() {
                 <p className="text-sm text-gray-500 mt-1">
                   Цей сайт використовує файли cookie для покращення вашого досвіду. Ви можете прийняти всі файли cookie,
                   відхилити їх або налаштувати свої уподобання.{" "}
-                  <Link href="/cookies" className="text-green-600 hover:underline">
+                  <Link href="/cookies" className="text-green-900 hover:underline">
                     Детальніше
                   </Link>
                 </p>
