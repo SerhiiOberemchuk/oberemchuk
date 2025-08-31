@@ -27,24 +27,15 @@ interface Project {
 
 async function getProject(slug: string): Promise<Project | null> {
   try {
-    // Спочатку спробуємо внутрішнє API
-    const response = await fetch(`/api/projects/${slug}`, {
+    // Прямо звертаємося до зовнішнього API
+    const response = await fetch("https://v0-adminca-bk.vercel.app/api/projects", {
       cache: "no-store",
     })
 
     if (response.ok) {
       const data = await response.json()
       if (data.success) {
-        return data.data
-      }
-    }
-
-    // Fallback: отримуємо всі проекти та знаходимо потрібний
-    const allProjectsResponse = await fetch("https://v0-adminca-bk.vercel.app/api/projects")
-    if (allProjectsResponse.ok) {
-      const allProjectsData = await allProjectsResponse.json()
-      if (allProjectsData.success) {
-        const project = allProjectsData.data.find((p: Project) => p.slug === slug)
+        const project = data.data.find((p: Project) => p.slug === slug)
         return project || null
       }
     }
@@ -54,6 +45,24 @@ async function getProject(slug: string): Promise<Project | null> {
     console.error("Помилка отримання проекту:", error)
     return null
   }
+}
+
+export async function generateStaticParams() {
+  try {
+    const response = await fetch("https://v0-adminca-bk.vercel.app/api/projects")
+    if (response.ok) {
+      const data = await response.json()
+      if (data.success) {
+        return data.data.map((project: Project) => ({
+          slug: project.slug,
+        }))
+      }
+    }
+  } catch (error) {
+    console.error("Помилка генерації статичних параметрів:", error)
+  }
+
+  return []
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
