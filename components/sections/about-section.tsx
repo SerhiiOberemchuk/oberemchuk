@@ -20,9 +20,8 @@ export default function AboutSection() {
     "MongoDB",
     "Prisma",
     "Git",
-    "Figma",
-    "Photoshop",
-  ]
+    "Figma"
+      ]
 
   const skills = [
     {

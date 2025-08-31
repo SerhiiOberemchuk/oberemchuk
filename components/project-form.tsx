@@ -1,408 +1,409 @@
-"use client";
+"use client"
 
-import type React from "react";
+import type React from "react"
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useToast } from "@/components/ui/use-toast";
-import { trackContactFormSubmission } from "@/lib/analytics";
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { toast } from "sonner"
+import { Loader2, Plus, X } from "lucide-react"
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  websiteType: string;
-  platform: string;
-  timeline: string;
-  budget: string;
-  message: string;
+interface ProjectFormData {
+  title: string
+  description: string
+  category: string
+  technologies: string[]
+  status: string
+  client: string
+  duration: string
+  budget: string
+  features: string[]
+  challenges: string
+  results: string
+  imageUrl: string
+  liveUrl: string
+  githubUrl: string
 }
 
 export default function ProjectForm() {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    websiteType: "",
-    platform: "",
-    timeline: "",
+  const [formData, setFormData] = useState<ProjectFormData>({
+    title: "",
+    description: "",
+    category: "",
+    technologies: [],
+    status: "",
+    client: "",
+    duration: "",
     budget: "",
-    message: "",
-  });
+    features: [],
+    challenges: "",
+    results: "",
+    imageUrl: "",
+    liveUrl: "",
+    githubUrl: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [newTechnology, setNewTechnology] = useState("")
+  const [newFeature, setNewFeature] = useState("")
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
 
-  const handleRadioChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const addTechnology = () => {
+    if (newTechnology.trim() && !formData.technologies.includes(newTechnology.trim())) {
+      setFormData((prev) => ({
+        ...prev,
+        technologies: [...prev.technologies, newTechnology.trim()],
+      }))
+      setNewTechnology("")
+    }
+  }
+
+  const removeTechnology = (tech: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      technologies: prev.technologies.filter((t) => t !== tech),
+    }))
+  }
+
+  const addFeature = () => {
+    if (newFeature.trim() && !formData.features.includes(newFeature.trim())) {
+      setFormData((prev) => ({
+        ...prev,
+        features: [...prev.features, newFeature.trim()],
+      }))
+      setNewFeature("")
+    }
+  }
+
+  const removeFeature = (feature: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      features: prev.features.filter((f) => f !== feature),
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // Валідація
+    if (!formData.title.trim()) {
+      toast.error("Будь ласка, введіть назву проекту")
+      setIsSubmitting(false)
+      return
+    }
+
+    if (!formData.description.trim()) {
+      toast.error("Будь ласка, введіть опис проекту")
+      setIsSubmitting(false)
+      return
+    }
+
+    if (!formData.category) {
+      toast.error("Будь ласка, оберіть категорію проекту")
+      setIsSubmitting(false)
+      return
+    }
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // Тут буде логіка відправки на сервер
+      await new Promise((resolve) => setTimeout(resolve, 2000)) // Імітація запиту
 
-      const data = await response.json();
+      toast.success("Проект успішно додано!")
 
-      if (!response.ok) {
-        throw new Error(data.error || "Щось пішло не так");
-      }
-
-      trackContactFormSubmission();
-
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+      // Очищення форми
       setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        websiteType: "",
-        platform: "",
-        timeline: "",
+        title: "",
+        description: "",
+        category: "",
+        technologies: [],
+        status: "",
+        client: "",
+        duration: "",
         budget: "",
-        message: "",
-      });
-
-      toast({
-        title: "Дякуємо за ваше повідомлення!",
-        description: "Ми зв'яжемося з вами найближчим часом.",
-      });
+        features: [],
+        challenges: "",
+        results: "",
+        imageUrl: "",
+        liveUrl: "",
+        githubUrl: "",
+      })
     } catch (error) {
-      setIsSubmitting(false);
-      toast({
-        title: "Помилка",
-        description:
-          error instanceof Error
-            ? error.message
-            : "Виникла помилка при відправці повідомлення",
-        variant: "destructive",
-      });
+      console.error("Error:", error)
+      toast.error("Помилка при додаванні проекту")
+    } finally {
+      setIsSubmitting(false)
     }
-  };
-
-  if (isSubmitted) {
-    return (
-      <div className="bg-white p-8 rounded-lg shadow-md text-center">
-        <h3 className="text-2xl font-bold text-green-600 mb-4">
-          Дякуємо за ваше повідомлення!
-        </h3>
-        <p className="text-gray-600 mb-6">
-          Ми отримали вашу заявку і зв'яжемося з вами найближчим часом для
-          обговорення деталей вашого проекту.
-        </p>
-        <Button onClick={() => setIsSubmitted(false)}>
-          Надіслати ще одне повідомлення
-        </Button>
-      </div>
-    );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div className="space-y-2">
-          <Label htmlFor="name">Ваше ім'я *</Label>
-          <Input
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            placeholder="Введіть ваше ім'я"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="email">Email *</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            placeholder="Введіть ваш email"
-          />
-        </div>
-      </div>
+    <Card className="w-full max-w-4xl mx-auto">
+      <CardHeader>
+        <CardTitle>Додати новий проект</CardTitle>
+        <CardDescription>Заповніть форму для додавання нового проекту до портфоліо</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Основна інформація */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Основна інформація</h3>
 
-      <div className="mb-8">
-        <div className="space-y-2">
-          <Label htmlFor="phone">Телефон</Label>
-          <Input
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            placeholder="Введіть ваш номер телефону"
-          />
-          <p className="text-xs text-gray-500">
-            Необов'язково, але допоможе нам швидше зв'язатися з вами
-          </p>
-        </div>
-      </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="title">Назва проекту *</Label>
+                <Input
+                  id="title"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Назва вашого проекту"
+                />
+              </div>
 
-      <div className="mb-8">
-        <Label className="mb-4 block text-lg font-medium">Тип сайту *</Label>
-        <RadioGroup
-          value={formData.websiteType}
-          onValueChange={(value) => handleRadioChange("websiteType", value)}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          required
-        >
-          <label
-            htmlFor="landing"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="landing" id="landing" />
-            <span>Лендінг</span>
-          </label>
-          <label
-            htmlFor="ecommerce"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="ecommerce" id="ecommerce" />
-            <span>Інтернет-магазин</span>
-          </label>
-          <label
-            htmlFor="corporate"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="corporate" id="corporate" />
-            <span>Корпоративний сайт</span>
-          </label>
-          <label
-            htmlFor="blog"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="blog" id="blog" />
-            <span>Блог</span>
-          </label>
-          <label
-            htmlFor="portfolio"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="portfolio" id="portfolio" />
-            <span>Портфоліо</span>
-          </label>
-          <label
-            htmlFor="other"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="other" id="other" />
-            <span>Інше</span>
-          </label>
-        </RadioGroup>
-      </div>
+              <div className="space-y-2">
+                <Label htmlFor="category">Категорія *</Label>
+                <Select value={formData.category} onValueChange={(value) => handleSelectChange("category", value)}>
+                  <SelectTrigger aria-label="Оберіть категорію проекту">
+                    <SelectValue placeholder="Оберіть категорію" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="web-development">Веб-розробка</SelectItem>
+                    <SelectItem value="mobile-app">Мобільний додаток</SelectItem>
+                    <SelectItem value="e-commerce">E-commerce</SelectItem>
+                    <SelectItem value="landing-page">Лендінг</SelectItem>
+                    <SelectItem value="corporate">Корпоративний сайт</SelectItem>
+                    <SelectItem value="portfolio">Портфоліо</SelectItem>
+                    <SelectItem value="blog">Блог</SelectItem>
+                    <SelectItem value="other">Інше</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
 
-      <div className="mb-8">
-        <Label className="mb-4 block text-lg font-medium">
-          Бажана платформа *
-        </Label>
-        <RadioGroup
-          value={formData.platform}
-          onValueChange={(value) => handleRadioChange("platform", value)}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          required
-        >
-          <label
-            htmlFor="custom"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="custom" id="custom" />
-            <span>Кастомне рішення</span>
-          </label>
-          <label
-            htmlFor="wordpress"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="wordpress" id="wordpress" />
-            <span>WordPress</span>
-          </label>
-          <label
-            htmlFor="webflow"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="webflow" id="webflow" />
-            <span>Webflow</span>
-          </label>
-          <label
-            htmlFor="shopify"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="shopify" id="shopify" />
-            <span>Shopify</span>
-          </label>
-          <label
-            htmlFor="wix"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="wix" id="wix" />
-            <span>Wix</span>
-          </label>
-          <label
-            htmlFor="platform-other"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="other" id="platform-other" />
-            <span>Інше</span>
-          </label>
-        </RadioGroup>
-      </div>
+            <div className="space-y-2">
+              <Label htmlFor="description">Опис проекту *</Label>
+              <Textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                required
+                placeholder="Детальний опис проекту..."
+                rows={4}
+              />
+            </div>
+          </div>
 
-      <div className="mb-8">
-        <Label className="mb-4 block text-lg font-medium">
-          Бажані терміни виконання *
-        </Label>
-        <RadioGroup
-          value={formData.timeline}
-          onValueChange={(value) => handleRadioChange("timeline", value)}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          required
-        >
-          <label
-            htmlFor="urgent"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="urgent" id="urgent" />
-            <span>Терміново (до 2 тижнів)</span>
-          </label>
-          <label
-            htmlFor="1month"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="1month" id="1month" />
-            <span>До 1 місяця</span>
-          </label>
-          <label
-            htmlFor="2months"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="2months" id="2months" />
-            <span>1-2 місяці</span>
-          </label>
-          <label
-            htmlFor="3months"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="3months" id="3months" />
-            <span>2-3 місяці</span>
-          </label>
-          <label
-            htmlFor="flexible"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="flexible" id="flexible" />
-            <span>Гнучкі терміни</span>
-          </label>
-          <label
-            htmlFor="timeline-undecided"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="undecided" id="timeline-undecided" />
-            <span>Ще не визначився</span>
-          </label>
-        </RadioGroup>
-      </div>
+          {/* Технології */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Технології</h3>
 
-      <div className="mb-8">
-        <Label className="mb-4 block text-lg font-medium">
-          Бюджет проєкту *
-        </Label>
-        <RadioGroup
-          value={formData.budget}
-          onValueChange={(value) => handleRadioChange("budget", value)}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-          required
-        >
-          <label
-            htmlFor="budget1"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="до $500" id="budget1" />
-            <span>до $500</span>
-          </label>
-          <label
-            htmlFor="budget2"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="$500-$1000" id="budget2" />
-            <span>$500-$1000</span>
-          </label>
-          <label
-            htmlFor="budget3"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="$1000-$2000" id="budget3" />
-            <span>$1000-$2000</span>
-          </label>
-          <label
-            htmlFor="budget4"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="$2000-$5000" id="budget4" />
-            <span>$2000-$5000</span>
-          </label>
-          <label
-            htmlFor="budget5"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="$5000+" id="budget5" />
-            <span>$5000+</span>
-          </label>
-          <label
-            htmlFor="budget-undecided"
-            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-50 transition-colors cursor-pointer w-full"
-          >
-            <RadioGroupItem value="Не визначено" id="budget-undecided" />
-            <span>Ще не визначився</span>
-          </label>
-        </RadioGroup>
-      </div>
+            <div className="flex gap-2">
+              <Input
+                value={newTechnology}
+                onChange={(e) => setNewTechnology(e.target.value)}
+                placeholder="Додати технологію"
+                onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addTechnology())}
+              />
+              <Button type="button" onClick={addTechnology} size="sm">
+                <Plus className="h-4 w-4" />
+              </Button>
+            </div>
 
-      <div className="mb-8">
-        <div className="space-y-2">
-          <Label htmlFor="message">Деталі проєкту *</Label>
-          <Textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            placeholder="Розкажіть більше про ваш проєкт, цілі та очікування"
-            rows={5}
-          />
-        </div>
-      </div>
+            <div className="flex flex-wrap gap-2">
+              {formData.technologies.map((tech) => (
+                <Badge key={tech} variant="secondary" className="flex items-center gap-1">
+                  {tech}
+                  <X className="h-3 w-3 cursor-pointer" onClick={() => removeTechnology(tech)} />
+                </Badge>
+              ))}
+            </div>
+          </div>
 
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? "Відправка..." : "Надіслати запит"}
-      </Button>
-      <p className="text-xs text-gray-500 mt-4 text-center">
-        Натискаючи кнопку "Надіслати запит", ви погоджуєтеся з нашою{" "}
-        <a href="/privacy-policy" className="text-green-600 hover:underline">
-          Політикою конфіденційності
-        </a>
-        . Ваші дані будуть надіслані на serhiioberemchuk@gmail.com
-      </p>
-    </form>
-  );
+          {/* Деталі проекту */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Деталі проекту</h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="status">Статус</Label>
+                <Select value={formData.status} onValueChange={(value) => handleSelectChange("status", value)}>
+                  <SelectTrigger aria-label="Оберіть статус проекту">
+                    <SelectValue placeholder="Статус проекту" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="completed">Завершено</SelectItem>
+                    <SelectItem value="in-progress">В процесі</SelectItem>
+                    <SelectItem value="planned">Заплановано</SelectItem>
+                    <SelectItem value="on-hold">Призупинено</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="duration">Тривалість</Label>
+                <Input
+                  id="duration"
+                  name="duration"
+                  value={formData.duration}
+                  onChange={handleInputChange}
+                  placeholder="2 місяці"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="budget">Бюджет</Label>
+                <Input
+                  id="budget"
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleInputChange}
+                  placeholder="$5,000"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="client">Клієнт</Label>
+              <Input
+                id="client"
+                name="client"
+                value={formData.client}
+                onChange={handleInputChange}
+                placeholder="Назва компанії або клієнта"
+              />
+            </div>
+          </div>
+
+          {/* Особливості */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Особливості проекту</h3>
+
+            <div className="flex gap-2">
+              <Input
+                value={newFeature}
+                onChange={(e) => setNewFeature(e.target.value)}
+                placeholder="Додати особливість"
+                onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addFeature())}
+              />
+              <Button type="button" onClick={addFeature} size="sm">
+                <Plus className="h-4 w-4" />
+              </Button>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {formData.features.map((feature) => (
+                <Badge key={feature} variant="outline" className="flex items-center gap-1">
+                  {feature}
+                  <X className="h-3 w-3 cursor-pointer" onClick={() => removeFeature(feature)} />
+                </Badge>
+              ))}
+            </div>
+          </div>
+
+          {/* Виклики та результати */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Виклики та результати</h3>
+
+            <div className="space-y-2">
+              <Label htmlFor="challenges">Виклики</Label>
+              <Textarea
+                id="challenges"
+                name="challenges"
+                value={formData.challenges}
+                onChange={handleInputChange}
+                placeholder="Які виклики виникли під час роботи над проектом?"
+                rows={3}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="results">Результати</Label>
+              <Textarea
+                id="results"
+                name="results"
+                value={formData.results}
+                onChange={handleInputChange}
+                placeholder="Які результати були досягнуті?"
+                rows={3}
+              />
+            </div>
+          </div>
+
+          {/* Посилання */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Посилання</h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="imageUrl">URL зображення</Label>
+                <Input
+                  id="imageUrl"
+                  name="imageUrl"
+                  type="url"
+                  value={formData.imageUrl}
+                  onChange={handleInputChange}
+                  placeholder="https://example.com/image.jpg"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="liveUrl">Посилання на сайт</Label>
+                <Input
+                  id="liveUrl"
+                  name="liveUrl"
+                  type="url"
+                  value={formData.liveUrl}
+                  onChange={handleInputChange}
+                  placeholder="https://example.com"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="githubUrl">GitHub репозиторій</Label>
+                <Input
+                  id="githubUrl"
+                  name="githubUrl"
+                  type="url"
+                  value={formData.githubUrl}
+                  onChange={handleInputChange}
+                  placeholder="https://github.com/username/repo"
+                />
+              </div>
+            </div>
+          </div>
+
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Додаємо проект...
+              </>
+            ) : (
+              "Додати проект"
+            )}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  )
 }
