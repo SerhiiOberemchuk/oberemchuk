@@ -9,15 +9,42 @@ import GoogleAnalytics from "@/components/google-analytics"
 import CookieConsentBanner from "@/components/cookie-consent-banner"
 import ScrollToTop from "@/components/scroll-to-top"
 
-const inter = Inter({ subsets: ["latin", "cyrillic"] })
+const inter = Inter({
+  subsets: ["latin", "cyrillic"],
+  display: "swap",
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
-  title: "Serhii Oberemchuk - Веб-розробник | Створюю сучасні сайти",
+  title: {
+    default: "Serhii Oberemchuk - Веб-розробник | Створюю сучасні сайти",
+    template: "%s | Serhii Oberemchuk - Веб-розробник",
+  },
   description:
-    "Я Serhii Oberemchuk - професійний веб-розробник з України. Створюю швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати.",
-  keywords:
-    "Serhii Oberemchuk, веб-розробник, веб-дизайн, сайти, лендінги, інтернет-магазини, SEO оптимізація, Україна, фрілансер",
-  authors: [{ name: "Serhii Oberemchuk" }],
+    "Я Serhii Oberemchuk - професійний веб-розробник з України. Створюю швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати. Розробка лендінгів, корпоративних сайтів, інтернет-магазинів.",
+  keywords: [
+    "Serhii Oberemchuk",
+    "веб-розробник",
+    "веб-дизайн",
+    "сайти",
+    "лендінги",
+    "інтернет-магазини",
+    "SEO оптимізація",
+    "Україна",
+    "фрілансер",
+    "React",
+    "Next.js",
+    "JavaScript",
+    "TypeScript",
+    "розробка сайтів",
+    "створення сайтів",
+    "веб-студія",
+    "адаптивний дизайн",
+    "мобільна версія",
+    "швидкі сайти",
+    "сучасні технології",
+  ],
+  authors: [{ name: "Serhii Oberemchuk", url: "https://www.oberemchuk.site" }],
   creator: "Serhii Oberemchuk",
   publisher: "Serhii Oberemchuk",
   formatDetection: {
@@ -28,6 +55,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL || "https://www.oberemchuk.site"),
   alternates: {
     canonical: "/",
+    languages: {
+      "uk-UA": "/",
+      uk: "/",
+    },
   },
   openGraph: {
     title: "Serhii Oberemchuk - Веб-розробник | Створюю сучасні сайти",
@@ -41,6 +72,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Serhii Oberemchuk - Професійний веб-розробник",
+        type: "image/png",
       },
     ],
     locale: "uk_UA",
@@ -52,16 +84,31 @@ export const metadata: Metadata = {
     description:
       "Я Serhii Oberemchuk - професійний веб-розробник з України. Створюю швидкі, сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати.",
     images: ["/og-image.png"],
+    creator: "@SerhiiOberemchuk",
   },
   icons: {
     icon: [
       { url: "/icon.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon.png", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
-    shortcut: [{ url: "/favicon.ico", sizes: "any" }],
+    shortcut: [{ url: "/favicon.ico" }],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.json",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  category: "technology",
+  classification: "Web Development Services",
+  referrer: "origin-when-cross-origin",
     generator: 'v0.app'
 }
 
@@ -71,13 +118,31 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="uk">
+    <html lang="uk" className={inter.variable}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://v0-adminca-bk.vercel.app" />
+        <meta name="theme-color" content="#16a34a" />
+        <meta name="color-scheme" content="light" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Serhii Oberemchuk" />
+        <meta name="application-name" content="Serhii Oberemchuk" />
+        <meta name="msapplication-TileColor" content="#16a34a" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+      </head>
       <body className={inter.className}>
-        {/* Додаємо Google Analytics */}
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ""} />
         <div className="flex min-h-screen flex-col pt-16">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1" role="main">
+            {children}
+          </main>
           <Footer />
         </div>
         <CookieConsentBanner />

@@ -1,103 +1,204 @@
 import HeroSection from "@/components/sections/hero-section"
 import AboutSection from "@/components/sections/about-section"
 import ServicesSection from "@/components/sections/services-section"
-import FaqSection from "@/components/faq-section"
 import ContactSection from "@/components/sections/contact-section"
+import FaqSection from "@/components/faq-section"
 import JsonLd from "@/components/json-ld"
+import type { Metadata } from "next"
 
-export default function HomePage() {
-  const jsonLd = {
+export const metadata: Metadata = {
+  title: "Serhii Oberemchuk - Веб-розробник | Створення сайтів та веб-додатків",
+  description:
+    "Професійна розробка сайтів та веб-додатків. Створюю сучасні, швидкі та SEO-оптимізовані вебсайти. Більше 5 років досвіду, 50+ успішних проектів.",
+  keywords:
+    "веб-розробник, створення сайтів, розробка веб-додатків, лендінги, інтернет-магазини, корпоративні сайти, SEO оптимізація, Serhii Oberemchuk",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Serhii Oberemchuk - Веб-розробник | Створення сайтів та веб-додатків",
+    description:
+      "Професійна розробка сайтів та веб-додатків. Створюю сучасні, швидкі та SEO-оптимізовані вебсайти. Більше 5 років досвіду.",
+    url: "/",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Serhii Oberemchuk - Веб-розробник",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Serhii Oberemchuk - Веб-розробник",
+    description: "Професійна розробка сайтів та веб-додатків. Більше 5 років досвіду, 50+ успішних проектів.",
+  },
+}
+
+const faqs = [
+  {
+    question: "Скільки часу займає розробка сайту?",
+    answer:
+      "Час розробки залежить від складності проекту. Простий лендінг - 1-2 тижні, корпоративний сайт - 2-4 тижні, інтернет-магазин - 4-8 тижнів. Точні терміни обговорюємо після аналізу вимог.",
+  },
+  {
+    question: "Чи включена SEO оптимізація в розробку?",
+    answer:
+      "Так, базова SEO оптимізація включена в усі мої проекти: правильна структура HTML, мета-теги, швидкість завантаження, адаптивність. Додаткові SEO послуги обговорюються окремо.",
+  },
+  {
+    question: "Чи надаєте ви підтримку після запуску сайту?",
+    answer:
+      "Так, я надаю технічну підтримку протягом 1 місяця після запуску безкоштовно. Далі можемо укласти договір на постійну підтримку та оновлення контенту.",
+  },
+  {
+    question: "Які технології ви використовуєте?",
+    answer:
+      "Я працюю з сучасними технологіями: React, Next.js, TypeScript, Node.js, PostgreSQL, MongoDB. Вибір технологій залежить від специфіки проекту та ваших потреб.",
+  },
+  {
+    question: "Чи можете працювати з готовим дизайном?",
+    answer:
+      "Так, я можу реалізувати ваш готовий дизайн або працювати з дизайнером у команді. Також можу запропонувати власні дизайнерські рішення, якщо потрібно.",
+  },
+  {
+    question: "Яка вартість розробки сайту?",
+    answer:
+      "Вартість залежить від складності та функціоналу. Лендінг від $500, корпоративний сайт від $1000, інтернет-магазин від $1500. Точну ціну розраховую після обговорення деталей проекту.",
+  },
+]
+
+const jsonLdData = [
+  {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Serhii Oberemchuk",
     jobTitle: "Web Developer",
-    description: "Професійний веб-розробник з України, який створює швидкі, сучасні та функціональні вебсайти",
+    description: "Професійний веб-розробник з досвідом створення сучасних сайтів та веб-додатків",
     url: "https://www.oberemchuk.site",
-    logo: "https://www.oberemchuk.site/icon.png",
-    image: "https://www.oberemchuk.site/og-image.png",
-    email: "serhiioberemchuk@gmail.com",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "Ukraine",
-    },
     sameAs: [
       "https://www.linkedin.com/in/serhii-oberemchuk",
       "https://github.com/oberemchuk",
-      "https://t.me/SerhiiOberemchuk",
+      "https://t.me/oberemchuk",
     ],
-    knowsAbout: ["Web Development", "Web Design", "SEO Optimization", "React", "Next.js", "JavaScript"],
+    knowsAbout: [
+      "Web Development",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "SEO",
+      "Frontend Development",
+      "Backend Development",
+    ],
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Web Developer",
+      occupationLocation: {
+        "@type": "Country",
+        name: "Ukraine",
+      },
+      skills: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "MongoDB", "SEO"],
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Serhii Oberemchuk - Веб-розробник",
+    description: "Професійна розробка сайтів та веб-додатків",
+    url: "https://www.oberemchuk.site",
+    author: {
+      "@type": "Person",
+      name: "Serhii Oberemchuk",
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://www.oberemchuk.site/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Serhii Oberemchuk - Web Development Services",
+    description: "Професійні послуги веб-розробки: створення сайтів, веб-додатків, SEO оптимізація",
+    url: "https://www.oberemchuk.site",
+    telephone: "+393516648498",
+    email: "hello@oberemchuk.site",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "UA",
+      addressRegion: "Ukraine",
+    },
+    serviceType: "Web Development",
+    provider: {
+      "@type": "Person",
+      name: "Serhii Oberemchuk",
+    },
     areaServed: {
       "@type": "Country",
       name: "Ukraine",
     },
-    offers: {
-      "@type": "Offer",
-      itemOffered: [
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Web Development Services",
+      itemListElement: [
         {
-          "@type": "Service",
-          name: "Веб-дизайн",
-          description: "Створюю унікальний, сучасний дизайн, який відображає вашу індивідуальність та цінності бренду.",
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Landing Page Development",
+            description: "Створення ефективних лендінгів",
+          },
         },
         {
-          "@type": "Service",
-          name: "Розробка",
-          description:
-            "Розробляю функціональні вебсайти з чистим кодом, семантичною версткою та оптимальною швидкістю.",
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Corporate Website Development",
+            description: "Розробка корпоративних сайтів",
+          },
         },
         {
-          "@type": "Service",
-          name: "SEO-оптимізація",
-          description: "Оптимізую ваш сайт для пошукових систем, щоб збільшити органічний трафік та видимість.",
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "E-commerce Development",
+            description: "Створення інтернет-магазинів",
+          },
         },
       ],
     },
-  }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  },
+]
 
-  const faqs = [
-    {
-      question: "Скільки коштує розробка вебсайту?",
-      answer:
-        "Вартість розробки залежить від складності проекту. Простий лендінг від $800, корпоративний сайт від $1200, інтернет-магазин від $1500. Я завжди надаю детальну консультацію та розрахунок вартості для вашого конкретного проекту.",
-    },
-    {
-      question: "Скільки часу займає розробка?",
-      answer:
-        "Терміни залежать від складності: лендінг - 1-2 тижні, корпоративний сайт - 3-4 тижні, складний проект - 1-3 місяці. Я завжди дотримуюся узгодженого графіка та інформую про прогрес.",
-    },
-    {
-      question: "Чи надаєте підтримку після запуску?",
-      answer:
-        "Так, я пропоную повний спектр послуг з підтримки: технічна підтримка, оновлення контенту, моніторинг безпеки, резервне копіювання. Можу запропонувати різні пакети підтримки залежно від ваших потреб.",
-    },
-    {
-      question: "Чи працюєте з мобільними пристроями?",
-      answer:
-        "Абсолютно! Всі мої сайти створюються з адаптивним дизайном для оптимального відображення на смартфонах, планшетах та комп'ютерах. Мобільна оптимізація - це стандарт моєї роботи.",
-    },
-    {
-      question: "Чи включена SEO-оптимізація?",
-      answer:
-        "Базова SEO-оптимізація входить у всі пакети: чистий код, правильна структура, оптимізовані зображення, метатеги. Для глибшої оптимізації пропоную додаткові SEO-послуги.",
-    },
-    {
-      question: "Чи можете оновити існуючий сайт?",
-      answer:
-        "Так, я пропоную модернізацію існуючих сайтів: оновлення дизайну, покращення функціональності, оптимізація швидкості, мобільна адаптація. Проведу аудит та запропоную оптимальне рішення.",
-    },
-  ]
-
+export default function HomePage() {
   return (
-    <main className="min-h-screen">
-      <JsonLd data={jsonLd} />
+    <>
+      <JsonLd data={jsonLdData} />
       <HeroSection />
       <AboutSection />
       <ServicesSection />
+      <ContactSection />
       <FaqSection
         title="Часті запитання"
         subtitle="Відповіді на найпоширеніші питання про розробку вебсайтів"
         faqs={faqs}
       />
-      <ContactSection />
-    </main>
+    </>
   )
 }

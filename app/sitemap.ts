@@ -1,16 +1,16 @@
-import axiosInstanceAdmin from "@/data/axios";
-import { Project } from "@/types/projects";
-import type { MetadataRoute } from "next";
+import axiosInstanceAdmin from "@/data/axios"
+import type { Project } from "@/types/projects"
+import type { MetadataRoute } from "next"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.SITE_URL || "https://www.oberemchuk.site";
+  const baseUrl = process.env.SITE_URL || "https://www.oberemchuk.site"
 
-  let projects: Project[] = [];
+  let projects: Project[] = []
   try {
-    const response = await axiosInstanceAdmin.get(`/api/projects`);
-    projects = response.data.data;
+    const response = await axiosInstanceAdmin.get(`/api/projects`)
+    projects = response.data.data
   } catch (error) {
-    console.error("Помилка отримання проектів для sitemap:", error);
+    console.error("Помилка отримання проектів для sitemap:", error)
   }
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -24,13 +24,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/portfolio`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/services`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/privacy-policy`,
@@ -50,16 +50,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       priority: 0.3,
     },
-  ];
+  ]
 
   const projectPages = projects.map((project) => ({
     url: `${baseUrl}/portfolio/${project.slug}`,
-    lastModified: project.updated_at
-      ? new Date(project.updated_at)
-      : new Date(),
+    lastModified: project.updated_at ? new Date(project.updated_at) : new Date(),
     changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+    priority: 0.7,
+  }))
 
-  return [...staticPages, ...projectPages];
+  return [...staticPages, ...projectPages]
 }

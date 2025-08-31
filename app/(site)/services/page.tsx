@@ -1,174 +1,152 @@
 import type { Metadata } from "next"
-import JsonLd from "@/components/json-ld"
+import ServiceCard from "@/components/service-card"
+import { Button } from "@/components/ui/button"
+import { CheckCircle, Code, Palette, Search, Smartphone } from "lucide-react"
+import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Послуги | Serhii Oberemchuk - Веб-розробка та дизайн сайтів",
+  title: "Послуги",
   description:
-    "Повний спектр послуг з розробки вебсайтів від Serhii Oberemchuk: веб-дизайн, розробка, SEO оптимізація, технічна підтримка. Створюю сучасні, швидкі та функціональні сайти.",
-  keywords:
-    "веб-розробка, веб-дизайн, SEO оптимізація, адаптивний дизайн, інтеграції, технічна підтримка, Serhii Oberemchuk",
+    "Послуги веб-розробника Serhii Oberemchuk: розробка лендінгів, корпоративних сайтів, інтернет-магазинів, SEO оптимізація. Професійний підхід та сучасні технології.",
+  keywords: [
+    "послуги веб-розробника",
+    "розробка лендінгів",
+    "корпоративні сайти",
+    "інтернет-магазини",
+    "SEO оптимізація",
+    "веб-дизайн",
+    "адаптивний дизайн",
+    "ціни на розробку сайтів",
+  ],
   alternates: {
     canonical: "/services",
   },
   openGraph: {
-    title: "Послуги | Serhii Oberemchuk - Веб-розробка та дизайн сайтів",
+    title: "Послуги - Serhii Oberemchuk",
     description:
-      "Повний спектр послуг з розробки вебсайтів від Serhii Oberemchuk: веб-дизайн, розробка, SEO оптимізація, технічна підтримка. Створюю сучасні, швидкі та функціональні сайти.",
+      "Послуги веб-розробника: розробка лендінгів, корпоративних сайтів, інтернет-магазинів, SEO оптимізація.",
     url: "/services",
+    type: "website",
   },
 }
 
+const services = [
+  {
+    icon: <Code className="h-8 w-8" />,
+    title: "Лендінг",
+    description: "Одностороінковий сайт для презентації товару або послуги",
+    price: "від $300",
+    features: ["Адаптивний дизайн", "SEO оптимізація", "Форма зворотного зв'язку", "Швидке завантаження"],
+  },
+  {
+    icon: <Palette className="h-8 w-8" />,
+    title: "Дизайн + Розробка",
+    description: "Повний цикл створення сайту від ідеї до реалізації",
+    price: "від $800",
+    features: ["Унікальний дизайн", "Розробка з нуля", "Адаптивність", "CMS інтеграція"],
+    popular: true,
+  },
+  {
+    icon: <Smartphone className="h-8 w-8" />,
+    title: "Корпоративний сайт",
+    description: "Багатосторінковий сайт для представлення компанії",
+    price: "від $600",
+    features: ["Багато сторінок", "Система управління", "Інтеграція з соцмережами", "Аналітика"],
+  },
+  {
+    icon: <Search className="h-8 w-8" />,
+    title: "SEO оптимізація",
+    description: "Покращення позицій сайту в пошукових системах",
+    price: "від $200",
+    features: ["Технічний аудит", "Оптимізація контенту", "Мета-теги", "Швидкість завантаження"],
+  },
+]
+
+const advantages = [
+  {
+    title: "Індивідуальний підхід",
+    description: "Кожен проект розробляється з урахуванням специфіки вашого бізнесу",
+  },
+  {
+    title: "Сучасні технології",
+    description: "Використовую найновіші технології для створення швидких сайтів",
+  },
+  {
+    title: "Підтримка після запуску",
+    description: "Надаю технічну підтримку та консультації після завершення проекту",
+  },
+]
+
+const servicesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Послуги веб-розробки",
+  description: "Професійні послуги веб-розробки: лендінги, корпоративні сайти, інтернет-магазини, SEO оптимізація",
+  provider: {
+    "@type": "Person",
+    name: "Serhii Oberemchuk",
+    url: "https://www.oberemchuk.site",
+  },
+  areaServed: "Ukraine",
+  serviceType: "Web Development",
+  offers: services.map((service) => ({
+    "@type": "Offer",
+    name: service.title,
+    description: service.description,
+    price: service.price,
+    priceCurrency: "USD",
+  })),
+}
+
 export default function ServicesPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Послуги веб-розробника Serhii Oberemchuk",
-    description: "Повний спектр послуг з розробки вебсайтів",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        item: {
-          "@type": "Service",
-          name: "Веб-дизайн",
-          description: "Створюю унікальний, сучасний дизайн, який відображає вашу індивідуальність та цінності бренду.",
-          provider: {
-            "@type": "Person",
-            name: "Serhii Oberemchuk",
-          },
-          url: "https://www.oberemchuk.site/services#web-design",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        item: {
-          "@type": "Service",
-          name: "Розробка",
-          description:
-            "Розробляю функціональні вебсайти з чистим кодом, семантичною версткою та оптимальною швидкістю.",
-          provider: {
-            "@type": "Person",
-            name: "Serhii Oberemchuk",
-          },
-          url: "https://www.oberemchuk.site/services#development",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        item: {
-          "@type": "Service",
-          name: "SEO-оптимізація",
-          description: "Оптимізую ваш сайт для пошукових систем, щоб збільшити органічний трафік та видимість.",
-          provider: {
-            "@type": "Person",
-            name: "Serhii Oberemchuk",
-          },
-          url: "https://www.oberemchuk.site/services#seo",
-        },
-      },
-    ],
-  }
-
   return (
-    <div className="container mx-auto py-12 md:py-24">
-      <JsonLd data={jsonLd} />
-
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">Мої послуги</h1>
-        <p className="text-gray-500 md:text-xl/relaxed">
-          Повний спектр послуг з розробки вебсайтів: від дизайну до запуску та підтримки. Створюю сучасні, швидкі та
-          функціональні сайти, які допомагають вашому бізнесу зростати.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        <div className="bg-white p-6 rounded-lg shadow-lg border">
-          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-            <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z"
-              />
-            </svg>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }} />
+      <div className="min-h-screen bg-white py-16">
+        <div className="container mx-auto px-4">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Мої послуги</h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Створюю сучасні та функціональні вебсайти, які допомагають вашому бізнесу зростати
+            </p>
           </div>
-          <h3 className="text-xl font-semibold mb-3">Веб-дизайн</h3>
-          <p className="text-gray-600 mb-4">
-            Створюю унікальний, сучасний дизайн, який відображає вашу індивідуальність та цінності бренду. Кожен дизайн
-            розробляється з урахуванням потреб цільової аудиторії.
-          </p>
-          <ul className="text-sm text-gray-500 space-y-1">
-            <li>• UI/UX дизайн</li>
-            <li>• Адаптивний дизайн</li>
-            <li>• Прототипування</li>
-            <li>• Брендинг</li>
-          </ul>
-        </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-lg border">
-          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-            <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-              />
-            </svg>
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {services.map((service, index) => (
+              <ServiceCard key={index} {...service} />
+            ))}
           </div>
-          <h3 className="text-xl font-semibold mb-3">Розробка</h3>
-          <p className="text-gray-600 mb-4">
-            Розробляю функціональні вебсайти з чистим кодом, семантичною версткою та оптимальною швидкістю. Використовую
-            сучасні технології та фреймворки.
-          </p>
-          <ul className="text-sm text-gray-500 space-y-1">
-            <li>• React / Next.js</li>
-            <li>• HTML5 / CSS3</li>
-            <li>• JavaScript / TypeScript</li>
-            <li>• Адаптивна верстка</li>
-          </ul>
-        </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-lg border">
-          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-            <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+          {/* Advantages */}
+          <div className="bg-gray-50 rounded-2xl p-8 mb-16">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Чому обирають мене</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {advantages.map((advantage, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="h-8 w-8 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{advantage.title}</h3>
+                  <p className="text-gray-600">{advantage.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <h3 className="text-xl font-semibold mb-3">SEO-оптимізація</h3>
-          <p className="text-gray-600 mb-4">
-            Оптимізую ваш сайт для пошукових систем, щоб збільшити органічний трафік та видимість. Використовую сучасні
-            SEO-практики та інструменти.
-          </p>
-          <ul className="text-sm text-gray-500 space-y-1">
-            <li>• Технічне SEO</li>
-            <li>• Оптимізація контенту</li>
-            <li>• Швидкість завантаження</li>
-            <li>• Структуровані дані</li>
-          </ul>
+
+          {/* CTA */}
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Готові почати проект?</h2>
+            <p className="text-xl text-gray-600 mb-8">Зв'яжіться зі мною для обговорення деталей вашого проекту</p>
+            <Link href="/#contact">
+              <Button size="lg" className="bg-green-600 hover:bg-green-700">
+                Замовити консультацію
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
-
-      <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Готові почати проект?</h2>
-        <p className="text-gray-600 mb-6">
-          Зв'яжіться зі мною для обговорення вашого проекту та отримання персональної консультації.
-        </p>
-        <a
-          href="/contact"
-          className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-        >
-          Зв'язатися зі мною
-        </a>
-      </div>
-    </div>
+    </>
   )
 }

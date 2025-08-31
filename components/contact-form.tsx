@@ -51,7 +51,9 @@ export default function ContactForm() {
 
     if (!formData.name.trim()) newErrors.name = "Ім'я обов'язкове"
     if (!formData.email.trim()) newErrors.email = "Email обов'язковий"
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Невірний формат email"
+    if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Невірний формат email"
+    }
     if (!formData.message.trim()) newErrors.message = "Повідомлення обов'язкове"
 
     setErrors(newErrors)
@@ -84,11 +86,11 @@ export default function ContactForm() {
           })
         }
       } else {
-        throw new Error("Помилка відправки форми")
+        throw new Error("Помилка відправки")
       }
     } catch (error) {
       console.error("Error submitting form:", error)
-      alert("Помилка відправки форми. Спробуйте ще раз або зв'яжіться зі мною напряму.")
+      alert("Помилка відправки форми. Спробуйте ще раз.")
     } finally {
       setIsSubmitting(false)
     }
@@ -97,27 +99,25 @@ export default function ContactForm() {
   if (isSubmitted) {
     return (
       <Card className="text-center p-8">
-        <CardContent className="space-y-6">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-            <CheckCircle className="w-8 h-8 text-green-600" />
+        <CardContent className="p-0">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Дякую за звернення!</h3>
-            <p className="text-gray-600 mb-6">
-              Ваше повідомлення успішно відправлено. Я зв'яжуся з вами протягом 24 годин.
-            </p>
-          </div>
-          <div className="space-y-3">
-            <Button asChild className="w-full bg-transparent" variant="outline">
-              <Link href="mailto:hello@oberemchuk.com">
-                <Mail className="w-4 h-4 mr-2" />
-                hello@oberemchuk.com
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Дякую за звернення!</h3>
+          <p className="text-gray-600 mb-6">
+            Ваше повідомлення отримано. Я зв'яжуся з вами протягом 24 годин для обговорення деталей проекту.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild variant="outline">
+              <Link href="mailto:serhii.oberemchuk@gmail.com">
+                <Mail className="h-4 w-4 mr-2" />
+                Написати email
               </Link>
             </Button>
-            <Button asChild className="w-full bg-transparent" variant="outline">
+            <Button asChild>
               <Link href="https://t.me/SerhiiOberemchuk" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                @SerhiiOberemchuk
+                <MessageCircle className="h-4 w-4 mr-2" />
+                Telegram
               </Link>
             </Button>
           </div>
@@ -128,56 +128,60 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Name and Email */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="name">Ім'я *</Label>
+          <Label htmlFor="name">
+            Ім'я <span className="text-red-500">*</span>
+          </Label>
           <Input
             id="name"
+            type="text"
+            placeholder="Ваше ім'я"
             value={formData.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
-            placeholder="Ваше ім'я"
             className={errors.name ? "border-red-500" : ""}
           />
           {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email *</Label>
+          <Label htmlFor="email">
+            Email <span className="text-red-500">*</span>
+          </Label>
           <Input
             id="email"
             type="email"
+            placeholder="your@email.com"
             value={formData.email}
             onChange={(e) => handleInputChange("email", e.target.value)}
-            placeholder="your@email.com"
             className={errors.email ? "border-red-500" : ""}
           />
           {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
         </div>
       </div>
 
-      {/* Phone and Company */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="phone">Телефон</Label>
           <Input
             id="phone"
+            type="tel"
+            placeholder="+380 XX XXX XX XX"
             value={formData.phone}
             onChange={(e) => handleInputChange("phone", e.target.value)}
-            placeholder="+380 XX XXX XX XX"
           />
         </div>
         <div className="space-y-2">
           <Label htmlFor="company">Компанія</Label>
           <Input
             id="company"
+            type="text"
+            placeholder="Назва компанії"
             value={formData.company}
             onChange={(e) => handleInputChange("company", e.target.value)}
-            placeholder="Назва компанії"
           />
         </div>
       </div>
 
-      {/* Project Type */}
       <div className="space-y-2">
         <Label>Тип проекту</Label>
         <Select value={formData.projectType} onValueChange={(value) => handleInputChange("projectType", value)}>
@@ -185,7 +189,7 @@ export default function ContactForm() {
             <SelectValue placeholder="Оберіть тип проекту" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="landing">Лендінг пейдж</SelectItem>
+            <SelectItem value="landing">Лендінг сторінка</SelectItem>
             <SelectItem value="corporate">Корпоративний сайт</SelectItem>
             <SelectItem value="ecommerce">Інтернет-магазин</SelectItem>
             <SelectItem value="webapp">Веб-додаток</SelectItem>
@@ -195,8 +199,7 @@ export default function ContactForm() {
         </Select>
       </div>
 
-      {/* Timeline and Budget */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label>Терміни</Label>
           <Select value={formData.timeline} onValueChange={(value) => handleInputChange("timeline", value)}>
@@ -204,10 +207,10 @@ export default function ContactForm() {
               <SelectValue placeholder="Коли потрібно завершити?" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="asap">Якнайшвидше</SelectItem>
+              <SelectItem value="asap">Якомога швидше</SelectItem>
               <SelectItem value="1month">До 1 місяця</SelectItem>
-              <SelectItem value="2months">До 2 місяців</SelectItem>
-              <SelectItem value="3months">До 3 місяців</SelectItem>
+              <SelectItem value="2months">1-2 місяці</SelectItem>
+              <SelectItem value="3months">2-3 місяці</SelectItem>
               <SelectItem value="flexible">Гнучкі терміни</SelectItem>
             </SelectContent>
           </Select>
@@ -219,39 +222,41 @@ export default function ContactForm() {
               <SelectValue placeholder="Орієнтовний бюджет" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="under500">До $500</SelectItem>
-              <SelectItem value="500-1000">$500 - $1000</SelectItem>
-              <SelectItem value="1000-2000">$1000 - $2000</SelectItem>
-              <SelectItem value="2000-5000">$2000 - $5000</SelectItem>
-              <SelectItem value="over5000">Понад $5000</SelectItem>
+              <SelectItem value="500-1000">$500 - $1,000</SelectItem>
+              <SelectItem value="1000-2000">$1,000 - $2,000</SelectItem>
+              <SelectItem value="2000-5000">$2,000 - $5,000</SelectItem>
+              <SelectItem value="5000+">$5,000+</SelectItem>
               <SelectItem value="discuss">Обговоримо</SelectItem>
             </SelectContent>
           </Select>
         </div>
       </div>
 
-      {/* Message */}
       <div className="space-y-2">
-        <Label htmlFor="message">Повідомлення *</Label>
+        <Label htmlFor="message">
+          Опис проекту <span className="text-red-500">*</span>
+        </Label>
         <Textarea
           id="message"
+          placeholder="Розкажіть детальніше про ваш проект, цілі та побажання..."
+          rows={5}
           value={formData.message}
           onChange={(e) => handleInputChange("message", e.target.value)}
-          placeholder="Розкажіть детальніше про ваш проект, цілі та вимоги..."
-          rows={5}
           className={errors.message ? "border-red-500" : ""}
         />
         {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
       </div>
 
-      {/* Submit Button */}
-      <Button
-        type="submit"
-        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-        disabled={isSubmitting}
-      >
+      <Button type="submit" className="w-full" disabled={isSubmitting}>
         {isSubmitting ? "Відправляю..." : "Відправити повідомлення"}
       </Button>
+
+      <p className="text-sm text-gray-500 text-center">
+        Натискаючи кнопку, ви погоджуєтесь з{" "}
+        <Link href="/privacy-policy" className="text-blue-600 hover:underline">
+          політикою конфіденційності
+        </Link>
+      </p>
     </form>
   )
 }
