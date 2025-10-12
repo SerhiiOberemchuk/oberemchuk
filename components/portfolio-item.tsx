@@ -26,6 +26,9 @@ export default function PortfolioItem({
           width={600}
           height={400}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          priority
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2U5ZWFlZiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIi8+"
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100 flex flex-col justify-end p-6">

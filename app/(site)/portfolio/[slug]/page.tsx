@@ -1,84 +1,126 @@
-import type { Metadata } from "next"
-import { notFound } from "next/navigation"
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowLeft, ExternalLink, Calendar, User } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import JsonLd from "@/components/json-ld"
-import AnimationWrapper from "@/components/animation-wrapper"
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, ExternalLink, Calendar, User } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import JsonLd from "@/components/json-ld";
+import AnimationWrapper from "@/components/animation-wrapper";
 
-interface Project {
-  id: number
-  slug: string
-  title: string
-  category: string
-  image_src: string
-  description: string
-  technologies: string[]
-  features: string[]
-  year: string
-  client: string
-  website_url: string
-  created_at: string
-  updated_at: string
-}
+type Project = {
+  id: number;
+  slug: string;
+  title: string;
+  category: string;
+  image_src: string;
+  description: string;
+  technologies: string[];
+  features: string[];
+  year: string;
+  client: string;
+  website_url: string;
+  created_at: string;
+  updated_at: string;
+};
 
-async function getProject(slug: string): Promise<Project | null> {
+async function getProjects(slug: string): Promise<Project | null> {
   try {
-    // Прямо звертаємося до зовнішнього API
-    const response = await fetch("https://v0-adminca-bk.vercel.app/api/projects", {
-      cache: "no-store",
-    })
+    const response = await fetch(
+      "https://v0-adminca-bk.vercel.app/api/projects",
+      {
+        cache: "force-cache",
+        next: { revalidate: 86400 },
+      }
+    );
 
     if (response.ok) {
-      const data = await response.json()
+      const data = await response.json();
       if (data.success) {
-        const project = data.data.find((p: Project) => p.slug === slug)
-        return project || null
+        const project = data.data.find((p: Project) => p.slug === slug);
+        return project || null;
       }
     }
 
-    return null
+    return null;
   } catch (error) {
-    console.error("Помилка отримання проекту:", error)
-    return null
+    console.error("Помилка отримання проекту:", error);
+    return null;
+  }
+}
+async function getProjectBySlug(slug: string): Promise<Project | null> {
+  try {
+    const response = await fetch(
+      "https://v0-adminca-bk.vercel.app/api/projects/by-slug/" + slug,
+      {
+        cache: "force-cache",
+        next: {
+          revalidate: 86400,
+          tags: ["projects", `projects:${slug}`],
+        },
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.success) {
+        return data.data;
+      }
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Помилка отримання проекту:", error);
+    return null;
   }
 }
 
 export async function generateStaticParams() {
   try {
-    const response = await fetch("https://v0-adminca-bk.vercel.app/api/projects")
+    const response = await fetch(
+      "https://v0-adminca-bk.vercel.app/api/projects",
+      {
+        cache: "force-cache",
+        next: { revalidate: 86400 },
+      }
+    );
     if (response.ok) {
-      const data = await response.json()
+      const data = await response.json();
       if (data.success) {
         return data.data.map((project: Project) => ({
           slug: project.slug,
-        }))
+        }));
       }
     }
   } catch (error) {
-    console.error("Помилка генерації статичних параметрів:", error)
+    console.error("Помилка генерації статичних параметрів:", error);
   }
 
-  return []
+  return [];
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const project = await getProject(params.slug)
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     return {
       title: "Проект не знайдено | Oberemchuk Serhii",
       description: "Запитуваний проект не знайдено.",
-    }
+    };
   }
 
   return {
     title: `${project.title} | Oberemchuk Serhii - Веб-розробка`,
     description: project.description,
-    keywords: `${project.title}, ${project.category}, веб-розробка, ${project.technologies.join(", ")}`,
+    keywords: `${project.title}, ${
+      project.category
+    }, веб-розробка, ${project.technologies.join(", ")}`,
     openGraph: {
       title: `${project.title} | Oberemchuk Serhii - Веб-розробка`,
       description: project.description,
@@ -92,14 +134,18 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       ],
       type: "website",
     },
-  }
+  };
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = await getProject(params.slug)
-
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
   if (!project) {
-    notFound()
+    notFound();
   }
 
   const jsonLd = {
@@ -108,7 +154,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
     name: project.title,
     description: project.description,
     image: project.image_src,
-    url: `https://www.oberemchuk.site/portfolio/${project.slug}`,
+    url: `https://www.oberemchuk.site/portfolio/${slug}`,
     creator: {
       "@type": "Person",
       name: "Oberemchuk Serhii",
@@ -117,7 +163,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
     dateModified: project.updated_at,
     genre: project.category,
     keywords: project.technologies.join(", "),
-  }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -143,8 +189,12 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 <Badge variant="secondary" className="mb-4">
                   {project.category}
                 </Badge>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{project.title}</h1>
-                <p className="text-xl text-gray-600 leading-relaxed">{project.description}</p>
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                  {project.title}
+                </h1>
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  {project.description}
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
@@ -166,7 +216,11 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
               {project.website_url && (
                 <Button asChild className="w-full sm:w-auto">
-                  <a href={project.website_url} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={project.website_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Переглянути сайт
                   </a>
@@ -183,7 +237,9 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 width={600}
                 height={400}
                 className="rounded-lg shadow-lg w-full h-auto"
-                unoptimized={true}
+                priority
+                placeholder="blur"
+                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2U5ZWFlZiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIi8+"
               />
             </div>
           </AnimationWrapper>
@@ -223,5 +279,5 @@ export default async function ProjectPage({ params }: { params: { slug: string }
         </div>
       </div>
     </div>
-  )
+  );
 }
