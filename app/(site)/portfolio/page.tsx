@@ -6,6 +6,8 @@ import SeoText from "@/components/seo-text";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
 interface Project {
   id: number;
   slug: string;

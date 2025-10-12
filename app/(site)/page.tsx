@@ -1,11 +1,11 @@
-import HeroSection from "@/components/sections/hero-section"
-import AboutSection from "@/components/sections/about-section"
-import ServicesSection from "@/components/sections/services-section"
-import ContactSection from "@/components/sections/contact-section"
-import FaqSection from "@/components/faq-section"
-import JsonLd from "@/components/json-ld"
-import type { Metadata } from "next"
-
+import HeroSection from "@/components/sections/hero-section";
+import AboutSection from "@/components/sections/about-section";
+import ServicesSection from "@/components/sections/services-section";
+import ContactSection from "@/components/sections/contact-section";
+import FaqSection from "@/components/faq-section";
+import JsonLd from "@/components/json-ld";
+import type { Metadata } from "next";
+export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "Serhii Oberemchuk - Веб-розробник | Створення сайтів та веб-додатків",
   description:
@@ -16,7 +16,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Serhii Oberemchuk - Веб-розробник | Створення сайтів та веб-додатків",
+    title:
+      "Serhii Oberemchuk - Веб-розробник | Створення сайтів та веб-додатків",
     description:
       "Професійна розробка сайтів та веб-додатків. Створюю сучасні, швидкі та SEO-оптимізовані вебсайти. Більше 5 років досвіду.",
     url: "/",
@@ -33,9 +34,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Serhii Oberemchuk - Веб-розробник",
-    description: "Професійна розробка сайтів та веб-додатків. Більше 5 років досвіду, 50+ успішних проектів.",
+    description:
+      "Професійна розробка сайтів та веб-додатків. Більше 5 років досвіду, 50+ успішних проектів.",
   },
-}
+};
 
 const faqs = [
   {
@@ -68,7 +70,7 @@ const faqs = [
     answer:
       "Вартість залежить від складності та функціоналу. Лендінг від $500, корпоративний сайт від $1000, інтернет-магазин від $1500. Точну ціну розраховую після обговорення деталей проекту.",
   },
-]
+];
 
 const jsonLdData = [
   {
@@ -76,7 +78,8 @@ const jsonLdData = [
     "@type": "Person",
     name: "Serhii Oberemchuk",
     jobTitle: "Web Developer",
-    description: "Професійний веб-розробник з досвідом створення сучасних сайтів та веб-додатків",
+    description:
+      "Професійний веб-розробник з досвідом створення сучасних сайтів та веб-додатків",
     url: "https://www.oberemchuk.site",
     sameAs: [
       "https://www.linkedin.com/in/serhii-oberemchuk",
@@ -100,7 +103,15 @@ const jsonLdData = [
         "@type": "Country",
         name: "Ukraine",
       },
-      skills: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "MongoDB", "SEO"],
+      skills: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "MongoDB",
+        "SEO",
+      ],
     },
   },
   {
@@ -123,7 +134,8 @@ const jsonLdData = [
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Serhii Oberemchuk - Web Development Services",
-    description: "Професійні послуги веб-розробки: створення сайтів, веб-додатків, SEO оптимізація",
+    description:
+      "Професійні послуги веб-розробки: створення сайтів, веб-додатків, SEO оптимізація",
     url: "https://www.oberemchuk.site",
     telephone: "+393516648498",
     email: "hello@oberemchuk.site",
@@ -184,7 +196,7 @@ const jsonLdData = [
       },
     })),
   },
-]
+];
 
 export default function HomePage() {
   return (
@@ -200,5 +212,5 @@ export default function HomePage() {
         faqs={faqs}
       />
     </>
-  )
+  );
 }
