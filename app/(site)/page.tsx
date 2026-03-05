@@ -5,7 +5,6 @@ import ContactSection from "@/components/sections/contact-section";
 import FaqSection from "@/components/faq-section";
 import JsonLd from "@/components/json-ld";
 import type { Metadata } from "next";
-export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "Serhii Oberemchuk - Веб-розробник | Створення сайтів та веб-додатків",
   description:

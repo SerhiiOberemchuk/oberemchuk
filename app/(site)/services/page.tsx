@@ -3,7 +3,6 @@ import ServiceCard from "@/components/service-card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Code, Palette, Search, Smartphone } from "lucide-react";
 import Link from "next/link";
-export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "Послуги",
   description:

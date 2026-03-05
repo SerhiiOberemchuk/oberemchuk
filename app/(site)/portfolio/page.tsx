@@ -6,8 +6,6 @@ import SeoText from "@/components/seo-text";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export const dynamic = "force-static";
-export const revalidate = 86400;
 interface Project {
   id: number;
   slug: string;
@@ -63,7 +61,7 @@ async function getProjects(): Promise<Project[]> {
       {
         cache: "force-cache",
         next: { revalidate: 86400 },
-      }
+      },
     );
 
     if (response.ok) {
@@ -76,7 +74,7 @@ async function getProjects(): Promise<Project[]> {
     console.error(
       "Failed to fetch projects:",
       response.status,
-      response.statusText
+      response.statusText,
     );
     return [];
   } catch (error) {

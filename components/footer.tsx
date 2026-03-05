@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import CookieSettingsButton from "./cookie-settings-button"
+import Link from "next/link";
+import Image from "next/image";
+import CookieSettingsButton from "./cookie-settings-button";
 
 // Use useEffect to handle client-side date operations
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 export default function Footer() {
-  const [currentYear, setCurrentYear] = useState("2024")
+  const [currentYear, setCurrentYear] = useState("2024");
 
   useEffect(() => {
     // Update the year on the client side only
-    setCurrentYear(new Date().getFullYear().toString())
-  }, [])
+    setCurrentYear(new Date().getFullYear().toString());
+  }, []);
 
   return (
     <footer className="w-full border-t bg-gray-50 py-8 md:py-12">
@@ -24,17 +24,19 @@ export default function Footer() {
           <div className="flex flex-col space-y-4">
             <Link href="/" className="flex items-center gap-2 font-medium">
               <div className="relative h-10 w-auto">
-                 <Image
-                src="/LogoSO.png"
-                alt="Serhii Oberemchuk Logo"
-                width={140}
-                height={48}
-                className="object-contain"
-              />
+                <Image
+                  title="kdjfndnd"
+                  src="/LogoSO.png"
+                  alt="Serhii Oberemchuk Logo"
+                  width={140}
+                  height={48}
+                  className="object-contain"
+                />
               </div>
             </Link>
             <p className="text-sm text-gray-500 max-w-xs">
-              Професійна розробка вебсайтів, які допомагають вашому бізнесу зростати та залучати нових клієнтів.
+              Професійна розробка вебсайтів, які допомагають вашому бізнесу
+              зростати та залучати нових клієнтів.
             </p>
           </div>
 
@@ -42,16 +44,28 @@ export default function Footer() {
           <div className="flex flex-col space-y-4">
             <h3 className="font-semibold text-gray-900">Навігація</h3>
             <div className="flex flex-col space-y-2">
-              <Link href="/#services" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              <Link
+                href="/#services"
+                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+              >
                 Послуги
               </Link>
-              <Link href="/portfolio" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              <Link
+                href="/portfolio"
+                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+              >
                 Портфоліо
               </Link>
-              <Link href="/#about" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              <Link
+                href="/#about"
+                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+              >
                 Про мене
               </Link>
-              <Link href="/#contact" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              <Link
+                href="/#contact"
+                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+              >
                 Контакти
               </Link>
             </div>
@@ -61,13 +75,22 @@ export default function Footer() {
           <div className="flex flex-col space-y-4">
             <h3 className="font-semibold text-gray-900">Правова інформація</h3>
             <div className="flex flex-col space-y-2">
-              <Link href="/privacy-policy" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              <Link
+                href="/privacy-policy"
+                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+              >
                 Політика конфіденційності
               </Link>
-              <Link href="/cookies" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              <Link
+                href="/cookies"
+                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+              >
                 Політика cookies
               </Link>
-              <Link href="/terms-of-service" className="text-sm text-gray-500 hover:text-green-600 transition-colors">
+              <Link
+                href="/terms-of-service"
+                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+              >
                 Умови використання
               </Link>
               <CookieSettingsButton />
@@ -111,7 +134,9 @@ export default function Footer() {
         {/* Нижня частина футера з копірайтом */}
         <div className="mt-8 border-t border-gray-200 pt-6">
           <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
-            <p className="text-sm text-gray-500">© {currentYear} Oberemchuk Serhii. Всі права захищені.</p>
+            <p className="text-sm text-gray-500">
+              © {currentYear} Oberemchuk Serhii. Всі права захищені.
+            </p>
             <p className="text-xs text-slate-950">
               Розроблено з <span className="text-green-600">❤</span> в Україні
             </p>
@@ -119,5 +144,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

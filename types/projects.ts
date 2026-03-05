@@ -1,4 +1,4 @@
-export interface Project {
+export type Project = {
   id?: number;
   slug: string;
   title: string;
@@ -12,4 +12,4 @@ export interface Project {
   website_url: string;
   created_at: string;
   updated_at: string;
-}
+};

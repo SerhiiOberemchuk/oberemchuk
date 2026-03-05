@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import CookieSettingsButton from "@/components/cookie-settings-button";
-export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Політика використання cookies | Serhii Oberemchuk",
   description:

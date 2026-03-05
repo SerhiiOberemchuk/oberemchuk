@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
-import AnimationWrapper from "@/components/animation-wrapper"
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import AnimationWrapper from "@/components/animation-wrapper";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10" />
+      <div className="absolute inset-0 bg-grid-slate-100 mask-[linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10" />
 
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
@@ -24,7 +24,7 @@ export default function HeroSection() {
           <AnimationWrapper animation="slide-up" delay={100}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
               Створюю{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600">
                 сучасні
               </span>{" "}
               вебсайти
@@ -33,8 +33,9 @@ export default function HeroSection() {
 
           <AnimationWrapper animation="slide-up" delay={200}>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Привіт! Я Сергій Оберемчук, веб-розробник з 5+ роками досвіду. Створюю швидкі, функціональні та красиві
-              сайти. Для створення дизайнів співпрацюю з талановитими дизайнерами.
+              Привіт! Я Сергій Оберемчук, веб-розробник з 5+ роками досвіду.
+              Створюю швидкі, функціональні та красиві сайти. Для створення
+              дизайнів співпрацюю з талановитими дизайнерами.
             </p>
           </AnimationWrapper>
 
@@ -43,7 +44,12 @@ export default function HeroSection() {
               <Button asChild size="lg" className="text-lg px-8 py-6">
                 <Link href="#contact">Обговорити проект</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6 bg-transparent">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="text-lg px-8 py-6 bg-transparent"
+              >
                 <Link href="/portfolio">Переглянути портфоліо</Link>
               </Button>
             </div>
@@ -56,11 +62,15 @@ export default function HeroSection() {
                 <div className="text-gray-600">Завершених проектів</div>
               </div>
               <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="text-3xl font-bold text-indigo-600 mb-2">5+</div>
+                <div className="text-3xl font-bold text-indigo-600 mb-2">
+                  5+
+                </div>
                 <div className="text-gray-600">Років досвіду</div>
               </div>
               <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="text-3xl font-bold text-purple-600 mb-2">100%</div>
+                <div className="text-3xl font-bold text-purple-600 mb-2">
+                  100%
+                </div>
                 <div className="text-gray-600">Задоволених клієнтів</div>
               </div>
             </div>
@@ -69,9 +79,7 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        
-      </div>
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"></div>
     </section>
-  )
+  );
 }

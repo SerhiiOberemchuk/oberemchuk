@@ -31,7 +31,7 @@ export default function PortfolioItem({
           blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2U5ZWFlZiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIi8+"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100 flex flex-col justify-end p-6">
+      <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100 flex flex-col justify-end p-6">
         <h3 className="text-xl font-bold text-white">{title}</h3>
         <p className="text-sm text-white/80">{category}</p>
       </div>

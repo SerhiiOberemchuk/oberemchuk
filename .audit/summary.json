@@ -1,0 +1,1050 @@
+{
+  "scores": [
+    {
+      "page": "home",
+      "mode": "mobile",
+      "performance": 94,
+      "accessibility": 96,
+      "bestPractices": 92,
+      "seo": 100,
+      "fcpMs": 944.85775,
+      "lcpMs": 2962.5732500000004,
+      "speedIndexMs": 944.85775,
+      "tbtMs": 130.9999999999991,
+      "cls": 0,
+      "inpMs": null,
+      "ttfbMs": 5
+    },
+    {
+      "page": "home",
+      "mode": "desktop",
+      "performance": 100,
+      "accessibility": 96,
+      "bestPractices": 92,
+      "seo": 100,
+      "fcpMs": 250.68239999999997,
+      "lcpMs": 634.5236,
+      "speedIndexMs": 250.68239999999997,
+      "tbtMs": 0,
+      "cls": 0,
+      "inpMs": null,
+      "ttfbMs": 5
+    },
+    {
+      "page": "services",
+      "mode": "mobile",
+      "performance": 96,
+      "accessibility": 94,
+      "bestPractices": 92,
+      "seo": 100,
+      "fcpMs": 757.4992,
+      "lcpMs": 2643.2488000000003,
+      "speedIndexMs": 757.4992,
+      "tbtMs": 122,
+      "cls": 0,
+      "inpMs": null,
+      "ttfbMs": 3
+    },
+    {
+      "page": "services",
+      "mode": "desktop",
+      "performance": 100,
+      "accessibility": 94,
+      "bestPractices": 92,
+      "seo": 100,
+      "fcpMs": 208.087,
+      "lcpMs": 554.1305,
+      "speedIndexMs": 208.087,
+      "tbtMs": 0,
+      "cls": 0,
+      "inpMs": null,
+      "ttfbMs": 2
+    },
+    {
+      "page": "portfolio",
+      "mode": "mobile",
+      "performance": 99,
+      "accessibility": 94,
+      "bestPractices": 92,
+      "seo": 100,
+      "fcpMs": 906.7213999999999,
+      "lcpMs": 1881.7214,
+      "speedIndexMs": 1567.3381180029187,
+      "tbtMs": 116.5,
+      "cls": 0,
+      "inpMs": null,
+      "ttfbMs": 4
+    },
+    {
+      "page": "portfolio",
+      "mode": "desktop",
+      "performance": 100,
+      "accessibility": 94,
+      "bestPractices": 92,
+      "seo": 100,
+      "fcpMs": 254.449,
+      "lcpMs": 426.449,
+      "speedIndexMs": 953.8868161663785,
+      "tbtMs": 0,
+      "cls": 0,
+      "inpMs": null,
+      "ttfbMs": 4
+    }
+  ],
+  "opportunities": {
+    "home": {
+      "mobile": [
+        {
+          "id": "total-byte-weight",
+          "title": "Avoids enormous network payloads",
+          "displayValue": "Total size was 1,258 KiB",
+          "numericValue": 1288539
+        },
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimizes main-thread work",
+          "displayValue": "1.1 s",
+          "numericValue": 1092.5720000000092
+        },
+        {
+          "id": "dom-size-insight",
+          "title": "Optimize DOM size",
+          "displayValue": null,
+          "numericValue": 598
+        },
+        {
+          "id": "bootup-time",
+          "title": "JavaScript execution time",
+          "displayValue": "0.5 s",
+          "numericValue": 526.9040000000048
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 144 KiB",
+          "numericValue": 200
+        },
+        {
+          "id": "network-server-latency",
+          "title": "Server Backend Latencies",
+          "displayValue": "60 ms",
+          "numericValue": 61.163000000000004
+        },
+        {
+          "id": "network-rtt",
+          "title": "Network Round Trip Times",
+          "displayValue": "50 ms",
+          "numericValue": 52.117000000000004
+        },
+        {
+          "id": "server-response-time",
+          "title": "Initial server response time was short",
+          "displayValue": "Root document took 10 ms",
+          "numericValue": 5
+        }
+      ],
+      "desktop": [
+        {
+          "id": "total-byte-weight",
+          "title": "Avoids enormous network payloads",
+          "displayValue": "Total size was 1,255 KiB",
+          "numericValue": 1285081
+        },
+        {
+          "id": "dom-size-insight",
+          "title": "Optimize DOM size",
+          "displayValue": null,
+          "numericValue": 598
+        },
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimizes main-thread work",
+          "displayValue": "0.2 s",
+          "numericValue": 242.5640000000027
+        },
+        {
+          "id": "bootup-time",
+          "title": "JavaScript execution time",
+          "displayValue": "0.1 s",
+          "numericValue": 76.75600000000094
+        },
+        {
+          "id": "network-rtt",
+          "title": "Network Round Trip Times",
+          "displayValue": "50 ms",
+          "numericValue": 53.7
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 142 KiB",
+          "numericValue": 40
+        },
+        {
+          "id": "network-server-latency",
+          "title": "Server Backend Latencies",
+          "displayValue": "30 ms",
+          "numericValue": 32.0015
+        },
+        {
+          "id": "server-response-time",
+          "title": "Initial server response time was short",
+          "displayValue": "Root document took 10 ms",
+          "numericValue": 5
+        }
+      ]
+    },
+    "services": {
+      "mobile": [
+        {
+          "id": "total-byte-weight",
+          "title": "Avoids enormous network payloads",
+          "displayValue": "Total size was 1,252 KiB",
+          "numericValue": 1281618
+        },
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimizes main-thread work",
+          "displayValue": "0.8 s",
+          "numericValue": 793.7160000000047
+        },
+        {
+          "id": "bootup-time",
+          "title": "JavaScript execution time",
+          "displayValue": "0.4 s",
+          "numericValue": 445.1200000000009
+        },
+        {
+          "id": "dom-size-insight",
+          "title": "Optimize DOM size",
+          "displayValue": null,
+          "numericValue": 178
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 178 KiB",
+          "numericValue": 150
+        },
+        {
+          "id": "network-server-latency",
+          "title": "Server Backend Latencies",
+          "displayValue": "50 ms",
+          "numericValue": 50.18700000000001
+        },
+        {
+          "id": "network-rtt",
+          "title": "Network Round Trip Times",
+          "displayValue": "40 ms",
+          "numericValue": 41.992999999999995
+        },
+        {
+          "id": "server-response-time",
+          "title": "Initial server response time was short",
+          "displayValue": "Root document took 0 ms",
+          "numericValue": 3
+        }
+      ],
+      "desktop": [
+        {
+          "id": "total-byte-weight",
+          "title": "Avoids enormous network payloads",
+          "displayValue": "Total size was 1,248 KiB",
+          "numericValue": 1278166
+        },
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimizes main-thread work",
+          "displayValue": "0.2 s",
+          "numericValue": 200.01400000000095
+        },
+        {
+          "id": "dom-size-insight",
+          "title": "Optimize DOM size",
+          "displayValue": null,
+          "numericValue": 178
+        },
+        {
+          "id": "bootup-time",
+          "title": "JavaScript execution time",
+          "displayValue": "0.1 s",
+          "numericValue": 55.76099999999974
+        },
+        {
+          "id": "network-rtt",
+          "title": "Network Round Trip Times",
+          "displayValue": "50 ms",
+          "numericValue": 45.289
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 177 KiB",
+          "numericValue": 40
+        },
+        {
+          "id": "network-server-latency",
+          "title": "Server Backend Latencies",
+          "displayValue": "30 ms",
+          "numericValue": 25.177500000000002
+        },
+        {
+          "id": "server-response-time",
+          "title": "Initial server response time was short",
+          "displayValue": "Root document took 0 ms",
+          "numericValue": 2
+        }
+      ]
+    },
+    "portfolio": {
+      "mobile": [
+        {
+          "id": "total-byte-weight",
+          "title": "Avoids enormous network payloads",
+          "displayValue": "Total size was 1,677 KiB",
+          "numericValue": 1716829
+        },
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimizes main-thread work",
+          "displayValue": "1.2 s",
+          "numericValue": 1249.416000000007
+        },
+        {
+          "id": "bootup-time",
+          "title": "JavaScript execution time",
+          "displayValue": "0.7 s",
+          "numericValue": 668.6119999999979
+        },
+        {
+          "id": "dom-size-insight",
+          "title": "Optimize DOM size",
+          "displayValue": null,
+          "numericValue": 206
+        },
+        {
+          "id": "network-server-latency",
+          "title": "Server Backend Latencies",
+          "displayValue": "60 ms",
+          "numericValue": 57.024499999999996
+        },
+        {
+          "id": "network-rtt",
+          "title": "Network Round Trip Times",
+          "displayValue": "50 ms",
+          "numericValue": 51.143
+        },
+        {
+          "id": "server-response-time",
+          "title": "Initial server response time was short",
+          "displayValue": "Root document took 0 ms",
+          "numericValue": 4
+        }
+      ],
+      "desktop": [
+        {
+          "id": "total-byte-weight",
+          "title": "Avoids enormous network payloads",
+          "displayValue": "Total size was 1,444 KiB",
+          "numericValue": 1478478
+        },
+        {
+          "id": "mainthread-work-breakdown",
+          "title": "Minimizes main-thread work",
+          "displayValue": "0.3 s",
+          "numericValue": 284.42400000000134
+        },
+        {
+          "id": "dom-size-insight",
+          "title": "Optimize DOM size",
+          "displayValue": null,
+          "numericValue": 206
+        },
+        {
+          "id": "network-server-latency",
+          "title": "Server Backend Latencies",
+          "displayValue": "60 ms",
+          "numericValue": 64.43449999999999
+        },
+        {
+          "id": "network-rtt",
+          "title": "Network Round Trip Times",
+          "displayValue": "60 ms",
+          "numericValue": 64.19300000000001
+        },
+        {
+          "id": "bootup-time",
+          "title": "JavaScript execution time",
+          "displayValue": "0.1 s",
+          "numericValue": 60.59100000000022
+        },
+        {
+          "id": "server-response-time",
+          "title": "Initial server response time was short",
+          "displayValue": "Root document took 0 ms",
+          "numericValue": 4
+        }
+      ]
+    }
+  },
+  "seoFailures": {
+    "home": {
+      "mobile": [
+        {
+          "id": "structured-data",
+          "title": "Structured data is valid",
+          "score": null,
+          "displayValue": null
+        }
+      ],
+      "desktop": [
+        {
+          "id": "structured-data",
+          "title": "Structured data is valid",
+          "score": null,
+          "displayValue": null
+        }
+      ]
+    },
+    "services": {
+      "mobile": [
+        {
+          "id": "structured-data",
+          "title": "Structured data is valid",
+          "score": null,
+          "displayValue": null
+        }
+      ],
+      "desktop": [
+        {
+          "id": "structured-data",
+          "title": "Structured data is valid",
+          "score": null,
+          "displayValue": null
+        }
+      ]
+    },
+    "portfolio": {
+      "mobile": [
+        {
+          "id": "structured-data",
+          "title": "Structured data is valid",
+          "score": null,
+          "displayValue": null
+        }
+      ],
+      "desktop": [
+        {
+          "id": "structured-data",
+          "title": "Structured data is valid",
+          "score": null,
+          "displayValue": null
+        }
+      ]
+    }
+  },
+  "a11yFailures": {
+    "home": {
+      "mobile": [
+        {
+          "id": "target-size",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "displayValue": null
+        }
+      ],
+      "desktop": [
+        {
+          "id": "target-size",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "displayValue": null
+        }
+      ]
+    },
+    "services": {
+      "mobile": [
+        {
+          "id": "heading-order",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "target-size",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "displayValue": null
+        }
+      ],
+      "desktop": [
+        {
+          "id": "heading-order",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "target-size",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "displayValue": null
+        }
+      ]
+    },
+    "portfolio": {
+      "mobile": [
+        {
+          "id": "heading-order",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "target-size",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "displayValue": null
+        }
+      ],
+      "desktop": [
+        {
+          "id": "heading-order",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "target-size",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "focusable-controls",
+          "title": "Interactive controls are keyboard focusable",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "interactive-element-affordance",
+          "title": "Interactive elements indicate their purpose and state",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "logical-tab-order",
+          "title": "The page has a logical tab order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "visual-order-follows-dom",
+          "title": "Visual order on the page follows DOM order",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "focus-traps",
+          "title": "User focus is not accidentally trapped in a region",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "managed-focus",
+          "title": "The user's focus is directed to new content added to the page",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "use-landmarks",
+          "title": "HTML5 landmark elements are used to improve navigation",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "offscreen-content-hidden",
+          "title": "Offscreen content is hidden from assistive technology",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-labels",
+          "title": "Custom controls have associated labels",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "custom-controls-roles",
+          "title": "Custom controls have ARIA roles",
+          "score": null,
+          "displayValue": null
+        }
+      ]
+    }
+  },
+  "bpFailures": {
+    "home": {
+      "mobile": [
+        {
+          "id": "redirects-http",
+          "title": "Redirects HTTP traffic to HTTPS",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "image-aspect-ratio",
+          "title": "Displays images with incorrect aspect ratio",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "js-libraries",
+          "title": "Detected JavaScript libraries",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "errors-in-console",
+          "title": "Browser errors were logged to the console",
+          "score": 0,
+          "displayValue": null
+        }
+      ],
+      "desktop": [
+        {
+          "id": "redirects-http",
+          "title": "Redirects HTTP traffic to HTTPS",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "image-aspect-ratio",
+          "title": "Displays images with incorrect aspect ratio",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "js-libraries",
+          "title": "Detected JavaScript libraries",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "errors-in-console",
+          "title": "Browser errors were logged to the console",
+          "score": 0,
+          "displayValue": null
+        }
+      ]
+    },
+    "services": {
+      "mobile": [
+        {
+          "id": "redirects-http",
+          "title": "Redirects HTTP traffic to HTTPS",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "image-aspect-ratio",
+          "title": "Displays images with incorrect aspect ratio",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "js-libraries",
+          "title": "Detected JavaScript libraries",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "errors-in-console",
+          "title": "Browser errors were logged to the console",
+          "score": 0,
+          "displayValue": null
+        }
+      ],
+      "desktop": [
+        {
+          "id": "redirects-http",
+          "title": "Redirects HTTP traffic to HTTPS",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "image-aspect-ratio",
+          "title": "Displays images with incorrect aspect ratio",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "js-libraries",
+          "title": "Detected JavaScript libraries",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "errors-in-console",
+          "title": "Browser errors were logged to the console",
+          "score": 0,
+          "displayValue": null
+        }
+      ]
+    },
+    "portfolio": {
+      "mobile": [
+        {
+          "id": "redirects-http",
+          "title": "Redirects HTTP traffic to HTTPS",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "image-aspect-ratio",
+          "title": "Displays images with incorrect aspect ratio",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "js-libraries",
+          "title": "Detected JavaScript libraries",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "errors-in-console",
+          "title": "Browser errors were logged to the console",
+          "score": 0,
+          "displayValue": null
+        }
+      ],
+      "desktop": [
+        {
+          "id": "redirects-http",
+          "title": "Redirects HTTP traffic to HTTPS",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "image-aspect-ratio",
+          "title": "Displays images with incorrect aspect ratio",
+          "score": 0,
+          "displayValue": null
+        },
+        {
+          "id": "js-libraries",
+          "title": "Detected JavaScript libraries",
+          "score": null,
+          "displayValue": null
+        },
+        {
+          "id": "errors-in-console",
+          "title": "Browser errors were logged to the console",
+          "score": 0,
+          "displayValue": null
+        }
+      ]
+    }
+  }
+}

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,7 +31,7 @@ async function getProjects(slug: string): Promise<Project | null> {
       {
         cache: "force-cache",
         next: { revalidate: 86400 },
-      }
+      },
     );
 
     if (response.ok) {
@@ -59,7 +58,7 @@ async function getProjectBySlug(slug: string): Promise<Project | null> {
           revalidate: 86400,
           tags: ["projects", `projects:${slug}`],
         },
-      }
+      },
     );
 
     if (response.ok) {
@@ -83,7 +82,7 @@ export async function generateStaticParams() {
       {
         cache: "force-cache",
         next: { revalidate: 86400 },
-      }
+      },
     );
     if (response.ok) {
       const data = await response.json();
@@ -268,7 +267,7 @@ export default async function ProjectPage({
                 <ul className="space-y-2">
                   {project.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      <span className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3 shrink-0"></span>
                       <span className="text-gray-700">{feature}</span>
                     </li>
                   ))}

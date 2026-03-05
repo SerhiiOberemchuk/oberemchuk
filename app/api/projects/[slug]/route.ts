@@ -1,9 +1,12 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import axios from "axios"
 
-export async function GET(request: Request, { params }: { params: { slug: string } }) {
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
   try {
-    const { slug } = params
+    const { slug } = await params
     const response = await axios.get("https://v0-adminca-bk.vercel.app/api/projects")
 
     if (response.status === 200 && response.data.success) {
