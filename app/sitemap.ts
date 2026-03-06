@@ -1,63 +1,57 @@
-import axiosInstanceAdmin from "@/data/axios";
-import type { Project } from "@/types/projects";
 import type { MetadataRoute } from "next";
+import type { Project } from "@/types/projects";
+import { getProjects } from "@/lib/projects-server";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.SITE_URL || "https://www.oberemchuk.site";
-
-  let projects: Project[] = [];
-  try {
-    const response = await axiosInstanceAdmin.get(`/api/projects`);
-    projects = response.data.data;
-  } catch (error) {
-    console.error("Помилка отримання проектів для sitemap:", error);
-  }
+  const baseUrl = (
+    process.env.SITE_URL || "https://www.oberemchuk.site"
+  ).replace(/\/+$/, "");
+  const projects: Project[] = await getProjects();
+  const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}`,
-      lastModified: new Date(),
+      url: `${baseUrl}/`,
+      lastModified: now,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/portfolio`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/#services`,
-      lastModified: new Date(),
+      url: `${baseUrl}/services`,
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/privacy-policy`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/cookies`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms-of-service`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "yearly",
       priority: 0.3,
     },
   ];
 
-  const projectPages = projects.map((project) => ({
+  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
     url: `${baseUrl}/portfolio/${project.slug}`,
-    lastModified: project.updated_at
-      ? new Date(project.updated_at)
-      : new Date(),
-    changeFrequency: "monthly" as const,
+    lastModified: project.updated_at ? new Date(project.updated_at) : now,
+    changeFrequency: "monthly",
     priority: 0.7,
   }));
 

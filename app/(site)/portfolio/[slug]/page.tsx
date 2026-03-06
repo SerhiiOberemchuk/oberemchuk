@@ -8,96 +8,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import JsonLd from "@/components/json-ld";
 import AnimationWrapper from "@/components/animation-wrapper";
+import type { Project } from "@/types/projects";
+import { getProjectBySlug, getProjects } from "@/lib/projects-server";
 
-type Project = {
-  id: number;
-  slug: string;
-  title: string;
-  category: string;
-  image_src: string;
-  description: string;
-  technologies: string[];
-  features: string[];
-  year: string;
-  client: string;
-  website_url: string;
-  created_at: string;
-  updated_at: string;
-};
-
-async function getProjects(slug: string): Promise<Project | null> {
-  try {
-    const response = await fetch(
-      "https://v0-adminca-bk.vercel.app/api/projects",
-      {
-        cache: "force-cache",
-        next: { revalidate: 86400 },
-      }
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-      if (data.success) {
-        const project = data.data.find((p: Project) => p.slug === slug);
-        return project || null;
-      }
-    }
-
-    return null;
-  } catch (error) {
-    console.error("Помилка отримання проекту:", error);
-    return null;
-  }
-}
-async function getProjectBySlug(slug: string): Promise<Project | null> {
-  try {
-    const response = await fetch(
-      "https://v0-adminca-bk.vercel.app/api/projects/by-slug/" + slug,
-      {
-        cache: "force-cache",
-        next: {
-          revalidate: 86400,
-          tags: ["projects", `projects:${slug}`],
-        },
-      }
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-      if (data.success) {
-        return data.data;
-      }
-    }
-
-    return null;
-  } catch (error) {
-    console.error("Помилка отримання проекту:", error);
-    return null;
-  }
-}
+const SITE_URL = process.env.SITE_URL || "https://www.oberemchuk.site";
 
 export async function generateStaticParams() {
-  try {
-    const response = await fetch(
-      "https://v0-adminca-bk.vercel.app/api/projects",
-      {
-        cache: "force-cache",
-        next: { revalidate: 86400 },
-      }
-    );
-    if (response.ok) {
-      const data = await response.json();
-      if (data.success) {
-        return data.data.map((project: Project) => ({
-          slug: project.slug,
-        }));
-      }
-    }
-  } catch (error) {
-    console.error("Помилка генерації статичних параметрів:", error);
-  }
-
-  return [];
+  const projects = await getProjects();
+  return projects.map((project: Project) => ({
+    slug: project.slug,
+  }));
 }
 
 export async function generateMetadata({
@@ -121,9 +41,13 @@ export async function generateMetadata({
     keywords: `${project.title}, ${
       project.category
     }, веб-розробка, ${project.technologies.join(", ")}`,
+    alternates: {
+      canonical: `/portfolio/${slug}`,
+    },
     openGraph: {
       title: `${project.title} | Oberemchuk Serhii - Веб-розробка`,
       description: project.description,
+      url: `${SITE_URL}/portfolio/${slug}`,
       images: [
         {
           url: project.image_src,
@@ -154,7 +78,7 @@ export default async function ProjectPage({
     name: project.title,
     description: project.description,
     image: project.image_src,
-    url: `https://www.oberemchuk.site/portfolio/${slug}`,
+    url: `${SITE_URL}/portfolio/${slug}`,
     creator: {
       "@type": "Person",
       name: "Oberemchuk Serhii",

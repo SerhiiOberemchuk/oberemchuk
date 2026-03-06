@@ -1,14 +1,14 @@
 import type { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.SITE_URL || "https://www.oberemchuk.site"
+  const baseUrl = (process.env.SITE_URL || "https://www.oberemchuk.site").replace(/\/+$/, "")
 
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/", "/_next/", "/private/", "*.json$", "/scripts/"],
+        disallow: ["/api/", "/admin/", "/private/"],
       },
       {
         userAgent: "Googlebot",

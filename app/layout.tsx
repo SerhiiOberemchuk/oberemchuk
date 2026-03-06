@@ -111,7 +111,6 @@ export const metadata: Metadata = {
   category: "technology",
   classification: "Web Development Services",
   referrer: "origin-when-cross-origin",
-  generator: "v0.app",
 };
 
 export default function RootLayout({
@@ -145,7 +144,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           crossOrigin="anonymous"
         />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://v0-adminca-bk.vercel.app" />
         <meta name="theme-color" content="#16a34a" />
         <meta name="color-scheme" content="light" />
         <meta
