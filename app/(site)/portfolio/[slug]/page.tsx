@@ -7,98 +7,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import JsonLd from "@/components/json-ld";
 import AnimationWrapper from "@/components/animation-wrapper";
-
-type Project = {
-  id: number;
-  slug: string;
-  title: string;
-  category: string;
-  image_src: string;
-  description: string;
-  technologies: string[];
-  features: string[];
-  year: string;
-  client: string;
-  website_url: string;
-  created_at: string;
-  updated_at: string;
-};
-
-async function getProjects(slug: string): Promise<Project | null> {
-  try {
-    const response = await fetch(
-      "https://v0-adminca-bk.vercel.app/api/projects",
-      {
-        cache: "force-cache",
-        next: { revalidate: 86400 },
-      },
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-      if (data.success) {
-        const project = data.data.find((p: Project) => p.slug === slug);
-        return project || null;
-      }
-    }
-
-    return null;
-  } catch (error) {
-    console.error("Помилка отримання проекту:", error);
-    return null;
-  }
-}
-async function getProjectBySlug(slug: string): Promise<Project | null> {
-  try {
-    const response = await fetch(
-      "https://v0-adminca-bk.vercel.app/api/projects/by-slug/" + slug,
-      {
-        cache: "force-cache",
-        next: {
-          revalidate: 86400,
-          tags: ["projects", `projects:${slug}`],
-        },
-      },
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-      if (data.success) {
-        return data.data;
-      }
-    }
-
-    return null;
-  } catch (error) {
-    console.error("Помилка отримання проекту:", error);
-    return null;
-  }
-}
+import type { Project } from "@/types/projects";
+import { getProjectBySlug, getProjects } from "@/lib/projects-server";
 
 export async function generateStaticParams() {
-  try {
-    const response = await fetch(
-      "https://v0-adminca-bk.vercel.app/api/projects",
-      {
-        cache: "force-cache",
-        next: { revalidate: 86400 },
-      },
-    );
-    if (response.ok) {
-      const data = await response.json();
-      if (data.success) {
-        return data.data.map((project: Project) => ({
-          slug: project.slug,
-        }));
-      }
-    }
-  } catch (error) {
-    console.error("Помилка генерації статичних параметрів:", error);
-  }
-
-  return [];
+  const projects = await getProjects();
+  return projects.map((project: Project) => ({
+    slug: project.slug,
+  }));
 }
-
 export async function generateMetadata({
   params,
 }: {
@@ -196,22 +113,22 @@ export default async function ProjectPage({
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
+              <dl className="grid grid-cols-2 gap-6">
                 <div className="flex items-center space-x-3">
-                  <Calendar className="w-5 h-5 text-green-600" />
+                  <Calendar className="w-5 h-5 text-green-600" aria-hidden="true" />
                   <div>
-                    <p className="text-sm text-gray-500">Рік</p>
-                    <p className="font-semibold">{project.year}</p>
+                    <dt className="text-sm text-gray-500">Рік</dt>
+                    <dd className="font-semibold">{project.year}</dd>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <User className="w-5 h-5 text-green-600" />
+                  <User className="w-5 h-5 text-green-600" aria-hidden="true" />
                   <div>
-                    <p className="text-sm text-gray-500">Клієнт</p>
-                    <p className="font-semibold">{project.client}</p>
+                    <dt className="text-sm text-gray-500">Клієнт</dt>
+                    <dd className="font-semibold">{project.client}</dd>
                   </div>
                 </div>
-              </div>
+              </dl>
 
               {project.website_url && (
                 <Button asChild className="w-full sm:w-auto">
@@ -249,13 +166,13 @@ export default async function ProjectPage({
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4">Технології</h3>
-                <div className="flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-2" aria-label="Технології проєкту">
                   {project.technologies.map((tech, index) => (
-                    <Badge key={index} variant="outline">
-                      {tech}
-                    </Badge>
+                    <li key={index}>
+                      <Badge variant="outline">{tech}</Badge>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </CardContent>
             </Card>
           </AnimationWrapper>
@@ -280,3 +197,7 @@ export default async function ProjectPage({
     </div>
   );
 }
+
+
+
+

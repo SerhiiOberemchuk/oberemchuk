@@ -1,31 +1,25 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import CookieSettingsButton from "./cookie-settings-button";
-
-// Use useEffect to handle client-side date operations
 import { useState, useEffect } from "react";
 
 export default function Footer() {
   const [currentYear, setCurrentYear] = useState("2024");
 
   useEffect(() => {
-    // Update the year on the client side only
     setCurrentYear(new Date().getFullYear().toString());
   }, []);
 
   return (
     <footer className="w-full border-t bg-gray-50 py-8 md:py-12">
       <div className="container mx-auto px-4">
-        {/* Основний вміст футера */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* Колонка 1: Логотип та інформація */}
-          <div className="flex flex-col space-y-4">
-            <Link href="/" className="flex items-center gap-2 font-medium">
+          <section className="flex flex-col space-y-4" aria-label="Про сайт">
+            <Link href="/" className="flex items-center gap-2 font-medium" aria-label="На головну">
               <div className="relative h-10 w-auto">
                 <Image
-                  title="kdjfndnd"
                   src="/LogoSO.png"
                   alt="Serhii Oberemchuk Logo"
                   width={140}
@@ -38,76 +32,89 @@ export default function Footer() {
               Професійна розробка вебсайтів, які допомагають вашому бізнесу
               зростати та залучати нових клієнтів.
             </p>
-          </div>
+          </section>
 
-          {/* Колонка 2: Навігація */}
-          <div className="flex flex-col space-y-4">
-            <h3 className="font-semibold text-gray-900">Навігація</h3>
-            <div className="flex flex-col space-y-2">
-              <Link
-                href="/#services"
-                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-              >
-                Послуги
-              </Link>
-              <Link
-                href="/portfolio"
-                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-              >
-                Портфоліо
-              </Link>
-              <Link
-                href="/#about"
-                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-              >
-                Про мене
-              </Link>
-              <Link
-                href="/#contact"
-                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-              >
-                Контакти
-              </Link>
-            </div>
-          </div>
+          <nav className="flex flex-col space-y-4" aria-label="Навігація сайту">
+            <h2 className="font-semibold text-gray-900">Навігація</h2>
+            <ul className="flex flex-col space-y-2">
+              <li>
+                <Link
+                  href="/#services"
+                  className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+                >
+                  Послуги
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/portfolio"
+                  className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+                >
+                  Портфоліо
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#about"
+                  className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+                >
+                  Про мене
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#contact"
+                  className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+                >
+                  Контакти
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
-          {/* Колонка 3: Правова інформація */}
-          <div className="flex flex-col space-y-4">
-            <h3 className="font-semibold text-gray-900">Правова інформація</h3>
-            <div className="flex flex-col space-y-2">
-              <Link
-                href="/privacy-policy"
-                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-              >
-                Політика конфіденційності
-              </Link>
-              <Link
-                href="/cookies"
-                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-              >
-                Політика cookies
-              </Link>
-              <Link
-                href="/terms-of-service"
-                className="text-sm text-gray-500 hover:text-green-600 transition-colors"
-              >
-                Умови використання
-              </Link>
-              <CookieSettingsButton />
-            </div>
-          </div>
+          <nav className="flex flex-col space-y-4" aria-label="Правова інформація">
+            <h2 className="font-semibold text-gray-900">Правова інформація</h2>
+            <ul className="flex flex-col space-y-2">
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+                >
+                  Політика конфіденційності
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cookies"
+                  className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+                >
+                  Політика cookies
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms-of-service"
+                  className="text-sm text-gray-500 hover:text-green-600 transition-colors"
+                >
+                  Умови використання
+                </Link>
+              </li>
+              <li>
+                <CookieSettingsButton />
+              </li>
+            </ul>
+          </nav>
 
-          {/* Колонка 4: Контакти та соціальні мережі */}
-          <div className="flex flex-col space-y-4">
-            <h3 className="font-semibold text-gray-900">Контакти</h3>
-            <div className="flex flex-col space-y-2">
+          <section className="flex flex-col space-y-4" aria-label="Контактна інформація">
+            <h2 className="font-semibold text-gray-900">Контакти</h2>
+            <address className="not-italic flex flex-col space-y-2">
               <a
                 href="mailto:serhiioberemchuk@gmail.com"
                 className="text-sm text-gray-500 hover:text-green-600 transition-colors"
               >
                 serhiioberemchuk@gmail.com
               </a>
-              <div className="flex space-x-4 pt-2">
+              <div className="flex space-x-4 pt-2" aria-label="Соціальні мережі">
                 <a
                   href="https://www.linkedin.com/in/serhii-oberemchuk"
                   target="_blank"
@@ -127,18 +134,17 @@ export default function Footer() {
                   </svg>
                 </a>
               </div>
-            </div>
-          </div>
+            </address>
+          </section>
         </div>
 
-        {/* Нижня частина футера з копірайтом */}
         <div className="mt-8 border-t border-gray-200 pt-6">
           <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
             <p className="text-sm text-gray-500">
-              © {currentYear} Oberemchuk Serhii. Всі права захищені.
+              © <time dateTime={currentYear}>{currentYear}</time> Oberemchuk Serhii. Всі права захищені.
             </p>
             <p className="text-xs text-slate-950">
-              Розроблено з <span className="text-green-600">❤</span> в Україні
+              Розроблено з <span className="text-green-600">?</span> в Україні
             </p>
           </div>
         </div>
@@ -146,3 +152,4 @@ export default function Footer() {
     </footer>
   );
 }
+

@@ -1,12 +1,12 @@
-"use client"
+﻿"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Mail, MessageCircle, MapPin, Clock } from "lucide-react"
-import AnimationWrapper from "@/components/animation-wrapper"
-import ContactForm from "@/components/contact-form"
-import Link from "next/link"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Mail, MessageCircle, MapPin, Clock } from "lucide-react";
+import AnimationWrapper from "@/components/animation-wrapper";
+import ContactForm from "@/components/contact-form";
+import Link from "next/link";
 
 export default function ContactSection() {
   const contactInfo = [
@@ -34,42 +34,44 @@ export default function ContactSection() {
       value: "Пн-Пт 9:00-18:00",
       href: null,
     },
-  ]
+  ];
 
   const advantages = [
     "Безкоштовна консультація",
     "Співпраця з дизайнерами",
     "Гарантія якості",
     "Підтримка після запуску",
-  ]
+  ];
 
-  const specializations = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"]
+  const specializations = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL"];
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case "Mail":
-        return <Mail className="h-5 w-5" />
+        return <Mail className="h-5 w-5" />;
       case "MessageCircle":
-        return <MessageCircle className="h-5 w-5" />
+        return <MessageCircle className="h-5 w-5" />;
       case "MapPin":
-        return <MapPin className="h-5 w-5" />
+        return <MapPin className="h-5 w-5" />;
       case "Clock":
-        return <Clock className="h-5 w-5" />
+        return <Clock className="h-5 w-5" />;
       default:
-        return <Mail className="h-5 w-5" />
+        return <Mail className="h-5 w-5" />;
     }
-  }
+  };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" aria-labelledby="contact-title" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <AnimationWrapper animation="fade-in">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Зв'яжіться зі мною</h2>
+          <header className="text-center mb-16">
+            <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Зв'яжіться зі мною
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Готовий обговорити ваш проект та створити щось неймовірне разом з командою дизайнерів
+              Готовий обговорити ваш проєкт та створити щось неймовірне разом з командою дизайнерів
             </p>
-          </div>
+          </header>
         </AnimationWrapper>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -80,14 +82,14 @@ export default function ContactSection() {
                   <CardTitle className="text-2xl">Контактна інформація</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    {contactInfo.map((info, index) => (
-                      <div key={index} className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                  <ul className="space-y-4" aria-label="Способи зв'язку">
+                    {contactInfo.map((info) => (
+                      <li key={info.label} className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center" aria-hidden="true">
                           {getIcon(info.icon)}
                         </div>
                         <div>
-                          <div className="font-medium text-gray-900">{info.label}</div>
+                          <p className="font-medium text-gray-900">{info.label}</p>
                           {info.href ? (
                             <Link
                               href={info.href}
@@ -98,12 +100,12 @@ export default function ContactSection() {
                               {info.value}
                             </Link>
                           ) : (
-                            <div className="text-gray-600">{info.value}</div>
+                            <p className="text-gray-600">{info.value}</p>
                           )}
                         </div>
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </CardContent>
               </Card>
 
@@ -112,14 +114,14 @@ export default function ContactSection() {
                   <CardTitle className="text-xl">Чому обирають мене</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 gap-4">
-                    {advantages.map((advantage, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <ul className="grid grid-cols-2 gap-4">
+                    {advantages.map((advantage) => (
+                      <li key={advantage} className="flex items-center space-x-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full" aria-hidden="true"></span>
                         <span className="text-sm text-gray-600">{advantage}</span>
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </CardContent>
               </Card>
 
@@ -128,13 +130,13 @@ export default function ContactSection() {
                   <CardTitle className="text-xl">Спеціалізації</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {specializations.map((spec, index) => (
-                      <Badge key={index} variant="secondary">
-                        {spec}
-                      </Badge>
+                  <ul className="flex flex-wrap gap-2" aria-label="Технології">
+                    {specializations.map((spec) => (
+                      <li key={spec}>
+                        <Badge variant="secondary">{spec}</Badge>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </CardContent>
               </Card>
 
@@ -154,7 +156,7 @@ export default function ContactSection() {
           <AnimationWrapper animation="slide-right">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl">Розкажіть про свій проект</CardTitle>
+                <CardTitle className="text-2xl">Розкажіть про свій проєкт</CardTitle>
                 <p className="text-gray-600">
                   Заповніть форму, і я зв'яжуся з вами протягом 24 годин для обговорення деталей
                 </p>
@@ -167,5 +169,6 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
+

@@ -1,7 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 interface MobileMenuProps {
@@ -17,12 +18,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
     if (isOpen) {
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
       document.body.style.top = `-${window.scrollY}px`;
@@ -33,7 +28,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       document.body.style.width = "";
       document.body.style.top = "";
       if (scrollY) {
-        window.scrollTo(0, Number.parseInt(scrollY || "0", 10) * -1);
+        window.scrollTo(0, Number.parseInt(scrollY, 10) * -1);
       }
     }
 
@@ -53,48 +48,63 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       onClick={onClose}
+      aria-hidden={!isOpen}
     >
       <div
+        id="mobile-menu-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Мобільне меню"
         className={`fixed right-0 top-0 h-full w-full max-w-xs bg-white shadow-lg transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6 flex flex-col space-y-6">
-          <nav className="flex flex-col space-y-6">
-            <a
-              href="/#services"
-              className="text-xl font-medium hover:text-green-600 transition-colors py-2 border-b border-gray-100"
-              onClick={onClose}
-            >
-              Послуги
-            </a>
-            <a
-              href="/#portfolio"
-              className="text-xl font-medium hover:text-green-600 transition-colors py-2 border-b border-gray-100"
-              onClick={onClose}
-            >
-              Портфоліо
-            </a>
-            <a
-              href="/#about"
-              className="text-xl font-medium hover:text-green-600 transition-colors py-2 border-b border-gray-100"
-              onClick={onClose}
-            >
-              Про нас
-            </a>
-            <a
-              href="/#contact"
-              className="text-xl font-medium hover:text-green-600 transition-colors py-2 border-b border-gray-100"
-              onClick={onClose}
-            >
-              Контакти
-            </a>
+          <nav aria-label="Мобільна навігація">
+            <ul className="flex flex-col space-y-6">
+              <li>
+                <Link
+                  href="/#services"
+                  className="block text-xl font-medium hover:text-green-600 transition-colors py-2 border-b border-gray-100"
+                  onClick={onClose}
+                >
+                  Послуги
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/portfolio"
+                  className="block text-xl font-medium hover:text-green-600 transition-colors py-2 border-b border-gray-100"
+                  onClick={onClose}
+                >
+                  Портфоліо
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#about"
+                  className="block text-xl font-medium hover:text-green-600 transition-colors py-2 border-b border-gray-100"
+                  onClick={onClose}
+                >
+                  Про мене
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#contact"
+                  className="block text-xl font-medium hover:text-green-600 transition-colors py-2 border-b border-gray-100"
+                  onClick={onClose}
+                >
+                  Контакти
+                </Link>
+              </li>
+            </ul>
           </nav>
           <Button asChild size="lg" className="w-full mt-6">
-            <a href="/#contact" onClick={onClose}>
+            <Link href="/#contact" onClick={onClose}>
               Замовити сайт
-            </a>
+            </Link>
           </Button>
         </div>
       </div>
@@ -102,3 +112,4 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     document.body
   );
 }
+

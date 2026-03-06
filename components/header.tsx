@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
@@ -14,7 +14,11 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 w-full border-b bg-white/90 backdrop-blur-sm z-40">
       <div className="container mx-auto">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-medium group">
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-medium group"
+            aria-label="На головну"
+          >
             <div className="relative h-12 w-auto transition-transform duration-300 group-hover:scale-105 group-hover:brightness-110">
               <Image
                 src="/LogoSO.png"
@@ -26,7 +30,7 @@ export default function Header() {
             </div>
           </Link>
 
-          <nav className="hidden md:flex gap-6">
+          <nav aria-label="Основна навігація" className="hidden md:flex gap-6">
             <Link
               href="/#services"
               className="text-sm font-medium hover:text-green-600 transition-colors"
@@ -63,6 +67,8 @@ export default function Header() {
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Меню"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu-drawer"
           >
             <Menu className="h-5 w-5" />
           </Button>
@@ -73,3 +79,4 @@ export default function Header() {
     </header>
   );
 }
+

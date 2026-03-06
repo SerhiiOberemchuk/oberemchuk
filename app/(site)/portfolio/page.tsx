@@ -5,22 +5,7 @@ import AnimationWrapper from "@/components/animation-wrapper";
 import SeoText from "@/components/seo-text";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-
-interface Project {
-  id: number;
-  slug: string;
-  title: string;
-  category: string;
-  image_src: string;
-  description: string;
-  technologies: string[];
-  features: string[];
-  year: string;
-  client: string;
-  website_url: string;
-  created_at: string;
-  updated_at: string;
-}
+import { getProjects } from "@/lib/projects-server";
 
 export const metadata: Metadata = {
   title: "Портфоліо | Serhii Oberemchuk - Мої проєкти веб-розробки",
@@ -53,36 +38,6 @@ export const metadata: Metadata = {
       "Перегляньте мої останні проєкти та роботи. Більше 50 успішних проектів веб-розробки.",
   },
 };
-
-async function getProjects(): Promise<Project[]> {
-  try {
-    const response = await fetch(
-      "https://v0-adminca-bk.vercel.app/api/projects",
-      {
-        cache: "force-cache",
-        next: { revalidate: 86400 },
-      },
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-      if (data.success) {
-        return data.data;
-      }
-    }
-
-    console.error(
-      "Failed to fetch projects:",
-      response.status,
-      response.statusText,
-    );
-    return [];
-  } catch (error) {
-    console.error("Помилка отримання проектів:", error);
-    return [];
-  }
-}
-
 export default async function PortfolioPage() {
   const projects = await getProjects();
 
@@ -167,45 +122,46 @@ export default async function PortfolioPage() {
 
       <Suspense
         fallback={
-          <section
+          <ul
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            aria-label="Завантаження проектів"
+            aria-label="Завантаження проєктів"
           >
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="space-y-4">
+              <li key={i} className="space-y-4">
                 <Skeleton className="h-64 w-full rounded-lg" />
                 <Skeleton className="h-6 w-3/4" />
                 <Skeleton className="h-4 w-1/2" />
-              </div>
+              </li>
             ))}
-          </section>
+          </ul>
         }
       >
-        <section
+        <ul
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          aria-label="Список проектів"
+          aria-label="Список проєктів"
         >
           {projects.length > 0 ? (
             projects.map((project, index) => (
-              <AnimationWrapper
-                key={project.slug}
-                animation="fade-in"
-                delay={((index % 3) * 100) as 0 | 100 | 200 | 300 | 400 | 500}
-              >
-                <PortfolioItem
-                  slug={project.slug}
-                  imageSrc={project.image_src}
-                  title={project.title}
-                  category={project.category}
-                />
-              </AnimationWrapper>
+              <li key={project.slug}>
+                <AnimationWrapper
+                  animation="fade-in"
+                  delay={((index % 3) * 100) as 0 | 100 | 200 | 300 | 400 | 500}
+                >
+                  <PortfolioItem
+                    slug={project.slug}
+                    imageSrc={project.image_src}
+                    title={project.title}
+                    category={project.category}
+                  />
+                </AnimationWrapper>
+              </li>
             ))
           ) : (
-            <div className="col-span-full text-center py-12">
+            <li className="col-span-full text-center py-12">
               <p className="text-gray-500">Проєкти не знайдено</p>
-            </div>
+            </li>
           )}
-        </section>
+        </ul>
       </Suspense>
 
       <SeoText title="Портфоліо веб-розробника Serhii Oberemchuk">
@@ -244,3 +200,6 @@ export default async function PortfolioPage() {
     </div>
   );
 }
+
+
+

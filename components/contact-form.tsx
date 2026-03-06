@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import type React from "react";
 
@@ -58,7 +58,6 @@ export default function ContactForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Валідація
     if (!formData.name.trim()) {
       toast.error("Будь ласка, введіть ваше ім'я");
       setIsSubmitting(false);
@@ -115,91 +114,95 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <Label htmlFor="name">Ім'я *</Label>
-          <Input
-            id="name"
-            name="name"
-            type="text"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-            placeholder="Ваше ім'я"
-            autoComplete="given-name"
-          />
+    <form onSubmit={handleSubmit} className="space-y-6" aria-label="Форма зворотного зв'язку">
+      <fieldset className="space-y-6">
+        <legend className="sr-only">Контактні дані</legend>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label htmlFor="name">Ім'я *</Label>
+            <Input
+              id="name"
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+              placeholder="Ваше ім'я"
+              autoComplete="given-name"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email *</Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              placeholder="your@email.com"
+              autoComplete="email"
+            />
+          </div>
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="email">Email *</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-            placeholder="your@email.com"
-            autoComplete="email"
-          />
-        </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <Label htmlFor="phone">Телефон</Label>
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            value={formData.phone}
-            onChange={handleInputChange}
-            placeholder="+380 XX XXX XX XX"
-            autoComplete="tel"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label htmlFor="phone">Телефон</Label>
+            <Input
+              id="phone"
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleInputChange}
+              placeholder="+380 XX XXX XX XX"
+              autoComplete="tel"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="service">Тип послуги</Label>
+            <Select
+              value={formData.service}
+              onValueChange={(value) => handleSelectChange("service", value)}
+            >
+              <SelectTrigger id="service" aria-label="Оберіть тип послуги">
+                <SelectValue placeholder="Оберіть послугу" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="website">Створення сайту</SelectItem>
+                <SelectItem value="redesign">Редизайн сайту</SelectItem>
+                <SelectItem value="seo">SEO оптимізація</SelectItem>
+                <SelectItem value="maintenance">Підтримка сайту</SelectItem>
+                <SelectItem value="consultation">Консультація</SelectItem>
+                <SelectItem value="other">Інше</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
+
         <div className="space-y-2">
-          <Label htmlFor="service">Тип послуги</Label>
+          <Label htmlFor="budget">Бюджет проєкту</Label>
           <Select
-            value={formData.service}
-            onValueChange={(value) => handleSelectChange("service", value)}
+            value={formData.budget}
+            onValueChange={(value) => handleSelectChange("budget", value)}
           >
-            <SelectTrigger aria-label="Оберіть тип послуги">
-              <SelectValue placeholder="Оберіть послугу" />
+            <SelectTrigger id="budget" aria-label="Оберіть бюджет проєкту">
+              <SelectValue placeholder="Оберіть бюджет" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="website">Створення сайту</SelectItem>
-              <SelectItem value="redesign">Редизайн сайту</SelectItem>
-              <SelectItem value="seo">SEO оптимізація</SelectItem>
-              <SelectItem value="maintenance">Підтримка сайту</SelectItem>
-              <SelectItem value="consultation">Консультація</SelectItem>
-              <SelectItem value="other">Інше</SelectItem>
+              <SelectItem value="under-1000">До $1,000</SelectItem>
+              <SelectItem value="1000-3000">$1,000 - $3,000</SelectItem>
+              <SelectItem value="3000-5000">$3,000 - $5,000</SelectItem>
+              <SelectItem value="5000-10000">$5,000 - $10,000</SelectItem>
+              <SelectItem value="over-10000">Понад $10,000</SelectItem>
+              <SelectItem value="discuss">Обговорити індивідуально</SelectItem>
             </SelectContent>
           </Select>
         </div>
-      </div>
+      </fieldset>
 
-      <div className="space-y-2">
-        <Label htmlFor="budget">Бюджет проекту</Label>
-        <Select
-          value={formData.budget}
-          onValueChange={(value) => handleSelectChange("budget", value)}
-        >
-          <SelectTrigger aria-label="Оберіть бюджет проекту">
-            <SelectValue placeholder="Оберіть бюджет" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="under-1000">До $1,000</SelectItem>
-            <SelectItem value="1000-3000">$1,000 - $3,000</SelectItem>
-            <SelectItem value="3000-5000">$3,000 - $5,000</SelectItem>
-            <SelectItem value="5000-10000">$5,000 - $10,000</SelectItem>
-            <SelectItem value="over-10000">Понад $10,000</SelectItem>
-            <SelectItem value="discuss">Обговорити індивідуально</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div className="space-y-2">
+      <fieldset className="space-y-2">
+        <legend className="sr-only">Опис проєкту</legend>
         <Label htmlFor="message">Повідомлення *</Label>
         <Textarea
           id="message"
@@ -207,10 +210,10 @@ export default function ContactForm() {
           value={formData.message}
           onChange={handleInputChange}
           required
-          placeholder="Розкажіть детальніше про ваш проект..."
+          placeholder="Розкажіть детальніше про ваш проєкт..."
           rows={5}
         />
-      </div>
+      </fieldset>
 
       <Button type="submit" className="w-full" disabled={isSubmitting}>
         {isSubmitting ? (
@@ -225,3 +228,4 @@ export default function ContactForm() {
     </form>
   );
 }
+

@@ -1,17 +1,10 @@
-import axiosInstanceAdmin from "@/data/axios";
+import { getProjects } from "@/lib/projects-server";
 import type { Project } from "@/types/projects";
 import type { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.SITE_URL || "https://www.oberemchuk.site";
-
-  let projects: Project[] = [];
-  try {
-    const response = await axiosInstanceAdmin.get(`/api/projects`);
-    projects = response.data.data;
-  } catch (error) {
-    console.error("Помилка отримання проектів для sitemap:", error);
-  }
+  const projects: Project[] = await getProjects();
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -63,3 +56,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [...staticPages, ...projectPages];
 }
+

@@ -10,12 +10,14 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ icon, title, description, className }: ServiceCardProps) {
   return (
-    <Card className={`hover:shadow-lg transition-shadow duration-300 ${className || ""}`}>
-      <CardHeader>
-        <div className="mb-4">{icon}</div>
-        <CardTitle className="text-xl">{title}</CardTitle>
-        <CardDescription className="text-gray-600">{description}</CardDescription>
-      </CardHeader>
-    </Card>
+    <article>
+      <Card className={`hover:shadow-lg transition-shadow duration-300 ${className || ""}`}>
+        <CardHeader>
+          <div className="mb-4" aria-hidden="true">{icon}</div>
+          <CardTitle className="text-xl">{title}</CardTitle>
+          <CardDescription className="text-gray-600">{description}</CardDescription>
+        </CardHeader>
+      </Card>
+    </article>
   )
 }
