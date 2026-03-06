@@ -8,7 +8,7 @@ interface AnimationWrapperProps {
   children: ReactNode
   animation: "fade-in" | "slide-up" | "slide-right" | "slide-left" | "scale"
   className?: string
-  delay?: 0 | 100 | 200 | 300 | 400 | 500
+  delay?: number
   threshold?: number
   rootMargin?: string
   triggerOnce?: boolean

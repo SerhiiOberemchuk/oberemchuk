@@ -124,11 +124,6 @@ const jsonLdData = [
       "@type": "Person",
       name: "Serhii Oberemchuk",
     },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://www.oberemchuk.site/search?q={search_term_string}",
-      "query-input": "required name=search_term_string",
-    },
   },
   {
     "@context": "https://schema.org",
