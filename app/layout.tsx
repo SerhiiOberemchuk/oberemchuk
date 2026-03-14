@@ -7,7 +7,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-// import GoogleAnalytics from "@/components/google-analytics";
+import { Analytics } from "@vercel/analytics/next";
 import CookieConsentBanner from "@/components/cookie-consent-banner";
 import ScrollToTop from "@/components/scroll-to-top";
 
@@ -122,21 +122,6 @@ export default function RootLayout({
     <html lang="uk" className={inter.variable} suppressHydrationWarning>
       <GoogleTagManager gtmId="GTM-PP6VF7MJ" />
       <head>
-        {/* <!-- Google Tag Manager --> */}
-
-        {/* <Script
-          id="google_tag_manager"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PP6VF7MJ');`,
-          }}
-        /> */}
-
-        {/* <!-- End Google Tag Manager --> */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -160,20 +145,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body className={inter.className}>
-        {/* <!-- Google Tag Manager (noscript) --> */}
-        {/* <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PP6VF7MJ"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
-        </noscript> */}
-        {/* <!-- End Google Tag Manager (noscript) --> */}
-
-        {/* <GoogleAnalytics
-          measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ""}
-        /> */}
         <div className="flex min-h-screen flex-col pt-16">
           <Header />
           <main className="flex-1" role="main">
@@ -184,6 +155,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <CookieConsentBanner />
         <ScrollToTop />
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
