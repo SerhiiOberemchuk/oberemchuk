@@ -24,11 +24,13 @@ export default function FaqSection({ title, subtitle, faqs }: FaqSectionProps) {
   }
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50" aria-labelledby="faq-title">
       <div className="container mx-auto px-4">
         <AnimationWrapper animation="fade-in">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
+            <h2 id="faq-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {title}
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
           </div>
         </AnimationWrapper>
@@ -37,20 +39,30 @@ export default function FaqSection({ title, subtitle, faqs }: FaqSectionProps) {
           {faqs.map((faq, index) => (
             <AnimationWrapper key={index} animation="slide-up" delay={index * 100}>
               <Card className="mb-4 hover:shadow-lg transition-all duration-300 overflow-hidden">
-                <CardHeader
-                  className="cursor-pointer hover:bg-gray-50 transition-colors duration-200"
-                  onClick={() => toggleFaq(index)}
-                >
+                <CardHeader className="hover:bg-gray-50 transition-colors duration-200">
                   <CardTitle className="flex items-center justify-between text-lg">
-                    <span className="text-left">{faq.question}</span>
-                    <div
-                      className={`transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : "rotate-0"}`}
+                    <button
+                      type="button"
+                      onClick={() => toggleFaq(index)}
+                      className="w-full flex items-center justify-between text-left"
+                      aria-expanded={openIndex === index}
+                      aria-controls={`faq-panel-${index}`}
+                      id={`faq-trigger-${index}`}
                     >
-                      <ChevronDown className="h-5 w-5 text-gray-500" />
-                    </div>
+                      <span className="text-left">{faq.question}</span>
+                      <span
+                        className={`transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : "rotate-0"}`}
+                        aria-hidden="true"
+                      >
+                        <ChevronDown className="h-5 w-5 text-gray-500" />
+                      </span>
+                    </button>
                   </CardTitle>
                 </CardHeader>
                 <div
+                  id={`faq-panel-${index}`}
+                  role="region"
+                  aria-labelledby={`faq-trigger-${index}`}
                   className={`transition-all duration-500 ease-in-out ${
                     openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   } overflow-hidden`}

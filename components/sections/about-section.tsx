@@ -4,8 +4,21 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import AnimationWrapper from "@/components/animation-wrapper"
 import { Code, Palette, Search, Smartphone, Server } from "lucide-react"
+import { useTranslations } from "next-intl"
+
+type AboutItem = {
+  title: string
+  description: string
+}
+
+type AboutStat = {
+  value: string
+  label: string
+}
 
 export default function AboutSection() {
+  const t = useTranslations("HomeAbout")
+
   const technologies = [
     "React",
     "Next.js",
@@ -20,63 +33,40 @@ export default function AboutSection() {
     "MongoDB",
     "Prisma",
     "Git",
-    "Figma"
-      ]
-
-  const skills = [
-    {
-      icon: <Code className="w-8 h-8 text-blue-600" />,
-      title: "Frontend розробка",
-      description: "React, Next.js, TypeScript для створення інтерактивних інтерфейсів",
-    },
-    {
-      icon: <Server className="w-8 h-8 text-red-600" />,
-      title: "Backend розробка",
-      description: "Node.js, Express.js, API розробка, бази даних PostgreSQL та MongoDB",
-    },
-    {
-      icon: <Palette className="w-8 h-8 text-purple-600" />,
-      title: "Співпраця з дизайнерами",
-      description: "Тісна робота з UI/UX дизайнерами для створення красивих та функціональних інтерфейсів",
-    },
-    {
-      icon: <Search className="w-8 h-8 text-green-600" />,
-      title: "SEO оптимізація",
-      description: "Технічна оптимізація для кращого ранжування в пошукових системах",
-    },
-    {
-      icon: <Smartphone className="w-8 h-8 text-orange-600" />,
-      title: "Адаптивний дизайн",
-      description: "Ідеальне відображення на всіх пристроях та розмірах екранів",
-    },
+    "Figma",
   ]
 
-  const designProcess = [
-    {
-      icon: <Palette className="w-6 h-6 text-purple-600" />,
-      title: "Ідея та концепція",
-      description: "Обговорюємо ваші потреби з дизайнером",
-    },
-    {
-      icon: <Code className="w-6 h-6 text-blue-600" />,
-      title: "Створення дизайну",
-      description: "Дизайнер створює макети у Figma",
-    },
-    {
-      icon: <Server className="w-6 h-6 text-red-600" />,
-      title: "Розробка",
-      description: "Я втілюю дизайн у функціональний код з backend логікою",
-    },
+  const skills = t.raw("skills") as AboutItem[]
+  const process = t.raw("process") as AboutItem[]
+  const paragraphs = t.raw("paragraphs") as string[]
+  const summaryStats = t.raw("summaryStats") as AboutStat[]
+
+  const skillIcons = [
+    <Code key="code" className="w-8 h-8 text-blue-600" />,
+    <Server key="server" className="w-8 h-8 text-red-600" />,
+    <Palette key="palette" className="w-8 h-8 text-purple-600" />,
+    <Search key="search" className="w-8 h-8 text-green-600" />,
+    <Smartphone key="phone" className="w-8 h-8 text-orange-600" />,
   ]
+
+  const processIcons = [
+    <Palette key="process-palette" className="w-6 h-6 text-purple-600" />,
+    <Code key="process-code" className="w-6 h-6 text-blue-600" />,
+    <Server key="process-server" className="w-6 h-6 text-red-600" />,
+  ]
+
+  const statColors = ["text-blue-600", "text-green-600", "text-purple-600", "text-orange-600"]
 
   return (
-    <section id="about" className="py-20 bg-gray-50">
+    <section id="about" className="py-20 bg-gray-50" aria-labelledby="about-title">
       <div className="container mx-auto px-4">
         <AnimationWrapper animation="fade-in">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Про мене</h2>
+            <h2 id="about-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {t("title")}
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fullstack веб-розробник з пристрастю до створення якісних цифрових рішень
+              {t("subtitle")}
             </p>
           </div>
         </AnimationWrapper>
@@ -84,106 +74,71 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <AnimationWrapper animation="slide-left">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Моя історія</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("valueTitle")}</h3>
               <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>
-                  Привіт! Мене звати Сергій, і я fullstack веб-розробник з України з понад 5 роками досвіду. Моя подорож
-                  у світ веб-розробки почалася з цікавості до того, як працюють сайти, і переросла в справжню пристрасть
-                  до створення цифрових рішень.
-                </p>
-                <p>
-                  Я спеціалізуюся на повному циклі розробки - від frontend з використанням React та Next.js до backend з
-                  Node.js та базами даних.
-                  <strong className="text-gray-900">
-                    {" "}
-                    Для створення дизайнів активно співпрацюю з талановитими UI/UX дизайнерами
-                  </strong>
-                  , що дозволяє створювати комплексні рішення під ключ - від ідеї до готового продукту.
-                </p>
-                <p>
-                  Мій підхід базується на розумінні потреб клієнта, увазі до деталей та прагненні до досконалості. Кожен
-                  проект для мене - це можливість створити щось унікальне та корисне з повним технічним стеком.
-                </p>
+                {paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
               </div>
             </div>
           </AnimationWrapper>
 
           <AnimationWrapper animation="slide-right">
-            <div className="grid grid-cols-2 gap-6">
-              <Card className="text-center p-6">
-                <CardContent className="p-0">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">50+</div>
-                  <div className="text-gray-600">Проектів</div>
-                </CardContent>
-              </Card>
-              <Card className="text-center p-6">
-                <CardContent className="p-0">
-                  <div className="text-3xl font-bold text-green-600 mb-2">40+</div>
-                  <div className="text-gray-600">Клієнтів</div>
-                </CardContent>
-              </Card>
-              <Card className="text-center p-6">
-                <CardContent className="p-0">
-                  <div className="text-3xl font-bold text-purple-600 mb-2">5+</div>
-                  <div className="text-gray-600">Років досвіду</div>
-                </CardContent>
-              </Card>
-              <Card className="text-center p-6">
-                <CardContent className="p-0">
-                  <div className="text-3xl font-bold text-orange-600 mb-2">100%</div>
-                  <div className="text-gray-600">Якість</div>
-                </CardContent>
-              </Card>
-            </div>
+            <dl className="grid grid-cols-2 gap-6">
+              {summaryStats.map((stat, index) => (
+                <Card key={`${stat.value}-${stat.label}`} className="text-center p-6">
+                  <CardContent className="p-0">
+                    <dd className={`text-3xl font-bold mb-2 ${statColors[index] ?? "text-blue-600"}`}>{stat.value}</dd>
+                    <dt className="text-gray-600">{stat.label}</dt>
+                  </CardContent>
+                </Card>
+              ))}
+            </dl>
           </AnimationWrapper>
         </div>
 
         <AnimationWrapper animation="fade-in">
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Мої навички</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t("skillsTitle")}</h3>
+            <ul className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
               {skills.map((skill, index) => (
-                <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                  <CardContent className="p-0">
-                    <div className="mb-4">{skill.icon}</div>
-                    <h4 className="font-semibold text-gray-900 mb-2">{skill.title}</h4>
-                    <p className="text-sm text-gray-600">{skill.description}</p>
-                  </CardContent>
-                </Card>
+                <li key={skill.title}>
+                  <Card className="h-full p-6 hover:shadow-lg transition-shadow">
+                    <CardContent className="p-0">
+                      <div className="mb-4">{skillIcons[index]}</div>
+                      <h4 className="font-semibold text-gray-900 mb-2">{skill.title}</h4>
+                      <p className="text-sm text-gray-600">{skill.description}</p>
+                    </CardContent>
+                  </Card>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </AnimationWrapper>
 
         <AnimationWrapper animation="slide-up">
           <div className="bg-white rounded-2xl p-8 mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Як я працюю з дизайнерами</h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {designProcess.map((step, index) => (
-                <div key={index} className="text-center">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t("processTitle")}</h3>
+            <ol className="grid md:grid-cols-3 gap-8">
+              {process.map((step, index) => (
+                <li key={step.title} className="text-center">
                   <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    {step.icon}
+                    {processIcons[index]}
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">{step.title}</h4>
                   <p className="text-gray-600 text-sm">{step.description}</p>
-                </div>
+                </li>
               ))}
-            </div>
-            <div className="mt-8 text-center">
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Співпрацюючи з професійними дизайнерами, створюю не просто функціональні сайти, а справжні цифрові
-                шедеври, які поєднують красу, зручність та ефективність з потужним backend функціоналом.
-              </p>
-            </div>
+            </ol>
           </div>
         </AnimationWrapper>
 
         <AnimationWrapper animation="slide-up">
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Технології з якими працюю</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">{t("technologiesTitle")}</h3>
             <div className="flex flex-wrap justify-center gap-3">
-              {technologies.map((tech, index) => (
-                <Badge key={index} variant="secondary" className="text-sm py-2 px-4">
+              {technologies.map((tech) => (
+                <Badge key={tech} variant="secondary" className="text-sm py-2 px-4">
                   {tech}
                 </Badge>
               ))}

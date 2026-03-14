@@ -1,34 +1,35 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {ArrowRight} from "lucide-react";
+import {getTranslations} from "next-intl/server";
+import {Link} from "@/i18n/navigation";
+import {Button} from "@/components/ui/button";
 import PortfolioItem from "@/components/portfolio-item";
 import AnimationWrapper from "@/components/animation-wrapper";
-import type { Project } from "@/types/projects";
-import { getProjects } from "@/lib/projects-server";
+import type {Project} from "@/types/projects";
+import {getProjects} from "@/lib/projects-server";
 
 export default async function PortfolioSection() {
+  const t = await getTranslations("PortfolioSection");
   const projects: Project[] = (await getProjects()).slice(0, 3);
 
   return (
-    <section id="portfolio" className="py-24 bg-gray-50" aria-labelledby="portfolio-title">
+    <section id="portfolio" className="bg-gray-50 py-24" aria-labelledby="portfolio-title">
       <div className="container mx-auto px-4">
         <AnimationWrapper animation="slide-up">
-          <header className="text-center mb-16">
-            <p className="inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700 mb-4">
-              Портфоліо
+          <header className="mb-16 text-center">
+            <p className="mb-4 inline-block rounded-lg bg-green-100 px-3 py-1 text-sm text-green-700">
+              {t("badge")}
             </p>
-            <h2 id="portfolio-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Мої останні роботи
+            <h2 id="portfolio-title" className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+              {t("title")}
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Ознайомтеся з моїми останніми проєктами та переконайтеся в якості моєї роботи.
-              Кожен проєкт створений з урахуванням унікальних потреб клієнта та в співпраці з
-              талановитими дизайнерами.
-            </p>
+            <p className="mx-auto max-w-2xl text-xl text-gray-600">{t("description")}</p>
           </header>
         </AnimationWrapper>
 
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" aria-label="Останні проєкти">
+        <ul
+          className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          aria-label={t("listLabel")}
+        >
           {projects.length > 0 ? (
             projects.map((project, index) => (
               <li key={project.slug}>
@@ -46,7 +47,7 @@ export default async function PortfolioSection() {
               </li>
             ))
           ) : (
-            <li className="col-span-full text-center py-8 text-gray-500">Проєкти не знайдено</li>
+            <li className="col-span-full py-8 text-center text-gray-500">{t("empty")}</li>
           )}
         </ul>
 
@@ -54,7 +55,7 @@ export default async function PortfolioSection() {
           <div className="text-center">
             <Button asChild size="lg">
               <Link href="/portfolio">
-                Переглянути всі проєкти
+                {t("cta")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
