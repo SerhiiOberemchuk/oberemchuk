@@ -1,17 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {useEffect, useState} from "react";
 import type {
-  CookieSettings,
   CookieConsentState,
+  CookieSettings
 } from "@/types/cookie-consent";
 
 const COOKIE_CONSENT_KEY = "cookie-consent";
+const COOKIE_SETTINGS_EVENT = "cookie-settings-toggle";
 
 const defaultSettings: CookieSettings = {
   necessary: true,
   analytics: false,
-  marketing: false,
+  marketing: false
 };
 
 export function useCookieConsent() {
@@ -19,7 +20,7 @@ export function useCookieConsent() {
     accepted: false,
     declined: false,
     settings: defaultSettings,
-    showSettings: false,
+    showSettings: false
   });
 
   useEffect(() => {
@@ -27,16 +28,42 @@ export function useCookieConsent() {
 
     if (savedConsent) {
       try {
-        const parsedConsent = JSON.parse(savedConsent);
+        const parsedConsent = JSON.parse(savedConsent) as CookieConsentState;
         setConsentState(parsedConsent);
 
         if (parsedConsent.settings.analytics) {
           enableAnalytics();
         }
       } catch (error) {
-        console.error("Помилка при завантаженні налаштувань cookies:", error);
+        console.error("Failed to load cookie settings:", error);
       }
     }
+  }, []);
+
+  useEffect(() => {
+    const handleSettingsToggle = (event: Event) => {
+      const customEvent = event as CustomEvent<boolean | undefined>;
+
+      setConsentState((prev) => ({
+        ...prev,
+        showSettings:
+          typeof customEvent.detail === "boolean"
+            ? customEvent.detail
+            : !prev.showSettings
+      }));
+    };
+
+    window.addEventListener(
+      COOKIE_SETTINGS_EVENT,
+      handleSettingsToggle as EventListener
+    );
+
+    return () => {
+      window.removeEventListener(
+        COOKIE_SETTINGS_EVENT,
+        handleSettingsToggle as EventListener
+      );
+    };
   }, []);
 
   const saveConsent = (newState: CookieConsentState) => {
@@ -45,15 +72,15 @@ export function useCookieConsent() {
   };
 
   const acceptAll = () => {
-    const newState = {
+    const newState: CookieConsentState = {
       accepted: true,
       declined: false,
       settings: {
         necessary: true,
         analytics: true,
-        marketing: true,
+        marketing: true
       },
-      showSettings: false,
+      showSettings: false
     };
 
     saveConsent(newState);
@@ -61,15 +88,15 @@ export function useCookieConsent() {
   };
 
   const acceptNecessary = () => {
-    const newState = {
+    const newState: CookieConsentState = {
       accepted: true,
       declined: false,
       settings: {
         necessary: true,
         analytics: false,
-        marketing: false,
+        marketing: false
       },
-      showSettings: false,
+      showSettings: false
     };
 
     saveConsent(newState);
@@ -77,15 +104,15 @@ export function useCookieConsent() {
   };
 
   const decline = () => {
-    const newState = {
+    const newState: CookieConsentState = {
       accepted: false,
       declined: true,
       settings: {
         necessary: true,
         analytics: false,
-        marketing: false,
+        marketing: false
       },
-      showSettings: false,
+      showSettings: false
     };
 
     saveConsent(newState);
@@ -93,14 +120,14 @@ export function useCookieConsent() {
   };
 
   const saveSettings = (settings: CookieSettings) => {
-    const newState = {
+    const newState: CookieConsentState = {
       accepted: true,
       declined: false,
       settings: {
         ...settings,
-        necessary: true,
+        necessary: true
       },
-      showSettings: false,
+      showSettings: false
     };
 
     saveConsent(newState);
@@ -113,16 +140,25 @@ export function useCookieConsent() {
   };
 
   const toggleSettings = () => {
-    setConsentState((prev) => ({
-      ...prev,
-      showSettings: !prev.showSettings,
-    }));
+    window.dispatchEvent(new CustomEvent(COOKIE_SETTINGS_EVENT));
+  };
+
+  const openSettings = () => {
+    window.dispatchEvent(
+      new CustomEvent(COOKIE_SETTINGS_EVENT, {detail: true})
+    );
+  };
+
+  const closeSettings = () => {
+    window.dispatchEvent(
+      new CustomEvent(COOKIE_SETTINGS_EVENT, {detail: false})
+    );
   };
 
   const enableAnalytics = () => {
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("consent", "update", {
-        analytics_storage: "granted",
+        analytics_storage: "granted"
       });
     }
   };
@@ -130,7 +166,7 @@ export function useCookieConsent() {
   const disableAnalytics = () => {
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag("consent", "update", {
-        analytics_storage: "denied",
+        analytics_storage: "denied"
       });
     }
   };
@@ -142,5 +178,7 @@ export function useCookieConsent() {
     decline,
     saveSettings,
     toggleSettings,
+    openSettings,
+    closeSettings
   };
 }

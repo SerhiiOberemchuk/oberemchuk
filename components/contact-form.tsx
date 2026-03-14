@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface FormData {
   name: string;
@@ -26,7 +27,16 @@ interface FormData {
   message: string;
 }
 
+type Option = {
+  value: string;
+  label: string;
+};
+
 export default function ContactForm() {
+  const t = useTranslations("ContactForm");
+  const services = t.raw("services") as Option[];
+  const budgets = t.raw("budgets") as Option[];
+
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -36,6 +46,8 @@ export default function ContactForm() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formHintId = "contact-form-hint";
+  const messageHintId = "contact-form-message-hint";
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -58,27 +70,26 @@ export default function ContactForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Валідація
     if (!formData.name.trim()) {
-      toast.error("Будь ласка, введіть ваше ім'я");
+      toast.error(t("validation.nameRequired"));
       setIsSubmitting(false);
       return;
     }
 
     if (!formData.email.trim()) {
-      toast.error("Будь ласка, введіть ваш email");
+      toast.error(t("validation.emailRequired"));
       setIsSubmitting(false);
       return;
     }
 
     if (!formData.email.includes("@")) {
-      toast.error("Будь ласка, введіть коректний email");
+      toast.error(t("validation.emailInvalid"));
       setIsSubmitting(false);
       return;
     }
 
     if (!formData.message.trim()) {
-      toast.error("Будь ласка, введіть ваше повідомлення");
+      toast.error(t("validation.messageRequired"));
       setIsSubmitting(false);
       return;
     }
@@ -93,7 +104,7 @@ export default function ContactForm() {
       });
 
       if (response.ok) {
-        toast.success("Повідомлення успішно відправлено!");
+        toast.success(t("submit.success"));
         setFormData({
           name: "",
           email: "",
@@ -104,21 +115,24 @@ export default function ContactForm() {
         });
       } else {
         const errorData = await response.json();
-        toast.error(errorData.error || "Помилка при відправці повідомлення");
+        toast.error(errorData.error || t("submit.error"));
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Помилка при відправці повідомлення");
+      toast.error(t("submit.error"));
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <form onSubmit={handleSubmit} className="space-y-6" aria-describedby={formHintId}>
+      <p id={formHintId} className="text-sm text-slate-500">
+        {t("formHint")}
+      </p>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name">Ім'я *</Label>
+          <Label htmlFor="name">{t("fields.name")}</Label>
           <Input
             id="name"
             name="name"
@@ -126,12 +140,13 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleInputChange}
             required
-            placeholder="Ваше ім'я"
+            aria-required="true"
+            placeholder={t("fields.namePlaceholder")}
             autoComplete="given-name"
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email *</Label>
+          <Label htmlFor="email">{t("fields.email")}</Label>
           <Input
             id="email"
             name="email"
@@ -139,87 +154,87 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleInputChange}
             required
-            placeholder="your@email.com"
+            aria-required="true"
+            placeholder={t("fields.emailPlaceholder")}
             autoComplete="email"
           />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="phone">Телефон</Label>
+          <Label htmlFor="phone">{t("fields.phone")}</Label>
           <Input
             id="phone"
             name="phone"
             type="tel"
             value={formData.phone}
             onChange={handleInputChange}
-            placeholder="+380 XX XXX XX XX"
+            placeholder={t("fields.phonePlaceholder")}
             autoComplete="tel"
           />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="service">Тип послуги</Label>
+          <Label htmlFor="service">{t("fields.service")}</Label>
           <Select
             value={formData.service}
             onValueChange={(value) => handleSelectChange("service", value)}
           >
-            <SelectTrigger aria-label="Оберіть тип послуги">
-              <SelectValue placeholder="Оберіть послугу" />
+            <SelectTrigger aria-label={t("fields.serviceAria")} aria-describedby={formHintId}>
+              <SelectValue placeholder={t("fields.servicePlaceholder")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="website">Створення сайту</SelectItem>
-              <SelectItem value="redesign">Редизайн сайту</SelectItem>
-              <SelectItem value="seo">SEO оптимізація</SelectItem>
-              <SelectItem value="maintenance">Підтримка сайту</SelectItem>
-              <SelectItem value="consultation">Консультація</SelectItem>
-              <SelectItem value="other">Інше</SelectItem>
+              {services.map((service) => (
+                <SelectItem key={service.value} value={service.value}>{service.label}</SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="budget">Бюджет проекту</Label>
+        <Label htmlFor="budget">{t("fields.budget")}</Label>
         <Select
           value={formData.budget}
           onValueChange={(value) => handleSelectChange("budget", value)}
         >
-          <SelectTrigger aria-label="Оберіть бюджет проекту">
-            <SelectValue placeholder="Оберіть бюджет" />
+          <SelectTrigger aria-label={t("fields.budgetAria")} aria-describedby={formHintId}>
+            <SelectValue placeholder={t("fields.budgetPlaceholder")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="under-1000">До $1,000</SelectItem>
-            <SelectItem value="1000-3000">$1,000 - $3,000</SelectItem>
-            <SelectItem value="3000-5000">$3,000 - $5,000</SelectItem>
-            <SelectItem value="5000-10000">$5,000 - $10,000</SelectItem>
-            <SelectItem value="over-10000">Понад $10,000</SelectItem>
-            <SelectItem value="discuss">Обговорити індивідуально</SelectItem>
+            {budgets.map((budget) => (
+              <SelectItem key={budget.value} value={budget.value}>{budget.label}</SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="message">Повідомлення *</Label>
+        <Label htmlFor="message">{t("fields.message")}</Label>
         <Textarea
           id="message"
           name="message"
           value={formData.message}
           onChange={handleInputChange}
           required
-          placeholder="Розкажіть детальніше про ваш проект..."
+          aria-required="true"
+          aria-describedby={messageHintId}
+          placeholder={t("fields.messagePlaceholder")}
           rows={5}
         />
+        <p id={messageHintId} className="text-sm text-slate-500">
+          {t("fields.messageHint")}
+        </p>
       </div>
 
       <Button type="submit" className="w-full" disabled={isSubmitting}>
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Відправляємо...
+            {t("submit.loading")}
           </>
         ) : (
-          "Відправити повідомлення"
+          t("submit.button")
         )}
       </Button>
     </form>

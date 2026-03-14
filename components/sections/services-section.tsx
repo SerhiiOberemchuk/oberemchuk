@@ -4,130 +4,132 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import AnimationWrapper from "@/components/animation-wrapper"
-import { Monitor, ShoppingCart, Palette, Code, Zap, Shield, Users } from "lucide-react"
-import Link from "next/link"
+import { Globe, Monitor, ShoppingCart, Sparkles, Workflow } from "lucide-react"
+import SmoothScrollLink from "@/components/smooth-scroll-link"
+import { Link } from "@/i18n/navigation"
+import { useTranslations } from "next-intl"
+
+type ServiceItem = {
+  title: string
+  description: string
+  price: string
+  features: string[]
+}
+
+type AdvantageItem = {
+  title: string
+  description: string
+}
 
 export default function ServicesSection() {
+  const t = useTranslations("HomeServices")
+
+  const servicesContent = t.raw("services") as ServiceItem[]
+  const advantages = t.raw("advantages") as AdvantageItem[]
+
   const services = [
     {
       icon: <Monitor className="w-8 h-8 text-blue-600" />,
-      title: "Лендінг сторінки",
-      description: "Ефективні одностроінкові сайти для презентації продукту або послуги",
-      price: "від $800",
-      features: ["Адаптивний дизайн", "SEO оптимізація", "Форма зворотного зв'язку", "Швидке завантаження"],
+      href: "/services/landing-pages",
       popular: false,
+      ...servicesContent[0],
     },
     {
-      icon: <Palette className="w-8 h-8 text-purple-600" />,
-      title: "Дизайн + Розробка",
-      description: "Повний цикл створення сайту від дизайну до реалізації в співпраці з дизайнерами",
-      price: "від $1200",
-      features: ["UI/UX дизайн", "Прототипування", "Розробка", "Тестування", "Підтримка"],
+      icon: <Sparkles className="w-8 h-8 text-purple-600" />,
+      href: "/services/corporate-websites",
       popular: true,
+      ...servicesContent[1],
     },
     {
       icon: <ShoppingCart className="w-8 h-8 text-green-600" />,
-      title: "Інтернет-магазини",
-      description: "Повнофункціональні e-commerce рішення для онлайн торгівлі",
-      price: "від $1500",
-      features: ["Каталог товарів", "Кошик", "Оплата", "Адмін панель", "Інтеграції"],
+      href: "/services/ecommerce-development",
       popular: false,
+      ...servicesContent[2],
     },
     {
-      icon: <Code className="w-8 h-8 text-orange-600" />,
-      title: "Веб-додатки",
-      description: "Складні інтерактивні додатки з унікальним функціоналом",
-      price: "від $2000",
-      features: ["React/Next.js", "База даних", "API", "Автентифікація", "Масштабування"],
+      icon: <Workflow className="w-8 h-8 text-orange-600" />,
+      href: "/services/web-app-development",
       popular: false,
+      ...servicesContent[3],
     },
   ]
 
-  const advantages = [
-    {
-      icon: <Users className="w-6 h-6 text-purple-600" />,
-      title: "Команда дизайнерів",
-      description: "Співпрацюю з професійними UI/UX дизайнерами для створення унікальних дизайнів",
-    },
-    {
-      icon: <Zap className="w-6 h-6 text-yellow-600" />,
-      title: "Швидка розробка",
-      description: "Ефективний процес розробки з дотриманням термінів",
-    },
-    {
-      icon: <Shield className="w-6 h-6 text-green-600" />,
-      title: "Гарантія якості",
-      description: "Тестування та оптимізація кожного проекту",
-    },
+  const advantageIcons = [
+    <Globe key="globe" className="w-6 h-6 text-cyan-600" />,
+    <Sparkles key="sparkles" className="w-6 h-6 text-yellow-600" />,
+    <Workflow key="workflow" className="w-6 h-6 text-green-600" />,
   ]
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-white" aria-labelledby="services-title">
       <div className="container mx-auto px-4">
         <AnimationWrapper animation="fade-in">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Мої послуги</h2>
+            <h2 id="services-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("title")}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Повний спектр послуг веб-розробки для вашого бізнесу. Для створення дизайнів співпрацюю з професійними
-              дизайнерами.
+              {t("subtitle")}
             </p>
           </div>
         </AnimationWrapper>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 items-stretch">
           {services.map((service, index) => (
-            <AnimationWrapper key={index} animation="slide-up" delay={index * 100}>
-              <Card
-                className={`relative h-full hover:shadow-xl transition-all duration-300 ${service.popular ? "ring-2 ring-blue-500" : ""}`}
-              >
-                {service.popular && (
-                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600">Популярно</Badge>
-                )}
-                <CardHeader className="text-center pb-4">
-                  <div className="mb-4 flex justify-center">{service.icon}</div>
-                  <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                  <p className="text-gray-600 text-sm mb-4">{service.description}</p>
-                  <div className="text-2xl font-bold text-blue-600">{service.price}</div>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm text-gray-600">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3 flex-shrink-0"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </AnimationWrapper>
+            <li key={service.href}>
+              <AnimationWrapper animation="slide-up" delay={index * 100} className="h-full">
+                <Card
+                  className={`relative flex h-full flex-col hover:shadow-xl transition-all duration-300 ${service.popular ? "ring-2 ring-blue-500" : ""}`}
+                >
+                  <article className="flex h-full flex-col" aria-labelledby={`home-service-title-${index}`}>
+                    {service.popular && <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600">{t("popularBadge")}</Badge>}
+                    <CardHeader className="text-center pb-4">
+                      <div className="mb-4 flex justify-center">{service.icon}</div>
+                      <CardTitle id={`home-service-title-${index}`} className="text-xl mb-2">{service.title}</CardTitle>
+                      <p className="text-gray-600 text-sm mb-4">{service.description}</p>
+                      <div className="text-2xl font-bold text-blue-600">{service.price}</div>
+                    </CardHeader>
+                    <CardContent className="pt-0 flex flex-1 flex-col">
+                      <ul className="space-y-2 mb-6">
+                        {service.features.map((feature) => (
+                          <li key={feature} className="flex items-center text-sm text-gray-600">
+                            <div className="w-2 h-2 bg-green-500 rounded-full mr-3 flex-shrink-0"></div>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                      <Button asChild variant="outline" className="mt-auto w-full bg-transparent">
+                        <Link href={service.href}>{t("detailsCta")}</Link>
+                      </Button>
+                    </CardContent>
+                  </article>
+                </Card>
+              </AnimationWrapper>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <AnimationWrapper animation="fade-in">
           <div className="bg-gray-50 rounded-2xl p-8 mb-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Чому обирають мене</h3>
-            <div className="grid md:grid-cols-3 gap-6">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t("approachTitle")}</h3>
+            <ul className="grid md:grid-cols-3 gap-6">
               {advantages.map((advantage, index) => (
-                <div key={index} className="text-center">
-                  <div className="mb-4 flex justify-center">{advantage.icon}</div>
+                <li key={advantage.title} className="text-center">
+                  <div className="mb-4 flex justify-center">{advantageIcons[index]}</div>
                   <h4 className="font-semibold text-gray-900 mb-2">{advantage.title}</h4>
                   <p className="text-gray-600 text-sm">{advantage.description}</p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </AnimationWrapper>
 
         <AnimationWrapper animation="slide-up">
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Готові почати свій проект?</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("estimateTitle")}</h3>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-              Зв'яжіться зі мною для безкоштовної консультації та обговорення деталей вашого проекту. Разом з командою
-              дизайнерів створимо для вас ідеальне рішення.
+              {t("estimateDescription")}
             </p>
             <Button asChild size="lg" className="text-lg px-8 py-6">
-              <Link href="#contact">Обговорити проект</Link>
+              <SmoothScrollLink href="#contact">{t("estimateCta")}</SmoothScrollLink>
             </Button>
           </div>
         </AnimationWrapper>

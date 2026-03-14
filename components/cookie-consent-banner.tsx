@@ -1,15 +1,17 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useId, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useCookieConsent } from "@/hooks/use-cookie-consent"
 import type { CookieSettings } from "@/types/cookie-consent"
 import { X, Settings, Info } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
+import { useTranslations } from "next-intl"
 
 export default function CookieConsentBanner() {
   const { consentState, acceptAll, acceptNecessary, decline, saveSettings, toggleSettings } = useCookieConsent()
+  const t = useTranslations("CookieBanner")
 
   const [customSettings, setCustomSettings] = useState<CookieSettings>({
     necessary: true,
@@ -18,20 +20,30 @@ export default function CookieConsentBanner() {
   })
 
   const [isMounted, setIsMounted] = useState(false)
+  const settingsTitleId = useId()
+  const settingsCloseRef = useRef<HTMLButtonElement>(null)
 
-  // Ініціалізуємо стан після монтування компонента
   useEffect(() => {
     setIsMounted(true)
     setCustomSettings(consentState.settings)
   }, [consentState.settings])
 
-  // Не показуємо банер, якщо користувач вже зробив вибір або на сервері
-  if (!isMounted || consentState.accepted || consentState.declined) {
+  useEffect(() => {
+    if (consentState.showSettings) {
+      window.setTimeout(() => {
+        settingsCloseRef.current?.focus()
+      }, 0)
+    }
+  }, [consentState.showSettings])
+
+  const hasConsentDecision = consentState.accepted || consentState.declined
+
+  if (!isMounted || (hasConsentDecision && !consentState.showSettings)) {
     return null
   }
 
   const handleSettingsChange = (type: keyof CookieSettings) => {
-    if (type === "necessary") return // Не можна змінити необхідні cookies
+    if (type === "necessary") return
 
     setCustomSettings((prev) => ({
       ...prev,
@@ -44,13 +56,13 @@ export default function CookieConsentBanner() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white border-t shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white p-4 shadow-lg">
       <div className="container mx-auto">
         {consentState.showSettings ? (
-          <div className="space-y-4">
+          <div className="space-y-4" role="dialog" aria-labelledby={settingsTitleId}>
             <div className="flex justify-between items-center">
-              <h3 className="text-lg font-semibold">Налаштування файлів cookie</h3>
-              <Button variant="ghost" size="icon" onClick={toggleSettings} aria-label="Закрити налаштування">
+              <h3 id={settingsTitleId} className="text-lg font-semibold">{t("settings.title")}</h3>
+              <Button ref={settingsCloseRef} variant="ghost" size="icon" onClick={toggleSettings} aria-label={t("settings.closeAria") }>
                 <X className="h-4 w-4" />
               </Button>
             </div>
@@ -59,12 +71,8 @@ export default function CookieConsentBanner() {
               <div className="flex items-start space-x-3 p-3 border rounded-md bg-gray-50">
                 <Checkbox id="necessary" checked={true} disabled className="mt-1" />
                 <div className="space-y-1">
-                  <label htmlFor="necessary" className="font-medium">
-                    Необхідні файли cookie
-                  </label>
-                  <p className="text-sm text-gray-500">
-                    Ці файли cookie необхідні для функціонування сайту і не можуть бути вимкнені.
-                  </p>
+                  <label htmlFor="necessary" className="font-medium">{t("settings.necessary.title")}</label>
+                  <p className="text-sm text-gray-500">{t("settings.necessary.description")}</p>
                 </div>
               </div>
 
@@ -76,13 +84,8 @@ export default function CookieConsentBanner() {
                   className="mt-1"
                 />
                 <div className="space-y-1">
-                  <label htmlFor="analytics" className="font-medium">
-                    Аналітичні файли cookie
-                  </label>
-                  <p className="text-sm text-gray-500">
-                    Допомагають нам зрозуміти, як відвідувачі взаємодіють з сайтом, збираючи та повідомляючи інформацію
-                    анонімно.
-                  </p>
+                  <label htmlFor="analytics" className="font-medium">{t("settings.analytics.title")}</label>
+                  <p className="text-sm text-gray-500">{t("settings.analytics.description")}</p>
                 </div>
               </div>
 
@@ -94,43 +97,33 @@ export default function CookieConsentBanner() {
                   className="mt-1"
                 />
                 <div className="space-y-1">
-                  <label htmlFor="marketing" className="font-medium">
-                    Маркетингові файли cookie
-                  </label>
-                  <p className="text-sm text-gray-500">
-                    Використовуються для відстеження відвідувачів на веб-сайтах. Мета полягає в тому, щоб показувати
-                    релевантну рекламу.
-                  </p>
+                  <label htmlFor="marketing" className="font-medium">{t("settings.marketing.title")}</label>
+                  <p className="text-sm text-gray-500">{t("settings.marketing.description")}</p>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between items-center">
               <Link href="/cookies" className="text-sm text-green-600 hover:underline mb-3 sm:mb-0">
-                Детальніше про cookies
+                {t("detailsLink")}
               </Link>
               <div className="flex flex-wrap gap-3">
-                <Button variant="outline" onClick={decline}>
-                  Відхилити всі
-                </Button>
-                <Button variant="outline" onClick={acceptNecessary}>
-                  Прийняти необхідні
-                </Button>
-                <Button onClick={handleSaveSettings}>Зберегти налаштування</Button>
+                <Button variant="outline" onClick={decline}>{t("settings.actions.rejectAll")}</Button>
+                <Button variant="outline" onClick={acceptNecessary}>{t("settings.actions.acceptNecessary")}</Button>
+                <Button onClick={handleSaveSettings}>{t("settings.actions.save")}</Button>
               </div>
             </div>
           </div>
         ) : (
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center" role="region" aria-label={t("banner.title")}>
             <div className="flex items-start space-x-3">
               <Info className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-semibold">Ми використовуємо файли cookie</h3>
+                <h3 className="font-semibold">{t("banner.title")}</h3>
                 <p className="text-sm text-gray-500 mt-1">
-                  Цей сайт використовує файли cookie для покращення вашого досвіду. Ви можете прийняти всі файли cookie,
-                  відхилити їх або налаштувати свої уподобання.{" "}
+                  {t("banner.description")} {" "}
                   <Link href="/cookies" className="text-green-900 hover:underline">
-                    Детальніше
+                    {t("banner.details")}
                   </Link>
                 </p>
               </div>
@@ -139,17 +132,11 @@ export default function CookieConsentBanner() {
             <div className="flex flex-wrap gap-3 mt-3 md:mt-0">
               <Button variant="outline" size="sm" onClick={toggleSettings} className="flex items-center">
                 <Settings className="h-4 w-4 mr-2" />
-                Налаштування
+                {t("banner.actions.settings")}
               </Button>
-              <Button variant="outline" size="sm" onClick={decline}>
-                Відхилити
-              </Button>
-              <Button variant="outline" size="sm" onClick={acceptNecessary}>
-                Тільки необхідні
-              </Button>
-              <Button size="sm" onClick={acceptAll}>
-                Прийняти всі
-              </Button>
+              <Button variant="outline" size="sm" onClick={decline}>{t("banner.actions.reject")}</Button>
+              <Button variant="outline" size="sm" onClick={acceptNecessary}>{t("banner.actions.necessaryOnly")}</Button>
+              <Button size="sm" onClick={acceptAll}>{t("banner.actions.acceptAll")}</Button>
             </div>
           </div>
         )}

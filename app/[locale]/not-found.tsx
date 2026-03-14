@@ -1,8 +1,9 @@
-import {getTranslations} from "next-intl/server";
+import {getLocale, getTranslations} from "next-intl/server";
 import {Link} from "@/i18n/navigation";
 
-export default async function NotFound() {
-  const t = await getTranslations("NotFoundPage");
+export default async function NotFoundPage() {
+  const locale = await getLocale();
+  const t = await getTranslations({locale, namespace: "NotFoundPage"});
 
   return (
     <div className="container mx-auto max-w-3xl py-20 text-center">
