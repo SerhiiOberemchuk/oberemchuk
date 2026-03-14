@@ -1,12 +1,8 @@
-import {getTranslations} from "next-intl/server";
+import {getLocale, getTranslations} from "next-intl/server";
 import {Link} from "@/i18n/navigation";
 
-type NotFoundPageProps = {
-  params: Promise<{locale: string}>;
-};
-
-export default async function NotFoundPage({params}: NotFoundPageProps) {
-  const {locale} = await params;
+export default async function NotFoundPage() {
+  const locale = await getLocale();
   const t = await getTranslations({locale, namespace: "NotFoundPage"});
 
   return (
