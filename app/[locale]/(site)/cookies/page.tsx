@@ -46,6 +46,7 @@ export async function generateMetadata({params}: CookiesPageProps): Promise<Meta
 export default async function CookiesPage({params}: CookiesPageProps) {
   const {locale} = await params;
   const t = await getTranslations({locale, namespace: "CookiesPage"});
+  const footerLegalT = await getTranslations({locale, namespace: "Footer.legal"});
   const cookieTypes = t.raw("types.rows") as Array<{
     name: string;
     purpose: string;
@@ -155,7 +156,7 @@ export default async function CookiesPage({params}: CookiesPageProps) {
               <h3 className="mb-2 text-lg font-semibold">{t("settingsCard.title")}</h3>
               <p className="text-gray-600">{t("settingsCard.description")}</p>
             </div>
-            <CookieSettingsButton />
+            <CookieSettingsButton label={footerLegalT("cookieSettings")} />
           </div>
 
           <h2>{t("consequences.title")}</h2>

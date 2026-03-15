@@ -118,6 +118,19 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages({locale});
   const layoutT = await getTranslations({locale, namespace: "Layout"});
+  const headerT = await getTranslations({locale, namespace: "Header"});
+  const footerT = await getTranslations({locale, namespace: "Footer"});
+  const headerNavItems = [
+    {href: "/#services", label: headerT("navigation.services")},
+    {href: "/portfolio", label: headerT("navigation.portfolio")},
+    {href: "/#about", label: headerT("navigation.about")},
+    {href: "/#contact", label: headerT("navigation.contact")}
+  ];
+  const footerLegalItems = [
+    {href: "/privacy-policy", label: footerT("legal.privacy")},
+    {href: "/cookies", label: footerT("legal.cookies")},
+    {href: "/terms-of-service", label: footerT("legal.terms")}
+  ];
 
   return (
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
@@ -146,11 +159,31 @@ export default async function LocaleLayout({
             {layoutT("skipToContent")}
           </a>
           <div className="flex min-h-screen flex-col pt-16">
-            <Header />
+            <Header
+              ctaLabel={headerT("cta")}
+              logoAlt={headerT("logoAlt")}
+              menuLabel={headerT("menu")}
+              navigationAriaLabel={headerT("primaryNavigation")}
+              dialogTitle={headerT("mobileMenu")}
+              closeLabel={headerT("closeMenu")}
+              navItems={headerNavItems}
+            />
             <main id="main-content" className="flex-1" tabIndex={-1}>
               {children}
             </main>
-            <Footer />
+            <Footer
+              description={footerT("description")}
+              copyright={footerT("copyright")}
+              tagline={footerT("tagline")}
+              logoAlt={footerT("logoAlt")}
+              navigationTitle={footerT("navigation.title")}
+              legalTitle={footerT("legal.title")}
+              contactTitle={footerT("contact.title")}
+              remoteLabel={footerT("contact.remote")}
+              cookieSettingsLabel={footerT("legal.cookieSettings")}
+              navigationItems={headerNavItems}
+              legalItems={footerLegalItems}
+            />
           </div>
           <CookieConsentBanner />
           <ScrollToTop />

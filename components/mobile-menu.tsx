@@ -3,19 +3,35 @@
 import {Link} from "@/i18n/navigation";
 import {createPortal} from "react-dom";
 import {useEffect, useId, useRef, useState} from "react";
-import {useTranslations} from "next-intl";
 import {Button} from "@/components/ui/button";
 import LanguageSwitcher from "./language-switcher";
 import {X} from "lucide-react";
 
-interface MobileMenuProps {
+type MobileMenuItem = {
+  href: string;
+  label: string;
+};
+
+export interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  closeLabel: string;
+  ctaLabel: string;
+  dialogTitle: string;
+  navigationAriaLabel: string;
+  navItems: MobileMenuItem[];
 }
 
-export default function MobileMenu({isOpen, onClose}: MobileMenuProps) {
+export default function MobileMenu({
+  isOpen,
+  onClose,
+  closeLabel,
+  ctaLabel,
+  dialogTitle,
+  navigationAriaLabel,
+  navItems
+}: MobileMenuProps) {
   const [mounted, setMounted] = useState(false);
-  const t = useTranslations("Header");
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const lastFocusedElementRef = useRef<HTMLElement | null>(null);
@@ -110,7 +126,7 @@ export default function MobileMenu({isOpen, onClose}: MobileMenuProps) {
       >
         <div className="flex flex-col space-y-6 p-6">
           <div className="flex items-center justify-between gap-3">
-            <p id={titleId} className="text-sm font-semibold text-slate-500">{t("mobileMenu")}</p>
+            <p id={titleId} className="text-sm font-semibold text-slate-500">{dialogTitle}</p>
             <div className="flex items-center gap-2">
               <LanguageSwitcher />
               <Button
@@ -119,31 +135,29 @@ export default function MobileMenu({isOpen, onClose}: MobileMenuProps) {
                 variant="outline"
                 size="icon"
                 onClick={onClose}
-                aria-label={t("closeMenu")}
+                aria-label={closeLabel}
               >
                 <X className="h-4 w-4" />
               </Button>
             </div>
           </div>
 
-          <nav className="flex flex-col space-y-6" aria-label={t("mobileNavigation")}>
-            <Link href="/#services" className="rounded-sm border-b border-gray-100 py-2 text-xl font-medium transition-colors hover:text-green-600 focus-visible:text-green-700" onClick={onClose}>
-              {t("navigation.services")}
-            </Link>
-            <Link href="/portfolio" className="rounded-sm border-b border-gray-100 py-2 text-xl font-medium transition-colors hover:text-green-600 focus-visible:text-green-700" onClick={onClose}>
-              {t("navigation.portfolio")}
-            </Link>
-            <Link href="/#about" className="rounded-sm border-b border-gray-100 py-2 text-xl font-medium transition-colors hover:text-green-600 focus-visible:text-green-700" onClick={onClose}>
-              {t("navigation.about")}
-            </Link>
-            <Link href="/#contact" className="rounded-sm border-b border-gray-100 py-2 text-xl font-medium transition-colors hover:text-green-600 focus-visible:text-green-700" onClick={onClose}>
-              {t("navigation.contact")}
-            </Link>
+          <nav className="flex flex-col space-y-6" aria-label={navigationAriaLabel}>
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-sm border-b border-gray-100 py-2 text-xl font-medium transition-colors hover:text-green-600 focus-visible:text-green-700"
+                onClick={onClose}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           <Button asChild size="lg" className="mt-6 w-full">
             <Link href="/#contact" onClick={onClose}>
-              {t("cta")}
+              {ctaLabel}
             </Link>
           </Button>
         </div>

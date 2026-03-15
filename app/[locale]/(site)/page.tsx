@@ -57,7 +57,34 @@ export default async function HomePage({params}: HomePageProps) {
   const {locale} = await params;
   const pageT = await getTranslations({locale, namespace: "HomePage"});
   const schemaT = await getTranslations({locale, namespace: "HomePage.schema"});
+  const heroT = await getTranslations({locale, namespace: "HomeHero"});
+  const aboutT = await getTranslations({locale, namespace: "HomeAbout"});
+  const servicesT = await getTranslations({locale, namespace: "HomeServices"});
+  const seoT = await getTranslations({locale, namespace: "HomeSeo"});
+  const contactT = await getTranslations({locale, namespace: "HomeContact"});
   const faqs = pageT.raw("faq.items") as FaqItem[];
+  const heroStats = heroT.raw("stats") as Array<{value: string; label: string}>;
+  const aboutParagraphs = aboutT.raw("paragraphs") as string[];
+  const aboutSkills = aboutT.raw("skills") as Array<{title: string; description: string}>;
+  const aboutProcess = aboutT.raw("process") as Array<{title: string; description: string}>;
+  const aboutSummaryStats = aboutT.raw("summaryStats") as Array<{value: string; label: string}>;
+  const serviceCards = servicesT.raw("services") as Array<{
+    title: string;
+    description: string;
+    price: string;
+    features: string[];
+  }>;
+  const serviceAdvantages = servicesT.raw("advantages") as Array<{title: string; description: string}>;
+  const seoPillars = seoT.raw("pillars") as Array<{title: string; description: string}>;
+  const seoKeywords = seoT.raw("keywords") as string[];
+  const seoReasons = seoT.raw("reasons") as string[];
+  const contactAdvantages = contactT.raw("advantages") as string[];
+  const contactItems = contactT.raw("contactItems") as {
+    email: {label: string; value: string};
+    telegram: {label: string; value: string};
+    workMode: {label: string; value: string};
+    workRhythm: {label: string; value: string};
+  };
 
   const jsonLdData = [
     {
@@ -132,11 +159,68 @@ export default async function HomePage({params}: HomePageProps) {
   return (
     <>
       <JsonLd data={jsonLdData} />
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <SeoSection />
-      <ContactSection />
+      <HeroSection
+        badge={heroT("badge")}
+        titlePrefix={heroT("titlePrefix")}
+        titleHighlight={heroT("titleHighlight")}
+        titleSuffix={heroT("titleSuffix")}
+        description={heroT("description")}
+        primaryCta={heroT("primaryCta")}
+        secondaryCta={heroT("secondaryCta")}
+        stats={heroStats}
+      />
+      <AboutSection
+        title={aboutT("title")}
+        subtitle={aboutT("subtitle")}
+        valueTitle={aboutT("valueTitle")}
+        skillsTitle={aboutT("skillsTitle")}
+        processTitle={aboutT("processTitle")}
+        technologiesTitle={aboutT("technologiesTitle")}
+        paragraphs={aboutParagraphs}
+        skills={aboutSkills}
+        process={aboutProcess}
+        summaryStats={aboutSummaryStats}
+      />
+      <ServicesSection
+        title={servicesT("title")}
+        subtitle={servicesT("subtitle")}
+        popularBadge={servicesT("popularBadge")}
+        detailsCta={servicesT("detailsCta")}
+        approachTitle={servicesT("approachTitle")}
+        estimateTitle={servicesT("estimateTitle")}
+        estimateDescription={servicesT("estimateDescription")}
+        estimateCta={servicesT("estimateCta")}
+        servicesContent={serviceCards}
+        advantages={serviceAdvantages}
+      />
+      <SeoSection
+        badge={seoT("badge")}
+        title={seoT("title")}
+        description={seoT("description")}
+        keywordsTitle={seoT("keywordsTitle")}
+        reasonsTitle={seoT("reasonsTitle")}
+        ctaTitle={seoT("ctaTitle")}
+        ctaDescription={seoT("ctaDescription")}
+        primaryCta={seoT("primaryCta")}
+        secondaryCta={seoT("secondaryCta")}
+        pillars={seoPillars}
+        keywords={seoKeywords}
+        reasons={seoReasons}
+      />
+      <ContactSection
+        badge={contactT("badge")}
+        title={contactT("title")}
+        description={contactT("description")}
+        infoTitle={contactT("infoTitle")}
+        startTitle={contactT("startTitle")}
+        stackTitle={contactT("stackTitle")}
+        emailCta={contactT("emailCta")}
+        telegramCta={contactT("telegramCta")}
+        briefTitle={contactT("briefTitle")}
+        briefDescription={contactT("briefDescription")}
+        advantages={contactAdvantages}
+        contactItems={contactItems}
+      />
       <FaqSection title={pageT("faq.title")} subtitle={pageT("faq.subtitle")} faqs={faqs} />
     </>
   );
