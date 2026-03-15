@@ -22,7 +22,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "landing-pages",
       title: "Розробка landing page під ключ",
       shortTitle: "Landing page",
-      metaTitle: "Розробка landing page під ключ для бізнесу в Європі",
+      metaTitle: "Розробка landing page для заявок і реклами",
       metaDescription:
         "Створюю landing page під ключ для SaaS, сервісних компаній, експертів і локального бізнесу в Європі. Швидкий запуск, сильна структура, SEO-ready база і висока конверсія.",
       heroTitle: "Landing page для запуску реклами, продажів і тесту попиту",
@@ -72,7 +72,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "corporate-websites",
       title: "Розробка корпоративних сайтів",
       shortTitle: "Корпоративні сайти",
-      metaTitle: "Розробка корпоративного сайту для компаній у Європі",
+      metaTitle: "Розробка корпоративних сайтів для B2B-компаній",
       metaDescription:
         "Розробка корпоративних сайтів для B2B, сервісних і виробничих компаній у Європі. Чітка структура, сильна презентація послуг, SEO і технічна надійність.",
       heroTitle: "Корпоративний сайт, який пояснює вашу цінність і підтримує продажі",
@@ -122,7 +122,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "ecommerce-development",
       title: "Розробка інтернет-магазинів",
       shortTitle: "Інтернет-магазини",
-      metaTitle: "Розробка інтернет-магазину для брендів і ритейлу в Європі",
+      metaTitle: "Розробка інтернет-магазинів для брендів і ритейлу",
       metaDescription:
         "Створюю інтернет-магазини для брендів і ритейлу в Європі: каталог, картка товару, checkout, інтеграції, SEO-структура і висока швидкість.",
       heroTitle: "Інтернет-магазин, який зручний у користуванні і не гальмує продажі",
@@ -172,7 +172,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "web-app-development",
       title: "Розробка веб-додатків",
       shortTitle: "Веб-додатки",
-      metaTitle: "Розробка веб-додатків на React і Next.js для Європи",
+      metaTitle: "Розробка веб-додатків на React і Next.js",
       metaDescription:
         "Розробка веб-додатків на React, Next.js і TypeScript для SaaS, внутрішніх систем і клієнтських платформ у Європі. Надійна архітектура, UX і масштабованість.",
       heroTitle: "Веб-додатки для SaaS, клієнтських кабінетів і внутрішніх платформ",
@@ -222,7 +222,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "seo-optimization",
       title: "Технічна SEO-оптимізація сайтів",
       shortTitle: "SEO-оптимізація",
-      metaTitle: "Технічна SEO-оптимізація сайтів для бізнесу в Європі",
+      metaTitle: "Технічне SEO для сайтів послуг та інтернет-магазинів",
       metaDescription:
         "Покращую технічну SEO-основу сайтів: швидкість, metadata, schema.org, внутрішня структура, індексація та Core Web Vitals для бізнесу в Європі.",
       heroTitle: "Технічне SEO, яке покращує видимість без магії",
@@ -274,7 +274,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "landing-pages",
       title: "End-to-end landing page development",
       shortTitle: "Landing page",
-      metaTitle: "Landing page development for businesses in Europe",
+      metaTitle: "Landing Page Development for Lead Generation",
       metaDescription:
         "I build end-to-end landing pages for SaaS, service companies, experts and local businesses in Europe. Fast launch, strong structure, SEO-ready foundation and conversion focus.",
       heroTitle: "Landing pages for paid traffic, sales and demand validation",
@@ -324,7 +324,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "corporate-websites",
       title: "Corporate website development",
       shortTitle: "Corporate websites",
-      metaTitle: "Corporate website development for companies in Europe",
+      metaTitle: "Corporate Website Development for B2B Companies",
       metaDescription:
         "Corporate website development for B2B, service and manufacturing companies in Europe. Clear structure, strong service presentation, SEO and technical reliability.",
       heroTitle: "A corporate website that explains your value and supports sales",
@@ -374,7 +374,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "ecommerce-development",
       title: "E-commerce development",
       shortTitle: "E-commerce stores",
-      metaTitle: "E-commerce development for brands and retail in Europe",
+      metaTitle: "E-commerce Development for D2C and Retail Brands",
       metaDescription:
         "I build e-commerce stores for brands and retailers in Europe with catalogues, product pages, checkout flows, integrations, SEO structure and high performance.",
       heroTitle: "An e-commerce store that feels smooth and does not slow sales down",
@@ -424,7 +424,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "web-app-development",
       title: "Web application development",
       shortTitle: "Web applications",
-      metaTitle: "Web application development with React and Next.js for Europe",
+      metaTitle: "React Web App Development for SaaS and Portals",
       metaDescription:
         "Web application development with React, Next.js and TypeScript for SaaS, internal systems and client platforms in Europe. Reliable architecture, UX and scalability.",
       heroTitle: "Web apps for SaaS, client portals and internal platforms",
@@ -474,7 +474,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "seo-optimization",
       title: "Technical SEO optimization",
       shortTitle: "SEO optimization",
-      metaTitle: "Technical SEO optimization for businesses in Europe",
+      metaTitle: "Technical SEO for Service Sites and Online Stores",
       metaDescription:
         "I improve the technical SEO foundation of websites: speed, metadata, schema.org, internal structure, indexing and Core Web Vitals for businesses in Europe.",
       heroTitle: "Technical SEO that improves visibility without vague promises",

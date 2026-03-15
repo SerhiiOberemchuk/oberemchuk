@@ -116,7 +116,7 @@ export default async function LocaleLayout({
   }
 
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const messages = await getMessages({locale});
   const layoutT = await getTranslations({locale, namespace: "Layout"});
 
   return (
