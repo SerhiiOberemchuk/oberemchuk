@@ -1,0 +1,51 @@
+"use client";
+
+import {useState} from "react";
+import {Menu} from "lucide-react";
+import {Button} from "@/components/ui/button";
+import MobileMenu, {type MobileMenuProps} from "./mobile-menu";
+
+type HeaderMobileControlsProps = Pick<
+  MobileMenuProps,
+  "closeLabel" | "ctaLabel" | "dialogTitle" | "navigationAriaLabel" | "navItems"
+> & {
+  menuLabel: string;
+};
+
+export default function HeaderMobileControls({
+  ctaLabel,
+  closeLabel,
+  dialogTitle,
+  menuLabel,
+  navigationAriaLabel,
+  navItems
+}: HeaderMobileControlsProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <>
+      <Button
+        variant="outline"
+        size="icon"
+        className="md:hidden"
+        onClick={() => setIsMenuOpen((current) => !current)}
+        aria-label={menuLabel}
+        aria-expanded={isMenuOpen}
+        aria-controls="mobile-menu-dialog"
+        aria-haspopup="dialog"
+      >
+        <Menu className="h-5 w-5" />
+      </Button>
+
+      <MobileMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        ctaLabel={ctaLabel}
+        closeLabel={closeLabel}
+        dialogTitle={dialogTitle}
+        navigationAriaLabel={navigationAriaLabel}
+        navItems={navItems}
+      />
+    </>
+  );
+}

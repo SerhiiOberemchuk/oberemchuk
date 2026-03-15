@@ -1,20 +1,35 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import AnimationWrapper from "@/components/animation-wrapper"
 import SmoothScrollLink from "@/components/smooth-scroll-link"
 import { Link } from "@/i18n/navigation"
-import { useTranslations } from "next-intl"
 
 type HeroStat = {
   value: string
   label: string
 }
 
-export default function HeroSection() {
-  const t = useTranslations("HomeHero")
-  const stats = t.raw("stats") as HeroStat[]
+type HeroSectionProps = {
+  badge: string
+  titlePrefix: string
+  titleHighlight: string
+  titleSuffix: string
+  description: string
+  primaryCta: string
+  secondaryCta: string
+  stats: HeroStat[]
+}
+
+export default function HeroSection({
+  badge,
+  titlePrefix,
+  titleHighlight,
+  titleSuffix,
+  description,
+  primaryCta,
+  secondaryCta,
+  stats
+}: HeroSectionProps) {
 
   return (
     <section
@@ -28,30 +43,30 @@ export default function HeroSection() {
           <AnimationWrapper animation="fade-in">
             <div className="mb-6">
               <Badge variant="secondary" className="mb-4 text-sm font-medium">
-                {t("badge")}
+                {badge}
               </Badge>
             </div>
           </AnimationWrapper>
 
           <AnimationWrapper animation="slide-up" delay={100}>
             <h1 id="hero-title" className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              {t("titlePrefix")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">{t("titleHighlight")}</span> {t("titleSuffix")}
+              {titlePrefix} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">{titleHighlight}</span> {titleSuffix}
             </h1>
           </AnimationWrapper>
 
           <AnimationWrapper animation="slide-up" delay={200}>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-              {t("description")}
+              {description}
             </p>
           </AnimationWrapper>
 
           <AnimationWrapper animation="slide-up" delay={300}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button asChild size="lg" className="text-lg px-8 py-6">
-                <SmoothScrollLink href="#contact">{t("primaryCta")}</SmoothScrollLink>
+                <SmoothScrollLink href="#contact">{primaryCta}</SmoothScrollLink>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6 bg-transparent">
-                <Link href="/portfolio">{t("secondaryCta")}</Link>
+                <Link href="/portfolio">{secondaryCta}</Link>
               </Button>
             </div>
           </AnimationWrapper>

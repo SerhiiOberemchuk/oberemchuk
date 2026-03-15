@@ -1,10 +1,7 @@
-"use client"
-
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import AnimationWrapper from "@/components/animation-wrapper"
 import { Code, Palette, Search, Smartphone, Server } from "lucide-react"
-import { useTranslations } from "next-intl"
 
 type AboutItem = {
   title: string
@@ -16,9 +13,31 @@ type AboutStat = {
   label: string
 }
 
-export default function AboutSection() {
-  const t = useTranslations("HomeAbout")
+type AboutSectionProps = {
+  title: string
+  subtitle: string
+  valueTitle: string
+  skillsTitle: string
+  processTitle: string
+  technologiesTitle: string
+  paragraphs: string[]
+  skills: AboutItem[]
+  process: AboutItem[]
+  summaryStats: AboutStat[]
+}
 
+export default function AboutSection({
+  title,
+  subtitle,
+  valueTitle,
+  skillsTitle,
+  processTitle,
+  technologiesTitle,
+  paragraphs,
+  skills,
+  process,
+  summaryStats
+}: AboutSectionProps) {
   const technologies = [
     "React",
     "Next.js",
@@ -35,11 +54,6 @@ export default function AboutSection() {
     "Git",
     "Figma",
   ]
-
-  const skills = t.raw("skills") as AboutItem[]
-  const process = t.raw("process") as AboutItem[]
-  const paragraphs = t.raw("paragraphs") as string[]
-  const summaryStats = t.raw("summaryStats") as AboutStat[]
 
   const skillIcons = [
     <Code key="code" className="w-8 h-8 text-blue-600" />,
@@ -63,10 +77,10 @@ export default function AboutSection() {
         <AnimationWrapper animation="fade-in">
           <div className="text-center mb-16">
             <h2 id="about-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {t("title")}
+              {title}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t("subtitle")}
+              {subtitle}
             </p>
           </div>
         </AnimationWrapper>
@@ -74,7 +88,7 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           <AnimationWrapper animation="slide-left">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("valueTitle")}</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">{valueTitle}</h3>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 {paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
@@ -99,7 +113,7 @@ export default function AboutSection() {
 
         <AnimationWrapper animation="fade-in">
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t("skillsTitle")}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{skillsTitle}</h3>
             <ul className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
               {skills.map((skill, index) => (
                 <li key={skill.title}>
@@ -118,7 +132,7 @@ export default function AboutSection() {
 
         <AnimationWrapper animation="slide-up">
           <div className="bg-white rounded-2xl p-8 mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t("processTitle")}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{processTitle}</h3>
             <ol className="grid md:grid-cols-3 gap-8">
               {process.map((step, index) => (
                 <li key={step.title} className="text-center">
@@ -135,7 +149,7 @@ export default function AboutSection() {
 
         <AnimationWrapper animation="slide-up">
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">{t("technologiesTitle")}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">{technologiesTitle}</h3>
             <div className="flex flex-wrap justify-center gap-3">
               {technologies.map((tech) => (
                 <Badge key={tech} variant="secondary" className="text-sm py-2 px-4">

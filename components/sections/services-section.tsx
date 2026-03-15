@@ -1,5 +1,3 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -7,7 +5,6 @@ import AnimationWrapper from "@/components/animation-wrapper"
 import { Globe, Monitor, ShoppingCart, Sparkles, Workflow } from "lucide-react"
 import SmoothScrollLink from "@/components/smooth-scroll-link"
 import { Link } from "@/i18n/navigation"
-import { useTranslations } from "next-intl"
 
 type ServiceItem = {
   title: string
@@ -21,12 +18,31 @@ type AdvantageItem = {
   description: string
 }
 
-export default function ServicesSection() {
-  const t = useTranslations("HomeServices")
+type ServicesSectionProps = {
+  title: string
+  subtitle: string
+  popularBadge: string
+  detailsCta: string
+  approachTitle: string
+  estimateTitle: string
+  estimateDescription: string
+  estimateCta: string
+  servicesContent: ServiceItem[]
+  advantages: AdvantageItem[]
+}
 
-  const servicesContent = t.raw("services") as ServiceItem[]
-  const advantages = t.raw("advantages") as AdvantageItem[]
-
+export default function ServicesSection({
+  title,
+  subtitle,
+  popularBadge,
+  detailsCta,
+  approachTitle,
+  estimateTitle,
+  estimateDescription,
+  estimateCta,
+  servicesContent,
+  advantages
+}: ServicesSectionProps) {
   const services = [
     {
       icon: <Monitor className="w-8 h-8 text-blue-600" />,
@@ -65,9 +81,9 @@ export default function ServicesSection() {
       <div className="container mx-auto px-4">
         <AnimationWrapper animation="fade-in">
           <div className="text-center mb-16">
-            <h2 id="services-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("title")}</h2>
+            <h2 id="services-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t("subtitle")}
+              {subtitle}
             </p>
           </div>
         </AnimationWrapper>
@@ -80,7 +96,7 @@ export default function ServicesSection() {
                   className={`relative flex h-full flex-col hover:shadow-xl transition-all duration-300 ${service.popular ? "ring-2 ring-blue-500" : ""}`}
                 >
                   <article className="flex h-full flex-col" aria-labelledby={`home-service-title-${index}`}>
-                    {service.popular && <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600">{t("popularBadge")}</Badge>}
+                    {service.popular && <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600">{popularBadge}</Badge>}
                     <CardHeader className="text-center pb-4">
                       <div className="mb-4 flex justify-center">{service.icon}</div>
                       <CardTitle id={`home-service-title-${index}`} className="text-xl mb-2">{service.title}</CardTitle>
@@ -97,7 +113,7 @@ export default function ServicesSection() {
                         ))}
                       </ul>
                       <Button asChild variant="outline" className="mt-auto w-full bg-transparent">
-                        <Link href={service.href}>{t("detailsCta")}</Link>
+                        <Link href={service.href}>{detailsCta}</Link>
                       </Button>
                     </CardContent>
                   </article>
@@ -109,7 +125,7 @@ export default function ServicesSection() {
 
         <AnimationWrapper animation="fade-in">
           <div className="bg-gray-50 rounded-2xl p-8 mb-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t("approachTitle")}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{approachTitle}</h3>
             <ul className="grid md:grid-cols-3 gap-6">
               {advantages.map((advantage, index) => (
                 <li key={advantage.title} className="text-center">
@@ -124,12 +140,12 @@ export default function ServicesSection() {
 
         <AnimationWrapper animation="slide-up">
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("estimateTitle")}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">{estimateTitle}</h3>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-              {t("estimateDescription")}
+              {estimateDescription}
             </p>
             <Button asChild size="lg" className="text-lg px-8 py-6">
-              <SmoothScrollLink href="#contact">{t("estimateCta")}</SmoothScrollLink>
+              <SmoothScrollLink href="#contact">{estimateCta}</SmoothScrollLink>
             </Button>
           </div>
         </AnimationWrapper>

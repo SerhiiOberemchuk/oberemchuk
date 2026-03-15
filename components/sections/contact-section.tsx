@@ -1,5 +1,3 @@
-"use client"
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -7,23 +5,46 @@ import { Clock, Mail, MapPin, MessageCircle } from "lucide-react"
 import AnimationWrapper from "@/components/animation-wrapper"
 import ContactForm from "@/components/contact-form"
 import { contactEmail, contactEmailHref, contactTelegram, contactTelegramHref } from "@/lib/contact-info"
-import { useTranslations } from "next-intl"
 
 type ContactItem = {
   label: string
   value: string
 }
 
-export default function ContactSection() {
-  const t = useTranslations("HomeContact")
-  const advantages = t.raw("advantages") as string[]
-
-  const contactItems = t.raw("contactItems") as {
+type ContactSectionProps = {
+  badge: string
+  title: string
+  description: string
+  infoTitle: string
+  startTitle: string
+  stackTitle: string
+  emailCta: string
+  telegramCta: string
+  briefTitle: string
+  briefDescription: string
+  advantages: string[]
+  contactItems: {
     email: ContactItem
     telegram: ContactItem
     workMode: ContactItem
     workRhythm: ContactItem
   }
+}
+
+export default function ContactSection({
+  badge,
+  title,
+  description,
+  infoTitle,
+  startTitle,
+  stackTitle,
+  emailCta,
+  telegramCta,
+  briefTitle,
+  briefDescription,
+  advantages,
+  contactItems
+}: ContactSectionProps) {
 
   const specializations = ["React", "Next.js", "TypeScript", "Node.js", "SEO", "E-commerce"]
 
@@ -60,11 +81,11 @@ export default function ContactSection() {
         <AnimationWrapper animation="fade-in">
           <div className="text-center mb-16">
             <Badge variant="secondary" className="mb-4">
-              {t("badge")}
+              {badge}
             </Badge>
-            <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("title")}</h2>
+            <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t("description")}
+              {description}
             </p>
           </div>
         </AnimationWrapper>
@@ -74,7 +95,7 @@ export default function ContactSection() {
             <div>
               <Card className="mb-8">
                 <CardHeader>
-                  <CardTitle className="text-2xl">{t("infoTitle")}</CardTitle>
+                  <CardTitle className="text-2xl">{infoTitle}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-4">
@@ -104,7 +125,7 @@ export default function ContactSection() {
 
               <Card className="mb-8">
                 <CardHeader>
-                  <CardTitle className="text-xl">{t("startTitle")}</CardTitle>
+                  <CardTitle className="text-xl">{startTitle}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="grid grid-cols-2 gap-4">
@@ -120,7 +141,7 @@ export default function ContactSection() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-xl">{t("stackTitle")}</CardTitle>
+                  <CardTitle className="text-xl">{stackTitle}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="flex flex-wrap gap-2">
@@ -137,11 +158,11 @@ export default function ContactSection() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Button asChild className="flex-1">
-                  <a href={contactEmailHref}>{t("emailCta")}</a>
+                  <a href={contactEmailHref}>{emailCta}</a>
                 </Button>
                 <Button asChild variant="outline" className="flex-1 bg-transparent">
                   <a href={contactTelegramHref} target="_blank" rel="noopener noreferrer">
-                    {t("telegramCta")}
+                    {telegramCta}
                   </a>
                 </Button>
               </div>
@@ -151,9 +172,9 @@ export default function ContactSection() {
           <AnimationWrapper animation="slide-right">
             <Card>
               <CardHeader>
-                <CardTitle className="text-2xl">{t("briefTitle")}</CardTitle>
+                <CardTitle className="text-2xl">{briefTitle}</CardTitle>
                 <p className="text-gray-600">
-                  {t("briefDescription")}
+                  {briefDescription}
                 </p>
               </CardHeader>
               <CardContent>

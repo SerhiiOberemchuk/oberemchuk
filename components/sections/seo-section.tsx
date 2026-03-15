@@ -1,24 +1,44 @@
-"use client"
-
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle, Globe, Search, Target, Zap } from "lucide-react"
 import AnimationWrapper from "@/components/animation-wrapper"
 import SmoothScrollLink from "@/components/smooth-scroll-link"
-import { useTranslations } from "next-intl"
 
 type SeoItem = {
   title: string
   description: string
 }
 
-export default function SeoSection() {
-  const t = useTranslations("HomeSeo")
-  const pillars = t.raw("pillars") as SeoItem[]
-  const keywords = t.raw("keywords") as string[]
-  const reasons = t.raw("reasons") as string[]
+type SeoSectionProps = {
+  badge: string
+  title: string
+  description: string
+  keywordsTitle: string
+  reasonsTitle: string
+  ctaTitle: string
+  ctaDescription: string
+  primaryCta: string
+  secondaryCta: string
+  pillars: SeoItem[]
+  keywords: string[]
+  reasons: string[]
+}
 
+export default function SeoSection({
+  badge,
+  title,
+  description,
+  keywordsTitle,
+  reasonsTitle,
+  ctaTitle,
+  ctaDescription,
+  primaryCta,
+  secondaryCta,
+  pillars,
+  keywords,
+  reasons
+}: SeoSectionProps) {
   const pillarIcons = [
     <Target key="target" className="h-6 w-6 text-blue-600" />,
     <Search key="search" className="h-6 w-6 text-green-600" />,
@@ -32,13 +52,13 @@ export default function SeoSection() {
         <AnimationWrapper animation="slide-up">
           <div className="text-center mb-16 max-w-4xl mx-auto">
             <Badge variant="secondary" className="mb-4">
-              {t("badge")}
+              {badge}
             </Badge>
             <h2 id="seo-content-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {t("title")}
+              {title}
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              {t("description")}
+              {description}
             </p>
           </div>
         </AnimationWrapper>
@@ -61,7 +81,7 @@ export default function SeoSection() {
           <AnimationWrapper animation="slide-right">
             <Card className="h-full border-slate-200 shadow-lg">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">{t("keywordsTitle")}</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">{keywordsTitle}</h3>
                 <div className="flex flex-wrap gap-3 mb-8">
                   {keywords.map((item) => (
                     <Badge key={item} variant="secondary" className="px-4 py-2 text-sm">
@@ -70,7 +90,7 @@ export default function SeoSection() {
                   ))}
                 </div>
 
-                <h4 className="font-semibold text-gray-900 mb-4">{t("reasonsTitle")}</h4>
+                <h4 className="font-semibold text-gray-900 mb-4">{reasonsTitle}</h4>
                 <ul className="space-y-3">
                   {reasons.map((item) => (
                     <li key={item} className="flex items-start gap-3">
@@ -86,19 +106,19 @@ export default function SeoSection() {
 
         <AnimationWrapper animation="slide-up">
           <div className="rounded-3xl bg-slate-900 text-white p-8 md:p-10 text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">{t("ctaTitle")}</h3>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">{ctaTitle}</h3>
             <p className="text-slate-300 max-w-3xl mx-auto mb-8">
-              {t("ctaDescription")}
+              {ctaDescription}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
                 <SmoothScrollLink href="#contact">
-                  {t("primaryCta")}
+                  {primaryCta}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </SmoothScrollLink>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-slate-600 text-white hover:bg-slate-800 bg-transparent">
-                <SmoothScrollLink href="#services">{t("secondaryCta")}</SmoothScrollLink>
+                <SmoothScrollLink href="#services">{secondaryCta}</SmoothScrollLink>
               </Button>
             </div>
           </div>
