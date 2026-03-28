@@ -1,18 +1,20 @@
-import {getLocale, getTranslations} from "next-intl/server";
-import {Link} from "@/i18n/navigation";
+﻿import { Link } from "@/i18n/navigation";
 
-export default async function NotFoundPage() {
-  const locale = await getLocale();
-  const t = await getTranslations({locale, namespace: "NotFoundPage"});
+import { Suspense } from "react";
 
+export default function NotFoundPage() {
   return (
     <div className="container mx-auto max-w-3xl py-20 text-center">
-      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("title")}</h1>
-      <p className="mt-4 text-gray-600">{t("description")}</p>
+      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+        Сторінку не знайдено
+      </h1>
+      <p className="mt-4 text-gray-600">Схоже, такої сторінки не існує.</p>
       <div className="mt-8">
-        <Link href="/" className="text-green-600 hover:text-green-700">
-          {t("backHome")}
-        </Link>
+        <Suspense fallback={<div>Завантаження...</div>}>
+          <Link href="/" className="text-green-600 hover:text-green-700">
+            На головну
+          </Link>
+        </Suspense>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import type {Metadata} from "next";
+import {connection} from "next/server";
 import Image from "next/image";
 import {notFound} from "next/navigation";
 import {ArrowLeft, Calendar, ExternalLink, User} from "lucide-react";

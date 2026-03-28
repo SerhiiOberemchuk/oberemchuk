@@ -39,7 +39,14 @@ export default function Footer({
           <div className="flex flex-col space-y-4">
             <Link href="/" className="flex items-center gap-2 font-medium">
               <div className="relative h-10 w-auto">
-                <Image src="/LogoSO.png" alt={logoAlt} width={140} height={48} className="object-contain" />
+                <Image
+                  src="/LogoSO.png"
+                  alt={logoAlt}
+                  width={140}
+                  height={48}
+                  className="object-contain"
+                  style={{ width: "auto", height: "auto" }}
+                />
               </div>
             </Link>
             <p className="max-w-xs text-sm text-gray-600">{description}</p>

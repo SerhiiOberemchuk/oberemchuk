@@ -1,6 +1,8 @@
-import type {Metadata} from "next";
+﻿import type {Metadata} from "next";
+import {connection} from "next/server";
+import {Suspense} from "react";
 import {ArrowRight, CheckCircle} from "lucide-react";
-import {getTranslations} from "next-intl/server";
+import {getTranslations, setRequestLocale} from "next-intl/server";
 import JsonLd from "@/components/json-ld";
 import {Link} from "@/i18n/navigation";
 import {Button} from "@/components/ui/button";
@@ -12,10 +14,9 @@ type ServicesPageProps = {
   params: Promise<{locale: string}>;
 };
 
-export const dynamic = "force-static";
-
 export async function generateMetadata({params}: ServicesPageProps): Promise<Metadata> {
   const {locale} = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({locale, namespace: "ServicesPage.metadata"});
   const pagePath = locale === "en" ? "/en/services" : "/services";
 
@@ -47,8 +48,10 @@ export async function generateMetadata({params}: ServicesPageProps): Promise<Met
   };
 }
 
-export default async function ServicesPage({params}: ServicesPageProps) {
+async function ServicesPageContent({params}: ServicesPageProps) {
+  await connection();
   const {locale} = await params;
+  setRequestLocale(locale);
   const pageT = await getTranslations({locale, namespace: "ServicesPage"});
   const servicePages = getServicePages(locale as "uk" | "en");
   const pagePath = locale === "en" ? "/en/services" : "/services";
@@ -82,15 +85,10 @@ export default async function ServicesPage({params}: ServicesPageProps) {
             <p className="text-xl text-gray-600">{pageT("hero.description")}</p>
           </header>
 
-          <ul
-            className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2"
-            aria-label={pageT("listAriaLabel")}
-          >
+          <ul className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2" aria-label={pageT("listAriaLabel")}>
             {servicePages.map((service) => (
               <li key={service.slug}>
-                <Card
-                  className="flex h-full flex-col border-slate-200 transition-shadow hover:shadow-lg"
-                >
+                <Card className="flex h-full flex-col border-slate-200 transition-shadow hover:shadow-lg">
                   <article className="flex h-full flex-col" aria-labelledby={`service-title-${service.slug}`}>
                     <CardHeader>
                       <CardTitle id={`service-title-${service.slug}`} className="text-2xl">{service.title}</CardTitle>
@@ -133,5 +131,13 @@ export default async function ServicesPage({params}: ServicesPageProps) {
         </div>
       </div>
     </>
+  );
+}
+
+export default function ServicesPage(props: ServicesPageProps) {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white py-16" />}>
+      <ServicesPageContent {...props} />
+    </Suspense>
   );
 }

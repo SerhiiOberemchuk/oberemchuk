@@ -1,4 +1,5 @@
 import type {Metadata} from "next";
+import {connection} from "next/server";
 import {getTranslations} from "next-intl/server";
 import {Link} from "@/i18n/navigation";
 import {getPageAlternates} from "@/lib/seo";
@@ -7,7 +8,6 @@ type PrivacyPolicyPageProps = {
   params: Promise<{locale: string}>;
 };
 
-export const dynamic = "force-static";
 
 export async function generateMetadata({params}: PrivacyPolicyPageProps): Promise<Metadata> {
   const {locale} = await params;

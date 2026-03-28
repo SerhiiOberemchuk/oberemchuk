@@ -37,6 +37,9 @@ export default function Header({
                 width={140}
                 height={48}
                 className="object-contain"
+                style={{ width: "auto", height: "auto" }}
+                priority
+                loading="eager"
               />
             </div>
           </Link>

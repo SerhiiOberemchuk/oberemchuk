@@ -1,7 +1,8 @@
 import type {Metadata} from "next";
+import {connection} from "next/server";
 import {notFound} from "next/navigation";
 import {ArrowLeft, ArrowRight, CheckCircle} from "lucide-react";
-import {getTranslations} from "next-intl/server";
+import {getTranslations, setRequestLocale} from "next-intl/server";
 import JsonLd from "@/components/json-ld";
 import {Link} from "@/i18n/navigation";
 import {getPageAlternates} from "@/lib/seo";
@@ -10,7 +11,7 @@ import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {getServicePage, getServicePages, servicePageSlugs} from "@/lib/service-pages";
 
 type ServicePageProps = {
-  params: Promise<{locale: string; slug: string}>;
+  params: {locale: string; slug: string};
 };
 
 export function generateStaticParams() {
@@ -23,7 +24,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({params}: ServicePageProps): Promise<Metadata> {
-  const {locale, slug} = await params;
+  const {locale, slug} = params;
   const service = getServicePage(locale as "uk" | "en", slug);
 
   if (!service) {
@@ -61,7 +62,9 @@ export async function generateMetadata({params}: ServicePageProps): Promise<Meta
 }
 
 export default async function ServiceDetailPage({params}: ServicePageProps) {
-  const {locale, slug} = await params;
+  await connection();
+  const {locale, slug} = params;
+  setRequestLocale(locale);
   const pageT = await getTranslations({locale, namespace: "ServiceDetailPage"});
   const service = getServicePage(locale as "uk" | "en", slug);
 

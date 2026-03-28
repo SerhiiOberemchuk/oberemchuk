@@ -1,8 +1,7 @@
-﻿import { getProjects } from "@/lib/projects-server"
+import { getProjects } from "@/lib/projects-server"
 import { getLocalizedPath } from "@/lib/seo"
 import { servicePageSlugs } from "@/lib/service-pages"
 
-export const revalidate = 86400
 
 type SitemapEntry = {
   loc: string

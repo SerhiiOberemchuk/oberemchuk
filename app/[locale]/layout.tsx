@@ -1,56 +1,64 @@
-import type React from "react";
-import type {Metadata, Viewport} from "next";
-import {notFound} from "next/navigation";
-import {Inter} from "next/font/google";
-import {GoogleTagManager} from "@next/third-parties/google";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages, getTranslations, setRequestLocale} from "next-intl/server";
+﻿import type React from "react";
+import {Suspense} from "react";
+import type { Metadata, Viewport } from "next";
+import { notFound } from "next/navigation";
+import { Inter } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import {
+  getMessages,
+  getTranslations,
+  setRequestLocale,
+} from "next-intl/server";
 
 import "../globals.css";
-import {routing} from "@/i18n/routing";
-import {getPageAlternates} from "@/lib/seo";
-import {Toaster} from "@/components/ui/toaster";
+import { routing } from "@/i18n/routing";
+import { getPageAlternates } from "@/lib/seo";
+import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import {Analytics} from "@vercel/analytics/next";
 import CookieConsentBanner from "@/components/cookie-consent-banner";
 import ScrollToTop from "@/components/scroll-to-top";
+import { AnalyticsLayout } from "@/components/Analytics";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
   display: "swap",
-  variable: "--font-inter"
+  variable: "--font-inter",
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  viewportFit: "cover"
+  viewportFit: "cover",
 };
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({
-  params
+  params,
 }: {
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: "Layout.metadata"});
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Layout.metadata" });
 
   return {
     title: {
       default: t("titleDefault"),
-      template: t("titleTemplate")
+      template: t("titleTemplate"),
     },
     description: t("description"),
     keywords: t.raw("keywords") as string[],
-    authors: [{name: "Serhii Oberemchuk", url: "https://www.oberemchuk.site"}],
+    authors: [
+      { name: "Serhii Oberemchuk", url: "https://www.oberemchuk.site" },
+    ],
     creator: "Serhii Oberemchuk",
     publisher: "Serhii Oberemchuk",
-    metadataBase: new URL(process.env.SITE_URL || "https://www.oberemchuk.site"),
+    metadataBase: new URL(
+      process.env.SITE_URL || "https://www.oberemchuk.site",
+    ),
     alternates: getPageAlternates(locale as "uk" | "en"),
     openGraph: {
       title: t("openGraphTitle"),
@@ -63,26 +71,26 @@ export async function generateMetadata({
           width: 1200,
           height: 630,
           alt: t("openGraphImageAlt"),
-          type: "image/png"
-        }
+          type: "image/png",
+        },
       ],
       locale: locale === "en" ? "en_GB" : "uk_UA",
-      type: "website"
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: t("twitterTitle"),
       description: t("twitterDescription"),
       images: ["/og-image.png"],
-      creator: "@SerhiiOberemchuk"
+      creator: "@SerhiiOberemchuk",
     },
     icons: {
       icon: [
-        {url: "/icon.png", sizes: "192x192", type: "image/png"},
-        {url: "/favicon.ico", sizes: "any"}
+        { url: "/icon.png", sizes: "192x192", type: "image/png" },
+        { url: "/favicon.ico", sizes: "any" },
       ],
-      shortcut: [{url: "/favicon.ico"}],
-      apple: [{url: "/apple-icon.png", sizes: "180x180", type: "image/png"}]
+      shortcut: [{ url: "/favicon.ico" }],
+      apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
     },
     manifest: "/manifest.json",
     robots: {
@@ -93,48 +101,28 @@ export async function generateMetadata({
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
-        "max-snippet": -1
-      }
+        "max-snippet": -1,
+      },
     },
     category: "technology",
     classification: "Web Development Services",
-    referrer: "origin-when-cross-origin"
+    referrer: "origin-when-cross-origin",
   };
 }
 
-export default async function LocaleLayout({
-  children,
-  params
-}: Readonly<{
+type LayoutProps = Readonly<{
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
-}>) {
-  const {locale} = await params;
+  params: Promise<{ locale: string }>;
+}>;
 
-  if (!routing.locales.includes(locale as "uk" | "en")) {
-    notFound();
-  }
-
-  setRequestLocale(locale);
-  const messages = await getMessages({locale});
-  const layoutT = await getTranslations({locale, namespace: "Layout"});
-  const headerT = await getTranslations({locale, namespace: "Header"});
-  const footerT = await getTranslations({locale, namespace: "Footer"});
-  const headerNavItems = [
-    {href: "/#services", label: headerT("navigation.services")},
-    {href: "/portfolio", label: headerT("navigation.portfolio")},
-    {href: "/#about", label: headerT("navigation.about")},
-    {href: "/#contact", label: headerT("navigation.contact")}
-  ];
-  const footerLegalItems = [
-    {href: "/privacy-policy", label: footerT("legal.privacy")},
-    {href: "/cookies", label: footerT("legal.cookies")},
-    {href: "/terms-of-service", label: footerT("legal.terms")}
-  ];
-
+export default function LocaleLayout({children, params}: LayoutProps) {
   return (
-    <html lang={locale} className={inter.variable} suppressHydrationWarning>
-      <GoogleTagManager gtmId="GTM-PP6VF7MJ" />
+    <html
+      lang="uk"
+      className={inter.variable}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -151,46 +139,77 @@ export default async function LocaleLayout({
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body className={inter.className}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900 focus:shadow-lg"
-          >
-            {layoutT("skipToContent")}
-          </a>
-          <div className="flex min-h-screen flex-col pt-16">
-            <Header
-              ctaLabel={headerT("cta")}
-              logoAlt={headerT("logoAlt")}
-              menuLabel={headerT("menu")}
-              navigationAriaLabel={headerT("primaryNavigation")}
-              dialogTitle={headerT("mobileMenu")}
-              closeLabel={headerT("closeMenu")}
-              navItems={headerNavItems}
-            />
-            <main id="main-content" className="flex-1" tabIndex={-1}>
-              {children}
-            </main>
-            <Footer
-              description={footerT("description")}
-              copyright={footerT("copyright")}
-              tagline={footerT("tagline")}
-              logoAlt={footerT("logoAlt")}
-              navigationTitle={footerT("navigation.title")}
-              legalTitle={footerT("legal.title")}
-              contactTitle={footerT("contact.title")}
-              remoteLabel={footerT("contact.remote")}
-              cookieSettingsLabel={footerT("legal.cookieSettings")}
-              navigationItems={headerNavItems}
-              legalItems={footerLegalItems}
-            />
-          </div>
-          <CookieConsentBanner />
-          <ScrollToTop />
-          <Toaster />
-          <Analytics />
-        </NextIntlClientProvider>
+        <Suspense fallback={null}>
+          <LocaleLayoutContent params={params}>{children}</LocaleLayoutContent>
+        </Suspense>
       </body>
     </html>
+  );
+}
+
+async function LocaleLayoutContent({children, params}: LayoutProps) {
+  const { locale } = await params;
+
+  if (!routing.locales.includes(locale as "uk" | "en")) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+  const messages = await getMessages({ locale });
+  const layoutT = await getTranslations({ locale, namespace: "Layout" });
+  const headerT = await getTranslations({ locale, namespace: "Header" });
+  const footerT = await getTranslations({ locale, namespace: "Footer" });
+  const headerNavItems = [
+    { href: "/#services", label: headerT("navigation.services") },
+    { href: "/portfolio", label: headerT("navigation.portfolio") },
+    { href: "/#about", label: headerT("navigation.about") },
+    { href: "/#contact", label: headerT("navigation.contact") },
+  ];
+  const footerLegalItems = [
+    { href: "/privacy-policy", label: footerT("legal.privacy") },
+    { href: "/cookies", label: footerT("legal.cookies") },
+    { href: "/terms-of-service", label: footerT("legal.terms") },
+  ];
+
+  return (
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900 focus:shadow-lg"
+      >
+        {layoutT("skipToContent")}
+      </a>
+      <div className="flex min-h-screen flex-col pt-16">
+        <Header
+          ctaLabel={headerT("cta")}
+          logoAlt={headerT("logoAlt")}
+          menuLabel={headerT("menu")}
+          navigationAriaLabel={headerT("primaryNavigation")}
+          dialogTitle={headerT("mobileMenu")}
+          closeLabel={headerT("closeMenu")}
+          navItems={headerNavItems}
+        />
+        <main id="main-content" className="flex-1" tabIndex={-1}>
+          {children}
+        </main>
+        <Footer
+          description={footerT("description")}
+          copyright={footerT("copyright")}
+          tagline={footerT("tagline")}
+          logoAlt={footerT("logoAlt")}
+          navigationTitle={footerT("navigation.title")}
+          legalTitle={footerT("legal.title")}
+          contactTitle={footerT("contact.title")}
+          remoteLabel={footerT("contact.remote")}
+          cookieSettingsLabel={footerT("legal.cookieSettings")}
+          navigationItems={headerNavItems}
+          legalItems={footerLegalItems}
+        />
+      </div>
+      <CookieConsentBanner />
+      <ScrollToTop />
+      <Toaster />
+      <AnalyticsLayout />
+    </NextIntlClientProvider>
   );
 }

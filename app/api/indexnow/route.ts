@@ -3,7 +3,6 @@ import { submitToIndexNow } from "@/lib/indexnow";
 import { getSitemapEntries } from "@/lib/sitemap";
 import { getIndexNowKeyLocation, getSiteUrl } from "@/lib/site-config";
 
-export const dynamic = "force-dynamic";
 
 type IndexNowRequestBody = {
   urls?: string[];

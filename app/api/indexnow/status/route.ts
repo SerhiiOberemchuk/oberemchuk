@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { getSitemapEntries } from "@/lib/sitemap";
 import { getIndexNowKey, getIndexNowKeyLocation, getSiteUrl } from "@/lib/site-config";
 
-export const dynamic = "force-dynamic";
 
 type AuthMethod = "bearer" | "header" | "query" | "none";
 

@@ -1,4 +1,5 @@
 import type {Metadata} from "next";
+import {connection} from "next/server";
 import {Suspense} from "react";
 import {getTranslations} from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
@@ -14,8 +15,6 @@ type PortfolioPageProps = {
   params: Promise<{locale: string}>;
 };
 
-export const dynamic = "force-static";
-export const revalidate = 86400;
 
 export async function generateMetadata({params}: PortfolioPageProps): Promise<Metadata> {
   const {locale} = await params;

@@ -1,4 +1,5 @@
 import type {Metadata} from "next";
+import {connection} from "next/server";
 import {getTranslations} from "next-intl/server";
 import AboutSection from "@/components/sections/about-section";
 import ContactSection from "@/components/sections/contact-section";
@@ -19,7 +20,6 @@ type FaqItem = {
   answer: string;
 };
 
-export const dynamic = "force-static";
 
 export async function generateMetadata({params}: HomePageProps): Promise<Metadata> {
   const {locale} = await params;

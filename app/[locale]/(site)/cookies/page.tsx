@@ -1,4 +1,5 @@
 import type {Metadata} from "next";
+import {connection} from "next/server";
 import {getTranslations} from "next-intl/server";
 import CookieSettingsButton from "@/components/cookie-settings-button";
 import {Link} from "@/i18n/navigation";
@@ -16,7 +17,6 @@ type CookiesPageProps = {
   params: Promise<{locale: string}>;
 };
 
-export const dynamic = "force-static";
 
 export async function generateMetadata({params}: CookiesPageProps): Promise<Metadata> {
   const {locale} = await params;
