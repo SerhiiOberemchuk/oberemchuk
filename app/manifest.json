@@ -1,28 +1,28 @@
 {
-  "name": "Serhii Oberemchuk - Веб-розробник",
+  "name": "Serhii Oberemchuk - Web Developer",
   "short_name": "Serhii Oberemchuk",
-  "description": "Професійний веб-розробник з України. Створюю сучасні, швидкі та функціональні вебсайти.",
+  "description": "Premium websites, web applications and technical SEO for companies across Europe.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#16a34a",
+  "background_color": "#fbf5ee",
+  "theme_color": "#b25d2f",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon.png",
-      "sizes": "192x192",
-      "type": "image/png",
+      "src": "/brand-mark.svg",
+      "sizes": "256x256",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "/apple-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
       "purpose": "any"
     }
   ],
   "categories": ["business", "productivity", "technology"],
-  "lang": "uk-UA",
+  "lang": "en",
   "dir": "ltr",
   "scope": "/",
   "id": "oberemchuk-web-developer"

@@ -1,7 +1,6 @@
+﻿import { ArrowRight, CheckCircle, Globe, Search, Target, Zap } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, CheckCircle, Globe, Search, Target, Zap } from "lucide-react"
 import AnimationWrapper from "@/components/animation-wrapper"
 import SmoothScrollLink from "@/components/smooth-scroll-link"
 
@@ -39,87 +38,100 @@ export default function SeoSection({
   keywords,
   reasons
 }: SeoSectionProps) {
-  const pillarIcons = [
-    <Target key="target" className="h-6 w-6 text-blue-600" />,
-    <Search key="search" className="h-6 w-6 text-green-600" />,
-    <Globe key="globe" className="h-6 w-6 text-cyan-600" />,
-    <Zap key="zap" className="h-6 w-6 text-orange-600" />,
-  ]
+  const pillarIcons = [Target, Search, Globe, Zap]
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-cyan-50" aria-labelledby="seo-content-title">
-      <div className="container mx-auto px-4">
+    <section className="px-4 py-24 md:px-6" aria-labelledby="seo-content-title">
+      <div className="mx-auto max-w-7xl">
         <AnimationWrapper animation="slide-up">
-          <div className="text-center mb-16 max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-4">
-              {badge}
-            </Badge>
-            <h2 id="seo-content-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {title}
-            </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              {description}
-            </p>
+          <div className="mb-16 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+            <div>
+              <Badge variant="secondary" className="mb-5">
+                {badge}
+              </Badge>
+              <h2 id="seo-content-title" className="text-4xl text-[hsl(var(--foreground))] md:text-6xl">
+                {title}
+              </h2>
+            </div>
+            <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">{description}</p>
           </div>
         </AnimationWrapper>
 
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid gap-12 lg:grid-cols-[1.02fr_0.98fr]">
           <AnimationWrapper animation="slide-left">
-            <ul className="space-y-6">
-              {pillars.map((item, index) => (
-                <li key={item.title} className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                  <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center shrink-0">{pillarIcons[index]}</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
-                    <p className="text-sm text-gray-600">{item.description}</p>
+            <div className="grid gap-0 border-y border-[rgba(24,31,43,0.12)]">
+              {pillars.map((item, index) => {
+                const Icon = pillarIcons[index] ?? Target
+                return (
+                  <div
+                    key={item.title}
+                    className={`grid gap-4 py-6 md:grid-cols-[auto_1fr] ${index !== 0 ? "border-t border-[rgba(24,31,43,0.08)]" : ""}`}
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-white text-[hsl(var(--foreground))]">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-[1.55rem] leading-tight text-[hsl(var(--foreground))]">{item.title}</h3>
+                      <p className="mt-2 max-w-2xl text-sm leading-7 text-[hsl(var(--muted-foreground))]">{item.description}</p>
+                    </div>
                   </div>
-                </li>
-              ))}
-            </ul>
+                )
+              })}
+            </div>
           </AnimationWrapper>
 
           <AnimationWrapper animation="slide-right">
-            <Card className="h-full border-slate-200 shadow-lg">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">{keywordsTitle}</h3>
-                <div className="flex flex-wrap gap-3 mb-8">
+            <div className="grid gap-10">
+              <div className="border-t border-[rgba(24,31,43,0.14)] pt-8">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{keywordsTitle}</p>
+                <div className="flex flex-wrap gap-3">
                   {keywords.map((item) => (
-                    <Badge key={item} variant="secondary" className="px-4 py-2 text-sm">
+                    <span
+                      key={item}
+                      className="inline-flex rounded-full border border-[rgba(24,31,43,0.08)] bg-white px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--foreground))]"
+                    >
                       {item}
-                    </Badge>
+                    </span>
                   ))}
                 </div>
+              </div>
 
-                <h4 className="font-semibold text-gray-900 mb-4">{reasonsTitle}</h4>
-                <ul className="space-y-3">
+              <div className="border-l border-[rgba(24,31,43,0.08)] pl-6">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{reasonsTitle}</p>
+                <ul className="space-y-4">
                   {reasons.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 shrink-0" />
-                      <p className="text-gray-600">{item}</p>
+                      <CheckCircle className="mt-1 h-5 w-5 shrink-0 text-[hsl(var(--primary))]" />
+                      <p className="text-sm leading-7 text-[hsl(var(--muted-foreground))]">{item}</p>
                     </li>
                   ))}
                 </ul>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </AnimationWrapper>
         </div>
 
         <AnimationWrapper animation="slide-up">
-          <div className="rounded-3xl bg-slate-900 text-white p-8 md:p-10 text-center">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">{ctaTitle}</h3>
-            <p className="text-slate-300 max-w-3xl mx-auto mb-8">
-              {ctaDescription}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
-                <SmoothScrollLink href="#contact">
-                  {primaryCta}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </SmoothScrollLink>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-slate-600 text-white hover:bg-slate-800 bg-transparent">
-                <SmoothScrollLink href="#services">{secondaryCta}</SmoothScrollLink>
-              </Button>
+          <div className="mt-12 border-t border-[rgba(24,31,43,0.14)] pt-8">
+            <div className="grid gap-6 lg:grid-cols-[0.68fr_1.32fr] lg:items-start">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{ctaTitle}</p>
+              <div>
+                <p className="max-w-4xl text-[2.1rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3rem]">
+                  SEO should sit inside the product logic, not hang on the page like a checklist.
+                </p>
+                <p className="mt-5 max-w-3xl text-base leading-8 text-[hsl(var(--muted-foreground))]">{ctaDescription}</p>
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <Button asChild size="lg">
+                    <SmoothScrollLink href="#contact">
+                      {primaryCta}
+                      <ArrowRight className="h-4 w-4" />
+                    </SmoothScrollLink>
+                  </Button>
+                  <Button asChild variant="outline" size="lg">
+                    <SmoothScrollLink href="#services">{secondaryCta}</SmoothScrollLink>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </AnimationWrapper>

@@ -104,7 +104,7 @@ export default function CookieConsentBanner() {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between items-center">
-              <Link href="/cookies" className="text-sm text-green-600 hover:underline mb-3 sm:mb-0">
+              <Link href="/cookies" className="mb-3 text-sm text-[hsl(var(--primary))] hover:underline sm:mb-0">
                 {t("detailsLink")}
               </Link>
               <div className="flex flex-wrap gap-3">
@@ -117,12 +117,12 @@ export default function CookieConsentBanner() {
         ) : (
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center" role="region" aria-label={t("banner.title")}>
             <div className="flex items-start space-x-3">
-              <Info className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+              <Info className="mt-0.5 h-5 w-5 shrink-0 text-[hsl(var(--primary))]" />
               <div>
                 <h3 className="font-semibold">{t("banner.title")}</h3>
                 <p className="text-sm text-gray-500 mt-1">
                   {t("banner.description")} {" "}
-                  <Link href="/cookies" className="text-green-900 hover:underline">
+                  <Link href="/cookies" className="text-[hsl(var(--foreground))] hover:underline">
                     {t("banner.details")}
                   </Link>
                 </p>

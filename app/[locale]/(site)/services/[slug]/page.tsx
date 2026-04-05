@@ -1,17 +1,19 @@
-import type {Metadata} from "next";
-import {connection} from "next/server";
+﻿import type {Metadata} from "next";
 import {notFound} from "next/navigation";
-import {ArrowLeft, ArrowRight, CheckCircle} from "lucide-react";
+import {ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Check} from "lucide-react";
 import {getTranslations, setRequestLocale} from "next-intl/server";
+import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
 import {Link} from "@/i18n/navigation";
-import {getPageAlternates} from "@/lib/seo";
+import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import {getPageAlternates} from "@/lib/seo";
 import {getServicePage, getServicePages, servicePageSlugs} from "@/lib/service-pages";
 
+const SITE_URL = process.env.SITE_URL || "https://www.oberemchuk.site";
+
 type ServicePageProps = {
-  params: {locale: string; slug: string};
+  params: Promise<{locale: string; slug: string}>;
 };
 
 export function generateStaticParams() {
@@ -24,7 +26,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({params}: ServicePageProps): Promise<Metadata> {
-  const {locale, slug} = params;
+  const {locale, slug} = await params;
   const service = getServicePage(locale as "uk" | "en", slug);
 
   if (!service) {
@@ -41,8 +43,8 @@ export async function generateMetadata({params}: ServicePageProps): Promise<Meta
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
-      url: pagePath,
-      type: "article",
+      url: `${SITE_URL}${pagePath}`,
+      type: "website",
       images: [
         {
           url: "/og-image.png",
@@ -62,8 +64,7 @@ export async function generateMetadata({params}: ServicePageProps): Promise<Meta
 }
 
 export default async function ServiceDetailPage({params}: ServicePageProps) {
-  await connection();
-  const {locale, slug} = params;
+  const {locale, slug} = await params;
   setRequestLocale(locale);
   const pageT = await getTranslations({locale, namespace: "ServiceDetailPage"});
   const service = getServicePage(locale as "uk" | "en", slug);
@@ -72,11 +73,16 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
     notFound();
   }
 
+  const isEnglish = locale === "en";
+  const pagePath = isEnglish ? `/en/services/${service.slug}` : `/services/${service.slug}`;
   const relatedServices = getServicePages(locale as "uk" | "en")
     .filter((item) => item.slug !== service.slug)
     .slice(0, 3);
 
-  const servicePath = locale === "en" ? `/en/services/${service.slug}` : `/services/${service.slug}`;
+  const pageLabel = isEnglish ? "Service detail" : "Деталі послуги";
+  const valueLabel = isEnglish ? "Service logic" : "Логіка послуги";
+  const offerLabel = isEnglish ? "Starting point" : "Стартова вартість";
+  const keywordsLabel = isEnglish ? "Search layer" : "Пошуковий шар";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -84,11 +90,10 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
     name: service.title,
     description: service.metaDescription,
     serviceType: service.shortTitle,
-    areaServed: [{"@type": "Place", name: "Europe"}],
     provider: {
       "@type": "Person",
       name: "Serhii Oberemchuk",
-      url: "https://www.oberemchuk.site"
+      url: SITE_URL
     },
     offers: {
       "@type": "Offer",
@@ -98,8 +103,8 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
         description: service.priceFrom
       }
     },
-    url: `https://www.oberemchuk.site${servicePath}`,
-    mainEntityOfPage: `https://www.oberemchuk.site${servicePath}`,
+    url: `${SITE_URL}${pagePath}`,
+    mainEntityOfPage: `${SITE_URL}${pagePath}`,
     hasFAQPage: {
       "@type": "FAQPage",
       mainEntity: service.faq.map((item) => ({
@@ -114,136 +119,252 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white py-16">
+    <div className="px-4 py-8 md:px-6 md:py-12">
       <JsonLd data={jsonLd} />
 
-      <div className="container mx-auto px-4">
-        <div className="mb-10">
-          <Button asChild variant="ghost" className="pl-0 text-gray-600 hover:text-gray-900">
-            <Link href="/services">
-              <ArrowLeft className="mr-2 h-4 w-4" />
+      <div className="mx-auto max-w-7xl">
+        <AnimationWrapper animation="fade-in">
+          <div className="mb-8 flex items-center justify-between gap-4">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 rounded-full border border-[rgba(24,31,43,0.08)] bg-white/88 px-4 py-2.5 text-sm text-[hsl(var(--foreground))] shadow-[0_14px_40px_rgba(24,31,43,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(24,31,43,0.16)]"
+            >
+              <ArrowLeft className="h-4 w-4" />
               {pageT("backToServices")}
             </Link>
-          </Button>
-        </div>
-
-        <header className="mb-16 max-w-4xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">{service.shortTitle}</p>
-          <h1 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">{service.heroTitle}</h1>
-          <p className="mb-8 text-xl text-gray-600">{service.heroDescription}</p>
-          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <div className="rounded-full bg-blue-50 px-5 py-3 font-medium text-blue-700">{service.priceFrom}</div>
-            <Button asChild size="lg">
-              <Link href="/#contact">{pageT("discussProject")}</Link>
+            <Button asChild size="lg" className="hidden sm:inline-flex">
+              <Link href="/#contact">
+                {pageT("discussProject")}
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
             </Button>
           </div>
-        </header>
+        </AnimationWrapper>
 
-        <section className="mb-16 grid gap-8 lg:grid-cols-3">
-          <Card className="lg:col-span-1">
-            <CardHeader>
-              <CardTitle>{pageT("fitForTitle")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {service.fitFor.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
-                  <p className="text-gray-600">{item}</p>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+        <section className="relative overflow-hidden rounded-[2rem] border border-[rgba(255,255,255,0.14)] bg-[hsl(var(--foreground))] text-white shadow-[0_40px_120px_rgba(24,31,43,0.22)]">
+          <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(10,14,24,0.98)_8%,rgba(10,14,24,0.88)_52%,rgba(16,23,36,0.76)_100%)]" />
+          <div className="absolute -left-12 top-12 h-72 w-72 rounded-full bg-[rgba(230,90,48,0.18)] blur-3xl" />
+          <div className="absolute right-10 top-8 h-80 w-80 rounded-full bg-[rgba(108,132,173,0.15)] blur-3xl" />
 
-          <Card className="lg:col-span-1">
-            <CardHeader>
-              <CardTitle>{pageT("outcomesTitle")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {service.outcomes.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
-                  <p className="text-gray-600">{item}</p>
+          <div className="relative z-10 grid gap-10 px-6 py-8 md:px-10 md:py-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-12 lg:px-14 lg:py-14">
+            <AnimationWrapper animation="slide-right">
+              <div className="flex h-full flex-col">
+                <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/54">
+                  {pageLabel}
+                </p>
+                <div className="max-w-xl min-h-[16rem]">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
+                    {service.shortTitle}
+                  </p>
+                  <h1 className="mt-4 max-w-[13ch] text-5xl leading-[0.92] text-white md:text-7xl">
+                    {service.heroTitle}
+                  </h1>
+                  <p className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg">
+                    {service.heroDescription}
+                  </p>
                 </div>
-              ))}
-            </CardContent>
-          </Card>
 
-          <Card className="lg:col-span-1">
-            <CardHeader>
-              <CardTitle>{pageT("deliverablesTitle")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {service.deliverables.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
-                  <p className="text-gray-600">{item}</p>
+                <div className="mt-10 max-w-[13.5rem]">
+                  <div className="rounded-[1.15rem] border border-white/10 bg-white/6 px-4 py-3.5 backdrop-blur-sm">
+                    <div className="flex items-center gap-2 text-white/44">
+                      <BriefcaseBusiness className="h-4 w-4" />
+                      <p className="text-[0.64rem] font-semibold uppercase tracking-[0.24em]">{offerLabel}</p>
+                    </div>
+                    <p className="mt-2.5 text-[1.05rem] text-white">{service.priceFrom}</p>
+                  </div>
                 </div>
-              ))}
-            </CardContent>
-          </Card>
+              </div>
+            </AnimationWrapper>
+
+            <AnimationWrapper animation="slide-left">
+              <div className="grid gap-6">
+                <div className="rounded-[1.7rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
+                    {valueLabel}
+                  </p>
+                  <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
+                    {service.metaDescription}
+                  </p>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
+                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
+                      {pageT("fitForTitle")}
+                    </p>
+                    <ul className="mt-5 space-y-3">
+                      {service.fitFor.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-sm leading-7 text-white/74">
+                          <Check className="mt-1 h-4 w-4 shrink-0 text-[hsl(var(--primary))]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
+                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
+                      {pageT("outcomesTitle")}
+                    </p>
+                    <ul className="mt-5 space-y-3">
+                      {service.outcomes.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-sm leading-7 text-white/74">
+                          <Check className="mt-1 h-4 w-4 shrink-0 text-[hsl(var(--primary))]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </AnimationWrapper>
+          </div>
         </section>
 
-        <section className="mb-16">
-          <div className="max-w-4xl">
-            <h2 className="mb-4 text-3xl font-bold text-gray-900">{pageT("searchIntentTitle")}</h2>
-            <p className="mb-6 text-gray-600">{pageT("searchIntentDescription")}</p>
-            <div className="flex flex-wrap gap-3">
-              {service.keywords.map((item) => (
-                <span key={item} className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-700">
-                  {item}
-                </span>
-              ))}
+        <section className="mt-20 grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+          <AnimationWrapper animation="slide-up">
+            <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
+              <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                {offerLabel}
+              </p>
+              <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                {pageT("deliverablesTitle")}
+              </h2>
+              <ul className="mt-8 grid gap-4">
+                {service.deliverables.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-[1.25rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f8fafc)] px-5 py-5 text-base leading-7 text-[hsl(var(--foreground))] shadow-[0_10px_30px_rgba(24,31,43,0.04)]"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          </AnimationWrapper>
+
+          <AnimationWrapper animation="slide-up" delay={100}>
+            <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f7fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
+              <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                {keywordsLabel}
+              </p>
+              <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                {pageT("searchIntentTitle")}
+              </h2>
+              <p className="mt-5 max-w-3xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
+                {pageT("searchIntentDescription")}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {service.keywords.map((item) => (
+                  <Badge
+                    key={item}
+                    variant="outline"
+                    className="rounded-full border-[rgba(24,31,43,0.08)] px-4 py-2 text-sm"
+                  >
+                    {item}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </AnimationWrapper>
         </section>
 
-        <section className="mb-16">
-          <h2 className="mb-8 text-3xl font-bold text-gray-900">{pageT("faqTitle")}</h2>
-          <div className="grid max-w-4xl gap-6">
-            {service.faq.map((item) => (
-              <Card key={item.question}>
-                <CardHeader>
-                  <CardTitle className="text-xl">{item.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{item.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <section className="mt-20">
+          <AnimationWrapper animation="slide-up">
+            <div className="grid gap-6 rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)] lg:grid-cols-[0.9fr_1.1fr]">
+              <div>
+                <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                  FAQ
+                </p>
+                <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                  {pageT("faqTitle")}
+                </h2>
+              </div>
+              <div className="grid gap-4">
+                {service.faq.map((item) => (
+                  <div
+                    key={item.question}
+                    className="rounded-[1.35rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f8fafc)] px-5 py-5 shadow-[0_10px_30px_rgba(24,31,43,0.04)]"
+                  >
+                    <h3 className="text-xl leading-tight text-[hsl(var(--foreground))]">{item.question}</h3>
+                    <p className="mt-3 text-base leading-8 text-[hsl(var(--muted-foreground))]">{item.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AnimationWrapper>
         </section>
 
-        <section className="mb-16">
-          <h2 className="mb-8 text-3xl font-bold text-gray-900">{pageT("relatedTitle")}</h2>
-          <div className="grid items-stretch gap-6 md:grid-cols-3">
-            {relatedServices.map((item) => (
-              <Card key={item.slug} className="flex h-full flex-col">
-                <CardHeader>
-                  <CardTitle>{item.title}</CardTitle>
-                  <p className="text-sm text-blue-600">{item.priceFrom}</p>
-                </CardHeader>
-                <CardContent className="flex flex-1 flex-col">
-                  <p className="mb-6 text-gray-600">{item.metaDescription}</p>
-                  <Button asChild variant="outline" className="mt-auto w-full bg-transparent">
-                    <Link href={`/services/${item.slug}`}>
-                      {pageT("relatedCta")}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <section className="mt-20">
+          <AnimationWrapper animation="slide-up">
+            <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+              <div>
+                <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                  {pageLabel}
+                </p>
+                <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                  {pageT("relatedTitle")}
+                </h2>
+              </div>
+
+              <div className="grid gap-4">
+                {relatedServices.map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/services/${item.slug}`}
+                    className="group rounded-[1.5rem] border border-[rgba(24,31,43,0.08)] bg-white px-6 py-6 shadow-[0_18px_60px_rgba(24,31,43,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(24,31,43,0.14)] hover:shadow-[0_24px_70px_rgba(24,31,43,0.08)]"
+                  >
+                    <div className="flex items-start justify-between gap-6">
+                      <div className="min-w-0">
+                        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
+                          {item.priceFrom}
+                        </p>
+                        <h3 className="mt-3 text-[1.8rem] leading-tight text-[hsl(var(--foreground))]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-3 max-w-2xl text-sm leading-7 text-[hsl(var(--muted-foreground))]">
+                          {item.metaDescription}
+                        </p>
+                      </div>
+                      <span className="mt-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-[rgba(24,31,43,0.03)] text-[hsl(var(--foreground))] transition-all duration-300 group-hover:border-[rgba(24,31,43,0.14)] group-hover:bg-[hsl(var(--foreground))] group-hover:text-white">
+                        <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </AnimationWrapper>
         </section>
 
-        <section className="rounded-3xl bg-slate-900 p-8 text-center text-white md:p-10">
-          <h2 className="mb-4 text-3xl font-bold">{pageT("estimate.title")}</h2>
-          <p className="mx-auto mb-8 max-w-3xl text-slate-300">{pageT("estimate.description")}</p>
-          <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
-            <Link href="/#contact">{pageT("estimate.cta")}</Link>
-          </Button>
+        <section className="mt-20 rounded-[2rem] border border-[rgba(255,255,255,0.14)] bg-[hsl(var(--foreground))] px-8 py-10 text-white shadow-[0_34px_100px_rgba(24,31,43,0.2)] md:px-10">
+          <AnimationWrapper animation="fade-in">
+            <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
+              <div>
+                <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/44">
+                  {offerLabel}
+                </p>
+                <h2 className="max-w-3xl text-4xl leading-[0.96] md:text-5xl">
+                  {pageT("estimate.title")}
+                </h2>
+              </div>
+              <div>
+                <p className="text-base leading-8 text-white/70">
+                  {pageT("estimate.description")}
+                </p>
+                <Button asChild size="lg" className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92">
+                  <Link href="/#contact">
+                    {pageT("estimate.cta")}
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </AnimationWrapper>
         </section>
       </div>
     </div>
   );
 }
+
+

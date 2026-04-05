@@ -16,15 +16,15 @@
   },
   "LanguageSwitcher": {
     "label": "Language",
-    "uk": "Українська",
+    "uk": "РЈРєСЂР°С—РЅСЃСЊРєР°",
     "en": "English"
   },
   "HomeHero": {
-    "badge": "Web development for clients across Europe",
+    "badge": "Independent digital partner for brands, products and service businesses",
     "titlePrefix": "I build",
     "titleHighlight": "websites and web apps",
     "titleSuffix": "for businesses",
-    "description": "I'm Serhii Oberemchuk, a fullstack web developer. I build landing pages, corporate websites, e-commerce stores and web applications with React, Next.js and TypeScript for companies that operate internationally and need a strong technical foundation for SEO, paid acquisition and sales.",
+    "description": "I build websites and web products with clear structure, strong visual direction and serious technical quality. From positioning and interface logic to development, performance and launch, I work as a partner who sees the whole system.",
     "primaryCta": "Discuss a project",
     "secondaryCta": "View portfolio",
     "stats": [
@@ -37,23 +37,23 @@
         "label": "years of experience"
       },
       {
-        "value": "EU",
-        "label": "clients across Europe"
+        "value": "B2B",
+        "label": "brands and products"
       },
       {
-        "value": "SEO",
-        "label": "technical optimization"
+        "value": "Fullstack",
+        "label": "from structure to launch"
       }
     ]
   },
   "HomeAbout": {
     "title": "About me",
-    "subtitle": "A fullstack web developer building websites and web applications for companies selling across Europe.",
+    "subtitle": "A fullstack partner for businesses that need authority, clarity and a digital presence that can carry commercial weight.",
     "valueTitle": "What I bring to a business",
     "paragraphs": [
-      "I work across the full web delivery cycle: from page structure and content logic to front-end, backend, integrations and launch. For a client, that means one responsible technical partner instead of a scattered set of contractors.",
-      "My focus is not only on visual polish. I build solutions that load fast, explain the offer clearly, support SEO, work properly on mobile and avoid creating technical debt after launch.",
-      "I work remotely with clients across Europe. If a project needs a dedicated designer, copywriter or marketer, I fit into the process and coordinate delivery without chaos."
+      "I work across the full web cycle: positioning, structure, interface, implementation, integrations and launch. For a client, that means one accountable partner instead of a chain of fragmented specialists.",
+      "Visual quality matters, but the standard is higher than attractive UI. The product has to communicate clearly, support growth, stay fast and remain maintainable after release.",
+      "I prefer projects where judgment, taste and execution quality matter. That usually leads to calmer collaboration and stronger outcomes."
     ],
     "summaryStats": [
       {
@@ -62,15 +62,15 @@
       },
       {
         "value": "B2B",
-        "label": "services and companies"
+        "label": "brands and products"
       },
       {
         "value": "5+",
         "label": "years of experience"
       },
       {
-        "value": "EU",
-        "label": "international focus"
+        "value": "End-to-end",
+        "label": "ownership"
       }
     ],
     "skillsTitle": "Core capabilities",
@@ -84,8 +84,8 @@
         "description": "Node.js, APIs, databases and integrations for services, CRMs, forms and business logic."
       },
       {
-        "title": "Designer collaboration",
-        "description": "I work with UI/UX designers to turn strong concepts into production-ready products."
+        "title": "Product direction",
+        "description": "I translate business goals into structure, interaction and production decisions that make the product feel coherent."
       },
       {
         "title": "Technical SEO",
@@ -115,7 +115,7 @@
   },
   "HomeServices": {
     "title": "Services",
-    "subtitle": "I work on commercial websites and web products that need to do more than look modern. They need to generate leads, support sales and scale across European markets.",
+    "subtitle": "I build digital products that should feel precise, commercially grounded and technically dependable. Not fresher decoration, but stronger presence.",
     "popularBadge": "Popular",
     "detailsCta": "Learn more",
     "approachTitle": "How I approach delivery",
@@ -136,7 +136,7 @@
       },
       {
         "title": "Corporate websites",
-        "description": "Multi-page websites for companies selling services in Europe and needing more trust and inbound leads.",
+        "description": "Multi-page websites for brands that need trust, clear structure and a premium digital presence.",
         "price": "from 1600 EUR",
         "features": [
           "service pages",
@@ -170,80 +170,80 @@
     ],
     "advantages": [
       {
-        "title": "International collaboration",
-        "description": "I work remotely with teams and businesses across Europe, without being tied to one country."
+        "title": "Partner mindset",
+        "description": "I work inside the business task, not around it. The goal is to shape the right product, not just ship screens."
       },
       {
         "title": "Clear process",
-        "description": "Structure, scope, technical stack and priorities are defined before the work starts."
+        "description": "Scope, structure, technical stack and delivery priorities are defined early, so the project moves with control."
       },
       {
         "title": "Built for growth",
-        "description": "The website or product is prepared for SEO, ads, analytics, localization and future pages from day one."
+        "description": "Performance, SEO, analytics and future expansion are considered from the start instead of patched in later."
       }
     ]
   },
   "HomeSeo": {
-    "badge": "SEO content for search and conversion",
-    "title": "A web developer for businesses looking for clients in Europe",
-    "description": "If a potential client is searching for a freelance web developer, a Next.js developer, landing page development, a corporate website or an e-commerce store, the site should immediately communicate specialization, advantages, geography and the way of working together. That is exactly how I build structure and copy on this website.",
+    "badge": "Operational thinking",
+    "title": "What makes the work commercially effective",
+    "description": "A strong web presence is not built from aesthetics alone. It works when structure, discoverability, messaging and technical execution support the same business goal.",
     "pillars": [
       {
         "title": "Commercial structure",
-        "description": "I build pages around real search intent: website development, landing pages, corporate websites, e-commerce and web applications."
+        "description": "Pages, hierarchy and calls to action are built around decision-making, not just content placement."
       },
       {
         "title": "Technical SEO",
-        "description": "Metadata, schema.org, sitemap, canonicals, speed and clean HTML structure are baked in before launch."
+        "description": "Metadata, schema, speed, internal linking and clean HTML support visibility without making the product feel mechanical."
       },
       {
-        "title": "International focus",
-        "description": "The content and structure are aimed at companies operating in Europe, English-speaking markets and international B2B sales."
+        "title": "Scalable system",
+        "description": "The site is prepared for new pages, campaigns, services and content growth instead of being trapped in a one-off layout."
       },
       {
-        "title": "Performance",
-        "description": "I work with Next.js and TypeScript, so the site gets fast rendering, maintainable code and a solid base for growth."
+        "title": "Performance discipline",
+        "description": "Fast rendering, maintainable code and predictable production quality are part of the product standard."
       }
     ],
-    "keywordsTitle": "Key queries worth being visible for",
+    "keywordsTitle": "Core growth layers",
     "keywords": [
-      "website development",
-      "landing page development",
-      "corporate website development",
-      "e-commerce development",
-      "web application development",
-      "Next.js developer",
-      "React developer",
-      "technical SEO"
+      "structure",
+      "SEO",
+      "performance",
+      "copy",
+      "analytics",
+      "scalability",
+      "conversion",
+      "maintainability"
     ],
-    "reasonsTitle": "What a client should see on the site",
+    "reasonsTitle": "What this changes for a business",
     "reasons": [
-      "Dedicated landing pages for specific services",
-      "Strong copy with clear commercial intent",
-      "Clear CTAs for a brief, call or inquiry",
-      "Content aimed at B2B, SaaS, service companies and e-commerce"
+      "Sharper positioning on the page",
+      "Better discoverability without SEO theater",
+      "Cleaner user journeys and calls to action",
+      "A technical base that can support future growth"
     ],
-    "ctaTitle": "I work remotely with companies across Europe",
-    "ctaDescription": "I join projects as an independent developer or as a technical partner for designers, marketers and internal teams. If you need a website or web app that looks professional and actually supports sales, the next step is not generic copy but a concrete brief.",
+    "ctaTitle": "Product logic before noise",
+    "ctaDescription": "The work is strongest when design, content and implementation support the same commercial direction. That is how I approach product websites, service sites and custom web platforms.",
     "primaryCta": "Discuss the task",
     "secondaryCta": "View services"
   },
   "HomeContact": {
     "badge": "Contact and project kickoff",
     "title": "Let's discuss your project",
-    "description": "If you need a website or web application for an international market, send a short note about the task, timeline and context. I will get back with a practical response, not generic wording.",
+    "description": "If you need a website or digital product with stronger structure, clearer positioning and confident execution, send the task and context. I will answer with a practical next step.",
     "infoTitle": "Contact information",
     "startTitle": "What you get at the start",
     "stackTitle": "Stack and specialization",
     "emailCta": "Send an email",
     "telegramCta": "Message on Telegram",
     "briefTitle": "Short brief",
-    "briefDescription": "Tell me what you need: a landing page, corporate website, e-commerce store, web application or technical SEO. The more concrete the brief, the more accurate the estimate.",
+    "briefDescription": "Tell me what needs to be built and what the business outcome should be.",
     "advantages": [
-      "Free initial call",
-      "Clear scope estimate",
-      "Support after launch",
-      "Normal technical communication"
+      "Focused first conversation",
+      "Clear scope and priorities",
+      "Thoughtful technical direction",
+      "Strong execution standard"
     ],
     "contactItems": {
       "email": {
@@ -255,12 +255,12 @@
         "value": "@SerhiiOberemchuk"
       },
       "workMode": {
-        "label": "Work mode",
-        "value": "Remote with clients across Europe"
+        "label": "Engagement",
+        "value": "Independent senior partner"
       },
       "workRhythm": {
-        "label": "Work rhythm",
-        "value": "Mon-Fri, synced to CET / EET"
+        "label": "Response rhythm",
+        "value": "Clear communication and practical next steps"
       }
     }
   },
@@ -351,7 +351,7 @@
   "HomePage": {
     "faq": {
       "title": "Frequently asked questions",
-      "subtitle": "Short answers about the workflow, timing, stack and technical foundation of the projects",
+      "subtitle": "Short answers to the questions that usually matter before a project starts.",
       "items": [
         {
           "question": "How long does website development take?",
@@ -362,8 +362,8 @@
           "answer": "Yes. Baseline technical SEO is included in the projects: page structure, metadata, speed, sitemap, schema.org, responsiveness and clean markup. A deeper SEO strategy or audit can be added separately."
         },
         {
-          "question": "Do you work with clients outside one country?",
-          "answer": "Yes. My main focus is international work with clients across Europe. Collaboration is remote and aligned to European time zones."
+          "question": "Do you work with clients across different markets?",
+          "answer": "Yes. I work with businesses across different markets and time zones. The collaboration is remote and structured around the needs of the project."
         },
         {
           "question": "Can you work with an existing design?",
@@ -380,32 +380,31 @@
       ]
     },
     "metadata": {
-      "title": "Web Development Services for B2B, SaaS and E-commerce",
-      "description": "I build landing pages, corporate websites, e-commerce stores and web applications with React and Next.js for companies operating internationally across Europe.",
+      "title": "Serhii Oberemchuk | Web developer for websites, e-commerce and web apps",
+      "description": "Serhii Oberemchuk is a fullstack web developer and digital partner. I build business websites, landing pages, e-commerce stores and custom web applications with React, Next.js, TypeScript and technical SEO.",
       "keywords": [
+        "fullstack web developer",
         "website development",
-        "landing page development",
+        "web application development",
         "corporate website development",
         "e-commerce development",
-        "web application development",
-        "Next.js developer",
         "React developer",
-        "freelance web developer Europe",
-        "Serhii Oberemchuk"
+        "Next.js developer",
+        "technical SEO"
       ],
       "openGraph": {
-        "title": "Serhii Oberemchuk | Website and web application development for Europe",
-        "description": "Landing pages, corporate websites, e-commerce and web applications for businesses in Europe. React, Next.js, TypeScript and technical SEO.",
-        "imageAlt": "Serhii Oberemchuk - web developer for businesses in Europe"
+        "title": "Serhii Oberemchuk | Web developer for websites, e-commerce and web apps",
+        "description": "Business websites, landing pages, e-commerce stores and web applications with strong structure, clear execution and technical depth.",
+        "imageAlt": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps"
       },
       "twitter": {
-        "title": "Serhii Oberemchuk | Web development for Europe",
-        "description": "Website and web application development with React and Next.js for companies operating across Europe."
+        "title": "Serhii Oberemchuk | Web developer for websites, e-commerce and web apps",
+        "description": "Business websites, web apps and technical SEO with strong structure, premium presentation and technical confidence."
       }
     },
     "schema": {
       "person": {
-        "description": "A web developer building websites and web applications for companies operating internationally across Europe.",
+        "description": "A fullstack web developer and digital partner building websites and web applications with strong structure, interface quality and technical discipline.",
         "knowsAbout": [
           "Web Development",
           "React",
@@ -418,10 +417,10 @@
         ]
       },
       "website": {
-        "description": "Website and web application development for businesses in Europe"
+        "description": "Websites and web applications for ambitious businesses"
       },
       "service": {
-        "description": "Landing pages, corporate websites, e-commerce stores, web applications and technical SEO for businesses in Europe.",
+        "description": "Web development services by Serhii Oberemchuk: landing page development, corporate websites, e-commerce stores, custom web applications and technical SEO.",
         "serviceType": [
           "Web Development",
           "E-commerce Development",
@@ -449,7 +448,7 @@
     }
   },
   "Footer": {
-    "description": "Website development, web applications and technical SEO for companies, services and digital products across Europe.",
+    "description": "Website development, web applications and technical SEO for brands, services and digital products.",
     "navigation": {
       "title": "Navigation",
       "services": "Services",
@@ -466,10 +465,10 @@
     },
     "contact": {
       "title": "Contact",
-      "remote": "I work remotely with clients across Europe."
+      "remote": "Available for focused project collaboration."
     },
     "copyright": "All rights reserved.",
-    "tagline": "Working remotely for companies across Europe.",
+    "tagline": "Building clear, high-quality digital products.",
     "logoAlt": "Serhii Oberemchuk logo"
   },
   "CookieBanner": {
@@ -512,34 +511,31 @@
   },
   "Layout": {
     "metadata": {
-      "titleDefault": "Serhii Oberemchuk - web developer for businesses in Europe",
+      "titleDefault": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps",
       "titleTemplate": "%s",
-      "description": "Serhii Oberemchuk is a fullstack web developer. I build websites, landing pages, corporate websites, e-commerce stores and web applications for clients across Europe. React, Next.js, TypeScript and SEO.",
+      "description": "Serhii Oberemchuk is a fullstack web developer and digital partner. I build business websites, landing pages, e-commerce stores and custom web applications with React, Next.js, TypeScript and technical SEO.",
       "keywords": [
-        "web developer Europe",
-        "website development",
         "fullstack web developer",
-        "React developer Europe",
-        "Next.js developer Europe",
+        "website development",
         "landing page development",
         "corporate website development",
-        "e-commerce development",
         "web application development",
-        "technical SEO",
-        "Serhii Oberemchuk"
+        "e-commerce development",
+        "React developer",
+        "Next.js developer"
       ],
-      "openGraphTitle": "Serhii Oberemchuk - web developer for businesses in Europe",
-      "openGraphDescription": "Website development, landing pages, corporate websites, e-commerce stores and web applications for companies in Europe.",
-      "openGraphImageAlt": "Serhii Oberemchuk - web developer for businesses in Europe",
-      "twitterTitle": "Serhii Oberemchuk - web developer for businesses in Europe",
-      "twitterDescription": "Websites, web apps and technical SEO for companies in Europe. React, Next.js and TypeScript."
+      "openGraphTitle": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps",
+      "openGraphDescription": "Business websites, landing pages, e-commerce and web applications with strong structure and technical confidence.",
+      "openGraphImageAlt": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps",
+      "twitterTitle": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps",
+      "twitterDescription": "Business websites, web apps and technical SEO with strong structure and premium execution."
     },
     "skipToContent": "Skip to main content"
   },
   "ServicesPage": {
     "metadata": {
-      "title": "Web development services for businesses in Europe",
-      "description": "Landing pages, corporate websites, e-commerce stores, web applications and technical SEO for companies operating across Europe.",
+      "title": "Web development services | Landing pages, websites, e-commerce and web apps",
+      "description": "Web development services by Serhii Oberemchuk: landing page development, corporate websites, e-commerce stores, custom web applications and technical SEO.",
       "keywords": [
         "web development services",
         "landing page development",
@@ -550,22 +546,22 @@
       ],
       "openGraph": {
         "title": "Services | Serhii Oberemchuk",
-        "description": "Web development services for businesses in Europe: landing pages, corporate websites, e-commerce, web applications and SEO.",
+        "description": "Landing pages, business websites, e-commerce stores, custom web applications and technical SEO.",
         "imageAlt": "Web development services by Serhii Oberemchuk"
       },
       "twitter": {
         "title": "Services | Serhii Oberemchuk",
-        "description": "Web development for international companies in Europe."
+        "description": "Web development for brands, products and service businesses."
       }
     },
     "schema": {
       "name": "Web development services",
-      "description": "A hub of web development services for businesses in Europe.",
+      "description": "Landing page development, business website development, e-commerce development, custom web applications and technical SEO.",
       "itemListName": "List of web development services"
     },
     "hero": {
       "title": "Web development services",
-      "description": "I work with businesses that need more than attractive pages. They need commercial web solutions for the European market: from landing pages to web applications and technical SEO."
+      "description": "I work with businesses that need more than attractive pages. They need landing pages, service websites, e-commerce stores or web applications with strong structure, clear messaging, technical SEO and room to grow."
     },
     "listAriaLabel": "List of services",
     "includesTitle": "What is included",
@@ -589,48 +585,51 @@
     "relatedCta": "View page",
     "estimate": {
       "title": "Need an estimate for your exact case?",
-      "description": "Tell me what you sell, who your client is, which countries or markets matter most and whether the site is meant for ads, SEO or product presentation. That makes it possible to suggest the right format quickly.",
+      "description": "Tell me what you sell, who your client is, what the business goal should be and whether the site is meant for ads, SEO or product presentation. That makes it possible to suggest the right format quickly.",
       "cta": "Message about the project"
     }
   },
   "PortfolioPage": {
     "metadata": {
-      "title": "Web development portfolio for businesses in Europe",
-      "description": "A selection of delivered websites and web projects: landing pages, corporate websites, e-commerce and custom solutions for clients across Europe.",
+      "title": "Web Development Portfolio | Website, E-commerce and Web App Case Studies",
+      "description": "Web development portfolio of Serhii Oberemchuk with website, e-commerce and web application case studies focused on structure, interface quality, performance and technical execution.",
       "keywords": [
-        "web developer portfolio",
-        "web development case studies",
-        "website examples",
-        "portfolio web developer Europe",
-        "Serhii Oberemchuk"
+        "web development portfolio",
+        "website portfolio",
+        "e-commerce portfolio",
+        "web application portfolio",
+        "website case studies",
+        "Next.js developer portfolio",
+        "React developer portfolio",
+        "Serhii Oberemchuk portfolio"
       ],
       "openGraph": {
         "title": "Portfolio | Serhii Oberemchuk",
-        "description": "Portfolio of websites and web projects for companies operating across Europe.",
+        "description": "Selected web development case studies: websites, e-commerce projects and web applications with strong structure and execution quality.",
         "imageAlt": "Portfolio of Serhii Oberemchuk"
       },
       "twitter": {
         "title": "Portfolio | Serhii Oberemchuk",
-        "description": "Examples of delivered websites and web solutions for international clients."
+        "description": "Selected web development case studies with strong execution quality."
       }
     },
     "schema": {
-      "name": "Portfolio of Serhii Oberemchuk",
-      "description": "A collection of web projects for clients across Europe."
+      "name": "Web development portfolio of Serhii Oberemchuk",
+      "description": "A portfolio of website, e-commerce and web application case studies."
     },
     "hero": {
       "title": "Portfolio",
-      "description": "A selection of projects that show how I approach commercial web development: clear structure, modern front-end, solid performance and a focus on business outcomes."
+      "description": "Selected case studies in website development, e-commerce and web applications, showing implementation quality, technical SEO thinking, judgment and production discipline."
     },
     "loadingLabel": "Loading projects",
-    "listLabel": "Project list",
+    "listLabel": "Case studies archive",
     "empty": "No projects found",
     "seoText": {
-      "title": "What this portfolio shows",
+      "title": "What this web development portfolio shows",
       "paragraphs": [
-        "This is not just a set of screenshots. The portfolio shows how I work with different types of tasks: service websites, multi-page corporate websites, e-commerce stores, product interfaces and technical improvements for existing projects.",
-        "For a potential client, it matters not only how the interface looks but also whether the developer can work with page structure, performance, SEO, integrations, forms, analytics and scaling. That is what I build into every release.",
-        "If you are looking for a freelance web developer for an international project in Europe, this portfolio gives a fast view of implementation quality, attention to detail and the kinds of tasks I work on most often."
+        "This portfolio is a selection of web development case studies, not just screenshots. It shows how I approach landing pages, service websites, multi-page corporate websites, e-commerce builds, product interfaces and technical improvements for existing products.",
+        "For a client, it matters not only how a screen looks but whether the developer can work with page structure, performance, technical SEO, integrations, forms, analytics and scaling. That is the level of execution I build into each release.",
+        "If you are reviewing a web development portfolio to evaluate website implementation quality, e-commerce execution, web application work and attention to detail, this archive gives a fast, practical view."
       ]
     }
   },
@@ -728,7 +727,7 @@
       "email": "Email: serhiioberemchuk@gmail.com"
     },
     "navigation": {
-      "home": "? Back to home",
+      "home": "Back to home",
       "cookies": "Cookie policy"
     }
   },
@@ -868,7 +867,7 @@
       "email": "Email: serhiioberemchuk@gmail.com"
     },
     "navigation": {
-      "home": "? Back to home",
+      "home": "Back to home",
       "privacy": "Privacy policy"
     }
   },
@@ -966,7 +965,7 @@
       }
     },
     "navigation": {
-      "home": "? Back to home",
+      "home": "Back to home",
       "privacy": "Privacy policy",
       "cookies": "Cookie policy"
     }
@@ -979,7 +978,7 @@
   "PortfolioSection": {
     "badge": "Portfolio",
     "title": "Recent work",
-    "description": "A selection of recent projects that show the approach to structure, interface quality and technical delivery.",
+    "description": "Selected work that shows taste, structure and execution discipline, not just visual output.",
     "listLabel": "Recent projects",
     "empty": "No projects found",
     "cta": "View all projects"
@@ -994,3 +993,4 @@
     "slideLabel": "Slide {index}: {title}"
   }
 }
+

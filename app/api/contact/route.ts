@@ -93,7 +93,7 @@ function renderEmailLayout(params: {
           <td style="padding: 0 32px 32px;">
             <a
               href="${escapeHtml(ctaHref)}"
-              style="display: inline-block; padding: 14px 22px; border-radius: 999px; background: linear-gradient(135deg, #16a34a 0%, #0f766e 100%); color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 700;"
+              style="display: inline-block; padding: 14px 22px; border-radius: 999px; background: linear-gradient(135deg, #d4652d 0%, #b25d2f 100%); color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 700;"
             >
               ${escapeHtml(ctaLabel)}
             </a>
@@ -116,19 +116,19 @@ function renderEmailLayout(params: {
             <td align="center">
               <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 680px; border-collapse: collapse;">
                 <tr>
-                  <td style="padding: 0 0 16px; text-align: center; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #0f766e; font-weight: 700;">
+                  <td style="padding: 0 0 16px; text-align: center; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #b25d2f; font-weight: 700;">
                     ${escapeHtml(eyebrow)}
                   </td>
                 </tr>
                 <tr>
-                  <td style="background: linear-gradient(135deg, #0f172a 0%, #14532d 100%); border-radius: 28px 28px 0 0; padding: 36px 32px 28px;">
-                    <div style="display: inline-block; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.12); color: #dcfce7; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
+                  <td style="background: linear-gradient(135deg, #0f172a 0%, #20283a 100%); border-radius: 28px 28px 0 0; padding: 36px 32px 28px;">
+                    <div style="display: inline-block; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.12); color: #f0d5c2; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
                       Serhii Oberemchuk
                     </div>
                     <h1 style="margin: 18px 0 10px; color: #ffffff; font-size: 32px; line-height: 1.15; font-weight: 800;">
                       ${escapeHtml(title)}
                     </h1>
-                    <p style="margin: 0; color: #d1fae5; font-size: 16px; line-height: 1.6;">
+                    <p style="margin: 0; color: #e6ddd5; font-size: 16px; line-height: 1.6;">
                       ${escapeHtml(intro)}
                     </p>
                   </td>
@@ -148,9 +148,9 @@ function renderEmailLayout(params: {
                       </table>
                     </div>
 
-                    <div style="border-radius: 20px; padding: 22px; background: #f0fdf4; border: 1px solid #bbf7d0;">
-                      <h2 style="margin: 0 0 12px; color: #14532d; font-size: 18px; font-weight: 800;">Опис задачі</h2>
-                      <p style="margin: 0; color: #14532d; font-size: 15px; line-height: 1.7;">
+                    <div style="border-radius: 20px; padding: 22px; background: #fff7f1; border: 1px solid #f1d3bf;">
+                      <h2 style="margin: 0 0 12px; color: #6f3f22; font-size: 18px; font-weight: 800;">Опис задачі</h2>
+                      <p style="margin: 0; color: #6f3f22; font-size: 15px; line-height: 1.7;">
                         ${messageHtml}
                       </p>
                     </div>
@@ -162,7 +162,7 @@ function renderEmailLayout(params: {
                     <div style="padding-top: 20px; border-top: 1px solid #e2e8f0;">
                       <p style="margin: 0 0 10px; color: #0f172a; font-size: 14px; font-weight: 700;">Serhii Oberemchuk</p>
                       <p style="margin: 0 0 6px; color: #475569; font-size: 13px;">Розробка сайтів, веб-додатків і технічне SEO для бізнесу в Європі</p>
-                      <p style="margin: 0 0 6px; color: #475569; font-size: 13px;">Email: <a href="mailto:${escapeHtml(contactEmail)}" style="color: #0f766e; text-decoration: none;">${escapeHtml(contactEmail)}</a></p>
+                      <p style="margin: 0 0 6px; color: #475569; font-size: 13px;">Email: <a href="mailto:${escapeHtml(contactEmail)}" style="color: #b25d2f; text-decoration: none;">${escapeHtml(contactEmail)}</a></p>
                       <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.6;">${escapeHtml(footerNote)}</p>
                     </div>
                   </td>

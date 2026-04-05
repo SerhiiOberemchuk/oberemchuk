@@ -107,7 +107,7 @@ export default function ProjectsSlider({projects}: ProjectsSliderProps) {
               <button
                 key={project.slug}
                 className={`h-2 w-2 rounded-full transition-colors ${
-                  index === currentIndex ? "bg-green-600" : "bg-gray-300"
+                  index === currentIndex ? "bg-[hsl(var(--primary))]" : "bg-[rgba(24,31,43,0.18)]"
                 }`}
                 onClick={() => setCurrentIndex(index)}
                 aria-label={t("slideLabel", {index: index + 1, title: project.title})}
