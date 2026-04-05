@@ -127,7 +127,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6" aria-describedby={formHintId}>
-      <p id={formHintId} className="text-sm text-slate-500">
+      <p id={formHintId} className="text-sm leading-7 text-[hsl(var(--muted-foreground))]">
         {t("formHint")}
       </p>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -222,12 +222,12 @@ export default function ContactForm() {
           placeholder={t("fields.messagePlaceholder")}
           rows={5}
         />
-        <p id={messageHintId} className="text-sm text-slate-500">
+        <p id={messageHintId} className="text-sm leading-7 text-[hsl(var(--muted-foreground))]">
           {t("fields.messageHint")}
         </p>
       </div>
 
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
+      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

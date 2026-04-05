@@ -1,18 +1,16 @@
-import type {Metadata} from "next";
-import {connection} from "next/server";
+﻿import type {Metadata} from "next";
 import Image from "next/image";
 import {notFound} from "next/navigation";
-import {ArrowLeft, Calendar, ExternalLink, User} from "lucide-react";
+import {ArrowLeft, ArrowUpRight, Calendar, ExternalLink, Layers3, User} from "lucide-react";
 import {getTranslations} from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
 import {Link} from "@/i18n/navigation";
+import {Badge} from "@/components/ui/badge";
+import {Button} from "@/components/ui/button";
 import {getPageAlternates} from "@/lib/seo";
 import {localizeProject} from "@/lib/projects-i18n";
 import {getProjectBySlug, getProjects} from "@/lib/projects-server";
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
-import {Card, CardContent} from "@/components/ui/card";
 import type {Project} from "@/types/projects";
 
 const SITE_URL = process.env.SITE_URL || "https://www.oberemchuk.site";
@@ -78,6 +76,7 @@ export async function generateMetadata({params}: PortfolioProjectPageProps): Pro
 export default async function ProjectPage({params}: PortfolioProjectPageProps) {
   const {locale, slug} = await params;
   const pageT = await getTranslations({locale, namespace: "PortfolioProjectPage"});
+  const isEnglish = locale === "en";
   const project = await getProjectBySlug(slug);
 
   if (!project) {
@@ -85,7 +84,10 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
   }
 
   const localizedProject = localizeProject(project, locale as "uk" | "en");
-  const pagePath = locale === "en" ? `/en/portfolio/${slug}` : `/portfolio/${slug}`;
+  const pagePath = isEnglish ? `/en/portfolio/${slug}` : `/portfolio/${slug}`;
+  const overviewLabel = isEnglish ? "Project overview" : "Огляд проєкту";
+  const buildLabel = isEnglish ? "Build details" : "Build details";
+  const projectLabel = isEnglish ? "Case study" : "Кейс";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -105,106 +107,185 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="px-4 py-8 md:px-6 md:py-12">
       <JsonLd data={jsonLd} />
 
-      <div className="container mx-auto px-4 py-8">
-        <AnimationWrapper animation="slide-up">
-          <div className="mb-8">
-            <Link href="/portfolio" className="inline-flex items-center text-green-600 transition-colors hover:text-green-700">
-              <ArrowLeft className="mr-2 h-4 w-4" />
+      <div className="mx-auto max-w-7xl">
+        <AnimationWrapper animation="fade-in">
+          <div className="mb-8 flex items-center justify-between gap-4">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-2 rounded-full border border-[rgba(24,31,43,0.08)] bg-white/88 px-4 py-2.5 text-sm text-[hsl(var(--foreground))] shadow-[0_14px_40px_rgba(24,31,43,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(24,31,43,0.16)]"
+            >
+              <ArrowLeft className="h-4 w-4" />
               {pageT("backToPortfolio")}
             </Link>
+            {localizedProject.website_url ? (
+              <Button asChild size="lg" className="hidden sm:inline-flex">
+                <a href={localizedProject.website_url} target="_blank" rel="noreferrer">
+                  {pageT("viewSite")}
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </Button>
+            ) : null}
           </div>
         </AnimationWrapper>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <AnimationWrapper animation="slide-left">
-            <div className="space-y-6">
-              <div>
-                <Badge variant="secondary" className="mb-4">
-                  {localizedProject.category}
-                </Badge>
-                <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">{localizedProject.title}</h1>
-                <p className="text-xl leading-relaxed text-gray-600">{localizedProject.description}</p>
-              </div>
+        <section className="relative overflow-hidden rounded-[2rem] border border-[rgba(255,255,255,0.14)] bg-[hsl(var(--foreground))] text-white shadow-[0_40px_120px_rgba(24,31,43,0.22)]">
+          <div className="absolute inset-0">
+            <Image
+              src={localizedProject.image_src || "/placeholder.svg"}
+              alt={localizedProject.title}
+              fill
+              className="object-cover opacity-24"
+              priority
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,14,24,0.96)_10%,rgba(10,14,24,0.8)_52%,rgba(10,14,24,0.46)_100%)]" />
+            <div className="absolute -left-10 top-20 h-64 w-64 rounded-full bg-[rgba(230,90,48,0.16)] blur-3xl" />
+            <div className="absolute right-8 top-12 h-72 w-72 rounded-full bg-[rgba(108,132,173,0.14)] blur-3xl" />
+          </div>
 
-              <div className="grid grid-cols-2 gap-6">
-                <div className="flex items-center space-x-3">
-                  <Calendar className="h-5 w-5 text-green-600" />
-                  <div>
-                    <p className="text-sm text-gray-500">{pageT("year")}</p>
-                    <p className="font-semibold">{localizedProject.year}</p>
+          <div className="relative z-10 grid gap-10 px-6 py-8 md:px-10 md:py-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-12 lg:px-14 lg:py-14">
+            <AnimationWrapper animation="slide-right">
+              <div className="flex h-full flex-col">
+                <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/54">
+                  {projectLabel}
+                </p>
+                <div className="max-w-xl min-h-[15rem]">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
+                    {localizedProject.category}
+                  </p>
+                  <h1 className="mt-4 max-w-[14ch] text-5xl leading-[0.92] text-white md:text-7xl">
+                    {localizedProject.title}
+                  </h1>
+                  <p className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg">
+                    {localizedProject.description}
+                  </p>
+                </div>
+
+                <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                  <div className="rounded-[1.35rem] border border-white/10 bg-white/6 px-4 py-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-2 text-white/44">
+                      <Calendar className="h-4 w-4" />
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">{pageT("year")}</p>
+                    </div>
+                    <p className="mt-3 text-lg text-white">{localizedProject.year}</p>
+                  </div>
+                  <div className="rounded-[1.35rem] border border-white/10 bg-white/6 px-4 py-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-2 text-white/44">
+                      <User className="h-4 w-4" />
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">{pageT("client")}</p>
+                    </div>
+                    <p className="mt-3 line-clamp-2 min-h-[3.5rem] text-lg text-white" title={localizedProject.client}>
+                      {localizedProject.client}
+                    </p>
+                  </div>
+                  <div className="rounded-[1.35rem] border border-white/10 bg-white/6 px-4 py-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-2 text-white/44">
+                      <Layers3 className="h-4 w-4" />
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">{pageT("technologies")}</p>
+                    </div>
+                    <p className="mt-3 line-clamp-2 min-h-[3.5rem] text-lg text-white" title={localizedProject.technologies.join(" / ")}>
+                      {localizedProject.technologies.slice(0, 3).join(" / ")}
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <User className="h-5 w-5 text-green-600" />
-                  <div>
-                    <p className="text-sm text-gray-500">{pageT("client")}</p>
-                    <p className="font-semibold">{localizedProject.client}</p>
+              </div>
+            </AnimationWrapper>
+
+            <AnimationWrapper animation="slide-left">
+              <div className="relative mx-auto w-full max-w-[44rem]">
+                <div className="pointer-events-none absolute right-0 top-8 hidden h-[84%] w-[80%] rounded-[2rem] border border-white/10 bg-white/6 shadow-[0_28px_80px_rgba(0,0,0,0.18)] backdrop-blur-sm lg:block" />
+                <div className="pointer-events-none absolute right-8 top-16 hidden h-[84%] w-[80%] rounded-[2rem] border border-white/12 bg-white/8 shadow-[0_32px_100px_rgba(0,0,0,0.22)] backdrop-blur-sm lg:block" />
+                <div className="relative overflow-hidden rounded-[2rem] border border-white/16 bg-black/18 shadow-[0_34px_120px_rgba(0,0,0,0.24)]">
+                  <div className="relative aspect-[4/4.8]">
+                    <Image
+                      src={localizedProject.image_src || "/placeholder.svg"}
+                      alt={localizedProject.title}
+                      fill
+                      className="object-cover"
+                      priority
+                      placeholder="blur"
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2U5ZWFlZiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIi8+"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,16,24,0.02)_0%,rgba(12,16,24,0.18)_52%,rgba(12,16,24,0.76)_100%)]" />
                   </div>
                 </div>
-              </div>
 
-              {localizedProject.website_url && (
-                <Button asChild className="w-full sm:w-auto">
-                  <a href={localizedProject.website_url} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    {pageT("viewSite")}
+                {localizedProject.website_url ? (
+                  <a
+                    href={localizedProject.website_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group absolute -bottom-6 left-6 right-6 hidden rounded-[1.4rem] border border-white/12 bg-[rgba(11,15,24,0.82)] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-[border-color,background-color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/20 hover:bg-[rgba(11,15,24,0.9)] hover:shadow-[0_26px_70px_rgba(0,0,0,0.3)] md:block"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="min-w-0">
+                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/42">
+                          {overviewLabel}
+                        </p>
+                        <p className="mt-2 truncate pr-4 text-xl text-white">{localizedProject.title}</p>
+                      </div>
+                      <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/6 text-white/78 transition-[background-color,border-color,color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-white/24 group-hover:bg-white group-hover:text-[hsl(var(--foreground))] group-hover:shadow-[0_14px_30px_rgba(255,255,255,0.12)]">
+                        <span className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[115%] group-hover:-translate-y-[115%]">
+                          <ArrowUpRight className="h-4 w-4" />
+                        </span>
+                        <span className="absolute inset-0 flex translate-x-[-115%] translate-y-[115%] items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:translate-y-0">
+                          <ArrowUpRight className="h-4 w-4" />
+                        </span>
+                      </span>
+                    </div>
                   </a>
-                </Button>
-              )}
+                ) : null}
+              </div>
+            </AnimationWrapper>
+          </div>
+        </section>
+
+        <section className="mt-20 grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+          <AnimationWrapper animation="slide-up">
+            <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
+              <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                {buildLabel}
+              </p>
+              <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                {pageT("technologies")}
+              </h2>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {localizedProject.technologies.map((tech, index) => (
+                  <Badge
+                    key={index}
+                    variant="outline"
+                    className="rounded-full border-[rgba(24,31,43,0.08)] px-4 py-2 text-sm"
+                  >
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
             </div>
           </AnimationWrapper>
 
-          <AnimationWrapper animation="slide-right">
-            <div className="relative">
-              <Image
-                src={localizedProject.image_src || "/placeholder.svg"}
-                alt={localizedProject.title}
-                width={600}
-                height={400}
-                className="h-auto w-full rounded-lg shadow-lg"
-                priority
-                placeholder="blur"
-                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2U5ZWFlZiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIi8+"
-              />
+          <AnimationWrapper animation="slide-up" delay={100}>
+            <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f7fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
+              <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                {projectLabel}
+              </p>
+              <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                {pageT("features")}
+              </h2>
+              <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+                {localizedProject.features.map((feature, index) => (
+                  <li
+                    key={index}
+                    className="rounded-[1.35rem] border border-[rgba(24,31,43,0.08)] bg-white px-5 py-5 text-base leading-7 text-[hsl(var(--foreground))] shadow-[0_10px_30px_rgba(24,31,43,0.04)]"
+                  >
+                    {feature}
+                  </li>
+                ))}
+              </ul>
             </div>
           </AnimationWrapper>
-        </div>
-
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
-          <AnimationWrapper animation="fade-in" delay={200}>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="mb-4 text-xl font-semibold">{pageT("technologies")}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {localizedProject.technologies.map((tech, index) => (
-                    <Badge key={index} variant="outline">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </AnimationWrapper>
-
-          <AnimationWrapper animation="fade-in" delay={300}>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="mb-4 text-xl font-semibold">{pageT("features")}</h3>
-                <ul className="space-y-2">
-                  {localizedProject.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="mr-3 mt-2 h-2 w-2 shrink-0 rounded-full bg-green-600"></span>
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </AnimationWrapper>
-        </div>
+        </section>
       </div>
     </div>
   );

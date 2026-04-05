@@ -2,7 +2,7 @@
 import {Suspense} from "react";
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import {
   getMessages,
@@ -20,16 +20,24 @@ import CookieConsentBanner from "@/components/cookie-consent-banner";
 import ScrollToTop from "@/components/scroll-to-top";
 import { AnalyticsLayout } from "@/components/Analytics";
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-sans",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin", "cyrillic"],
+  display: "swap",
+  variable: "--font-display",
+  weight: ["500", "600", "700"],
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#f7fafc",
 };
 
 export function generateStaticParams() {
@@ -86,11 +94,11 @@ export async function generateMetadata({
     },
     icons: {
       icon: [
-        { url: "/icon.png", sizes: "192x192", type: "image/png" },
-        { url: "/favicon.ico", sizes: "any" },
+        { url: "/icon.svg", type: "image/svg+xml" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
       ],
-      shortcut: [{ url: "/favicon.ico" }],
-      apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+      shortcut: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+      apple: [{ url: "/apple-icon.svg", type: "image/svg+xml" }],
     },
     manifest: "/manifest.json",
     robots: {
@@ -105,7 +113,7 @@ export async function generateMetadata({
       },
     },
     category: "technology",
-    classification: "Web Development Services",
+    classification: "Digital Product and Web Development Services",
     referrer: "origin-when-cross-origin",
   };
 }
@@ -117,17 +125,28 @@ type LayoutProps = Readonly<{
 
 export default function LocaleLayout({children, params}: LayoutProps) {
   return (
+    <Suspense fallback={null}>
+      <LocaleDocument params={params}>{children}</LocaleDocument>
+    </Suspense>
+  );
+}
+
+async function LocaleDocument({children, params}: LayoutProps) {
+  const { locale } = await params;
+
+  if (!routing.locales.includes(locale as "uk" | "en")) {
+    notFound();
+  }
+
+  return (
     <html
-      lang="uk"
-      className={inter.variable}
+      lang={locale}
+      className={`${manrope.variable} ${cormorant.variable}`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <meta name="theme-color" content="#16a34a" />
+        <meta name="theme-color" content="#f7fafc" />
         <meta name="color-scheme" content="light" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -135,25 +154,17 @@ export default function LocaleLayout({children, params}: LayoutProps) {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Serhii Oberemchuk" />
         <meta name="application-name" content="Serhii Oberemchuk" />
-        <meta name="msapplication-TileColor" content="#16a34a" />
+        <meta name="msapplication-TileColor" content="#f7fafc" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
-      <body className={inter.className}>
-        <Suspense fallback={null}>
-          <LocaleLayoutContent params={params}>{children}</LocaleLayoutContent>
-        </Suspense>
+      <body className={manrope.className}>
+        <LocaleLayoutContent locale={locale}>{children}</LocaleLayoutContent>
       </body>
     </html>
   );
 }
 
-async function LocaleLayoutContent({children, params}: LayoutProps) {
-  const { locale } = await params;
-
-  if (!routing.locales.includes(locale as "uk" | "en")) {
-    notFound();
-  }
-
+async function LocaleLayoutContent({children, locale}: {children: React.ReactNode; locale: string}) {
   setRequestLocale(locale);
   const messages = await getMessages({ locale });
   const layoutT = await getTranslations({ locale, namespace: "Layout" });

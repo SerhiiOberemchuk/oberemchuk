@@ -17,7 +17,7 @@ export default function CookieSettingsButton({label}: CookieSettingsButtonProps)
       variant="ghost"
       size="sm"
       onClick={openSettings}
-      className="h-auto justify-start px-0 text-sm font-normal text-gray-600 hover:bg-transparent hover:text-green-600 focus-visible:text-green-700"
+      className="h-auto justify-start px-0 text-sm font-normal text-[hsl(var(--muted-foreground))] hover:bg-transparent hover:text-[hsl(var(--primary))] focus-visible:text-[hsl(var(--foreground))]"
     >
       <Settings className="mr-2 h-4 w-4" />
       {label}

@@ -107,7 +107,7 @@ export default function MobileMenu({
 
   return createPortal(
     <div
-      className={`fixed inset-0 z-50 bg-black/70 transition-opacity duration-300 md:hidden ${
+      className={`fixed inset-0 z-50 bg-[rgba(24,31,43,0.58)] transition-opacity duration-300 md:hidden ${
         isOpen ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
       onClick={onClose}
@@ -119,14 +119,14 @@ export default function MobileMenu({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className={`fixed right-0 top-0 h-full w-full max-w-xs bg-white shadow-lg transition-transform duration-300 ${
+        className={`fixed right-0 top-0 h-full w-full max-w-sm border-l border-white/30 bg-[linear-gradient(180deg,rgba(255,251,246,0.96),rgba(244,236,226,0.92))] shadow-[0_24px_80px_rgba(24,31,43,0.24)] backdrop-blur-xl transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex flex-col space-y-6 p-6">
+        <div className="flex flex-col space-y-8 p-6">
           <div className="flex items-center justify-between gap-3">
-            <p id={titleId} className="text-sm font-semibold text-slate-500">{dialogTitle}</p>
+            <p id={titleId} className="text-xs font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">{dialogTitle}</p>
             <div className="flex items-center gap-2">
               <LanguageSwitcher />
               <Button
@@ -142,12 +142,12 @@ export default function MobileMenu({
             </div>
           </div>
 
-          <nav className="flex flex-col space-y-6" aria-label={navigationAriaLabel}>
+          <nav className="flex flex-col space-y-5" aria-label={navigationAriaLabel}>
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-sm border-b border-gray-100 py-2 text-xl font-medium transition-colors hover:text-green-600 focus-visible:text-green-700"
+                className="border-b border-[rgba(24,31,43,0.08)] pb-3 text-2xl leading-none text-[hsl(var(--foreground))] transition-colors hover:text-[hsl(var(--primary))]"
                 onClick={onClose}
               >
                 {item.label}

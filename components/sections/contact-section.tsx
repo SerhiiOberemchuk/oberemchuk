@@ -1,7 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+﻿import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Clock, Mail, MapPin, MessageCircle } from "lucide-react"
 import AnimationWrapper from "@/components/animation-wrapper"
 import ContactForm from "@/components/contact-form"
 import { contactEmail, contactEmailHref, contactTelegram, contactTelegramHref } from "@/lib/contact-info"
@@ -45,142 +44,142 @@ export default function ContactSection({
   advantages,
   contactItems
 }: ContactSectionProps) {
-
+  const isEnglish = title === "Let's discuss your project"
+  const contactPitch = isEnglish
+    ? "Direct communication, practical scope, strong next steps."
+    : "Пряма комунікація, практичний scope і сильні наступні кроки."
+  const briefBody = isEnglish
+    ? "Share the task, business context and what success should look like. The conversation should start from substance, not from generic forms."
+    : "Опишіть задачу, бізнес-контекст і те, яким має бути результат. Розмова має стартувати зі змісту, а не з формальності."
   const specializations = ["React", "Next.js", "TypeScript", "Node.js", "SEO", "E-commerce"]
 
   const infoItems = [
     {
-      icon: <Mail className="h-5 w-5" />,
+      icon: Mail,
       label: contactItems.email.label,
       value: contactEmail || contactItems.email.value,
       href: contactEmailHref,
-      external: false,
+      external: false
     },
     {
-      icon: <MessageCircle className="h-5 w-5" />,
+      icon: MessageCircle,
       label: contactItems.telegram.label,
       value: contactTelegram || contactItems.telegram.value,
       href: contactTelegramHref,
-      external: true,
+      external: true
     },
     {
-      icon: <MapPin className="h-5 w-5" />,
+      icon: MapPin,
       label: contactItems.workMode.label,
-      value: contactItems.workMode.value,
+      value: contactItems.workMode.value
     },
     {
-      icon: <Clock className="h-5 w-5" />,
+      icon: Clock,
       label: contactItems.workRhythm.label,
-      value: contactItems.workRhythm.value,
-    },
+      value: contactItems.workRhythm.value
+    }
   ]
 
   return (
-    <section id="contact" className="py-20 bg-gray-50" aria-labelledby="contact-title">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="px-4 py-24 md:px-6" aria-labelledby="contact-title">
+      <div className="mx-auto max-w-7xl">
         <AnimationWrapper animation="fade-in">
-          <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4">
-              {badge}
-            </Badge>
-            <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {description}
-            </p>
+          <div className="mb-16 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+            <div>
+              <Badge variant="secondary" className="mb-5">
+                {badge}
+              </Badge>
+              <h2 id="contact-title" className="text-4xl text-[hsl(var(--foreground))] md:text-6xl">{title}</h2>
+            </div>
+            <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">{description}</p>
           </div>
         </AnimationWrapper>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid gap-12 lg:grid-cols-[0.96fr_1.04fr]">
           <AnimationWrapper animation="slide-left">
-            <div>
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle className="text-2xl">{infoTitle}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-4">
-                    {infoItems.map((info) => (
-                      <li key={`${info.label}-${info.value}`} className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">{info.icon}</div>
+            <div className="grid gap-10">
+              <article className="border-t border-[rgba(24,31,43,0.14)] pt-8">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{infoTitle}</p>
+                <p className="max-w-xl text-[2.25rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3rem]">{contactPitch}</p>
+
+                <ul className="mt-8 space-y-5">
+                  {infoItems.map((info) => {
+                    const Icon = info.icon
+                    return (
+                      <li key={`${info.label}-${info.value}`} className="flex items-center gap-4 border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-white">
+                          <Icon className="h-5 w-5 text-[hsl(var(--foreground))]" />
+                        </div>
                         <div>
-                          <div className="font-medium text-gray-900">{info.label}</div>
+                          <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">{info.label}</div>
                           {info.href ? (
                             <a
                               href={info.href}
-                              className="text-blue-600 hover:text-blue-700 transition-colors"
+                              className="mt-1 inline-flex items-center gap-2 text-base text-[hsl(var(--foreground))] transition-colors hover:text-[hsl(var(--primary))]"
                               target={info.external ? "_blank" : undefined}
                               rel={info.external ? "noopener noreferrer" : undefined}
                             >
                               {info.value}
+                              <ArrowUpRight className="h-4 w-4" />
                             </a>
                           ) : (
-                            <div className="text-gray-600">{info.value}</div>
+                            <div className="mt-1 text-base text-[hsl(var(--foreground))]">{info.value}</div>
                           )}
                         </div>
                       </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                    )
+                  })}
+                </ul>
+              </article>
 
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle className="text-xl">{startTitle}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="grid grid-cols-2 gap-4">
+              <div className="grid gap-8 md:grid-cols-[0.92fr_1.08fr]">
+                <article className="border-t border-[rgba(24,31,43,0.14)] pt-6">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{startTitle}</p>
+                  <ul className="space-y-3">
                     {advantages.map((advantage) => (
-                      <li key={advantage} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">{advantage}</span>
+                      <li key={advantage} className="border-b border-[rgba(24,31,43,0.08)] pb-3 text-sm leading-7 text-[hsl(var(--foreground))]">
+                        {advantage}
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                </article>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-xl">{stackTitle}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="flex flex-wrap gap-2">
+                <article className="border-l border-[rgba(24,31,43,0.08)] pl-6">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{stackTitle}</p>
+                  <ul className="flex flex-wrap gap-3">
                     {specializations.map((spec) => (
                       <li key={spec}>
-                        <Badge variant="secondary">
-                          {spec}
-                        </Badge>
+                        <Badge variant="secondary">{spec}</Badge>
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
-
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button asChild className="flex-1">
-                  <a href={contactEmailHref}>{emailCta}</a>
-                </Button>
-                <Button asChild variant="outline" className="flex-1 bg-transparent">
-                  <a href={contactTelegramHref} target="_blank" rel="noopener noreferrer">
-                    {telegramCta}
-                  </a>
-                </Button>
+                  <div className="mt-8 flex flex-col gap-4">
+                    <Button asChild>
+                      <a href={contactEmailHref}>{emailCta}</a>
+                    </Button>
+                    <Button asChild variant="outline">
+                      <a href={contactTelegramHref} target="_blank" rel="noopener noreferrer">
+                        {telegramCta}
+                      </a>
+                    </Button>
+                  </div>
+                </article>
               </div>
             </div>
           </AnimationWrapper>
 
           <AnimationWrapper animation="slide-right">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">{briefTitle}</CardTitle>
-                <p className="text-gray-600">
-                  {briefDescription}
-                </p>
-              </CardHeader>
-              <CardContent>
+            <div className="border-t border-[rgba(24,31,43,0.14)] pt-8">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{briefTitle}</p>
+              <p className="max-w-2xl text-[2.3rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3.2rem]">{briefDescription}</p>
+              <p className="mt-4 max-w-2xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
+                {briefBody}
+              </p>
+
+              <div className="mt-8 border border-[rgba(24,31,43,0.08)] bg-white p-6 shadow-[0_18px_60px_rgba(24,31,43,0.05)] md:p-8">
                 <ContactForm />
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </AnimationWrapper>
         </div>
       </div>

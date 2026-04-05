@@ -35,7 +35,7 @@ export default function SeoText({
       <Button
         variant="ghost"
         size="sm"
-        className="mx-auto mt-2 flex items-center text-green-600"
+        className="mx-auto mt-2 flex items-center text-[hsl(var(--primary))]"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         {isExpanded ? (

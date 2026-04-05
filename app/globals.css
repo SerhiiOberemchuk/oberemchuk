@@ -1,67 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-
+  --background: 210 29% 98%;
+  --foreground: 222 32% 10%;
   --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-
-  --primary: 142 76% 30%;
-  --primary-foreground: 0 0% 100%;
-
-  --secondary: 142 14% 95%;
-  --secondary-foreground: 142 50% 20%;
-
-  --muted: 142 14% 95%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-
-  --accent: 142 14% 95%;
-  --accent-foreground: 142 50% 20%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 142 76% 30%;
-
-  --radius: 0.5rem;
+  --card-foreground: 222 32% 10%;
+  --popover: 210 29% 99%;
+  --popover-foreground: 222 32% 10%;
+  --primary: 14 84% 51%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 24% 95%;
+  --secondary-foreground: 222 24% 18%;
+  --muted: 210 22% 94%;
+  --muted-foreground: 220 10% 40%;
+  --accent: 211 31% 91%;
+  --accent-foreground: 222 24% 18%;
+  --destructive: 0 72% 52%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 18% 86%;
+  --input: 214 20% 90%;
+  --ring: 14 84% 51%;
+  --radius: 1.5rem;
+  --shadow-soft: 0 18px 60px rgba(24, 31, 43, 0.08);
+  --shadow-strong: 0 24px 80px rgba(24, 31, 43, 0.14);
 }
 
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
-
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
-
-  --primary: 142 70% 45%;
-  --primary-foreground: 0 0% 100%;
-
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
-
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 142 70% 45%;
+  --background: 220 29% 8%;
+  --foreground: 36 35% 93%;
+  --card: 220 24% 10%;
+  --card-foreground: 36 35% 93%;
+  --popover: 220 24% 10%;
+  --popover-foreground: 36 35% 93%;
+  --primary: 22 82% 58%;
+  --primary-foreground: 220 29% 8%;
+  --secondary: 220 14% 18%;
+  --secondary-foreground: 36 35% 93%;
+  --muted: 220 15% 16%;
+  --muted-foreground: 36 14% 72%;
+  --accent: 155 20% 24%;
+  --accent-foreground: 36 35% 93%;
+  --destructive: 0 62% 44%;
+  --destructive-foreground: 36 35% 93%;
+  --border: 220 14% 18%;
+  --input: 220 14% 18%;
+  --ring: 22 82% 58%;
 }
 
 @theme inline {
@@ -101,13 +87,46 @@
   }
 
   body {
-    @apply bg-background text-foreground overflow-x-hidden;
+    @apply overflow-x-hidden bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(circle at top right, rgba(92, 116, 150, 0.08), transparent 18%),
+      linear-gradient(180deg, rgba(252, 254, 255, 0.99), rgba(247, 250, 252, 1));
+    background-color: hsl(var(--background));
+  }
+
+  body[data-scroll-locked] {
+    overflow: auto !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
   }
 
   html {
     overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-gutter: stable;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.16);
+    color: hsl(var(--foreground));
+  }
+
+  body,
+  input,
+  textarea,
+  button,
+  select {
+    font-family: "Manrope", var(--font-sans), sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Cormorant Garamond", var(--font-display), serif;
+    letter-spacing: -0.04em;
   }
 
   a:focus-visible,
@@ -120,6 +139,19 @@
       0 0 0 2px hsl(var(--background)),
       0 0 0 4px hsl(var(--ring));
   }
+}
+
+@utility shell {
+  @apply rounded-[32px] border border-white/60 bg-white/72 backdrop-blur-xl;
+  box-shadow: var(--shadow-soft);
+}
+
+@utility ink {
+  @apply text-[hsl(var(--foreground))];
+}
+
+@utility caption {
+  @apply text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-[hsl(var(--muted-foreground))];
 }
 
 .mask-linear-gradient {
@@ -248,7 +280,7 @@
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #10b981;
+  background-color: #d4652d;
   opacity: 1;
   width: 10px;
   height: 10px;
@@ -348,6 +380,67 @@
 
 .prose strong {
   font-weight: 600;
+}
+
+.legal-prose {
+  color: hsl(var(--muted-foreground));
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.legal-prose h2 {
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  color: hsl(var(--foreground));
+  font-family: "Manrope", var(--font-sans), sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.legal-prose h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: hsl(var(--foreground));
+  font-family: "Manrope", var(--font-sans), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.legal-prose p {
+  margin-top: 0.9rem;
+  max-width: 74ch;
+}
+
+.legal-prose ul {
+  margin-top: 1rem;
+  max-width: 74ch;
+  padding-left: 1.2rem;
+}
+
+.legal-prose li {
+  margin-top: 0.7rem;
+}
+
+.legal-prose a {
+  color: hsl(var(--foreground));
+  text-decoration: underline;
+  text-decoration-color: rgba(24, 31, 43, 0.22);
+  text-underline-offset: 0.18em;
+}
+
+.legal-prose strong {
+  color: hsl(var(--foreground));
+}
+
+.legal-prose h2:first-child,
+.legal-prose h3:first-child,
+.legal-prose p:first-child {
+  margin-top: 0;
 }
 
 @keyframes pulse {
