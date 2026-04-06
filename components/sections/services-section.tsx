@@ -1,33 +1,40 @@
-﻿import { ArrowUpRight, Globe, Monitor, ShoppingCart, Sparkles, Workflow } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import AnimationWrapper from "@/components/animation-wrapper"
-import SmoothScrollLink from "@/components/smooth-scroll-link"
-import { Link } from "@/i18n/navigation"
+﻿import {
+  ArrowUpRight,
+  Globe,
+  Monitor,
+  ShoppingCart,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import AnimationWrapper from "@/components/animation-wrapper";
+import SmoothScrollLink from "@/components/smooth-scroll-link";
+import { Link } from "@/i18n/navigation";
 
 type ServiceItem = {
-  title: string
-  description: string
-  price: string
-  features: string[]
-}
+  title: string;
+  description: string;
+  price: string;
+  features: string[];
+};
 
 type AdvantageItem = {
-  title: string
-  description: string
-}
+  title: string;
+  description: string;
+};
 
 type ServicesSectionProps = {
-  title: string
-  subtitle: string
-  popularBadge: string
-  detailsCta: string
-  approachTitle: string
-  estimateTitle: string
-  estimateDescription: string
-  estimateCta: string
-  servicesContent: ServiceItem[]
-  advantages: AdvantageItem[]
-}
+  title: string;
+  subtitle: string;
+  popularBadge: string;
+  detailsCta: string;
+  approachTitle: string;
+  estimateTitle: string;
+  estimateDescription: string;
+  estimateCta: string;
+  servicesContent: ServiceItem[];
+  advantages: AdvantageItem[];
+};
 
 export default function ServicesSection({
   title,
@@ -39,37 +46,66 @@ export default function ServicesSection({
   estimateDescription,
   estimateCta,
   servicesContent,
-  advantages
+  advantages,
 }: ServicesSectionProps) {
-  const isEnglish = title === "Services"
-  const sectionLabel = isEnglish ? "Services" : "Послуги"
+  const isEnglish = title === "Services";
+  const sectionLabel = isEnglish ? "Services" : "Послуги";
   const estimatePitch = isEnglish
     ? "Defined scope, clean packaging and realistic delivery logic."
-    : "Чіткий scope, зібране пакування і реалістична логіка реалізації."
+    : "Чіткий scope, зібране пакування і реалістична логіка реалізації.";
 
   const services = [
-    { icon: Monitor, href: "/services/landing-pages", popular: false, ...servicesContent[0] },
-    { icon: Sparkles, href: "/services/corporate-websites", popular: true, ...servicesContent[1] },
-    { icon: ShoppingCart, href: "/services/ecommerce-development", popular: false, ...servicesContent[2] },
-    { icon: Workflow, href: "/services/web-app-development", popular: false, ...servicesContent[3] }
-  ]
+    {
+      icon: Monitor,
+      href: "/services/landing-pages",
+      popular: false,
+      ...servicesContent[0],
+    },
+    {
+      icon: Sparkles,
+      href: "/services/corporate-websites",
+      popular: true,
+      ...servicesContent[1],
+    },
+    {
+      icon: ShoppingCart,
+      href: "/services/ecommerce-development",
+      popular: false,
+      ...servicesContent[2],
+    },
+    {
+      icon: Workflow,
+      href: "/services/web-app-development",
+      popular: false,
+      ...servicesContent[3],
+    },
+  ];
 
-  const advantageIcons = [Globe, Sparkles, Workflow]
+  const advantageIcons = [Globe, Sparkles, Workflow];
 
   return (
-    <section id="services" className="px-4 py-24 md:px-6" aria-labelledby="services-title">
+    <section
+      id="services"
+      className="px-4 py-24 md:px-6"
+      aria-labelledby="services-title"
+    >
       <div className="mx-auto max-w-7xl">
         <AnimationWrapper animation="fade-in">
           <div className="mb-16 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
                 {sectionLabel}
               </p>
-              <h2 id="services-title" className="text-4xl text-[hsl(var(--foreground))] md:text-6xl">
+              <h2
+                id="services-title"
+                className="text-4xl text-[hsl(var(--foreground))] md:text-6xl"
+              >
                 {title}
               </h2>
             </div>
-            <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">{subtitle}</p>
+            <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
+              {subtitle}
+            </p>
           </div>
         </AnimationWrapper>
 
@@ -79,24 +115,29 @@ export default function ServicesSection({
               <article className="border-t border-[rgba(24,31,43,0.14)] pt-8">
                 <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                   <div className="max-w-3xl">
-                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
+                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
                       {services[1].price}
                     </p>
                     <h3 className="mt-3 text-[3.4rem] leading-[0.95] text-[hsl(var(--foreground))] md:text-[4.8rem]">
                       {services[1].title}
                     </h3>
                   </div>
-                  <span className="inline-flex w-fit rounded-full border border-[rgba(24,31,43,0.1)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
+                  <span className="inline-flex w-fit rounded-full border border-[rgba(24,31,43,0.1)] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
                     {popularBadge}
                   </span>
                 </div>
 
                 <div className="mt-8 grid gap-8 lg:grid-cols-[0.88fr_0.12fr]">
                   <div>
-                    <p className="max-w-2xl text-base leading-8 text-[hsl(var(--muted-foreground))]">{services[1].description}</p>
+                    <p className="max-w-2xl text-base leading-8 text-muted-foreground">
+                      {services[1].description}
+                    </p>
                     <ul className="mt-7 grid gap-3 sm:grid-cols-2">
                       {services[1].features.map((feature) => (
-                        <li key={feature} className="border-b border-[rgba(24,31,43,0.08)] pb-3 text-sm leading-7 text-[hsl(var(--foreground))]">
+                        <li
+                          key={feature}
+                          className="border-b border-[rgba(24,31,43,0.08)] pb-3 text-sm leading-7 text-[hsl(var(--foreground))]"
+                        >
                           {feature}
                         </li>
                       ))}
@@ -105,7 +146,10 @@ export default function ServicesSection({
 
                   <div className="lg:flex lg:justify-end">
                     <Button asChild className="w-fit">
-                      <Link href={services[1].href}>
+                      <Link
+                        href={services[1].href}
+                        aria-label={services[1].description}
+                      >
                         {detailsCta}
                         <ArrowUpRight className="h-4 w-4" />
                       </Link>
@@ -115,33 +159,40 @@ export default function ServicesSection({
               </article>
 
               <div className="grid gap-0 border-y border-[rgba(24,31,43,0.12)]">
-                {[services[0], services[2], services[3]].map((service, index) => {
-                  const Icon = service.icon
-                  return (
-                    <article
-                      key={service.href}
-                      className={`grid gap-6 py-6 md:grid-cols-[auto_1fr_auto] md:items-start ${index !== 0 ? "border-t border-[rgba(24,31,43,0.08)]" : ""}`}
-                    >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-white text-[hsl(var(--foreground))]">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
-                          {service.price}
-                        </p>
-                        <h3 className="mt-2 text-[1.85rem] leading-tight text-[hsl(var(--foreground))]">{service.title}</h3>
-                        <p className="mt-3 max-w-2xl text-sm leading-7 text-[hsl(var(--muted-foreground))]">{service.description}</p>
-                      </div>
-                      <Link
-                        href={service.href}
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-[hsl(var(--foreground))] transition-colors hover:text-[hsl(var(--primary))]"
+                {[services[0], services[2], services[3]].map(
+                  (service, index) => {
+                    const Icon = service.icon;
+                    return (
+                      <article
+                        key={service.href}
+                        className={`grid gap-6 py-6 md:grid-cols-[auto_1fr_auto] md:items-start ${index !== 0 ? "border-t border-[rgba(24,31,43,0.08)]" : ""}`}
                       >
-                        {detailsCta}
-                        <ArrowUpRight className="h-4 w-4" />
-                      </Link>
-                    </article>
-                  )
-                })}
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-white text-[hsl(var(--foreground))]">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                            {service.price}
+                          </p>
+                          <h3 className="mt-2 text-[1.85rem] leading-tight text-[hsl(var(--foreground))]">
+                            {service.title}
+                          </h3>
+                          <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
+                            {service.description}
+                          </p>
+                        </div>
+                        <Link
+                          href={service.href}
+                          aria-label={service.description}
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-[hsl(var(--foreground))] transition-colors hover:text-primary"
+                        >
+                          {detailsCta}
+                          <ArrowUpRight className="h-4 w-4" />
+                        </Link>
+                      </article>
+                    );
+                  },
+                )}
               </div>
             </div>
           </AnimationWrapper>
@@ -149,35 +200,42 @@ export default function ServicesSection({
           <AnimationWrapper animation="slide-right">
             <div className="grid gap-10">
               <article className="border-t border-[rgba(24,31,43,0.14)] pt-8">
-                <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
                   {approachTitle}
                 </p>
                 <ul className="space-y-5">
                   {advantages.map((advantage, index) => {
-                    const Icon = advantageIcons[index] ?? Globe
+                    const Icon = advantageIcons[index] ?? Globe;
                     return (
-                      <li key={advantage.title} className="grid gap-3 border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0">
+                      <li
+                        key={advantage.title}
+                        className="grid gap-3 border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0"
+                      >
                         <div className="flex items-center gap-3">
                           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(24,31,43,0.06)] text-[hsl(var(--foreground))]">
                             <Icon className="h-4 w-4" />
                           </div>
-                          <h3 className="text-xl text-[hsl(var(--foreground))]">{advantage.title}</h3>
+                          <h3 className="text-xl text-[hsl(var(--foreground))]">
+                            {advantage.title}
+                          </h3>
                         </div>
-                        <p className="pl-13 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{advantage.description}</p>
+                        <p className="pl-13 text-sm leading-7 text-muted-foreground">
+                          {advantage.description}
+                        </p>
                       </li>
-                    )
+                    );
                   })}
                 </ul>
               </article>
 
               <article className="border-l border-[rgba(24,31,43,0.08)] pl-6">
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
                   {estimateTitle}
                 </p>
                 <p className="text-3xl leading-[1.06] text-[hsl(var(--foreground))] md:text-[2.7rem]">
                   {estimatePitch}
                 </p>
-                <p className="mt-5 text-base leading-8 text-[hsl(var(--muted-foreground))]">
+                <p className="mt-5 text-base leading-8 text-muted-foreground">
                   {estimateDescription}
                 </p>
                 <Button asChild size="lg" className="mt-8">
@@ -192,5 +250,5 @@ export default function ServicesSection({
         </div>
       </div>
     </section>
-  )
+  );
 }
