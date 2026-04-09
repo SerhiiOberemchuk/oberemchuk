@@ -3,7 +3,7 @@
 import {useState} from "react";
 import Image from "next/image";
 import {ChevronLeft, ChevronRight} from "lucide-react";
-import {useTranslations} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import {Link} from "@/i18n/navigation";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent} from "@/components/ui/card";
@@ -16,8 +16,11 @@ type ProjectsSliderProps = {
 
 export default function ProjectsSlider({projects}: ProjectsSliderProps) {
   const t = useTranslations("ProjectsSlider");
+  const locale = useLocale();
   const sliderProjects = projects.slice(0, 6);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const detailsLabel = (title: string) =>
+    locale === "en" ? `View ${title}` : `Переглянути ${title}`;
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % sliderProjects.length);
@@ -69,7 +72,7 @@ export default function ProjectsSlider({projects}: ProjectsSliderProps) {
                       <p className="mb-4 line-clamp-2 text-gray-200">{project.description}</p>
                       <Link href={`/portfolio/${project.slug}`}>
                         <Button variant="secondary" size="sm">
-                          {t("detailsCta")}
+                          {detailsLabel(project.title)}
                         </Button>
                       </Link>
                     </CardContent>

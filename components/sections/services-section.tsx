@@ -53,6 +53,8 @@ export default function ServicesSection({
   const estimatePitch = isEnglish
     ? "Defined scope, clean packaging and realistic delivery logic."
     : "Чіткий scope, зібране пакування і реалістична логіка реалізації.";
+  const getDetailsLabel = (serviceTitle: string) =>
+    isEnglish ? `View ${serviceTitle}` : `Переглянути ${serviceTitle}`;
 
   const services = [
     {
@@ -150,7 +152,7 @@ export default function ServicesSection({
                         href={services[1].href}
                         aria-label={services[1].description}
                       >
-                        {detailsCta}
+                        {getDetailsLabel(services[1].title)}
                         <ArrowUpRight className="h-4 w-4" />
                       </Link>
                     </Button>
@@ -186,7 +188,7 @@ export default function ServicesSection({
                           aria-label={service.description}
                           className="inline-flex items-center gap-2 text-sm font-semibold text-[hsl(var(--foreground))] transition-colors hover:text-primary"
                         >
-                          {detailsCta}
+                          {getDetailsLabel(service.title)}
                           <ArrowUpRight className="h-4 w-4" />
                         </Link>
                       </article>

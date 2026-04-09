@@ -4,11 +4,14 @@ import { servicePageSlugs } from "@/lib/service-pages"
 
 
 type SitemapEntry = {
+  path: string
   loc: string
   lastmod: string
   changefreq: "yearly" | "monthly" | "weekly" | "daily"
   priority: string
 }
+
+const baseUrl = (process.env.SITE_URL || "https://www.oberemchuk.site").replace(/\/+$/, "")
 
 function toLastMod(value?: string): string {
   if (!value) {
@@ -29,9 +32,17 @@ function escapeXml(value: string): string {
 }
 
 function renderUrl(entry: SitemapEntry): string {
+  const defaultHref = `${baseUrl}${entry.path || "/"}`
+  const englishHref = `${baseUrl}${entry.path ? `/en${entry.path}` : "/en"}`
+
   return [
     "  <url>",
     `    <loc>${escapeXml(entry.loc)}</loc>`,
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(defaultHref)}" />`,
+    `    <xhtml:link rel="alternate" hreflang="uk" href="${escapeXml(defaultHref)}" />`,
+    `    <xhtml:link rel="alternate" hreflang="uk-UA" href="${escapeXml(defaultHref)}" />`,
+    `    <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(englishHref)}" />`,
+    `    <xhtml:link rel="alternate" hreflang="en-GB" href="${escapeXml(englishHref)}" />`,
     `    <lastmod>${entry.lastmod}</lastmod>`,
     `    <changefreq>${entry.changefreq}</changefreq>`,
     `    <priority>${entry.priority}</priority>`,
@@ -59,6 +70,7 @@ export async function GET() {
 
   const staticPages: SitemapEntry[] = locales.flatMap((locale) =>
     staticPaths.map((entry) => ({
+      path: entry.path,
       loc: `${baseUrl}${getLocalizedPath(locale, entry.path)}`,
       lastmod: staticPagesLastMod,
       changefreq: entry.changefreq,
@@ -69,6 +81,7 @@ export async function GET() {
   const projects = await getProjects()
   const projectPages: SitemapEntry[] = locales.flatMap((locale) =>
     projects.map((project) => ({
+      path: `/portfolio/${project.slug}`,
       loc: `${baseUrl}${getLocalizedPath(locale, `/portfolio/${project.slug}`)}`,
       lastmod: toLastMod(project.updated_at),
       changefreq: "monthly",
@@ -79,7 +92,7 @@ export async function GET() {
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     "",
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     ...[...staticPages, ...projectPages].map(renderUrl),
     "</urlset>",
   ].join("\n")
@@ -91,3 +104,4 @@ export async function GET() {
     },
   })
 }
+

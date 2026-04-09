@@ -16,6 +16,7 @@ export function getLanguageAlternates(path = ""): NonNullable<Metadata["alternat
   const normalizedPath = normalizePath(path);
 
   return {
+    "x-default": normalizedPath || "/",
     "uk-UA": normalizedPath || "/",
     uk: normalizedPath || "/",
     "en-GB": `/en${normalizedPath}`,
