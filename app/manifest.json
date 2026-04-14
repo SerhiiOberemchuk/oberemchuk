@@ -1,7 +1,7 @@
 {
   "name": "Serhii Oberemchuk - Web Developer",
   "short_name": "Serhii Oberemchuk",
-  "description": "Premium websites, web applications and technical SEO for companies across Europe.",
+  "description": "Premium websites, web applications and technical SEO for companies across markets.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fbf5ee",
@@ -27,3 +27,4 @@
   "scope": "/",
   "id": "oberemchuk-web-developer"
 }
+

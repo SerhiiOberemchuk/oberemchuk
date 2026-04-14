@@ -4,28 +4,28 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: 210 29% 98%;
-  --foreground: 222 32% 10%;
+  --background: 39 15% 90%;
+  --foreground: 0 0% 7%;
   --card: 0 0% 100%;
-  --card-foreground: 222 32% 10%;
-  --popover: 210 29% 99%;
-  --popover-foreground: 222 32% 10%;
-  --primary: 14 84% 51%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 24% 95%;
-  --secondary-foreground: 222 24% 18%;
-  --muted: 210 22% 94%;
-  --muted-foreground: 220 10% 40%;
-  --accent: 211 31% 91%;
-  --accent-foreground: 222 24% 18%;
+  --card-foreground: 0 0% 7%;
+  --popover: 39 20% 95%;
+  --popover-foreground: 0 0% 7%;
+  --primary: 18 62% 48%;
+  --primary-foreground: 36 25% 97%;
+  --secondary: 32 17% 92%;
+  --secondary-foreground: 0 0% 7%;
+  --muted: 30 14% 88%;
+  --muted-foreground: 0 0% 28%;
+  --accent: 27 30% 80%;
+  --accent-foreground: 0 0% 7%;
   --destructive: 0 72% 52%;
   --destructive-foreground: 0 0% 100%;
-  --border: 214 18% 86%;
-  --input: 214 20% 90%;
-  --ring: 14 84% 51%;
-  --radius: 1.5rem;
-  --shadow-soft: 0 18px 60px rgba(24, 31, 43, 0.08);
-  --shadow-strong: 0 24px 80px rgba(24, 31, 43, 0.14);
+  --border: 28 11% 74%;
+  --input: 30 12% 86%;
+  --ring: 18 62% 48%;
+  --radius: 0.35rem;
+  --shadow-soft: 0 18px 48px rgba(17, 17, 17, 0.08);
+  --shadow-strong: 0 26px 80px rgba(17, 17, 17, 0.16);
 }
 
 .dark {
@@ -89,8 +89,9 @@
   body {
     @apply overflow-x-hidden bg-background text-foreground antialiased;
     background-image:
-      radial-gradient(circle at top right, rgba(92, 116, 150, 0.08), transparent 18%),
-      linear-gradient(180deg, rgba(252, 254, 255, 0.99), rgba(247, 250, 252, 1));
+      radial-gradient(circle at 7% 8%, rgba(198, 90, 46, 0.11), transparent 22%),
+      radial-gradient(circle at 88% 12%, rgba(0, 0, 0, 0.03), transparent 18%),
+      linear-gradient(180deg, rgba(234, 231, 226, 0.99), rgba(238, 235, 230, 1));
     background-color: hsl(var(--background));
   }
 
@@ -126,7 +127,8 @@
   h5,
   h6 {
     font-family: "Cormorant Garamond", var(--font-display), serif;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
+    font-weight: 600;
   }
 
   a:focus-visible,
@@ -142,7 +144,7 @@
 }
 
 @utility shell {
-  @apply rounded-[32px] border border-white/60 bg-white/72 backdrop-blur-xl;
+  @apply border border-white/60 bg-white/68 backdrop-blur-xl;
   box-shadow: var(--shadow-soft);
 }
 
@@ -152,6 +154,91 @@
 
 @utility caption {
   @apply text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-[hsl(var(--muted-foreground))];
+}
+
+.editorial-divider {
+  position: relative;
+}
+
+.editorial-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(24, 31, 43, 0.58), rgba(24, 31, 43, 0.12) 34%, rgba(24, 31, 43, 0.03) 100%);
+}
+
+.editorial-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+.editorial-surface {
+  border: 1px solid rgba(17, 17, 17, 0.09);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.56)),
+    linear-gradient(135deg, rgba(249, 245, 239, 0.52), rgba(232, 225, 216, 0.16));
+  box-shadow: var(--shadow-soft);
+}
+
+.premium-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at top right, rgba(198, 90, 46, 0.26), transparent 24%),
+    radial-gradient(circle at 22% 24%, rgba(198, 90, 46, 0.12), transparent 20%),
+    linear-gradient(180deg, rgba(19, 18, 17, 0.99), rgba(11, 11, 11, 0.99));
+  box-shadow: 0 28px 90px rgba(17, 17, 17, 0.32);
+}
+
+.premium-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.04)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+  background-size: auto, auto, 180px 180px;
+  pointer-events: none;
+}
+
+.premium-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 90%);
+  pointer-events: none;
+}
+
+.premium-glow {
+  position: absolute;
+  inset: auto auto 8% -8%;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(198, 90, 46, 0.28), transparent 70%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.hero-orbit-wrap {
+  transform: translateY(0);
+  transition: transform 600ms ease, opacity 600ms ease;
+  will-change: transform;
+}
+
+.premium-panel:hover .hero-orbit-wrap {
+  transform: translateY(-6px) scale(1.01);
 }
 
 .mask-linear-gradient {
@@ -187,11 +274,15 @@
 
 .animate-fade-in {
   opacity: 0;
-  transition: opacity 0.8s ease-out;
+  transform: translateY(10px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
 }
 
 .animate-fade-in.in-view {
   opacity: 1;
+  transform: translateY(0);
 }
 
 .animate-slide-up {
@@ -457,4 +548,58 @@
 
 .scroll-to-top-pulse {
   animation: pulse 2s infinite;
+}
+
+@keyframes orbitSpinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes orbitPulse {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+.orbit-spin-slow {
+  transform-origin: 210px 210px;
+  animation: orbitSpinSlow 26s linear infinite;
+}
+
+.orbit-spin-slower {
+  transform-origin: 210px 210px;
+  animation: orbitSpinSlow 38s linear infinite;
+}
+
+.orbit-spin-reverse {
+  transform-origin: 210px 210px;
+  animation: orbitSpinReverse 32s linear infinite;
+}
+
+.orbit-pulse {
+  transform-origin: center;
+  animation: orbitPulse 2.8s ease-in-out infinite;
+}
+
+.orbit-pulse-delay {
+  transform-origin: center;
+  animation: orbitPulse 2.8s ease-in-out 1.2s infinite;
 }

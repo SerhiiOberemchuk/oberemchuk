@@ -1,4 +1,3 @@
-﻿import { Code, Palette, Search, Server, Smartphone } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import AnimationWrapper from "@/components/animation-wrapper"
 
@@ -34,17 +33,27 @@ export default function AboutSection({
   technologiesTitle,
   paragraphs,
   skills,
-  process,
-  summaryStats
+  process
 }: AboutSectionProps) {
   const isEnglish = title === "About me"
-  const positioningLabel = isEnglish ? "Positioning" : "Позиціонування"
+  const positioningLabel = isEnglish ? "Working principles" : "Принципи роботи"
   const manifesto = isEnglish
-    ? "I work where product clarity, digital taste and technical rigor need to hold together."
-    : "Працюю там, де продуктова ясність, цифровий смак і технічна строгість мають триматися разом."
+    ? "The work is strongest when positioning, interface thinking and implementation quality are treated as one decision system."
+    : "Найсильніший результат виходить тоді, коли позиціонування, інтерфейсне мислення і якість реалізації зібрані в одну систему рішень."
   const toolingLabel = isEnglish ? "Selected stack and delivery tools" : "Ключовий стек і робочі інструменти"
   const technologies = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Figma", "SEO"]
-  const skillIcons = [Code, Server, Palette, Search, Smartphone]
+  const skillCodes = ["01", "02", "03", "04", "05"]
+  const methodLabel = isEnglish ? "Method" : "Метод"
+  const framingTitle = isEnglish ? "What clients actually buy here" : "Що тут реально купує клієнт"
+  const framingPoints = isEnglish
+    ? [
+        "A sharper digital position, not just a nicer screen.",
+        "One accountable layer from structure to release."
+      ]
+    : [
+        "Чіткішу цифрову позицію, а не просто приємніший екран.",
+        "Один відповідальний контур від структури до релізу."
+      ]
 
   return (
     <section id="about" className="px-4 py-24 md:px-6" aria-labelledby="about-title">
@@ -52,9 +61,7 @@ export default function AboutSection({
         <AnimationWrapper animation="fade-in">
           <div className="mb-16 grid gap-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {positioningLabel}
-              </p>
+              <p className="mb-4 editorial-kicker">{positioningLabel}</p>
               <h2 id="about-title" className="text-4xl text-[hsl(var(--foreground))] md:text-6xl">
                 {title}
               </h2>
@@ -66,19 +73,24 @@ export default function AboutSection({
         <div className="grid gap-12 lg:grid-cols-[1.02fr_0.98fr]">
           <AnimationWrapper animation="slide-left">
             <div className="space-y-10">
-              <div className="border-t border-[rgba(24,31,43,0.14)] pt-8">
-                <p className="max-w-4xl text-[2.4rem] leading-[1.03] text-[hsl(var(--foreground))] md:text-[3.6rem]">
+              <div className="editorial-divider pt-8">
+                <p className="max-w-4xl text-[2.35rem] leading-[1.01] text-[hsl(var(--foreground))] md:text-[3.65rem]">
                   {manifesto}
                 </p>
               </div>
 
-              <div className="grid gap-5 md:grid-cols-4">
-                {summaryStats.map((stat) => (
-                  <div key={`${stat.value}-${stat.label}`} className="border-t border-[rgba(24,31,43,0.12)] pt-4">
-                    <p className="text-[2.4rem] leading-none text-[hsl(var(--foreground))] md:text-[3rem]">{stat.value}</p>
-                    <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
-                      {stat.label}
-                    </p>
+              <div className="grid gap-6 md:grid-cols-2">
+                {framingPoints.map((point, index) => (
+                  <div key={point} className={index === 1 ? "premium-panel p-6 text-white" : "editorial-surface p-6"}>
+                    {index === 1 ? <div className="premium-grid" /> : null}
+                    <div className="relative z-10">
+                      <p className={`mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.24em] ${index === 1 ? "text-white/56" : "text-[hsl(var(--muted-foreground))]"}`}>
+                        {framingTitle}
+                      </p>
+                      <p className={`text-[1.7rem] leading-[1.02] md:text-[2rem] ${index === 1 ? "text-white" : "text-[hsl(var(--foreground))]"}`}>
+                        {point}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -93,37 +105,33 @@ export default function AboutSection({
 
           <AnimationWrapper animation="slide-right">
             <div className="grid gap-10">
-              <div className="grid gap-5 border-t border-[rgba(24,31,43,0.14)] pt-8">
+              <div className="grid gap-5 editorial-divider pt-8">
                 <div className="flex items-center justify-between gap-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                    {skillsTitle}
-                  </p>
+                  <p className="editorial-kicker">{skillsTitle}</p>
                   <p className="text-sm text-[hsl(var(--muted-foreground))]">{valueTitle}</p>
                 </div>
 
                 <ul className="grid gap-5">
-                  {skills.map((skill, index) => {
-                    const Icon = skillIcons[index] ?? Code
-                    return (
-                      <li key={skill.title} className="grid gap-3 border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0">
-                        <div className="flex items-center gap-4">
-                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-white text-[hsl(var(--foreground))]">
-                            <Icon className="h-4 w-4" />
-                          </div>
-                          <h3 className="text-[1.45rem] leading-tight text-[hsl(var(--foreground))]">{skill.title}</h3>
-                        </div>
-                        <p className="pl-15 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{skill.description}</p>
-                      </li>
-                    )
-                  })}
+                  {skills.map((skill, index) => (
+                    <li
+                      key={skill.title}
+                      className="grid gap-3 border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0 md:grid-cols-[auto_1fr] md:gap-5"
+                    >
+                      <p className="text-[0.9rem] font-semibold tracking-[0.18em] text-[hsl(var(--primary))]">
+                        {skillCodes[index] ?? "00"}
+                      </p>
+                      <div>
+                        <h3 className="text-[1.45rem] leading-tight text-[hsl(var(--foreground))]">{skill.title}</h3>
+                        <p className="mt-3 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{skill.description}</p>
+                      </div>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
               <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
-                <div className="border-t border-[rgba(24,31,43,0.14)] pt-6">
-                  <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                    {processTitle}
-                  </p>
+                <div className="editorial-divider pt-6">
+                  <p className="mb-5 editorial-kicker">{processTitle}</p>
                   <ol className="space-y-5">
                     {process.map((step, index) => (
                       <li key={step.title} className="border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0">
@@ -135,10 +143,12 @@ export default function AboutSection({
                   </ol>
                 </div>
 
-                <div className="border-l border-[rgba(24,31,43,0.08)] pl-6">
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                    {technologiesTitle}
+                <div className="editorial-surface p-6">
+                  <p className="mb-4 editorial-kicker">{methodLabel}</p>
+                  <p className="text-[2rem] leading-[1.02] text-[hsl(var(--foreground))] md:text-[2.4rem]">
+                    {isEnglish ? "One accountable layer from structure to release." : "Один відповідальний контур від структури до релізу."}
                   </p>
+                  <p className="mb-4 mt-6 editorial-kicker">{technologiesTitle}</p>
                   <p className="mb-5 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{toolingLabel}</p>
                   <div className="flex flex-wrap gap-3">
                     {technologies.map((tech) => (

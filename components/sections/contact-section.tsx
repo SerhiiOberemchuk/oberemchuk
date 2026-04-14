@@ -1,4 +1,4 @@
-﻿import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle } from "lucide-react"
+import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import AnimationWrapper from "@/components/animation-wrapper"
@@ -46,11 +46,11 @@ export default function ContactSection({
 }: ContactSectionProps) {
   const isEnglish = title === "Let's discuss your project"
   const contactPitch = isEnglish
-    ? "Direct communication, practical scope, strong next steps."
-    : "Пряма комунікація, практичний scope і сильні наступні кроки."
+    ? "Direct communication, clear scope and a serious next step."
+    : "Пряма комунікація, чіткий scope і сильний наступний крок."
   const briefBody = isEnglish
-    ? "Share the task, business context and what success should look like. The conversation should start from substance, not from generic forms."
-    : "Опишіть задачу, бізнес-контекст і те, яким має бути результат. Розмова має стартувати зі змісту, а не з формальності."
+    ? "Share the task, business context and the outcome that should exist after release. The starting point should be substance, not formality."
+    : "Опишіть задачу, бізнес-контекст і результат, який має існувати після запуску. Стартом має бути зміст, а не формальність."
   const specializations = ["React", "Next.js", "TypeScript", "Node.js", "SEO", "E-commerce"]
 
   const infoItems = [
@@ -95,19 +95,19 @@ export default function ContactSection({
           </div>
         </AnimationWrapper>
 
-        <div className="grid gap-12 lg:grid-cols-[0.96fr_1.04fr]">
+        <div className="grid gap-12 lg:grid-cols-[0.94fr_1.06fr]">
           <AnimationWrapper animation="slide-left">
             <div className="grid gap-10">
-              <article className="border-t border-[rgba(24,31,43,0.14)] pt-8">
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{infoTitle}</p>
-                <p className="max-w-xl text-[2.25rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3rem]">{contactPitch}</p>
+              <article className="editorial-divider pt-8">
+                <p className="mb-4 editorial-kicker">{infoTitle}</p>
+                <p className="max-w-xl text-[2.2rem] leading-[1.03] text-[hsl(var(--foreground))] md:text-[3rem]">{contactPitch}</p>
 
                 <ul className="mt-8 space-y-5">
                   {infoItems.map((info) => {
                     const Icon = info.icon
                     return (
-                      <li key={`${info.label}-${info.value}`} className="flex items-center gap-4 border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-white">
+                      <li key={`${info.label}-${info.value}`} className="flex items-center gap-4 border-b border-[rgba(45,34,24,0.08)] pb-5 last:border-b-0 last:pb-0">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-[rgba(45,34,24,0.08)] bg-white/48">
                           <Icon className="h-5 w-5 text-[hsl(var(--foreground))]" />
                         </div>
                         <div>
@@ -133,19 +133,19 @@ export default function ContactSection({
               </article>
 
               <div className="grid gap-8 md:grid-cols-[0.92fr_1.08fr]">
-                <article className="border-t border-[rgba(24,31,43,0.14)] pt-6">
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{startTitle}</p>
+                <article className="editorial-divider pt-6">
+                  <p className="mb-4 editorial-kicker">{startTitle}</p>
                   <ul className="space-y-3">
                     {advantages.map((advantage) => (
-                      <li key={advantage} className="border-b border-[rgba(24,31,43,0.08)] pb-3 text-sm leading-7 text-[hsl(var(--foreground))]">
+                      <li key={advantage} className="border-b border-[rgba(45,34,24,0.08)] pb-3 text-sm leading-7 text-[hsl(var(--foreground))]">
                         {advantage}
                       </li>
                     ))}
                   </ul>
                 </article>
 
-                <article className="border-l border-[rgba(24,31,43,0.08)] pl-6">
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{stackTitle}</p>
+                <article className="editorial-surface p-6">
+                  <p className="mb-4 editorial-kicker">{stackTitle}</p>
                   <ul className="flex flex-wrap gap-3">
                     {specializations.map((spec) => (
                       <li key={spec}>
@@ -169,14 +169,14 @@ export default function ContactSection({
           </AnimationWrapper>
 
           <AnimationWrapper animation="slide-right">
-            <div className="border-t border-[rgba(24,31,43,0.14)] pt-8">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{briefTitle}</p>
-              <p className="max-w-2xl text-[2.3rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3.2rem]">{briefDescription}</p>
+            <div className="editorial-divider pt-8">
+              <p className="mb-4 editorial-kicker">{briefTitle}</p>
+              <p className="max-w-2xl text-[2.3rem] leading-[1.02] text-[hsl(var(--foreground))] md:text-[3.25rem]">{briefDescription}</p>
               <p className="mt-4 max-w-2xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
                 {briefBody}
               </p>
 
-              <div className="mt-8 border border-[rgba(24,31,43,0.08)] bg-white p-6 shadow-[0_18px_60px_rgba(24,31,43,0.05)] md:p-8">
+              <div className="editorial-surface mt-8 p-6 md:p-8">
                 <ContactForm />
               </div>
             </div>

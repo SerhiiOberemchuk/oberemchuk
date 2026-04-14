@@ -22,9 +22,9 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "landing-pages",
       title: "Розробка landing page під ключ",
       shortTitle: "Landing page",
-      metaTitle: "Розробка landing page під ключ для бізнесу в Європі",
+      metaTitle: "Розробка landing page під ключ для бізнесу",
       metaDescription:
-        "Створюю landing page під ключ для SaaS, сервісних компаній, експертів і локального бізнесу в Європі. Швидкий запуск, сильна структура, SEO-ready база і висока конверсія.",
+        "Створюю landing page під ключ для SaaS, сервісних компаній, експертів і локального бізнесу. Швидкий запуск, сильна структура, SEO-ready база і висока конверсія.",
       heroTitle: "Landing page для запуску реклами, продажів і тесту попиту",
       heroDescription:
         "Підійде, якщо вам потрібна одна сильна сторінка під рекламу, презентацію продукту або збір лідів. Проєктую структуру, збираю контентні блоки, розробляю сторінку на React / Next.js і готую її до аналітики та SEO.",
@@ -33,7 +33,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
         "landing page під ключ",
         "створення лендингу",
         "розробка лендингу для бізнесу",
-        "landing page Europe",
+        "landing page",
         "лендинг для SaaS"
       ],
       outcomes: [
@@ -53,7 +53,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
         "SaaS і tech products",
         "консалтингу та експертних послуг",
         "B2B lead generation",
-        "локальних сервісів у Європі"
+        "локальних сервісів"
       ],
       faq: [
         {
@@ -72,18 +72,18 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "corporate-websites",
       title: "Розробка корпоративних сайтів",
       shortTitle: "Корпоративні сайти",
-      metaTitle: "Розробка корпоративного сайту для компаній у Європі",
+      metaTitle: "Розробка корпоративного сайту для компаній",
       metaDescription:
-        "Розробка корпоративних сайтів для B2B, сервісних і виробничих компаній у Європі. Чітка структура, сильна презентація послуг, SEO і технічна надійність.",
+        "Розробка корпоративних сайтів для B2B, сервісних і виробничих компаній. Чітка структура, сильна презентація послуг, SEO і технічна надійність.",
       heroTitle: "Корпоративний сайт, який пояснює вашу цінність і підтримує продажі",
       heroDescription:
-        "Збираю багатосторінкові сайти для компаній, яким потрібно виглядати надійно, зрозуміло пояснювати послуги й отримувати звернення від нових клієнтів у Європі.",
+        "Збираю багатосторінкові сайти для компаній, яким потрібно виглядати надійно, зрозуміло пояснювати послуги й отримувати звернення від нових клієнтів.",
       priceFrom: "від 1600 EUR",
       keywords: [
         "розробка корпоративного сайту",
         "створення сайту компанії",
         "corporate website development",
-        "B2B website Europe",
+        "B2B website",
         "сайт для сервісної компанії"
       ],
       outcomes: [
@@ -122,9 +122,9 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "ecommerce-development",
       title: "Розробка інтернет-магазинів",
       shortTitle: "Інтернет-магазини",
-      metaTitle: "Розробка інтернет-магазину для брендів і ритейлу в Європі",
+      metaTitle: "Розробка інтернет-магазину для брендів і ритейлу",
       metaDescription:
-        "Створюю інтернет-магазини для брендів і ритейлу в Європі: каталог, картка товару, checkout, інтеграції, SEO-структура і висока швидкість.",
+        "Створюю інтернет-магазини для брендів і ритейлу: каталог, картка товару, checkout, інтеграції, SEO-структура і висока швидкість.",
       heroTitle: "Інтернет-магазин, який зручний у користуванні і не гальмує продажі",
       heroDescription:
         "Працюю з e-commerce проєктами, де важливі швидкість, чистий UX, SEO-категорії та технічна готовність до росту асортименту, маркетингу й інтеграцій.",
@@ -134,7 +134,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
         "створення ecommerce сайту",
         "Next.js ecommerce development",
         "онлайн магазин під ключ",
-        "ecommerce Europe"
+        "ecommerce"
       ],
       outcomes: [
         "зручний каталог і фільтрація",
@@ -172,17 +172,17 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "web-app-development",
       title: "Розробка веб-додатків",
       shortTitle: "Веб-додатки",
-      metaTitle: "Розробка веб-додатків на React і Next.js для Європи",
+      metaTitle: "Розробка веб-додатків на React і Next.js",
       metaDescription:
-        "Розробка веб-додатків на React, Next.js і TypeScript для SaaS, внутрішніх систем і клієнтських платформ у Європі. Надійна архітектура, UX і масштабованість.",
+        "Розробка веб-додатків на React, Next.js і TypeScript для SaaS, внутрішніх систем і клієнтських платформ. Надійна архітектура, UX і масштабованість.",
       heroTitle: "Веб-додатки для SaaS, клієнтських кабінетів і внутрішніх платформ",
       heroDescription:
         "Коли звичайного сайту вже мало, переходжу до розробки продуктового інтерфейсу: ролі користувачів, дашборди, інтеграції, API, складна логіка і масштабування.",
       priceFrom: "від 3000 EUR",
       keywords: [
         "розробка веб-додатків",
-        "React developer Europe",
-        "Next.js developer Europe",
+        "React developer",
+        "Next.js developer",
         "SaaS development",
         "custom web application"
       ],
@@ -222,9 +222,9 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "seo-optimization",
       title: "Технічна SEO-оптимізація сайтів",
       shortTitle: "SEO-оптимізація",
-      metaTitle: "Технічна SEO-оптимізація сайтів для бізнесу в Європі",
+      metaTitle: "Технічна SEO-оптимізація сайтів для бізнесу",
       metaDescription:
-        "Покращую технічну SEO-основу сайтів: швидкість, metadata, schema.org, внутрішня структура, індексація та Core Web Vitals для бізнесу в Європі.",
+        "Покращую технічну SEO-основу сайтів: швидкість, metadata, schema.org, внутрішня структура, індексація та Core Web Vitals для бізнесу.",
       heroTitle: "Технічне SEO, яке покращує видимість без магії",
       heroDescription:
         "Працюю з тим, що реально впливає на індексацію і видимість: структура сторінок, metadata, внутрішні посилання, sitemap, schema.org, швидкість і mobile usability.",
@@ -234,7 +234,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
         "SEO оптимізація сайту",
         "Core Web Vitals optimization",
         "Next.js SEO",
-        "SEO audit Europe"
+        "SEO audit"
       ],
       outcomes: [
         "чисті title і description без дублювання",
@@ -274,9 +274,9 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "landing-pages",
       title: "End-to-end landing page development",
       shortTitle: "Landing page",
-      metaTitle: "Landing page development for businesses in Europe",
+      metaTitle: "Landing page development for businesses",
       metaDescription:
-        "I build end-to-end landing pages for SaaS, service companies, experts and local businesses in Europe. Fast launch, strong structure, SEO-ready foundation and conversion focus.",
+        "I build end-to-end landing pages for SaaS, service companies, experts and local businesses. Fast launch, strong structure, SEO-ready foundation and conversion focus.",
       heroTitle: "Landing pages for paid traffic, sales and demand validation",
       heroDescription:
         "A strong fit when you need a focused page for ads, product presentation or lead generation. I shape the structure, define the content blocks, build the page with React / Next.js and prepare it for analytics and SEO.",
@@ -284,7 +284,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       keywords: [
         "landing page development",
         "landing page for SaaS",
-        "landing page Europe",
+        "landing page",
         "conversion-focused landing page",
         "Next.js landing page"
       ],
@@ -305,7 +305,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
         "SaaS and tech products",
         "consulting and expert services",
         "B2B lead generation",
-        "local service businesses in Europe"
+        "local service businesses"
       ],
       faq: [
         {
@@ -324,17 +324,17 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "corporate-websites",
       title: "Corporate website development",
       shortTitle: "Corporate websites",
-      metaTitle: "Corporate website development for companies in Europe",
+      metaTitle: "Corporate website development for companies",
       metaDescription:
-        "Corporate website development for B2B, service and manufacturing companies in Europe. Clear structure, strong service presentation, SEO and technical reliability.",
+        "Corporate website development for B2B, service and manufacturing companies. Clear structure, strong service presentation, SEO and technical reliability.",
       heroTitle: "A corporate website that explains your value and supports sales",
       heroDescription:
-        "I build multi-page websites for companies that need to look credible, explain their services clearly and generate inquiries from new clients across Europe.",
+        "I build multi-page websites for companies that need to look credible, explain their services clearly and generate inquiries from new clients.",
       priceFrom: "from 1600 EUR",
       keywords: [
         "corporate website development",
         "company website development",
-        "B2B website Europe",
+        "B2B website",
         "service company website",
         "multi-page website development"
       ],
@@ -374,9 +374,9 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "ecommerce-development",
       title: "E-commerce development",
       shortTitle: "E-commerce stores",
-      metaTitle: "E-commerce development for brands and retail in Europe",
+      metaTitle: "E-commerce development for brands and retail",
       metaDescription:
-        "I build e-commerce stores for brands and retailers in Europe with catalogues, product pages, checkout flows, integrations, SEO structure and high performance.",
+        "I build e-commerce stores for brands and retailers with catalogues, product pages, checkout flows, integrations, SEO structure and high performance.",
       heroTitle: "An e-commerce store that feels smooth and does not slow sales down",
       heroDescription:
         "I work on e-commerce projects where speed, clean UX, SEO-ready categories and technical readiness for assortment growth, marketing and integrations matter.",
@@ -386,7 +386,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
         "online store development",
         "Next.js ecommerce development",
         "custom storefront",
-        "ecommerce Europe"
+        "ecommerce"
       ],
       outcomes: [
         "convenient catalogue and filtering",
@@ -424,17 +424,17 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "web-app-development",
       title: "Web application development",
       shortTitle: "Web applications",
-      metaTitle: "Web application development with React and Next.js for Europe",
+      metaTitle: "Web application development with React and Next.js",
       metaDescription:
-        "Web application development with React, Next.js and TypeScript for SaaS, internal systems and client platforms in Europe. Reliable architecture, UX and scalability.",
+        "Web application development with React, Next.js and TypeScript for SaaS, internal systems and client platforms. Reliable architecture, UX and scalability.",
       heroTitle: "Web apps for SaaS, client portals and internal platforms",
       heroDescription:
         "When a regular website is no longer enough, I move into product interface work: user roles, dashboards, integrations, APIs, complex logic and future scaling.",
       priceFrom: "from 3000 EUR",
       keywords: [
         "web application development",
-        "React developer Europe",
-        "Next.js developer Europe",
+        "React developer",
+        "Next.js developer",
         "SaaS development",
         "custom web application"
       ],
@@ -474,9 +474,9 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
       slug: "seo-optimization",
       title: "Technical SEO optimization",
       shortTitle: "SEO optimization",
-      metaTitle: "Technical SEO optimization for businesses in Europe",
+      metaTitle: "Technical SEO optimization for businesses",
       metaDescription:
-        "I improve the technical SEO foundation of websites: speed, metadata, schema.org, internal structure, indexing and Core Web Vitals for businesses in Europe.",
+        "I improve the technical SEO foundation of websites: speed, metadata, schema.org, internal structure, indexing and Core Web Vitals for businesses.",
       heroTitle: "Technical SEO that improves visibility without vague promises",
       heroDescription:
         "I focus on what actually impacts indexing and visibility: page structure, metadata, internal links, sitemap, schema.org, speed and mobile usability.",
@@ -486,7 +486,7 @@ const servicePagesByLocale: Record<Locale, ServicePage[]> = {
         "website SEO optimization",
         "Core Web Vitals optimization",
         "Next.js SEO",
-        "SEO audit Europe"
+        "SEO audit"
       ],
       outcomes: [
         "clean titles and descriptions without duplication",
