@@ -8,6 +8,7 @@ import type {
 
 const COOKIE_CONSENT_KEY = "cookie-consent";
 const COOKIE_SETTINGS_EVENT = "cookie-settings-toggle";
+const COOKIE_CONSENT_UPDATED_EVENT = "cookie-consent-updated";
 
 const defaultSettings: CookieSettings = {
   necessary: true,
@@ -41,6 +42,28 @@ export function useCookieConsent() {
   }, []);
 
   useEffect(() => {
+    const handleConsentUpdated = (event: Event) => {
+      const customEvent = event as CustomEvent<CookieConsentState>;
+
+      if (customEvent.detail) {
+        setConsentState(customEvent.detail);
+      }
+    };
+
+    window.addEventListener(
+      COOKIE_CONSENT_UPDATED_EVENT,
+      handleConsentUpdated as EventListener
+    );
+
+    return () => {
+      window.removeEventListener(
+        COOKIE_CONSENT_UPDATED_EVENT,
+        handleConsentUpdated as EventListener
+      );
+    };
+  }, []);
+
+  useEffect(() => {
     const handleSettingsToggle = (event: Event) => {
       const customEvent = event as CustomEvent<boolean | undefined>;
 
@@ -69,6 +92,9 @@ export function useCookieConsent() {
   const saveConsent = (newState: CookieConsentState) => {
     localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(newState));
     setConsentState(newState);
+    window.dispatchEvent(
+      new CustomEvent(COOKIE_CONSENT_UPDATED_EVENT, { detail: newState })
+    );
   };
 
   const acceptAll = () => {
