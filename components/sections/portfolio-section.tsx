@@ -51,7 +51,7 @@ export default async function PortfolioSection() {
                     <Button asChild variant="outline">
                       <Link href={`/portfolio/${featuredProject.slug}`}>
                         {openCaseLabel}
-                        <ArrowRight className="h-4 w-4" />
+                        <ArrowRight className="button-arrow-right h-4 w-4" />
                       </Link>
                     </Button>
                   </div>
@@ -95,7 +95,7 @@ export default async function PortfolioSection() {
                   <Button asChild size="lg" className="mt-6">
                     <Link href="/portfolio">
                       {t("cta")}
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight className="button-arrow-right h-4 w-4" />
                     </Link>
                   </Button>
                 </div>

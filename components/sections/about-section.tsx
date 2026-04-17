@@ -66,7 +66,7 @@ export default function AboutSection({
         <div className="grid gap-12 lg:grid-cols-[1.02fr_0.98fr]">
           <AnimationWrapper animation="slide-left">
             <div className="space-y-10">
-              <div className="border-t border-[rgba(24,31,43,0.14)] pt-8">
+              <div className="border-t border-[rgba(24,31,43,0.18)] pt-8">
                 <p className="max-w-4xl text-[2.4rem] leading-[1.03] text-[hsl(var(--foreground))] md:text-[3.6rem]">
                   {manifesto}
                 </p>
@@ -74,16 +74,16 @@ export default function AboutSection({
 
               <div className="grid gap-5 md:grid-cols-4">
                 {summaryStats.map((stat) => (
-                  <div key={`${stat.value}-${stat.label}`} className="border-t border-[rgba(24,31,43,0.12)] pt-4">
+                  <div key={`${stat.value}-${stat.label}`} className="border-t border-[rgba(24,31,43,0.16)] pt-4">
                     <p className="text-[2.4rem] leading-none text-[hsl(var(--foreground))] md:text-[3rem]">{stat.value}</p>
-                    <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
+                    <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--foreground))]/56">
                       {stat.label}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="space-y-5 text-base leading-8 text-[hsl(var(--muted-foreground))]">
+              <div className="space-y-5 text-base leading-8 text-[hsl(var(--foreground))]/68">
                 {paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -93,7 +93,7 @@ export default function AboutSection({
 
           <AnimationWrapper animation="slide-right">
             <div className="grid gap-10">
-              <div className="grid gap-5 border-t border-[rgba(24,31,43,0.14)] pt-8">
+              <div className="grid gap-5 border-t border-[rgba(24,31,43,0.18)] pt-8">
                 <div className="flex items-center justify-between gap-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
                     {skillsTitle}
@@ -105,14 +105,14 @@ export default function AboutSection({
                   {skills.map((skill, index) => {
                     const Icon = skillIcons[index] ?? Code
                     return (
-                      <li key={skill.title} className="grid gap-3 border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0">
+                      <li key={skill.title} className="grid gap-3 border-b border-[rgba(24,31,43,0.12)] pb-5 last:border-b-0 last:pb-0">
                         <div className="flex items-center gap-4">
-                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-white text-[hsl(var(--foreground))]">
+                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.94)] text-[hsl(var(--foreground))] shadow-[0_12px_24px_rgba(15,23,42,0.05)]">
                             <Icon className="h-4 w-4" />
                           </div>
                           <h3 className="text-[1.45rem] leading-tight text-[hsl(var(--foreground))]">{skill.title}</h3>
                         </div>
-                        <p className="pl-15 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{skill.description}</p>
+                        <p className="pl-15 text-sm leading-7 text-[hsl(var(--foreground))]/68">{skill.description}</p>
                       </li>
                     )
                   })}
@@ -120,22 +120,22 @@ export default function AboutSection({
               </div>
 
               <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
-                <div className="border-t border-[rgba(24,31,43,0.14)] pt-6">
+                <div className="border-t border-[rgba(24,31,43,0.18)] pt-6">
                   <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
                     {processTitle}
                   </p>
                   <ol className="space-y-5">
                     {process.map((step, index) => (
-                      <li key={step.title} className="border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0">
+                      <li key={step.title} className="border-b border-[rgba(24,31,43,0.12)] pb-5 last:border-b-0 last:pb-0">
                         <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--primary))]">0{index + 1}</p>
                         <h3 className="mt-2 text-xl text-[hsl(var(--foreground))]">{step.title}</h3>
-                        <p className="mt-2 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{step.description}</p>
+                        <p className="mt-2 text-sm leading-7 text-[hsl(var(--foreground))]/68">{step.description}</p>
                       </li>
                     ))}
                   </ol>
                 </div>
 
-                <div className="border-l border-[rgba(24,31,43,0.08)] pl-6">
+                <div className="border-l border-[rgba(24,31,43,0.12)] pl-6">
                   <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
                     {technologiesTitle}
                   </p>

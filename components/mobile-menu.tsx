@@ -107,7 +107,7 @@ export default function MobileMenu({
 
   return createPortal(
     <div
-      className={`fixed inset-0 z-50 bg-[rgba(24,31,43,0.58)] transition-opacity duration-300 md:hidden ${
+      className={`fixed inset-0 z-50 bg-[rgba(10,16,28,0.7)] transition-opacity duration-300 md:hidden ${
         isOpen ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
       onClick={onClose}
@@ -119,7 +119,7 @@ export default function MobileMenu({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className={`fixed right-0 top-0 h-full w-full max-w-sm border-l border-white/30 bg-[linear-gradient(180deg,rgba(255,251,246,0.96),rgba(244,236,226,0.92))] shadow-[0_24px_80px_rgba(24,31,43,0.24)] backdrop-blur-xl transition-transform duration-300 ${
+        className={`fixed right-0 top-0 h-full w-full max-w-sm border-l border-[rgba(24,31,43,0.14)] bg-[linear-gradient(180deg,rgba(255,253,250,0.98),rgba(240,234,228,0.95))] shadow-[0_30px_90px_rgba(10,16,28,0.28)] backdrop-blur-xl transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -147,7 +147,7 @@ export default function MobileMenu({
               <Link
                 key={item.href}
                 href={item.href}
-                className="border-b border-[rgba(24,31,43,0.08)] pb-3 text-2xl leading-none text-[hsl(var(--foreground))] transition-colors hover:text-[hsl(var(--primary))]"
+                className="border-b border-[rgba(24,31,43,0.12)] pb-3 text-2xl leading-none text-[hsl(var(--foreground))] transition-colors hover:text-[hsl(var(--primary))]"
                 onClick={onClose}
               >
                 {item.label}

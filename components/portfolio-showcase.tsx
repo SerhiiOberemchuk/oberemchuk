@@ -17,7 +17,6 @@ export default function PortfolioShowcase({
   projects,
   locale,
 }: PortfolioShowcaseProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [displayIndex, setDisplayIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const slides = projects.slice(0, 6);
@@ -78,7 +77,6 @@ export default function PortfolioShowcase({
       return;
     }
 
-    setActiveIndex(nextIndex);
     setIsTransitioning(true);
 
     if (transitionTimerRef.current) {
@@ -194,7 +192,7 @@ export default function PortfolioShowcase({
               <Button asChild size="lg" className="min-w-[11rem]">
                 <Link href={`/portfolio/${activeProject.slug}`}>
                   {labels.openCase}
-                  <ArrowUpRight className="h-4 w-4" />
+                  <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                 </Link>
               </Button>
               {activeProject.website_url ? (
@@ -210,7 +208,7 @@ export default function PortfolioShowcase({
                     rel="noreferrer"
                   >
                     {labels.liveSite}
-                    <ArrowUpRight className="h-4 w-4" />
+                    <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                   </a>
                 </Button>
               ) : null}
@@ -236,7 +234,7 @@ export default function PortfolioShowcase({
               className="h-12 w-12 border-white/14 bg-white/6 text-white hover:bg-white hover:text-[hsl(var(--foreground))]"
               aria-label={labels.next}
             >
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="button-arrow-right h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -283,10 +281,10 @@ export default function PortfolioShowcase({
                 </div>
                 <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/6 text-white/78 transition-[background-color,border-color,color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/overlay:border-white/24 group-hover/overlay:bg-white group-hover/overlay:text-[hsl(var(--foreground))] group-hover/overlay:shadow-[0_14px_30px_rgba(255,255,255,0.12)]">
                   <span className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/overlay:translate-x-[115%] group-hover/overlay:-translate-y-[115%]">
-                    <ArrowUpRight className="h-4 w-4" />
+                    <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                   </span>
                   <span className="absolute inset-0 flex translate-x-[-115%] translate-y-[115%] items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/overlay:translate-x-0 group-hover/overlay:translate-y-0">
-                    <ArrowUpRight className="h-4 w-4" />
+                    <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                   </span>
                 </span>
               </div>

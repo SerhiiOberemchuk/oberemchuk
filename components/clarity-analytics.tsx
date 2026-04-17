@@ -14,15 +14,16 @@ export default function ClarityAnalytics({
 }: ClarityAnalyticsProps) {
   const { consentState } = useCookieConsent();
   const initializedRef = useRef(false);
+  const hasAnalyticsConsent = consentState.settings.analytics;
 
   useEffect(() => {
-    if (!projectId || initializedRef.current) {
+    if (!projectId || initializedRef.current || !hasAnalyticsConsent) {
       return;
     }
 
     Clarity.init(projectId);
     initializedRef.current = true;
-  }, [projectId]);
+  }, [hasAnalyticsConsent, projectId]);
 
   useEffect(() => {
     if (!projectId || !initializedRef.current) {
@@ -31,9 +32,9 @@ export default function ClarityAnalytics({
 
     Clarity.consentV2({
       ad_Storage: "denied",
-      analytics_Storage: consentState.settings.analytics ? "granted" : "denied",
+      analytics_Storage: hasAnalyticsConsent ? "granted" : "denied",
     });
-  }, [consentState.settings.analytics, projectId]);
+  }, [hasAnalyticsConsent, projectId]);
 
   return null;
 }

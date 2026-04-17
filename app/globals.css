@@ -4,28 +4,32 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: 210 29% 98%;
-  --foreground: 222 32% 10%;
+  --background: 210 25% 97%;
+  --foreground: 222 42% 8%;
   --card: 0 0% 100%;
-  --card-foreground: 222 32% 10%;
+  --card-foreground: 222 42% 8%;
   --popover: 210 29% 99%;
-  --popover-foreground: 222 32% 10%;
-  --primary: 14 84% 51%;
+  --popover-foreground: 222 42% 8%;
+  --primary: 17 82% 42%;
   --primary-foreground: 210 40% 98%;
-  --secondary: 210 24% 95%;
-  --secondary-foreground: 222 24% 18%;
-  --muted: 210 22% 94%;
-  --muted-foreground: 220 10% 40%;
-  --accent: 211 31% 91%;
-  --accent-foreground: 222 24% 18%;
+  --secondary: 210 18% 93%;
+  --secondary-foreground: 222 32% 14%;
+  --muted: 210 16% 93%;
+  --muted-foreground: 220 16% 26%;
+  --accent: 210 20% 87%;
+  --accent-foreground: 222 32% 14%;
   --destructive: 0 72% 52%;
   --destructive-foreground: 0 0% 100%;
-  --border: 214 18% 86%;
-  --input: 214 20% 90%;
-  --ring: 14 84% 51%;
+  --border: 214 18% 76%;
+  --input: 214 20% 84%;
+  --ring: 17 82% 42%;
   --radius: 1.5rem;
-  --shadow-soft: 0 18px 60px rgba(24, 31, 43, 0.08);
-  --shadow-strong: 0 24px 80px rgba(24, 31, 43, 0.14);
+  --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.1);
+  --shadow-strong: 0 34px 100px rgba(15, 23, 42, 0.18);
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface-strong: rgba(255, 255, 255, 0.985);
+  --line-soft: rgba(24, 31, 43, 0.12);
+  --line-strong: rgba(24, 31, 43, 0.2);
 }
 
 .dark {
@@ -89,8 +93,9 @@
   body {
     @apply overflow-x-hidden bg-background text-foreground antialiased;
     background-image:
-      radial-gradient(circle at top right, rgba(92, 116, 150, 0.08), transparent 18%),
-      linear-gradient(180deg, rgba(252, 254, 255, 0.99), rgba(247, 250, 252, 1));
+      radial-gradient(circle at top right, rgba(92, 116, 150, 0.14), transparent 21%),
+      radial-gradient(circle at 10% 8%, rgba(214, 101, 45, 0.09), transparent 18%),
+      linear-gradient(180deg, rgba(252, 254, 255, 0.99), rgba(239, 244, 248, 1));
     background-color: hsl(var(--background));
   }
 
@@ -142,7 +147,9 @@
 }
 
 @utility shell {
-  @apply rounded-[32px] border border-white/60 bg-white/72 backdrop-blur-xl;
+  @apply rounded-[32px] border backdrop-blur-xl;
+  border-color: var(--line-soft);
+  background: var(--surface);
   box-shadow: var(--shadow-soft);
 }
 
@@ -274,16 +281,17 @@
 .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
-  background-color: #d1d5db;
-  opacity: 0.5;
+  background-color: rgba(24, 31, 43, 0.28);
+  opacity: 0.75;
   transition: all 0.3s ease;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #d4652d;
+  background-color: hsl(var(--primary));
   opacity: 1;
-  width: 10px;
+  width: 20px;
   height: 10px;
+  border-radius: 999px;
 }
 
 @keyframes menuSlideIn {
@@ -457,4 +465,114 @@
 
 .scroll-to-top-pulse {
   animation: pulse 2s infinite;
+}
+
+@keyframes premiumFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+
+@keyframes premiumSheen {
+  0% {
+    transform: translateX(-140%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.08;
+  }
+  55% {
+    opacity: 0.16;
+  }
+  100% {
+    transform: translateX(140%);
+    opacity: 0;
+  }
+}
+
+@keyframes premiumGlow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(1.06);
+  }
+}
+
+.premium-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -20% auto -20% -30%;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  transform: skewX(-18deg);
+  animation: premiumSheen 8.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.premium-float {
+  animation: premiumFloat 7s ease-in-out infinite;
+}
+
+.premium-float-delayed {
+  animation: premiumFloat 9s ease-in-out 1.2s infinite;
+}
+
+.premium-logo-orb {
+  position: absolute;
+  inset: 18%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 72%);
+  filter: blur(1px);
+  animation: premiumGlow 4.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.button-arrow-right,
+.button-arrow-up-right {
+  transition:
+    transform 300ms ease-out,
+    opacity 300ms ease-out;
+  transform-origin: center;
+}
+
+.group:hover .button-arrow-right,
+.group:hover .button-arrow-up-right,
+button:hover .button-arrow-right,
+button:hover .button-arrow-up-right {
+  opacity: 0.96;
+}
+
+.group:hover .button-arrow-right,
+button:hover .button-arrow-right {
+  transform: translateX(3px);
+}
+
+.group:hover .button-arrow-up-right,
+button:hover .button-arrow-up-right {
+  transform: translate3d(3px, -3px, 0) rotate(-8deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-sheen::after,
+  .premium-float,
+  .premium-float-delayed,
+  .premium-logo-orb,
+  .button-arrow-right,
+  .button-arrow-up-right {
+    animation: none !important;
+    transition: none !important;
+  }
 }
