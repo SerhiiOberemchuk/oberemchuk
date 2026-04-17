@@ -228,10 +228,10 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
                       </div>
                       <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/6 text-white/78 transition-[background-color,border-color,color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-white/24 group-hover:bg-white group-hover:text-[hsl(var(--foreground))] group-hover:shadow-[0_14px_30px_rgba(255,255,255,0.12)]">
                         <span className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[115%] group-hover:-translate-y-[115%]">
-                          <ArrowUpRight className="h-4 w-4" />
+                          <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                         </span>
                         <span className="absolute inset-0 flex translate-x-[-115%] translate-y-[115%] items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:translate-y-0">
-                          <ArrowUpRight className="h-4 w-4" />
+                          <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                         </span>
                       </span>
                     </div>

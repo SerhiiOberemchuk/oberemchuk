@@ -161,7 +161,7 @@ function renderEmailLayout(params: {
                   <td style="background: #ffffff; border: 1px solid #e2e8f0; border-top: 0; border-radius: 0 0 28px 28px; padding: 0 32px 28px;">
                     <div style="padding-top: 20px; border-top: 1px solid #e2e8f0;">
                       <p style="margin: 0 0 10px; color: #0f172a; font-size: 14px; font-weight: 700;">Serhii Oberemchuk</p>
-                      <p style="margin: 0 0 6px; color: #475569; font-size: 13px;">Розробка сайтів, веб-додатків і технічне SEO для бізнесу в Європі</p>
+                      <p style="margin: 0 0 6px; color: #475569; font-size: 13px;">Розробка сайтів, веб-додатків і технічне SEO для бізнесу</p>
                       <p style="margin: 0 0 6px; color: #475569; font-size: 13px;">Email: <a href="mailto:${escapeHtml(contactEmail)}" style="color: #b25d2f; text-decoration: none;">${escapeHtml(contactEmail)}</a></p>
                       <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.6;">${escapeHtml(footerNote)}</p>
                     </div>

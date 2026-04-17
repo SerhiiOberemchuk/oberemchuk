@@ -218,6 +218,7 @@ export default async function HomePage({ params }: HomePageProps) {
         keywordsTitle={seoT("keywordsTitle")}
         reasonsTitle={seoT("reasonsTitle")}
         ctaTitle={seoT("ctaTitle")}
+        ctaQuote={seoT("ctaQuote")}
         ctaDescription={seoT("ctaDescription")}
         primaryCta={seoT("primaryCta")}
         secondaryCta={seoT("secondaryCta")}

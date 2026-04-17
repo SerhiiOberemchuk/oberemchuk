@@ -98,7 +98,7 @@ export default function ContactSection({
         <div className="grid gap-12 lg:grid-cols-[0.96fr_1.04fr]">
           <AnimationWrapper animation="slide-left">
             <div className="grid gap-10">
-              <article className="border-t border-[rgba(24,31,43,0.14)] pt-8">
+              <article className="border-t border-[rgba(24,31,43,0.18)] pt-8">
                 <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{infoTitle}</p>
                 <p className="max-w-xl text-[2.25rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3rem]">{contactPitch}</p>
 
@@ -106,8 +106,8 @@ export default function ContactSection({
                   {infoItems.map((info) => {
                     const Icon = info.icon
                     return (
-                      <li key={`${info.label}-${info.value}`} className="flex items-center gap-4 border-b border-[rgba(24,31,43,0.08)] pb-5 last:border-b-0 last:pb-0">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-white">
+                      <li key={`${info.label}-${info.value}`} className="flex items-center gap-4 border-b border-[rgba(24,31,43,0.12)] pb-5 last:border-b-0 last:pb-0">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.94)] shadow-[0_12px_26px_rgba(15,23,42,0.06)]">
                           <Icon className="h-5 w-5 text-[hsl(var(--foreground))]" />
                         </div>
                         <div>
@@ -120,7 +120,7 @@ export default function ContactSection({
                               rel={info.external ? "noopener noreferrer" : undefined}
                             >
                               {info.value}
-                              <ArrowUpRight className="h-4 w-4" />
+                              <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                             </a>
                           ) : (
                             <div className="mt-1 text-base text-[hsl(var(--foreground))]">{info.value}</div>
@@ -133,18 +133,18 @@ export default function ContactSection({
               </article>
 
               <div className="grid gap-8 md:grid-cols-[0.92fr_1.08fr]">
-                <article className="border-t border-[rgba(24,31,43,0.14)] pt-6">
+                <article className="border-t border-[rgba(24,31,43,0.18)] pt-6">
                   <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{startTitle}</p>
                   <ul className="space-y-3">
                     {advantages.map((advantage) => (
-                      <li key={advantage} className="border-b border-[rgba(24,31,43,0.08)] pb-3 text-sm leading-7 text-[hsl(var(--foreground))]">
+                      <li key={advantage} className="border-b border-[rgba(24,31,43,0.12)] pb-3 text-sm leading-7 text-[hsl(var(--foreground))]">
                         {advantage}
                       </li>
                     ))}
                   </ul>
                 </article>
 
-                <article className="border-l border-[rgba(24,31,43,0.08)] pl-6">
+                <article className="border-l border-[rgba(24,31,43,0.12)] pl-6">
                   <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{stackTitle}</p>
                   <ul className="flex flex-wrap gap-3">
                     {specializations.map((spec) => (
@@ -169,14 +169,14 @@ export default function ContactSection({
           </AnimationWrapper>
 
           <AnimationWrapper animation="slide-right">
-            <div className="border-t border-[rgba(24,31,43,0.14)] pt-8">
+            <div className="border-t border-[rgba(24,31,43,0.18)] pt-8">
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{briefTitle}</p>
               <p className="max-w-2xl text-[2.3rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3.2rem]">{briefDescription}</p>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
+              <p className="mt-4 max-w-2xl text-base leading-8 text-[hsl(var(--foreground))]/68">
                 {briefBody}
               </p>
 
-              <div className="mt-8 border border-[rgba(24,31,43,0.08)] bg-white p-6 shadow-[0_18px_60px_rgba(24,31,43,0.05)] md:p-8">
+              <div className="mt-8 rounded-[30px] border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.94)] p-6 shadow-[0_24px_70px_rgba(15,23,42,0.09),inset_0_1px_0_rgba(255,255,255,0.92)] md:p-8">
                 <ContactForm />
               </div>
             </div>

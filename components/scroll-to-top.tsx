@@ -15,15 +15,21 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({ className }) => {
   const t = useTranslations("ScrollToTop")
 
   useEffect(() => {
+    let ticking = false
+
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-      }
+      if (ticking) return
+
+      ticking = true
+      window.requestAnimationFrame(() => {
+        const nextVisible = window.scrollY > 300
+        setIsVisible((current) => (current === nextVisible ? current : nextVisible))
+        ticking = false
+      })
     }
 
-    window.addEventListener("scroll", toggleVisibility)
+    toggleVisibility()
+    window.addEventListener("scroll", toggleVisibility, { passive: true })
 
     return () => window.removeEventListener("scroll", toggleVisibility)
   }, [])

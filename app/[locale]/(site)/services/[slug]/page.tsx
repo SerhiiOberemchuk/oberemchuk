@@ -135,7 +135,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
             <Button asChild size="lg" className="hidden sm:inline-flex">
               <Link href="/#contact">
                 {pageT("discussProject")}
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
               </Link>
             </Button>
           </div>
@@ -327,7 +327,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                         </p>
                       </div>
                       <span className="mt-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.08)] bg-[rgba(24,31,43,0.03)] text-[hsl(var(--foreground))] transition-all duration-300 group-hover:border-[rgba(24,31,43,0.14)] group-hover:bg-[hsl(var(--foreground))] group-hover:text-white">
-                        <ArrowRight className="h-4 w-4" />
+                        <ArrowRight className="button-arrow-right h-4 w-4" />
                       </span>
                     </div>
                   </Link>
@@ -355,7 +355,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                 <Button asChild size="lg" className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92">
                   <Link href="/#contact">
                     {pageT("estimate.cta")}
-                    <ArrowUpRight className="h-4 w-4" />
+                    <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                   </Link>
                 </Button>
               </div>

@@ -16,6 +16,7 @@ type SeoSectionProps = {
   keywordsTitle: string
   reasonsTitle: string
   ctaTitle: string
+  ctaQuote: string
   ctaDescription: string
   primaryCta: string
   secondaryCta: string
@@ -31,6 +32,7 @@ export default function SeoSection({
   keywordsTitle,
   reasonsTitle,
   ctaTitle,
+  ctaQuote,
   ctaDescription,
   primaryCta,
   secondaryCta,
@@ -116,15 +118,13 @@ export default function SeoSection({
             <div className="grid gap-6 lg:grid-cols-[0.68fr_1.32fr] lg:items-start">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{ctaTitle}</p>
               <div>
-                <p className="max-w-4xl text-[2.1rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3rem]">
-                  SEO should sit inside the product logic, not hang on the page like a checklist.
-                </p>
+                <p className="max-w-4xl text-[2.1rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3rem]">{ctaQuote}</p>
                 <p className="mt-5 max-w-3xl text-base leading-8 text-[hsl(var(--muted-foreground))]">{ctaDescription}</p>
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                   <Button asChild size="lg">
                     <SmoothScrollLink href="#contact">
                       {primaryCta}
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight className="button-arrow-right h-4 w-4" />
                     </SmoothScrollLink>
                   </Button>
                   <Button asChild variant="outline" size="lg">

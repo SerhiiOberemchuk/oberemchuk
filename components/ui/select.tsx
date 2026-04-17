@@ -19,7 +19,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-14 w-full items-center justify-between rounded-[22px] border border-[hsl(var(--border))]/90 bg-white px-4 py-3 text-sm text-foreground shadow-[0_10px_30px_rgba(24,31,43,0.05),inset_0_1px_0_rgba(255,255,255,0.9)] transition-[border-color,box-shadow,background-color] duration-200 ring-offset-background placeholder:text-muted-foreground/80 hover:border-[hsl(var(--foreground))]/18 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))]/35 focus:ring-offset-0 focus:border-[hsl(var(--foreground))]/28 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "flex h-14 w-full items-center justify-between rounded-[22px] border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.96)] px-4 py-3 text-sm text-foreground shadow-[0_14px_34px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.96)] transition-[border-color,box-shadow,background-color] duration-200 ring-offset-background placeholder:text-muted-foreground/88 hover:border-[rgba(24,31,43,0.22)] hover:bg-white focus:outline-none focus:ring-2 focus:ring-[hsl(var(--ring))]/30 focus:ring-offset-0 focus:border-[rgba(24,31,43,0.3)] disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className,
     )}
     {...props}
@@ -75,7 +75,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 max-h-96 min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-[24px] border border-white/70 bg-[hsl(var(--popover))]/95 text-popover-foreground shadow-[0_24px_60px_rgba(24,31,43,0.18)] backdrop-blur-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        "relative z-50 max-h-96 min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-[24px] border border-[rgba(24,31,43,0.1)] bg-[hsl(var(--popover))]/98 text-popover-foreground shadow-[0_28px_70px_rgba(15,23,42,0.16)] backdrop-blur-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         position === "popper" &&
           "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
         className,

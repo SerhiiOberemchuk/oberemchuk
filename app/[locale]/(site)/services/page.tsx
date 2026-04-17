@@ -207,7 +207,7 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                         <Button asChild variant="outline" className="mt-auto w-full bg-transparent">
                           <Link href={`/services/${service.slug}`}>
                             {pageT("detailsCta")}
-                            <ArrowRight className="h-4 w-4" />
+                            <ArrowRight className="button-arrow-right h-4 w-4" />
                           </Link>
                         </Button>
                       </div>
@@ -234,7 +234,7 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                   <Button asChild size="lg" className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92">
                     <Link href="/#contact">
                       {pageT("consultation.cta")}
-                      <ArrowUpRight className="h-4 w-4" />
+                      <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                     </Link>
                   </Button>
                 </div>
