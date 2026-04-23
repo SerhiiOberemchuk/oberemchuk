@@ -163,18 +163,6 @@ export default function ContactForm() {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="phone">{t("fields.phone")}</Label>
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            value={formData.phone}
-            onChange={handleInputChange}
-            placeholder={t("fields.phonePlaceholder")}
-            autoComplete="tel"
-          />
-        </div>
-        <div className="space-y-2">
           <Label htmlFor="service">{t("fields.service")}</Label>
           <Select
             value={formData.service}
@@ -190,23 +178,35 @@ export default function ContactForm() {
             </SelectContent>
           </Select>
         </div>
+        <div className="space-y-2">
+          <Label htmlFor="budget">{t("fields.budget")}</Label>
+          <Select
+            value={formData.budget}
+            onValueChange={(value) => handleSelectChange("budget", value)}
+          >
+            <SelectTrigger aria-label={t("fields.budgetAria")} aria-describedby={formHintId}>
+              <SelectValue placeholder={t("fields.budgetPlaceholder")} />
+            </SelectTrigger>
+            <SelectContent>
+              {budgets.map((budget) => (
+                <SelectItem key={budget.value} value={budget.value}>{budget.label}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="budget">{t("fields.budget")}</Label>
-        <Select
-          value={formData.budget}
-          onValueChange={(value) => handleSelectChange("budget", value)}
-        >
-          <SelectTrigger aria-label={t("fields.budgetAria")} aria-describedby={formHintId}>
-            <SelectValue placeholder={t("fields.budgetPlaceholder")} />
-          </SelectTrigger>
-          <SelectContent>
-            {budgets.map((budget) => (
-              <SelectItem key={budget.value} value={budget.value}>{budget.label}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <Label htmlFor="phone">{t("fields.phone")}</Label>
+        <Input
+          id="phone"
+          name="phone"
+          type="tel"
+          value={formData.phone}
+          onChange={handleInputChange}
+          placeholder={t("fields.phonePlaceholder")}
+          autoComplete="tel"
+        />
       </div>
 
       <div className="space-y-2">

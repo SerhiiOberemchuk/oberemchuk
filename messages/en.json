@@ -2,11 +2,11 @@
   "Header": {
     "navigation": {
       "services": "Services",
-      "portfolio": "Portfolio",
-      "about": "About",
-      "contact": "Contact"
+      "portfolio": "Cases",
+      "about": "Process",
+      "contact": "Estimate"
     },
-    "cta": "Discuss a project",
+    "cta": "Get an estimate",
     "menu": "Menu",
     "primaryNavigation": "Primary navigation",
     "mobileNavigation": "Mobile navigation",
@@ -20,13 +20,13 @@
     "en": "English"
   },
   "HomeHero": {
-    "badge": "Independent digital partner for brands, products and service businesses",
+    "badge": "Technical partner for websites that should generate trust, leads and sales",
     "titlePrefix": "I build",
-    "titleHighlight": "websites and web apps",
-    "titleSuffix": "for businesses",
-    "description": "I build websites and web products with clear structure, strong visual direction and serious technical quality. From positioning and interface logic to development, performance and launch, I work as a partner who sees the whole system.",
-    "primaryCta": "Discuss a project",
-    "secondaryCta": "View portfolio",
+    "titleHighlight": "websites that drive",
+    "titleSuffix": "leads and sales",
+    "description": "I build landing pages, company websites, e-commerce projects and web apps for businesses that need more than a polished presence online. The goal is a digital asset ready for trust, traffic, SEO, ads and growth.",
+    "primaryCta": "Get an estimate",
+    "secondaryCta": "View case studies",
     "stats": [
       {
         "value": "50+",
@@ -47,13 +47,13 @@
     ]
   },
   "HomeAbout": {
-    "title": "About me",
-    "subtitle": "A fullstack partner for businesses that need authority, clarity and a digital presence that can carry commercial weight.",
-    "valueTitle": "What I bring to a business",
+    "title": "How The Work Runs",
+    "subtitle": "I step in as a technical partner: shaping positioning, structure, execution and launch so the website works as a commercial tool rather than a decorative presence.",
+    "valueTitle": "What the business gets",
     "paragraphs": [
-      "I work across the full web cycle: positioning, structure, interface, implementation, integrations and launch. For a client, that means one accountable partner instead of a chain of fragmented specialists.",
-      "Visual quality matters, but the standard is higher than attractive UI. The product has to communicate clearly, support growth, stay fast and remain maintainable after release.",
-      "I prefer projects where judgment, taste and execution quality matter. That usually leads to calmer collaboration and stronger outcomes."
+      "At the start, I help define the page logic: what belongs in the hero, where proof should appear, how the page leads to inquiry and which pages deserve separate treatment.",
+      "During the project, scope, priorities, structure and launch logic are fixed early. That reduces noise, cuts wasted iterations and gives the business control over the result.",
+      "At the end, the client gets more than code: a site prepared for ads, SEO, analytics, new pages and future growth."
     ],
     "summaryStats": [
       {
@@ -70,10 +70,10 @@
       },
       {
         "value": "End-to-end",
-        "label": "ownership"
+        "label": "from structure to launch"
       }
     ],
-    "skillsTitle": "Core capabilities",
+    "skillsTitle": "What I cover",
     "skills": [
       {
         "title": "Frontend development",
@@ -84,8 +84,8 @@
         "description": "Node.js, APIs, databases and integrations for services, CRMs, forms and business logic."
       },
       {
-        "title": "Product direction",
-        "description": "I translate business goals into structure, interaction and production decisions that make the product feel coherent."
+        "title": "Product logic",
+        "description": "I translate business goals into page structure, content priorities and action flows that make the product commercially coherent."
       },
       {
         "title": "Technical SEO",
@@ -96,69 +96,92 @@
         "description": "Interfaces are designed to work well on phones, tablets and desktop without UX compromises."
       }
     ],
-    "processTitle": "How project work is structured",
+    "processTitle": "Process",
     "process": [
       {
         "title": "Strategy and structure",
-        "description": "We define the business goal, audience, pages, content and release priorities."
+        "description": "We define the business goal, target audience, conversion logic and which blocks actually matter for decision-making."
       },
       {
         "title": "Design and development",
-        "description": "I turn the structure into a working interface, components, integrations and user flows."
+        "description": "I turn the structure into a working interface, content hierarchy, integrations and user flows."
       },
       {
         "title": "Launch and growth",
-        "description": "I prepare the SEO base, analytics, forms, stable deployment and room for scaling."
+        "description": "I prepare the SEO base, analytics, forms, stable deployment and room for campaigns, discoverability and scaling after launch."
       }
     ],
     "technologiesTitle": "Technologies I work with"
   },
+  "HomeOutcomes": {
+    "title": "What the client gets",
+    "subtitle": "Not just a finished website, but a clear plan, controlled delivery and a base for growth after launch.",
+    "cta": "Get an estimate",
+    "items": [
+      {
+        "title": "A clear plan before kickoff",
+        "description": "Before delivery starts, you understand the page structure, block logic and how the site is meant to drive inquiries or sales."
+      },
+      {
+        "title": "Defined scope and priorities",
+        "description": "Scope, priorities and expectations are fixed early to avoid project noise, wasted iterations and a blurred budget."
+      },
+      {
+        "title": "A realistic launch path",
+        "description": "The outcome is not abstract development work but a site or product prepared for campaigns, traffic, SEO or the next stage of growth."
+      },
+      {
+        "title": "A technical base without debt",
+        "description": "Structure, performance, responsiveness, analytics and SEO are built in from the start instead of patched after release."
+      }
+    ]
+  },
   "HomeServices": {
     "title": "Services",
-    "subtitle": "I build digital products that should feel precise, commercially grounded and technically dependable. Not fresher decoration, but stronger presence.",
+    "subtitle": "Each offer is framed around a business outcome rather than a feature list: leads, trust, sales, scale or a stronger launch path.",
     "popularBadge": "Popular",
     "detailsCta": "Learn more",
-    "approachTitle": "How I approach delivery",
-    "estimateTitle": "Need a tailored estimate for your task?",
-    "estimateDescription": "Tell me what needs to be built: a landing page, corporate website, store or web application. I will help define the right format, stack and scope.",
-    "estimateCta": "Discuss a project",
+    "approachTitle": "Why this approach works",
+    "estimateTitle": "Need an estimate for your case?",
+    "estimateDescription": "Tell me what you sell, who your client is and what the website should achieve. I will help define the right format, scope and a realistic launch plan.",
+    "estimateCta": "Get an estimate",
     "services": [
       {
         "title": "Landing pages",
-        "description": "Single-page websites for paid traffic, lead generation, demand testing and product presentation.",
+        "description": "For paid traffic, demand testing or fast offer launches, when the website should drive one clear action instead of behaving like a brochure.",
         "price": "from 800 EUR",
         "features": [
+          "clear offer and CTA",
           "conversion-focused structure",
           "analytics and forms",
-          "fast delivery",
-          "SEO-ready foundation"
+          "fast launch"
         ]
       },
       {
         "title": "Corporate websites",
-        "description": "Multi-page websites for brands that need trust, clear structure and a premium digital presence.",
+        "description": "For companies that need to look stronger, explain services with authority and turn qualified traffic into inquiries.",
         "price": "from 1600 EUR",
         "features": [
-          "service pages",
-          "case studies and trust",
+          "service pages built to sell",
+          "case studies and trust blocks",
           "technical SEO",
-          "ready to scale"
+          "ready for ads and growth"
         ]
       },
       {
         "title": "E-commerce stores",
-        "description": "E-commerce solutions with catalogues, checkout, integrations and SEO-ready category structure.",
+        "description": "For businesses that want to sell online through a stronger storefront, a clearer checkout flow and a scalable catalogue structure.",
         "price": "from 2500 EUR",
         "features": [
           "custom storefront",
           "payments and CRM",
           "mobile-first UX",
-          "scalable setup"
+          "SEO-ready category logic"
         ]
       },
       {
         "title": "Web applications",
-        "description": "React / Next.js interfaces for SaaS, internal platforms, customer portals and MVP digital products.",
+        "description": "For SaaS, internal platforms, client portals and MVPs where a working product with logic and scalable architecture matters more than a generic website shell.",
         "price": "from 3000 EUR",
         "features": [
           "roles and permissions",
@@ -170,16 +193,16 @@
     ],
     "advantages": [
       {
-        "title": "Partner mindset",
-        "description": "I work inside the business task, not around it. The goal is to shape the right product, not just ship screens."
+        "title": "Outcome over feature list",
+        "description": "Each service is packaged around what should change for the business after launch, not just what gets built."
       },
       {
         "title": "Clear process",
-        "description": "Scope, structure, technical stack and delivery priorities are defined early, so the project moves with control."
+        "description": "Scope, structure, technical stack and delivery priorities are defined early, so the project stays controlled."
       },
       {
         "title": "Built for growth",
-        "description": "Performance, SEO, analytics and future expansion are considered from the start instead of patched in later."
+        "description": "Performance, SEO, analytics and future expansion are part of the initial system instead of patched in later."
       }
     ]
   },
@@ -230,21 +253,21 @@
     "secondaryCta": "View services"
   },
   "HomeContact": {
-    "badge": "Contact and project kickoff",
-    "title": "Let's discuss your project",
-    "description": "If you need a website or digital product with stronger structure, clearer positioning and confident execution, send the task and context. I will answer with a practical next step.",
+    "badge": "Project estimate and kickoff",
+    "title": "Get an estimate for your project",
+    "description": "Share the task, budget range and website goal. You will get a practical next step on structure, format and launch rather than a vague reply.",
     "infoTitle": "Contact information",
     "startTitle": "What you get at the start",
     "stackTitle": "Stack and specialization",
     "emailCta": "Send an email",
     "telegramCta": "Message on Telegram",
-    "briefTitle": "Short brief",
-    "briefDescription": "Tell me what needs to be built and what the business outcome should be.",
+    "briefTitle": "Short request",
+    "briefDescription": "What needs to be built, for what kind of business and what the website should achieve.",
     "advantages": [
-      "Focused first conversation",
-      "Clear scope and priorities",
-      "Thoughtful technical direction",
-      "Strong execution standard"
+      "A clear site plan before kickoff",
+      "Defined scope of work",
+      "A realistic timeline outlook",
+      "A site prepared for SEO and ads"
     ],
     "contactItems": {
       "email": {
@@ -257,11 +280,11 @@
       },
       "workMode": {
         "label": "Engagement",
-        "value": "Independent senior partner"
+        "value": "Independent technical partner for commercial websites and digital products"
       },
       "workRhythm": {
         "label": "Response rhythm",
-        "value": "Clear communication and practical next steps"
+        "value": "Reply within 24 hours with a practical next step"
       }
     }
   },
@@ -276,45 +299,45 @@
       "success": "Your message has been sent successfully!",
       "error": "Failed to send the message",
       "loading": "Sending...",
-      "button": "Send message"
+      "button": "Get an estimate"
     },
     "fields": {
       "name": "Name *",
       "namePlaceholder": "Your name",
       "email": "Email *",
-      "phone": "Phone",
+      "phone": "Phone (optional)",
       "phonePlaceholder": "+49 XX XXX XX XX",
-      "service": "Service type",
-      "servicePlaceholder": "Choose a service",
+      "service": "What do you need?",
+      "servicePlaceholder": "Choose the project format",
       "serviceAria": "Choose a service type",
-      "budget": "Project budget",
-      "budgetPlaceholder": "Choose a budget",
+      "budget": "Budget",
+      "budgetPlaceholder": "Choose the budget range",
       "budgetAria": "Choose a project budget",
-      "message": "Message *",
-      "messagePlaceholder": "Tell me more about your project...",
+      "message": "Short task description *",
+      "messagePlaceholder": "What do you sell, to whom, and what should the site achieve?",
       "emailPlaceholder": "you@example.com",
-      "messageHint": "Briefly describe the task, timing or expected outcome."
+      "messageHint": "A short note on the task, business goal, timeline or expected outcome is enough."
     },
     "services": [
       {
         "value": "website",
-        "label": "Website development"
+        "label": "Landing page"
       },
       {
         "value": "redesign",
-        "label": "Website redesign"
+        "label": "Corporate website"
       },
       {
         "value": "seo",
-        "label": "SEO optimization"
+        "label": "E-commerce store"
       },
       {
         "value": "maintenance",
-        "label": "Website maintenance"
+        "label": "Web application"
       },
       {
         "value": "consultation",
-        "label": "Consultation"
+        "label": "Website relaunch / update"
       },
       {
         "value": "other",
@@ -324,59 +347,59 @@
     "budgets": [
       {
         "value": "under-1000",
-        "label": "Up to $1,000"
+        "label": "Up to EUR 1,000"
       },
       {
         "value": "1000-3000",
-        "label": "$1,000 - $3,000"
+        "label": "EUR 1,000 - EUR 3,000"
       },
       {
         "value": "3000-5000",
-        "label": "$3,000 - $5,000"
+        "label": "EUR 3,000 - EUR 5,000"
       },
       {
         "value": "5000-10000",
-        "label": "$5,000 - $10,000"
+        "label": "EUR 5,000 - EUR 10,000"
       },
       {
         "value": "over-10000",
-        "label": "Over $10,000"
+        "label": "Over EUR 10,000"
       },
       {
         "value": "discuss",
         "label": "Discuss individually"
       }
     ],
-    "formHint": "Fill in the short brief. Required fields: name, email and message."
+    "formHint": "Fill in the short request. Contact details, project format, budget and the core task are enough."
   },
   "HomePage": {
     "faq": {
       "title": "Frequently asked questions",
-      "subtitle": "Short answers to the questions that usually matter before a project starts.",
+      "subtitle": "This block answers the main objections before kickoff: pricing, difference in approach, scope changes and what happens after inquiry.",
       "items": [
         {
-          "question": "How long does website development take?",
-          "answer": "A landing page usually takes 1-2 weeks, a corporate website 2-5 weeks, while an e-commerce store or a web application takes longer. The exact timeline depends on scope, content, integrations and how ready the materials are."
+          "question": "Why can the price be higher than with a typical freelance developer?",
+          "answer": "Because the work is not limited to implementation. I help shape page logic, structure, conversion flow, technical SEO readiness and launch direction. The client gets more than screens or code."
+        },
+        {
+          "question": "How is this different from just “building a website”?",
+          "answer": "I work from the business task: what the site should prove, who it needs to persuade and what action it should drive. That changes the structure, copy priorities, case-study placement and CTA logic."
+        },
+        {
+          "question": "Can the project be made cheaper?",
+          "answer": "Yes, by narrowing the scope. For example, we can start with one focused landing flow instead of a larger multi-page build, or move part of the integrations into a second phase."
+        },
+        {
+          "question": "What if the project changes during the process?",
+          "answer": "That is manageable as long as the base scope is fixed before kickoff and new requests are handled separately. This keeps timeline, budget and delivery priorities under control."
         },
         {
           "question": "Is SEO included in development?",
-          "answer": "Yes. Baseline technical SEO is included in the projects: page structure, metadata, speed, sitemap, schema.org, responsiveness and clean markup. A deeper SEO strategy or audit can be added separately."
+          "answer": "Yes. Baseline technical SEO is included: page structure, metadata, sitemap, schema, speed and clean markup. Dedicated SEO landing pages can be added as a separate next phase."
         },
         {
-          "question": "Do you work with clients across different markets?",
-          "answer": "Yes. I work with businesses across different markets and time zones. The collaboration is remote and structured around the needs of the project."
-        },
-        {
-          "question": "Can you work with an existing design?",
-          "answer": "Yes. I can implement your existing design or work alongside a designer in the team. If there is no design yet, I can help define the right process and involve the right specialists."
-        },
-        {
-          "question": "What kinds of projects do you take on?",
-          "answer": "Landing pages, corporate websites, service websites, e-commerce stores, web applications, client portals, MVPs and technical SEO for existing websites."
-        },
-        {
-          "question": "What stack do you use?",
-          "answer": "My main stack is React, Next.js, TypeScript, Tailwind CSS, Node.js, PostgreSQL and MongoDB. The final choice depends on the task, but the priority is always stability and scalability."
+          "question": "What do I get after sending an inquiry?",
+          "answer": "You get a practical next step: an initial scope direction, a rough timeline view and a recommendation on the right project format for your case."
         }
       ]
     },
@@ -449,13 +472,18 @@
     }
   },
   "Footer": {
-    "description": "Website development, web applications and technical SEO for brands, services and digital products.",
+    "description": "Websites, e-commerce and web products for businesses that need stronger positioning, clearer structure and a digital asset built for leads, SEO and growth.",
+    "cta": {
+      "title": "Next step",
+      "description": "If the website needs stronger positioning, better structure and a clearer inquiry path, start with a short estimate.",
+      "label": "Get an estimate"
+    },
     "navigation": {
       "title": "Navigation",
       "services": "Services",
-      "portfolio": "Portfolio",
-      "about": "About",
-      "contact": "Contact"
+      "portfolio": "Cases",
+      "about": "Process",
+      "contact": "Estimate"
     },
     "legal": {
       "title": "Legal",
@@ -466,10 +494,10 @@
     },
     "contact": {
       "title": "Contact",
-      "remote": "Available for focused project collaboration."
+      "remote": "Working as an independent technical partner for commercial websites and digital products."
     },
     "copyright": "All rights reserved.",
-    "tagline": "Building clear, high-quality digital products.",
+    "tagline": "From structure to launch.",
     "logoAlt": "Serhii Oberemchuk logo"
   },
   "CookieBanner": {
@@ -512,31 +540,33 @@
   },
   "Layout": {
     "metadata": {
-      "titleDefault": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps",
-      "titleTemplate": "%s",
-      "description": "Serhii Oberemchuk is a fullstack web developer and digital partner. I build business websites, landing pages, e-commerce stores and custom web applications with React, Next.js, TypeScript and technical SEO.",
+      "titleDefault": "Serhii Oberemchuk - websites for leads, sales and growth",
+      "titleTemplate": "%s | Serhii Oberemchuk",
+      "description": "Technical partner for businesses. I build landing pages, company websites, e-commerce projects and web apps that work as commercial assets for leads, SEO, campaigns and growth.",
       "keywords": [
-        "fullstack web developer",
+        "business websites",
+        "technical partner",
         "website development",
         "landing page development",
         "corporate website development",
         "web application development",
         "e-commerce development",
         "React developer",
-        "Next.js developer"
+        "Next.js developer",
+        "technical SEO"
       ],
-      "openGraphTitle": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps",
-      "openGraphDescription": "Business websites, landing pages, e-commerce and web applications with strong structure and technical confidence.",
-      "openGraphImageAlt": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps",
-      "twitterTitle": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps",
-      "twitterDescription": "Business websites, web apps and technical SEO with strong structure and premium execution."
+      "openGraphTitle": "Serhii Oberemchuk - websites for leads, sales and growth",
+      "openGraphDescription": "Landing pages, company websites, e-commerce and web apps with stronger structure, clearer positioning and technical depth for growth.",
+      "openGraphImageAlt": "Serhii Oberemchuk - technical partner for commercial websites and web products",
+      "twitterTitle": "Serhii Oberemchuk - websites for leads, sales and growth",
+      "twitterDescription": "Commercial websites and web products with clear structure, stronger presentation and a technical base for SEO, campaigns and scale."
     },
     "skipToContent": "Skip to main content"
   },
   "ServicesPage": {
     "metadata": {
-      "title": "Web development services | Landing pages, websites, e-commerce and web apps",
-      "description": "Web development services by Serhii Oberemchuk: landing page development, corporate websites, e-commerce stores, custom web applications and technical SEO.",
+      "title": "Services: websites, e-commerce and web products for business",
+      "description": "Landing pages, company websites, e-commerce stores, web apps and technical SEO for businesses that need more than a website: they need a commercial asset.",
       "keywords": [
         "web development services",
         "landing page development",
@@ -547,12 +577,12 @@
       ],
       "openGraph": {
         "title": "Services | Serhii Oberemchuk",
-        "description": "Landing pages, business websites, e-commerce stores, custom web applications and technical SEO.",
+        "description": "Websites, e-commerce and web products with clearer structure, stronger positioning and a technical base for leads, SEO and growth.",
         "imageAlt": "Web development services by Serhii Oberemchuk"
       },
       "twitter": {
         "title": "Services | Serhii Oberemchuk",
-        "description": "Web development for brands, products and service businesses."
+        "description": "Commercial websites and web products for businesses that need leads, trust and room to grow."
       }
     },
     "schema": {
@@ -561,23 +591,28 @@
       "itemListName": "List of web development services"
     },
     "hero": {
-      "title": "Web development services",
-      "description": "I work with businesses that need more than attractive pages. They need landing pages, service websites, e-commerce stores or web applications with strong structure, clear messaging, technical SEO and room to grow."
+      "title": "Services packaged around outcomes",
+      "description": "This is not a task list. It is a set of solution formats for different business goals: paid traffic launches, stronger trust, online sales, product logic or technical SEO readiness."
     },
     "listAriaLabel": "List of services",
     "includesTitle": "What is included",
+    "outcomesPreviewTitle": "What it changes for the business",
     "detailsCta": "Go to service page",
     "consultation": {
-      "title": "Not sure which format fits your case?",
-      "description": "That is normal. In many cases, the difference between a landing page, a corporate website and a small web app becomes clear only after a short brief. I can help choose the right format without wasted budget or the wrong start.",
-      "cta": "Discuss a project"
+      "title": "Not sure which format will create the best result?",
+      "description": "That is normal. The difference between a landing page, a company website, a store or a web app often becomes clear only after a short brief. I can help choose the right format without wasted budget or the wrong start.",
+      "cta": "Get an estimate"
     }
   },
   "ServiceDetailPage": {
     "backToServices": "Back to services",
-    "discussProject": "Discuss a project",
+    "discussProject": "Get an estimate",
+    "valueDescription": "The service is structured around what should change for the business after launch: sharper positioning, stronger trust, better inquiry flow, more sales or a stronger base for growth.",
+    "deliveryLabel": "What goes into delivery",
+    "resultLabel": "What the business gets",
     "fitForTitle": "When this service is the right fit",
     "outcomesTitle": "What the business gets",
+    "outcomesDescription": "The expected result of this service: what changes in positioning, conversion flow, structure or growth-readiness once the work is delivered.",
     "deliverablesTitle": "What is included",
     "searchIntentTitle": "Commercial queries worth building the page for",
     "searchIntentDescription": "For this service, the page should match real search intent. That is why I explicitly outline key phrasing, usage scenarios and the business value behind the offer.",
@@ -587,7 +622,7 @@
     "estimate": {
       "title": "Need an estimate for your exact case?",
       "description": "Tell me what you sell, who your client is, what the business goal should be and whether the site is meant for ads, SEO or product presentation. That makes it possible to suggest the right format quickly.",
-      "cta": "Message about the project"
+      "cta": "Get an estimate"
     }
   },
   "PortfolioPage": {
@@ -649,6 +684,19 @@
     "viewSite": "View website",
     "technologies": "Technologies",
     "features": "Features",
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "result": "Result",
+    "challengeTitle": "What needed to be solved",
+    "solutionTitle": "How the project was assembled",
+    "resultTitle": "What this created in the end",
+    "overviewLabel": "Project overview",
+    "buildLabel": "Build details",
+    "projectLabel": "Case study",
+    "challengeText": "The project required more than a clean interface. The structure, messaging and technical foundation had to support the product or service in a commercially clear way.",
+    "solutionText": "The solution was built through a clear page structure, controlled front-end execution, strong content hierarchy and a dependable technical base for launch and future growth.",
+    "resultText": "The outcome is more than a set of screens. It is a digital product with stronger presentation, clearer interaction flow and a better base for SEO, campaigns or scaling.",
+    "featureIntro": "Key elements that shape the product and commercial value of this case.",
     "metadata": {
       "siteSuffix": "Oberemchuk Serhii - Web Development",
       "keywordsPrefix": "web development"

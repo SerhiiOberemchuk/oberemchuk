@@ -80,7 +80,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
     .slice(0, 3);
 
   const pageLabel = isEnglish ? "Service detail" : "Деталі послуги";
-  const valueLabel = isEnglish ? "Service logic" : "Логіка послуги";
+  const valueLabel = isEnglish ? "Business value" : "Цінність для бізнесу";
   const offerLabel = isEnglish ? "Starting point" : "Стартова вартість";
   const keywordsLabel = isEnglish ? "Search layer" : "Пошуковий шар";
 
@@ -156,12 +156,12 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
                     {service.shortTitle}
                   </p>
-                  <h1 className="mt-4 max-w-[13ch] text-5xl leading-[0.92] text-white md:text-7xl">
-                    {service.heroTitle}
-                  </h1>
-                  <p className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg">
-                    {service.heroDescription}
-                  </p>
+                    <h1 className="mt-4 max-w-[13ch] text-5xl leading-[0.92] text-white md:text-7xl">
+                      {service.heroTitle}
+                    </h1>
+                    <p className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg">
+                      {service.heroDescription}
+                    </p>
                 </div>
 
                 <div className="mt-10 max-w-[13.5rem]">
@@ -182,10 +182,10 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
                     {valueLabel}
                   </p>
-                  <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
-                    {service.metaDescription}
-                  </p>
-                </div>
+                    <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
+                      {pageT("valueDescription")}
+                    </p>
+                  </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
@@ -225,7 +225,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
           <AnimationWrapper animation="slide-up">
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {offerLabel}
+                {pageT("deliveryLabel")}
               </p>
               <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
                 {pageT("deliverablesTitle")}
@@ -244,6 +244,32 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
           </AnimationWrapper>
 
           <AnimationWrapper animation="slide-up" delay={100}>
+            <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f7fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
+              <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                {pageT("resultLabel")}
+              </p>
+              <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                {pageT("outcomesTitle")}
+              </h2>
+              <p className="mt-5 max-w-3xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
+                {pageT("outcomesDescription")}
+              </p>
+              <ul className="mt-8 grid gap-4">
+                {service.outcomes.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-[1.25rem] border border-[rgba(24,31,43,0.08)] bg-white px-5 py-5 text-base leading-7 text-[hsl(var(--foreground))] shadow-[0_10px_30px_rgba(24,31,43,0.04)]"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimationWrapper>
+        </section>
+
+        <section className="mt-8">
+          <AnimationWrapper animation="slide-up">
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f7fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
                 {keywordsLabel}

@@ -17,6 +17,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import CookieConsentBanner from "@/components/cookie-consent-banner";
+import MobileStickyCta from "@/components/mobile-sticky-cta";
 import ScrollToTop from "@/components/scroll-to-top";
 import { AnalyticsLayout } from "@/components/Analytics";
 
@@ -176,6 +177,11 @@ async function LocaleLayoutContent({children, locale}: {children: React.ReactNod
     { href: "/#about", label: headerT("navigation.about") },
     { href: "/#contact", label: headerT("navigation.contact") },
   ];
+  const footerNavigationItems = [
+    ...headerNavItems,
+    { href: "/solutions", label: locale === "en" ? "SEO pages" : "SEO-сторінки" },
+    { href: "/blog", label: locale === "en" ? "Blog" : "Блог" },
+  ];
   const footerLegalItems = [
     { href: "/privacy-policy", label: footerT("legal.privacy") },
     { href: "/cookies", label: footerT("legal.cookies") },
@@ -190,7 +196,7 @@ async function LocaleLayoutContent({children, locale}: {children: React.ReactNod
       >
         {layoutT("skipToContent")}
       </a>
-      <div className="flex min-h-screen flex-col pt-16">
+      <div className="flex min-h-screen flex-col pb-24 pt-16 md:pb-0">
         <Header
           ctaLabel={headerT("cta")}
           logoAlt={headerT("logoAlt")}
@@ -208,16 +214,20 @@ async function LocaleLayoutContent({children, locale}: {children: React.ReactNod
           copyright={footerT("copyright")}
           tagline={footerT("tagline")}
           logoAlt={footerT("logoAlt")}
+          ctaTitle={footerT("cta.title")}
+          ctaDescription={footerT("cta.description")}
+          ctaLabel={footerT("cta.label")}
           navigationTitle={footerT("navigation.title")}
           legalTitle={footerT("legal.title")}
           contactTitle={footerT("contact.title")}
           remoteLabel={footerT("contact.remote")}
           cookieSettingsLabel={footerT("legal.cookieSettings")}
-          navigationItems={headerNavItems}
+          navigationItems={footerNavigationItems}
           legalItems={footerLegalItems}
         />
       </div>
       <CookieConsentBanner />
+      <MobileStickyCta label={headerT("cta")} />
       <ScrollToTop />
       <Toaster />
       <AnalyticsLayout />

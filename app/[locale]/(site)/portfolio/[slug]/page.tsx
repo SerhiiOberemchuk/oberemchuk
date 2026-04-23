@@ -19,6 +19,95 @@ type PortfolioProjectPageProps = {
   params: Promise<{locale: string; slug: string}>;
 };
 
+function getCaseNarrative(
+  project: {
+    slug: string;
+    category: string;
+    description: string;
+    features: string[];
+  },
+  locale: "uk" | "en"
+) {
+  const isEnglish = locale === "en";
+  const featureHighlights = project.features.slice(0, 3);
+
+  const defaultNarrative = {
+    challenge: isEnglish
+      ? "The goal was to create a stronger digital presentation with clearer structure, more confident communication and a technical base that can support growth."
+      : "Задача полягала в тому, щоб зібрати сильнішу цифрову подачу з чіткішою структурою, переконливішою комунікацією і технічною базою, готовою до росту.",
+    solution: isEnglish
+      ? "The implementation focused on page hierarchy, interaction clarity, controlled visual language and a dependable front-end structure."
+      : "Реалізація будувалася через продуману ієрархію сторінки, зрозумілу взаємодію, контрольовану візуальну мову і стабільну front-end основу.",
+    result: isEnglish
+      ? "The end result is a cleaner user path, stronger trust signals and a product that is easier to use as part of sales, SEO or launch activity."
+      : "На виході вийшов чистіший сценарій для користувача, сильніші сигнали довіри і продукт, який легше використовувати в продажах, SEO або запуску реклами.",
+    outcomes: featureHighlights.length
+      ? featureHighlights
+      : isEnglish
+        ? ["Clearer structure", "Stronger trust layer", "Better launch readiness"]
+        : ["Чіткіша структура", "Сильніший шар довіри", "Краща готовність до запуску"]
+  };
+
+  if (project.slug === "raisa-regress") {
+    return {
+      challenge: isEnglish
+        ? "The challenge was to present the service with more authority, reduce visual noise and make the website feel faster and more controlled."
+        : "Задача полягала в тому, щоб подати послугу сильніше, прибрати зайвий шум і зробити сайт швидшим та більш контрольованим у сприйнятті.",
+      solution: isEnglish
+        ? "The project was rebuilt through cleaner structure, tighter visual hierarchy and a stronger technical base that supports speed and SEO readiness."
+        : "Проєкт був зібраний через чистішу структуру, сильнішу візуальну ієрархію і технічну основу, яка підтримує швидкість та SEO-ready підхід.",
+      result: isEnglish
+        ? "The website now communicates with more confidence, feels sharper in interaction and gives the business a stronger base for acquisition."
+        : "У результаті сайт став переконливішим у подачі, чіткішим у взаємодії і дав бізнесу сильнішу основу для залучення клієнтів.",
+      outcomes: featureHighlights.length
+        ? featureHighlights
+        : isEnglish
+          ? ["Sharper service positioning", "Faster perceived experience", "Stronger SEO structure"]
+          : ["Сильніше позиціонування послуги", "Швидше відчуття роботи сайту", "Сильніша SEO-структура"]
+    };
+  }
+
+  if (/shop|store|commerce|магазин/i.test(project.category)) {
+    return {
+      challenge: isEnglish
+        ? "The store needed a stronger product presentation, a clearer buying path and a structure that would not block growth later."
+        : "Магазину була потрібна сильніша подача товарів, зрозуміліший сценарій покупки і структура, яка не буде стримувати ріст далі.",
+      solution: isEnglish
+        ? "The solution focused on storefront clarity, purchase flow, integrations and architecture that can support catalogue and SEO expansion."
+        : "Рішення будувалося навколо зрозумілого storefront, сценарію покупки, інтеграцій і архітектури, яка підтримує ріст каталогу та SEO.",
+      result: isEnglish
+        ? "The result is a cleaner commerce experience and a more scalable base for product visibility and online sales."
+        : "У результаті вийшов чистіший e-commerce сценарій і більш масштабована база для видимості товарів та онлайн-продажів.",
+      outcomes: featureHighlights.length
+        ? featureHighlights
+        : isEnglish
+          ? ["Stronger storefront", "Cleaner checkout logic", "Category growth readiness"]
+          : ["Сильніший storefront", "Чистіша логіка checkout", "Готовність до росту категорій"]
+    };
+  }
+
+  if (/app|saas|platform|додат/i.test(project.category)) {
+    return {
+      challenge: isEnglish
+        ? "The task was to turn product requirements into a clear working interface instead of a static showcase layer."
+        : "Задача була в тому, щоб перетворити продуктові вимоги в зрозумілий робочий інтерфейс, а не в статичну вітрину.",
+      solution: isEnglish
+        ? "The product was assembled through user flows, scalable component logic, integration readiness and a predictable UI system."
+        : "Продукт був зібраний через user flows, масштабовану логіку компонентів, готовність до інтеграцій і передбачувану UI-систему.",
+      result: isEnglish
+        ? "That created a stronger product surface: clearer interaction, better maintainability and more room for the next growth stage."
+        : "Це дало сильнішу продуктову основу: зрозумілішу взаємодію, кращу підтримуваність і більше простору для наступного етапу росту.",
+      outcomes: featureHighlights.length
+        ? featureHighlights
+        : isEnglish
+          ? ["Clearer user flows", "Scalable UI logic", "Growth-ready architecture"]
+          : ["Чіткіші user flows", "Масштабована UI-логіка", "Архітектура, готова до росту"]
+    };
+  }
+
+  return defaultNarrative;
+}
+
 export async function generateStaticParams() {
   const projects = await getProjects();
 
@@ -85,9 +174,10 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
 
   const localizedProject = localizeProject(project, locale as "uk" | "en");
   const pagePath = isEnglish ? `/en/portfolio/${slug}` : `/portfolio/${slug}`;
-  const overviewLabel = isEnglish ? "Project overview" : "Огляд проєкту";
-  const buildLabel = isEnglish ? "Build details" : "Build details";
-  const projectLabel = isEnglish ? "Case study" : "Кейс";
+  const narrative = getCaseNarrative(localizedProject, locale as "uk" | "en");
+  const overviewLabel = pageT("overviewLabel");
+  const buildLabel = pageT("buildLabel");
+  const projectLabel = pageT("projectLabel");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -246,6 +336,20 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
           <AnimationWrapper animation="slide-up">
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                {pageT("challenge")}
+              </p>
+              <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                {pageT("challengeTitle")}
+              </h2>
+              <p className="mt-6 text-base leading-8 text-[hsl(var(--foreground))]/72">
+                {narrative.challenge}
+              </p>
+            </div>
+          </AnimationWrapper>
+
+          <AnimationWrapper animation="slide-up">
+            <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
+              <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
                 {buildLabel}
               </p>
               <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
@@ -264,22 +368,56 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
               </div>
             </div>
           </AnimationWrapper>
+        </section>
 
-          <AnimationWrapper animation="slide-up" delay={100}>
+        <section className="mt-8 grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
+          <AnimationWrapper animation="slide-up">
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f7fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {projectLabel}
+                {pageT("solution")}
               </p>
               <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                {pageT("features")}
+                {pageT("solutionTitle")}
               </h2>
-              <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+              <p className="mt-6 text-base leading-8 text-[hsl(var(--foreground))]/72">
+                {narrative.solution}
+              </p>
+
+              <p className="mt-8 text-sm leading-7 text-[hsl(var(--muted-foreground))]">
+                {pageT("featureIntro")}
+              </p>
+              <ul className="mt-6 grid gap-4 sm:grid-cols-2">
                 {localizedProject.features.map((feature, index) => (
                   <li
                     key={index}
                     className="rounded-[1.35rem] border border-[rgba(24,31,43,0.08)] bg-white px-5 py-5 text-base leading-7 text-[hsl(var(--foreground))] shadow-[0_10px_30px_rgba(24,31,43,0.04)]"
                   >
                     {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimationWrapper>
+
+          <AnimationWrapper animation="slide-up" delay={100}>
+            <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[hsl(var(--foreground))] p-8 text-white shadow-[0_24px_80px_rgba(24,31,43,0.14)]">
+              <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/54">
+                {pageT("result")}
+              </p>
+              <h2 className="text-4xl text-white md:text-5xl">
+                {pageT("resultTitle")}
+              </h2>
+              <p className="mt-6 text-base leading-8 text-white/74">
+                {narrative.result}
+              </p>
+
+              <ul className="mt-8 grid gap-4">
+                {narrative.outcomes.map((item, index) => (
+                  <li
+                    key={`${item}-${index}`}
+                    className="rounded-[1.35rem] border border-white/12 bg-white/6 px-5 py-5 text-base leading-7 text-white/88 backdrop-blur-sm"
+                  >
+                    {item}
                   </li>
                 ))}
               </ul>

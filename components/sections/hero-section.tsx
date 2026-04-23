@@ -33,14 +33,14 @@ export default function HeroSection({
 }: HeroSectionProps) {
   const isEnglish = titlePrefix === "I build"
   const manifestoLabel = isEnglish ? "Positioning" : "Позиціонування"
-  const manifestoTitle = isEnglish ? "Independent partner, not a commodity executor." : "Незалежний партнер, а не типовий виконавець."
+  const manifestoTitle = isEnglish ? "Commercial website logic, not freelance filler." : "Комерційна логіка сайту, а не фриланс-подача."
   const manifestoBody = isEnglish
-    ? "Strategy, interface thinking, development and launch are handled as one system."
-    : "Стратегія, інтерфейсне мислення, розробка і запуск працюють як одна система."
-  const proofLabel = isEnglish ? "Working logic" : "Логіка роботи"
+    ? "Positioning, structure, development and launch are assembled as one system aimed at business impact."
+    : "Позиціонування, структура, розробка і запуск збираються як одна система під бізнес-результат."
+  const proofLabel = isEnglish ? "What matters" : "Що важливо"
   const proofBody = isEnglish
-    ? "The goal is not visual noise. The goal is a digital presence that feels clear, controlled and commercially strong."
-    : "Мета не у візуальному шумі. Мета у цифровій присутності, яка відчувається чіткою, керованою і сильною комерційно."
+    ? "Not just a polished site, but a digital asset ready for traffic, trust and conversion."
+    : "Не просто акуратний сайт, а цифровий актив, готовий до трафіку, довіри й конверсії."
 
   return (
     <section className="relative -mt-16 overflow-hidden px-4 pb-18 pt-22 md:px-6 md:pt-30" aria-labelledby="hero-title">
