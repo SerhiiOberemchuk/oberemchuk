@@ -1,5 +1,7 @@
 import { getProjects } from "@/lib/projects-server";
+import { blogPostSlugs } from "@/lib/blog-posts";
 import { getLocalizedPath } from "@/lib/seo";
+import { seoLandingSlugs } from "@/lib/seo-landings";
 import { servicePageSlugs } from "@/lib/service-pages";
 import { getSiteUrl } from "@/lib/site-config";
 
@@ -27,10 +29,22 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
     { path: "", changefreq: "weekly" as const, priority: "1.0" },
     { path: "/portfolio", changefreq: "weekly" as const, priority: "0.9" },
     { path: "/services", changefreq: "weekly" as const, priority: "0.9" },
+    { path: "/solutions", changefreq: "weekly" as const, priority: "0.85" },
+    { path: "/blog", changefreq: "weekly" as const, priority: "0.85" },
     ...servicePageSlugs.map((slug) => ({
       path: `/services/${slug}`,
       changefreq: "monthly" as const,
       priority: "0.8",
+    })),
+    ...seoLandingSlugs.map((slug) => ({
+      path: `/solutions/${slug}`,
+      changefreq: "monthly" as const,
+      priority: "0.75",
+    })),
+    ...blogPostSlugs.map((slug) => ({
+      path: `/blog/${slug}`,
+      changefreq: "monthly" as const,
+      priority: "0.7",
     })),
     { path: "/privacy-policy", changefreq: "yearly" as const, priority: "0.3" },
     { path: "/cookies", changefreq: "yearly" as const, priority: "0.3" },

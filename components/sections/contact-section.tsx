@@ -44,13 +44,13 @@ export default function ContactSection({
   advantages,
   contactItems
 }: ContactSectionProps) {
-  const isEnglish = title === "Let's discuss your project"
+  const isEnglish = /^[\x00-\x7F\s.,'":;!?()-]+$/.test(title)
   const contactPitch = isEnglish
-    ? "Direct communication, practical scope, strong next steps."
-    : "Пряма комунікація, практичний scope і сильні наступні кроки."
+    ? "Short intake, clear estimate logic and a practical next step."
+    : "Короткий вхід, зрозуміла логіка оцінки і практичний наступний крок."
   const briefBody = isEnglish
-    ? "Share the task, business context and what success should look like. The conversation should start from substance, not from generic forms."
-    : "Опишіть задачу, бізнес-контекст і те, яким має бути результат. Розмова має стартувати зі змісту, а не з формальності."
+    ? "Share what needs to be built, what the business goal is and what budget range you are considering. That is enough to move from vague interest to a real plan."
+    : "Напишіть, що саме треба зробити, яка бізнес-ціль і який діапазон бюджету ви розглядаєте. Цього достатньо, щоб перейти від загального інтересу до реального плану."
   const specializations = ["React", "Next.js", "TypeScript", "Node.js", "SEO", "E-commerce"]
 
   const infoItems = [

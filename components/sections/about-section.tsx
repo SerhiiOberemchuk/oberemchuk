@@ -37,11 +37,8 @@ export default function AboutSection({
   process,
   summaryStats
 }: AboutSectionProps) {
-  const isEnglish = title === "About me"
+  const isEnglish = /^[\x00-\x7F\s.,'":;!?()-]+$/.test(title)
   const positioningLabel = isEnglish ? "Positioning" : "Позиціонування"
-  const manifesto = isEnglish
-    ? "I work where product clarity, digital taste and technical rigor need to hold together."
-    : "Працюю там, де продуктова ясність, цифровий смак і технічна строгість мають триматися разом."
   const toolingLabel = isEnglish ? "Selected stack and delivery tools" : "Ключовий стек і робочі інструменти"
   const technologies = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Figma", "SEO"]
   const skillIcons = [Code, Server, Palette, Search, Smartphone]
@@ -66,12 +63,6 @@ export default function AboutSection({
         <div className="grid gap-12 lg:grid-cols-[1.02fr_0.98fr]">
           <AnimationWrapper animation="slide-left">
             <div className="space-y-10">
-              <div className="border-t border-[rgba(24,31,43,0.18)] pt-8">
-                <p className="max-w-4xl text-[2.4rem] leading-[1.03] text-[hsl(var(--foreground))] md:text-[3.6rem]">
-                  {manifesto}
-                </p>
-              </div>
-
               <div className="grid gap-5 md:grid-cols-4">
                 {summaryStats.map((stat) => (
                   <div key={`${stat.value}-${stat.label}`} className="border-t border-[rgba(24,31,43,0.16)] pt-4">

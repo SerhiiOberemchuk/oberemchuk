@@ -1,10 +1,10 @@
 ﻿import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import AboutSection from "@/components/sections/about-section";
+import ClientOutcomesSection from "@/components/sections/client-outcomes-section";
 import ContactSection from "@/components/sections/contact-section";
 import HeroSection from "@/components/sections/hero-section";
 import PortfolioSection from "@/components/sections/portfolio-section";
-import SeoSection from "@/components/sections/seo-section";
 import ServicesSection from "@/components/sections/services-section";
 import FaqSection from "@/components/faq-section";
 import JsonLd from "@/components/json-ld";
@@ -67,7 +67,7 @@ export default async function HomePage({ params }: HomePageProps) {
     locale,
     namespace: "HomeServices",
   });
-  const seoT = await getTranslations({ locale, namespace: "HomeSeo" });
+  const outcomesT = await getTranslations({ locale, namespace: "HomeOutcomes" });
   const contactT = await getTranslations({ locale, namespace: "HomeContact" });
   const faqs = pageT.raw("faq.items") as FaqItem[];
   const heroStats = heroT.raw("stats") as Array<{
@@ -97,12 +97,10 @@ export default async function HomePage({ params }: HomePageProps) {
     title: string;
     description: string;
   }>;
-  const seoPillars = seoT.raw("pillars") as Array<{
+  const clientOutcomes = outcomesT.raw("items") as Array<{
     title: string;
     description: string;
   }>;
-  const seoKeywords = seoT.raw("keywords") as string[];
-  const seoReasons = seoT.raw("reasons") as string[];
   const contactAdvantages = contactT.raw("advantages") as string[];
   const contactItems = contactT.raw("contactItems") as {
     email: { label: string; value: string };
@@ -186,18 +184,6 @@ export default async function HomePage({ params }: HomePageProps) {
         secondaryCta={heroT("secondaryCta")}
         stats={heroStats}
       />
-      <AboutSection
-        title={aboutT("title")}
-        subtitle={aboutT("subtitle")}
-        valueTitle={aboutT("valueTitle")}
-        skillsTitle={aboutT("skillsTitle")}
-        processTitle={aboutT("processTitle")}
-        technologiesTitle={aboutT("technologiesTitle")}
-        paragraphs={aboutParagraphs}
-        skills={aboutSkills}
-        process={aboutProcess}
-        summaryStats={aboutSummaryStats}
-      />
       <ServicesSection
         title={servicesT("title")}
         subtitle={servicesT("subtitle")}
@@ -210,21 +196,29 @@ export default async function HomePage({ params }: HomePageProps) {
         servicesContent={serviceCards}
         advantages={serviceAdvantages}
       />
-      <PortfolioSection />
-      <SeoSection
-        badge={seoT("badge")}
-        title={seoT("title")}
-        description={seoT("description")}
-        keywordsTitle={seoT("keywordsTitle")}
-        reasonsTitle={seoT("reasonsTitle")}
-        ctaTitle={seoT("ctaTitle")}
-        ctaQuote={seoT("ctaQuote")}
-        ctaDescription={seoT("ctaDescription")}
-        primaryCta={seoT("primaryCta")}
-        secondaryCta={seoT("secondaryCta")}
-        pillars={seoPillars}
-        keywords={seoKeywords}
-        reasons={seoReasons}
+      <PortfolioSection locale={locale as "uk" | "en"} />
+      <AboutSection
+        title={aboutT("title")}
+        subtitle={aboutT("subtitle")}
+        valueTitle={aboutT("valueTitle")}
+        skillsTitle={aboutT("skillsTitle")}
+        processTitle={aboutT("processTitle")}
+        technologiesTitle={aboutT("technologiesTitle")}
+        paragraphs={aboutParagraphs}
+        skills={aboutSkills}
+        process={aboutProcess}
+        summaryStats={aboutSummaryStats}
+      />
+      <ClientOutcomesSection
+        title={outcomesT("title")}
+        subtitle={outcomesT("subtitle")}
+        cta={outcomesT("cta")}
+        items={clientOutcomes}
+      />
+      <FaqSection
+        title={pageT("faq.title")}
+        subtitle={pageT("faq.subtitle")}
+        faqs={faqs}
       />
       <ContactSection
         badge={contactT("badge")}
@@ -239,11 +233,6 @@ export default async function HomePage({ params }: HomePageProps) {
         briefDescription={contactT("briefDescription")}
         advantages={contactAdvantages}
         contactItems={contactItems}
-      />
-      <FaqSection
-        title={pageT("faq.title")}
-        subtitle={pageT("faq.subtitle")}
-        faqs={faqs}
       />
     </>
   );

@@ -51,8 +51,8 @@ export default function ServicesSection({
   const isEnglish = title === "Services";
   const sectionLabel = isEnglish ? "Services" : "Послуги";
   const estimatePitch = isEnglish
-    ? "Defined scope, clean packaging and realistic delivery logic."
-    : "Чіткий scope, зібране пакування і реалістична логіка реалізації.";
+    ? "Clear scope, realistic timing and a launch plan that makes commercial sense."
+    : "Чіткий обсяг, реальні строки і план запуску, який має комерційний сенс.";
 
   const services = [
     {

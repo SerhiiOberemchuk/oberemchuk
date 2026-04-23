@@ -9,6 +9,9 @@ type FooterProps = {
   copyright: string;
   tagline: string;
   logoAlt: string;
+  ctaTitle: string;
+  ctaDescription: string;
+  ctaLabel: string;
   navigationTitle: string;
   legalTitle: string;
   contactTitle: string;
@@ -23,6 +26,9 @@ export default async function Footer({
   copyright,
   tagline,
   logoAlt,
+  ctaTitle,
+  ctaDescription,
+  ctaLabel,
   navigationTitle,
   legalTitle,
   contactTitle,
@@ -34,6 +40,25 @@ export default async function Footer({
   return (
     <footer className="px-4 pb-6 pt-12 md:px-6 md:pb-8">
       <div className="mx-auto max-w-7xl rounded-[38px] border border-[rgba(24,31,43,0.08)] bg-[rgba(24,31,43,0.97)] p-8 text-white shadow-[0_24px_80px_rgba(24,31,43,0.18)] md:p-10">
+        <div className="mb-10 grid gap-6 rounded-[30px] border border-white/10 bg-white/6 p-6 backdrop-blur-sm md:grid-cols-[1.1fr_0.9fr] md:items-end md:p-8">
+          <div>
+            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/50">
+              {ctaTitle}
+            </p>
+            <p className="mt-4 max-w-2xl text-2xl leading-[1.06] text-white md:text-4xl">
+              {ctaDescription}
+            </p>
+          </div>
+          <div className="md:flex md:justify-end">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-[hsl(var(--foreground))] transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              {ctaLabel}
+            </Link>
+          </div>
+        </div>
+
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.9fr]">
           <div className="max-w-sm">
             <Link href="/" className="inline-flex items-center gap-2">

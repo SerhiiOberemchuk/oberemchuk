@@ -59,11 +59,11 @@ async function ServicesPageContent({params}: ServicesPageProps) {
   const baseUrl = "https://www.oberemchuk.site";
   const isEnglish = locale === "en";
   const pageLabel = isEnglish ? "Services" : "Послуги";
-  const manifestoLabel = isEnglish ? "Offer structure" : "Структура пропозиції";
+  const manifestoLabel = isEnglish ? "Commercial offer" : "Комерційна пропозиція";
   const manifesto = isEnglish
-    ? "I build websites, commerce experiences and web products that are commercially grounded, technically clear and ready to grow."
-    : "Розробляю сайти, e-commerce-рішення і веб-продукти, які зібрані комерційно, технічно чітко і готові до росту.";
-  const archiveLabel = isEnglish ? "Service catalogue" : "Каталог послуг";
+    ? "Each service is packaged around business impact: clearer positioning, stronger trust, cleaner conversion paths and a system ready for growth."
+    : "Кожна послуга упакована навколо бізнес-результату: чіткішого позиціонування, сильнішої довіри, кращого сценарію конверсії і системи, готової до росту.";
+  const archiveLabel = isEnglish ? "Offer map" : "Карта пропозиції";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -141,7 +141,7 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                           React / Next.js / SEO
                         </p>
                       </div>
-                      <p className="mt-3 text-lg text-white">{isEnglish ? "Clear delivery logic" : "Чітка логіка реалізації"}</p>
+                      <p className="mt-3 text-lg text-white">{isEnglish ? "Result-first delivery" : "Реалізація від результату"}</p>
                     </div>
                   </div>
                 </div>
@@ -157,7 +157,7 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                     {archiveLabel}
                   </p>
                   <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                    {pageT("hero.title")}
+                    {isEnglish ? "Choose the right format for the business task" : "Оберіть формат під бізнес-задачу"}
                   </h2>
                 </div>
                 <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">
@@ -192,10 +192,10 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                       <div className="mt-8 flex flex-1 flex-col gap-6 border-t border-[rgba(24,31,43,0.08)] pt-6">
                         <div className="min-h-[12rem]">
                           <h4 className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
-                            {pageT("includesTitle")}
+                            {pageT("outcomesPreviewTitle")}
                           </h4>
                           <ul className="space-y-3">
-                            {service.deliverables.slice(0, 4).map((item) => (
+                            {service.outcomes.slice(0, 4).map((item) => (
                               <li key={item} className="flex items-start gap-3">
                                 <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[hsl(var(--primary))]" />
                                 <p className="text-sm leading-7 text-[hsl(var(--muted-foreground))]">{item}</p>
