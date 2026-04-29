@@ -123,7 +123,7 @@ export default function CookieConsentBanner() {
                 <p className="text-sm text-gray-500 mt-1">
                   {t("banner.description")} {" "}
                   <Link href="/cookies" className="text-[hsl(var(--foreground))] hover:underline">
-                    {t("banner.details")}
+                    {t("detailsLink")}
                   </Link>
                 </p>
               </div>

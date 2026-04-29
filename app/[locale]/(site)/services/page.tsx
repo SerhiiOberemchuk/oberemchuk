@@ -238,8 +238,11 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
                           variant="outline"
                           className="mt-auto w-full bg-transparent"
                         >
-                          <Link href={`/services/${service.slug}`}>
-                            {pageT("detailsCta")}
+                          <Link
+                            href={`/services/${service.slug}`}
+                            aria-label={`${pageT("detailsCta")}: ${service.title}`}
+                          >
+                            {service.title}
                             <ArrowRight className="button-arrow-right h-4 w-4" />
                           </Link>
                         </Button>

@@ -148,9 +148,9 @@ export default function ServicesSection({
                     <Button asChild className="w-fit">
                       <Link
                         href={services[1].href}
-                        aria-label={services[1].description}
+                        aria-label={`${detailsCta}: ${services[1].title}`}
                       >
-                        {detailsCta}
+                        {services[1].title}
                         <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                       </Link>
                     </Button>
@@ -183,10 +183,10 @@ export default function ServicesSection({
                         </div>
                         <Link
                           href={service.href}
-                          aria-label={service.description}
+                          aria-label={`${detailsCta}: ${service.title}`}
                           className="inline-flex items-center gap-2 text-sm font-semibold text-[hsl(var(--foreground))] transition-colors hover:text-primary"
                         >
-                          {detailsCta}
+                          {service.title}
                           <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                         </Link>
                       </article>
