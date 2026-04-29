@@ -61,12 +61,12 @@ export async function generateMetadata({
     description: t("description"),
     keywords: t.raw("keywords") as string[],
     authors: [
-      { name: "Serhii Oberemchuk", url: "https://www.oberemchuk.online" },
+      { name: "Serhii Oberemchuk", url: "https://oberemchuk.online" },
     ],
     creator: "Serhii Oberemchuk",
     publisher: "Serhii Oberemchuk",
     metadataBase: new URL(
-      process.env.SITE_URL || "https://www.oberemchuk.online",
+      process.env.SITE_URL || "https://oberemchuk.online",
     ),
     alternates: getPageAlternates(locale as "uk" | "en"),
     openGraph: {

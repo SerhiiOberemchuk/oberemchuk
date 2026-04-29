@@ -1,22 +1,29 @@
-﻿import type {Metadata} from "next";
+﻿import type { Metadata } from "next";
 import Image from "next/image";
-import {notFound} from "next/navigation";
-import {ArrowLeft, ArrowUpRight, Calendar, ExternalLink, Layers3, User} from "lucide-react";
-import {getTranslations} from "next-intl/server";
+import { notFound } from "next/navigation";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Calendar,
+  ExternalLink,
+  Layers3,
+  User,
+} from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
-import {Link} from "@/i18n/navigation";
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
-import {getPageAlternates} from "@/lib/seo";
-import {localizeProject} from "@/lib/projects-i18n";
-import {getProjectBySlug, getProjects} from "@/lib/projects-server";
-import type {Project} from "@/types/projects";
+import { Link } from "@/i18n/navigation";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { getPageAlternates } from "@/lib/seo";
+import { localizeProject } from "@/lib/projects-i18n";
+import { getProjectBySlug, getProjects } from "@/lib/projects-server";
+import type { Project } from "@/types/projects";
 
-const SITE_URL = process.env.SITE_URL || "https://www.oberemchuk.online";
+const SITE_URL = process.env.SITE_URL || "https://oberemchuk.online";
 
 type PortfolioProjectPageProps = {
-  params: Promise<{locale: string; slug: string}>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 function getCaseNarrative(
@@ -26,7 +33,7 @@ function getCaseNarrative(
     description: string;
     features: string[];
   },
-  locale: "uk" | "en"
+  locale: "uk" | "en",
 ) {
   const isEnglish = locale === "en";
   const featureHighlights = project.features.slice(0, 3);
@@ -44,8 +51,16 @@ function getCaseNarrative(
     outcomes: featureHighlights.length
       ? featureHighlights
       : isEnglish
-        ? ["Clearer structure", "Stronger trust layer", "Better launch readiness"]
-        : ["Чіткіша структура", "Сильніший шар довіри", "Краща готовність до запуску"]
+        ? [
+            "Clearer structure",
+            "Stronger trust layer",
+            "Better launch readiness",
+          ]
+        : [
+            "Чіткіша структура",
+            "Сильніший шар довіри",
+            "Краща готовність до запуску",
+          ],
   };
 
   if (project.slug === "raisa-regress") {
@@ -62,8 +77,16 @@ function getCaseNarrative(
       outcomes: featureHighlights.length
         ? featureHighlights
         : isEnglish
-          ? ["Sharper service positioning", "Faster perceived experience", "Stronger SEO structure"]
-          : ["Сильніше позиціонування послуги", "Швидше відчуття роботи сайту", "Сильніша SEO-структура"]
+          ? [
+              "Sharper service positioning",
+              "Faster perceived experience",
+              "Stronger SEO structure",
+            ]
+          : [
+              "Сильніше позиціонування послуги",
+              "Швидше відчуття роботи сайту",
+              "Сильніша SEO-структура",
+            ],
     };
   }
 
@@ -81,8 +104,16 @@ function getCaseNarrative(
       outcomes: featureHighlights.length
         ? featureHighlights
         : isEnglish
-          ? ["Stronger storefront", "Cleaner checkout logic", "Category growth readiness"]
-          : ["Сильніший storefront", "Чистіша логіка checkout", "Готовність до росту категорій"]
+          ? [
+              "Stronger storefront",
+              "Cleaner checkout logic",
+              "Category growth readiness",
+            ]
+          : [
+              "Сильніший storefront",
+              "Чистіша логіка checkout",
+              "Готовність до росту категорій",
+            ],
     };
   }
 
@@ -100,8 +131,16 @@ function getCaseNarrative(
       outcomes: featureHighlights.length
         ? featureHighlights
         : isEnglish
-          ? ["Clearer user flows", "Scalable UI logic", "Growth-ready architecture"]
-          : ["Чіткіші user flows", "Масштабована UI-логіка", "Архітектура, готова до росту"]
+          ? [
+              "Clearer user flows",
+              "Scalable UI logic",
+              "Growth-ready architecture",
+            ]
+          : [
+              "Чіткіші user flows",
+              "Масштабована UI-логіка",
+              "Архітектура, готова до росту",
+            ],
     };
   }
 
@@ -114,25 +153,31 @@ export async function generateStaticParams() {
   return ["uk", "en"].flatMap((locale) =>
     projects.map((project: Project) => ({
       locale,
-      slug: project.slug
-    }))
+      slug: project.slug,
+    })),
   );
 }
 
-export async function generateMetadata({params}: PortfolioProjectPageProps): Promise<Metadata> {
-  const {locale, slug} = await params;
-  const pageT = await getTranslations({locale, namespace: "PortfolioProjectPage"});
+export async function generateMetadata({
+  params,
+}: PortfolioProjectPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const pageT = await getTranslations({
+    locale,
+    namespace: "PortfolioProjectPage",
+  });
   const project = await getProjectBySlug(slug);
 
   if (!project) {
     return {
       title: pageT("notFound.title"),
-      description: pageT("notFound.description")
+      description: pageT("notFound.description"),
     };
   }
 
   const localizedProject = localizeProject(project, locale as "uk" | "en");
-  const pagePath = locale === "en" ? `/en/portfolio/${slug}` : `/portfolio/${slug}`;
+  const pagePath =
+    locale === "en" ? `/en/portfolio/${slug}` : `/portfolio/${slug}`;
 
   return {
     title: localizedProject.title,
@@ -148,23 +193,28 @@ export async function generateMetadata({params}: PortfolioProjectPageProps): Pro
           url: localizedProject.image_src,
           width: 1200,
           height: 630,
-          alt: localizedProject.title
-        }
+          alt: localizedProject.title,
+        },
       ],
-      type: "website"
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: localizedProject.title,
       description: localizedProject.description,
-      images: [localizedProject.image_src]
-    }
+      images: [localizedProject.image_src],
+    },
   };
 }
 
-export default async function ProjectPage({params}: PortfolioProjectPageProps) {
-  const {locale, slug} = await params;
-  const pageT = await getTranslations({locale, namespace: "PortfolioProjectPage"});
+export default async function ProjectPage({
+  params,
+}: PortfolioProjectPageProps) {
+  const { locale, slug } = await params;
+  const pageT = await getTranslations({
+    locale,
+    namespace: "PortfolioProjectPage",
+  });
   const isEnglish = locale === "en";
   const project = await getProjectBySlug(slug);
 
@@ -188,12 +238,12 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
     url: `${SITE_URL}${pagePath}`,
     creator: {
       "@type": "Person",
-      name: pageT("schema.creatorName")
+      name: pageT("schema.creatorName"),
     },
     dateCreated: localizedProject.created_at,
     dateModified: localizedProject.updated_at,
     genre: localizedProject.category,
-    keywords: localizedProject.technologies.join(", ")
+    keywords: localizedProject.technologies.join(", "),
   };
 
   return (
@@ -212,7 +262,11 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
             </Link>
             {localizedProject.website_url ? (
               <Button asChild size="lg" className="hidden sm:inline-flex">
-                <a href={localizedProject.website_url} target="_blank" rel="noreferrer">
+                <a
+                  href={localizedProject.website_url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {pageT("viewSite")}
                   <ExternalLink className="h-4 w-4" />
                 </a>
@@ -257,25 +311,39 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
                   <div className="rounded-[1.35rem] border border-white/10 bg-white/6 px-4 py-4 backdrop-blur-sm">
                     <div className="flex items-center gap-2 text-white/44">
                       <Calendar className="h-4 w-4" />
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">{pageT("year")}</p>
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
+                        {pageT("year")}
+                      </p>
                     </div>
-                    <p className="mt-3 text-lg text-white">{localizedProject.year}</p>
+                    <p className="mt-3 text-lg text-white">
+                      {localizedProject.year}
+                    </p>
                   </div>
                   <div className="rounded-[1.35rem] border border-white/10 bg-white/6 px-4 py-4 backdrop-blur-sm">
                     <div className="flex items-center gap-2 text-white/44">
                       <User className="h-4 w-4" />
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">{pageT("client")}</p>
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
+                        {pageT("client")}
+                      </p>
                     </div>
-                    <p className="mt-3 line-clamp-2 min-h-[3.5rem] text-lg text-white" title={localizedProject.client}>
+                    <p
+                      className="mt-3 line-clamp-2 min-h-[3.5rem] text-lg text-white"
+                      title={localizedProject.client}
+                    >
                       {localizedProject.client}
                     </p>
                   </div>
                   <div className="rounded-[1.35rem] border border-white/10 bg-white/6 px-4 py-4 backdrop-blur-sm">
                     <div className="flex items-center gap-2 text-white/44">
                       <Layers3 className="h-4 w-4" />
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">{pageT("technologies")}</p>
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
+                        {pageT("technologies")}
+                      </p>
                     </div>
-                    <p className="mt-3 line-clamp-2 min-h-[3.5rem] text-lg text-white" title={localizedProject.technologies.join(" / ")}>
+                    <p
+                      className="mt-3 line-clamp-2 min-h-[3.5rem] text-lg text-white"
+                      title={localizedProject.technologies.join(" / ")}
+                    >
                       {localizedProject.technologies.slice(0, 3).join(" / ")}
                     </p>
                   </div>
@@ -314,7 +382,9 @@ export default async function ProjectPage({params}: PortfolioProjectPageProps) {
                         <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/42">
                           {overviewLabel}
                         </p>
-                        <p className="mt-2 truncate pr-4 text-xl text-white">{localizedProject.title}</p>
+                        <p className="mt-2 truncate pr-4 text-xl text-white">
+                          {localizedProject.title}
+                        </p>
                       </div>
                       <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/6 text-white/78 transition-[background-color,border-color,color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-white/24 group-hover:bg-white group-hover:text-[hsl(var(--foreground))] group-hover:shadow-[0_14px_30px_rgba(255,255,255,0.12)]">
                         <span className="absolute inset-0 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[115%] group-hover:-translate-y-[115%]">

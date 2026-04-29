@@ -20,7 +20,7 @@ import {
   servicePageSlugs,
 } from "@/lib/service-pages";
 
-const SITE_URL = process.env.SITE_URL || "https://www.oberemchuk.online";
+const SITE_URL = process.env.SITE_URL || "https://oberemchuk.online";
 
 type ServicePageProps = {
   params: Promise<{ locale: string; slug: string }>;

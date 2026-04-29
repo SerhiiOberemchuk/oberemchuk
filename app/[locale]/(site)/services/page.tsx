@@ -67,7 +67,7 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
   const pageT = await getTranslations({ locale, namespace: "ServicesPage" });
   const servicePages = getServicePages(locale as "uk" | "en");
   const pagePath = locale === "en" ? "/en/services" : "/services";
-  const baseUrl = "https://www.oberemchuk.online";
+  const baseUrl = "https://oberemchuk.online";
   const isEnglish = locale === "en";
   const pageLabel = isEnglish ? "Services" : "Послуги";
   const manifestoLabel = isEnglish
