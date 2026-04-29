@@ -242,8 +242,7 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
                             href={`/services/${service.slug}`}
                             aria-label={`${pageT("detailsCta")}: ${service.title}`}
                           >
-                            {pageT("detailsCta")}
-                            <span className="sr-only">{` ${service.title}`}</span>
+                            {service.title}
                             <ArrowRight className="button-arrow-right h-4 w-4" />
                           </Link>
                         </Button>

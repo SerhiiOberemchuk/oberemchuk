@@ -69,7 +69,7 @@ export default function ProjectsSlider({projects}: ProjectsSliderProps) {
                       <p className="mb-4 line-clamp-2 text-gray-200">{project.description}</p>
                       <Link href={`/portfolio/${project.slug}`}>
                         <Button variant="secondary" size="sm">
-                          {t("detailsCta")}
+                          {project.title}
                         </Button>
                       </Link>
                     </CardContent>

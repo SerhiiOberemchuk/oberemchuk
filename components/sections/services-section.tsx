@@ -150,8 +150,7 @@ export default function ServicesSection({
                         href={services[1].href}
                         aria-label={`${detailsCta}: ${services[1].title}`}
                       >
-                        {detailsCta}
-                        <span className="sr-only">{` ${services[1].title}`}</span>
+                        {services[1].title}
                         <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                       </Link>
                     </Button>
@@ -187,8 +186,7 @@ export default function ServicesSection({
                           aria-label={`${detailsCta}: ${service.title}`}
                           className="inline-flex items-center gap-2 text-sm font-semibold text-[hsl(var(--foreground))] transition-colors hover:text-primary"
                         >
-                          {detailsCta}
-                          <span className="sr-only">{` ${service.title}`}</span>
+                          {service.title}
                           <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                         </Link>
                       </article>

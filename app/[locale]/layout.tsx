@@ -19,6 +19,7 @@ import CookieConsentBanner from "@/components/cookie-consent-banner";
 import MobileStickyCta from "@/components/mobile-sticky-cta";
 import ScrollToTop from "@/components/scroll-to-top";
 import { AnalyticsLayout } from "@/components/Analytics";
+import { getSiteUrl } from "@/lib/site-config";
 
 const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
@@ -64,9 +65,7 @@ export async function generateMetadata({
     ],
     creator: "Serhii Oberemchuk",
     publisher: "Serhii Oberemchuk",
-    metadataBase: new URL(
-      process.env.SITE_URL || "https://oberemchuk.online",
-    ),
+    metadataBase: new URL(getSiteUrl()),
     openGraph: {
       title: t("openGraphTitle"),
       description: t("openGraphDescription"),
