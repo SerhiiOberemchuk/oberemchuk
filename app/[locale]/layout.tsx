@@ -12,7 +12,6 @@ import {
 
 import "../globals.css";
 import { routing } from "@/i18n/routing";
-import { getPageAlternates } from "@/lib/seo";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -68,7 +67,6 @@ export async function generateMetadata({
     metadataBase: new URL(
       process.env.SITE_URL || "https://oberemchuk.online",
     ),
-    alternates: getPageAlternates(locale as "uk" | "en"),
     openGraph: {
       title: t("openGraphTitle"),
       description: t("openGraphDescription"),
