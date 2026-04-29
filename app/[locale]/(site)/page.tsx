@@ -67,7 +67,10 @@ export default async function HomePage({ params }: HomePageProps) {
     locale,
     namespace: "HomeServices",
   });
-  const outcomesT = await getTranslations({ locale, namespace: "HomeOutcomes" });
+  const outcomesT = await getTranslations({
+    locale,
+    namespace: "HomeOutcomes",
+  });
   const contactT = await getTranslations({ locale, namespace: "HomeContact" });
   const faqs = pageT.raw("faq.items") as FaqItem[];
   const heroStats = heroT.raw("stats") as Array<{
@@ -116,7 +119,7 @@ export default async function HomePage({ params }: HomePageProps) {
       name: "Serhii Oberemchuk",
       jobTitle: "Fullstack Web Developer",
       description: schemaT("person.description"),
-      url: "https://www.oberemchuk.site",
+      url: "https://www.oberemchuk.online",
       sameAs: [
         "https://www.linkedin.com/in/serhii-oberemchuk",
         "https://github.com/oberemchuk",
@@ -129,7 +132,7 @@ export default async function HomePage({ params }: HomePageProps) {
       "@type": "WebSite",
       name: "Serhii Oberemchuk",
       description: schemaT("website.description"),
-      url: "https://www.oberemchuk.site",
+      url: "https://www.oberemchuk.online",
       author: { "@type": "Person", name: "Serhii Oberemchuk" },
     },
     {
@@ -137,7 +140,7 @@ export default async function HomePage({ params }: HomePageProps) {
       "@type": "ProfessionalService",
       name: "Serhii Oberemchuk - Digital Product and Web Development Services",
       description: schemaT("service.description"),
-      url: "https://www.oberemchuk.site",
+      url: "https://www.oberemchuk.online",
       telephone: "+393516648498",
       email: contactEmail,
       serviceType: schemaT.raw("service.serviceType") as string[],

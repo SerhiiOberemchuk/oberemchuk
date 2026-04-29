@@ -1,24 +1,35 @@
-﻿import type {Metadata} from "next";
-import {connection} from "next/server";
-import {Suspense} from "react";
-import {ArrowRight, ArrowUpRight, BriefcaseBusiness, CheckCircle, Sparkles} from "lucide-react";
-import {getTranslations, setRequestLocale} from "next-intl/server";
+﻿import type { Metadata } from "next";
+import { connection } from "next/server";
+import { Suspense } from "react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BriefcaseBusiness,
+  CheckCircle,
+  Sparkles,
+} from "lucide-react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
-import {Link} from "@/i18n/navigation";
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
-import {getPageAlternates} from "@/lib/seo";
-import {getServicePages} from "@/lib/service-pages";
+import { Link } from "@/i18n/navigation";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { getPageAlternates } from "@/lib/seo";
+import { getServicePages } from "@/lib/service-pages";
 
 type ServicesPageProps = {
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({params}: ServicesPageProps): Promise<Metadata> {
-  const {locale} = await params;
+export async function generateMetadata({
+  params,
+}: ServicesPageProps): Promise<Metadata> {
+  const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({locale, namespace: "ServicesPage.metadata"});
+  const t = await getTranslations({
+    locale,
+    namespace: "ServicesPage.metadata",
+  });
   const pagePath = locale === "en" ? "/en/services" : "/services";
 
   return {
@@ -36,30 +47,32 @@ export async function generateMetadata({params}: ServicesPageProps): Promise<Met
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: t("openGraph.imageAlt")
-        }
-      ]
+          alt: t("openGraph.imageAlt"),
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: t("twitter.title"),
       description: t("twitter.description"),
-      images: ["/og-image.png"]
-    }
+      images: ["/og-image.png"],
+    },
   };
 }
 
-async function ServicesPageContent({params}: ServicesPageProps) {
+async function ServicesPageContent({ params }: ServicesPageProps) {
   await connection();
-  const {locale} = await params;
+  const { locale } = await params;
   setRequestLocale(locale);
-  const pageT = await getTranslations({locale, namespace: "ServicesPage"});
+  const pageT = await getTranslations({ locale, namespace: "ServicesPage" });
   const servicePages = getServicePages(locale as "uk" | "en");
   const pagePath = locale === "en" ? "/en/services" : "/services";
-  const baseUrl = "https://www.oberemchuk.site";
+  const baseUrl = "https://www.oberemchuk.online";
   const isEnglish = locale === "en";
   const pageLabel = isEnglish ? "Services" : "Послуги";
-  const manifestoLabel = isEnglish ? "Commercial offer" : "Комерційна пропозиція";
+  const manifestoLabel = isEnglish
+    ? "Commercial offer"
+    : "Комерційна пропозиція";
   const manifesto = isEnglish
     ? "Each service is packaged around business impact: clearer positioning, stronger trust, cleaner conversion paths and a system ready for growth."
     : "Кожна послуга упакована навколо бізнес-результату: чіткішого позиціонування, сильнішої довіри, кращого сценарію конверсії і системи, готової до росту.";
@@ -78,9 +91,9 @@ async function ServicesPageContent({params}: ServicesPageProps) {
         "@type": "ListItem",
         position: index + 1,
         url: `${baseUrl}${locale === "en" ? `/en/services/${service.slug}` : `/services/${service.slug}`}`,
-        name: service.title
-      }))
-    }
+        name: service.title,
+      })),
+    },
   };
 
   return (
@@ -132,7 +145,9 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                           {pageT("includesTitle")}
                         </p>
                       </div>
-                      <p className="mt-3 text-lg text-white">{servicePages.length}</p>
+                      <p className="mt-3 text-lg text-white">
+                        {servicePages.length}
+                      </p>
                     </div>
                     <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
                       <div className="flex items-center gap-2 text-white/44">
@@ -141,7 +156,11 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                           React / Next.js / SEO
                         </p>
                       </div>
-                      <p className="mt-3 text-lg text-white">{isEnglish ? "Result-first delivery" : "Реалізація від результату"}</p>
+                      <p className="mt-3 text-lg text-white">
+                        {isEnglish
+                          ? "Result-first delivery"
+                          : "Реалізація від результату"}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -157,7 +176,9 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                     {archiveLabel}
                   </p>
                   <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                    {isEnglish ? "Choose the right format for the business task" : "Оберіть формат під бізнес-задачу"}
+                    {isEnglish
+                      ? "Choose the right format for the business task"
+                      : "Оберіть формат під бізнес-задачу"}
                   </h2>
                 </div>
                 <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">
@@ -166,7 +187,10 @@ async function ServicesPageContent({params}: ServicesPageProps) {
               </div>
             </AnimationWrapper>
 
-            <ul className="grid grid-cols-1 gap-5 md:grid-cols-2" aria-label={pageT("listAriaLabel")}>
+            <ul
+              className="grid grid-cols-1 gap-5 md:grid-cols-2"
+              aria-label={pageT("listAriaLabel")}
+            >
               {servicePages.map((service) => (
                 <li key={service.slug}>
                   <AnimationWrapper animation="slide-up">
@@ -181,7 +205,10 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                             {service.shortTitle}
                           </span>
                         </div>
-                        <h3 id={`service-title-${service.slug}`} className="mt-5 max-w-[18ch] text-[2rem] leading-[1.02] text-[hsl(var(--foreground))]">
+                        <h3
+                          id={`service-title-${service.slug}`}
+                          className="mt-5 max-w-[18ch] text-[2rem] leading-[1.02] text-[hsl(var(--foreground))]"
+                        >
                           {service.title}
                         </h3>
                         <p className="mt-4 max-w-2xl text-sm leading-7 text-[hsl(var(--muted-foreground))]">
@@ -198,13 +225,19 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                             {service.outcomes.slice(0, 4).map((item) => (
                               <li key={item} className="flex items-start gap-3">
                                 <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[hsl(var(--primary))]" />
-                                <p className="text-sm leading-7 text-[hsl(var(--muted-foreground))]">{item}</p>
+                                <p className="text-sm leading-7 text-[hsl(var(--muted-foreground))]">
+                                  {item}
+                                </p>
                               </li>
                             ))}
                           </ul>
                         </div>
 
-                        <Button asChild variant="outline" className="mt-auto w-full bg-transparent">
+                        <Button
+                          asChild
+                          variant="outline"
+                          className="mt-auto w-full bg-transparent"
+                        >
                           <Link href={`/services/${service.slug}`}>
                             {pageT("detailsCta")}
                             <ArrowRight className="button-arrow-right h-4 w-4" />
@@ -230,8 +263,14 @@ async function ServicesPageContent({params}: ServicesPageProps) {
                   </h2>
                 </div>
                 <div>
-                  <p className="text-base leading-8 text-white/70">{pageT("consultation.description")}</p>
-                  <Button asChild size="lg" className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92">
+                  <p className="text-base leading-8 text-white/70">
+                    {pageT("consultation.description")}
+                  </p>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92"
+                  >
                     <Link href="/#contact">
                       {pageT("consultation.cta")}
                       <ArrowUpRight className="button-arrow-up-right h-4 w-4" />

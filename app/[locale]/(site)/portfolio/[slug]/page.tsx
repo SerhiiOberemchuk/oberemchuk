@@ -13,7 +13,7 @@ import {localizeProject} from "@/lib/projects-i18n";
 import {getProjectBySlug, getProjects} from "@/lib/projects-server";
 import type {Project} from "@/types/projects";
 
-const SITE_URL = process.env.SITE_URL || "https://www.oberemchuk.site";
+const SITE_URL = process.env.SITE_URL || "https://www.oberemchuk.online";
 
 type PortfolioProjectPageProps = {
   params: Promise<{locale: string; slug: string}>;

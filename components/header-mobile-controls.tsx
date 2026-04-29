@@ -1,10 +1,9 @@
 "use client";
 
-import {useState} from "react";
-import {Menu} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import MobileMenu, {type MobileMenuProps} from "./mobile-menu";
-
+import { useState } from "react";
+import { Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import MobileMenu, { MobileMenuProps } from "./Mobile-Menu/mobile-menu";
 type HeaderMobileControlsProps = Pick<
   MobileMenuProps,
   "closeLabel" | "ctaLabel" | "dialogTitle" | "navigationAriaLabel" | "navItems"
@@ -18,7 +17,7 @@ export default function HeaderMobileControls({
   dialogTitle,
   menuLabel,
   navigationAriaLabel,
-  navItems
+  navItems,
 }: HeaderMobileControlsProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

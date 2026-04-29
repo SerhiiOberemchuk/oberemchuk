@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://www.oberemchuk.site";
+const DEFAULT_SITE_URL = "https://www.oberemchuk.online";
 const INDEXNOW_KEY = "a9b0d213a0184ee7bbfd50e428befb0e";
 
 export function getSiteUrl(): string {

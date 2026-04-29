@@ -1,45 +1,63 @@
-﻿import type {Metadata} from "next";
-import {notFound} from "next/navigation";
-import {ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Check} from "lucide-react";
-import {getTranslations, setRequestLocale} from "next-intl/server";
+﻿import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Check,
+} from "lucide-react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
-import {Link} from "@/i18n/navigation";
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
-import {getPageAlternates} from "@/lib/seo";
-import {getServicePage, getServicePages, servicePageSlugs} from "@/lib/service-pages";
+import { Link } from "@/i18n/navigation";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { getPageAlternates } from "@/lib/seo";
+import {
+  getServicePage,
+  getServicePages,
+  servicePageSlugs,
+} from "@/lib/service-pages";
 
-const SITE_URL = process.env.SITE_URL || "https://www.oberemchuk.site";
+const SITE_URL = process.env.SITE_URL || "https://www.oberemchuk.online";
 
 type ServicePageProps = {
-  params: Promise<{locale: string; slug: string}>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
   return ["uk", "en"].flatMap((locale) =>
     servicePageSlugs.map((slug) => ({
       locale,
-      slug
-    }))
+      slug,
+    })),
   );
 }
 
-export async function generateMetadata({params}: ServicePageProps): Promise<Metadata> {
-  const {locale, slug} = await params;
+export async function generateMetadata({
+  params,
+}: ServicePageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
   const service = getServicePage(locale as "uk" | "en", slug);
 
   if (!service) {
     return {};
   }
 
-  const pagePath = locale === "en" ? `/en/services/${service.slug}` : `/services/${service.slug}`;
+  const pagePath =
+    locale === "en"
+      ? `/en/services/${service.slug}`
+      : `/services/${service.slug}`;
 
   return {
     title: service.metaTitle,
     description: service.metaDescription,
     keywords: service.keywords,
-    alternates: getPageAlternates(locale as "uk" | "en", `/services/${service.slug}`),
+    alternates: getPageAlternates(
+      locale as "uk" | "en",
+      `/services/${service.slug}`,
+    ),
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
@@ -50,23 +68,26 @@ export async function generateMetadata({params}: ServicePageProps): Promise<Meta
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: service.metaTitle
-        }
-      ]
+          alt: service.metaTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: service.metaTitle,
       description: service.metaDescription,
-      images: ["/og-image.png"]
-    }
+      images: ["/og-image.png"],
+    },
   };
 }
 
-export default async function ServiceDetailPage({params}: ServicePageProps) {
-  const {locale, slug} = await params;
+export default async function ServiceDetailPage({ params }: ServicePageProps) {
+  const { locale, slug } = await params;
   setRequestLocale(locale);
-  const pageT = await getTranslations({locale, namespace: "ServiceDetailPage"});
+  const pageT = await getTranslations({
+    locale,
+    namespace: "ServiceDetailPage",
+  });
   const service = getServicePage(locale as "uk" | "en", slug);
 
   if (!service) {
@@ -74,7 +95,9 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
   }
 
   const isEnglish = locale === "en";
-  const pagePath = isEnglish ? `/en/services/${service.slug}` : `/services/${service.slug}`;
+  const pagePath = isEnglish
+    ? `/en/services/${service.slug}`
+    : `/services/${service.slug}`;
   const relatedServices = getServicePages(locale as "uk" | "en")
     .filter((item) => item.slug !== service.slug)
     .slice(0, 3);
@@ -93,15 +116,15 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
     provider: {
       "@type": "Person",
       name: "Serhii Oberemchuk",
-      url: SITE_URL
+      url: SITE_URL,
     },
     offers: {
       "@type": "Offer",
       priceSpecification: {
         "@type": "PriceSpecification",
         priceCurrency: "EUR",
-        description: service.priceFrom
-      }
+        description: service.priceFrom,
+      },
     },
     url: `${SITE_URL}${pagePath}`,
     mainEntityOfPage: `${SITE_URL}${pagePath}`,
@@ -112,10 +135,10 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
         name: item.question,
         acceptedAnswer: {
           "@type": "Answer",
-          text: item.answer
-        }
-      }))
-    }
+          text: item.answer,
+        },
+      })),
+    },
   };
 
   return (
@@ -156,21 +179,25 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
                     {service.shortTitle}
                   </p>
-                    <h1 className="mt-4 max-w-[13ch] text-5xl leading-[0.92] text-white md:text-7xl">
-                      {service.heroTitle}
-                    </h1>
-                    <p className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg">
-                      {service.heroDescription}
-                    </p>
+                  <h1 className="mt-4 max-w-[13ch] text-5xl leading-[0.92] text-white md:text-7xl">
+                    {service.heroTitle}
+                  </h1>
+                  <p className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg">
+                    {service.heroDescription}
+                  </p>
                 </div>
 
                 <div className="mt-10 max-w-[13.5rem]">
                   <div className="rounded-[1.15rem] border border-white/10 bg-white/6 px-4 py-3.5 backdrop-blur-sm">
                     <div className="flex items-center gap-2 text-white/44">
                       <BriefcaseBusiness className="h-4 w-4" />
-                      <p className="text-[0.64rem] font-semibold uppercase tracking-[0.24em]">{offerLabel}</p>
+                      <p className="text-[0.64rem] font-semibold uppercase tracking-[0.24em]">
+                        {offerLabel}
+                      </p>
                     </div>
-                    <p className="mt-2.5 text-[1.05rem] text-white">{service.priceFrom}</p>
+                    <p className="mt-2.5 text-[1.05rem] text-white">
+                      {service.priceFrom}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -182,10 +209,10 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
                     {valueLabel}
                   </p>
-                    <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
-                      {pageT("valueDescription")}
-                    </p>
-                  </div>
+                  <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
+                    {pageT("valueDescription")}
+                  </p>
+                </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
@@ -194,7 +221,10 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                     </p>
                     <ul className="mt-5 space-y-3">
                       {service.fitFor.map((item) => (
-                        <li key={item} className="flex items-start gap-3 text-sm leading-7 text-white/74">
+                        <li
+                          key={item}
+                          className="flex items-start gap-3 text-sm leading-7 text-white/74"
+                        >
                           <Check className="mt-1 h-4 w-4 shrink-0 text-[hsl(var(--primary))]" />
                           <span>{item}</span>
                         </li>
@@ -208,7 +238,10 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                     </p>
                     <ul className="mt-5 space-y-3">
                       {service.outcomes.map((item) => (
-                        <li key={item} className="flex items-start gap-3 text-sm leading-7 text-white/74">
+                        <li
+                          key={item}
+                          className="flex items-start gap-3 text-sm leading-7 text-white/74"
+                        >
                           <Check className="mt-1 h-4 w-4 shrink-0 text-[hsl(var(--primary))]" />
                           <span>{item}</span>
                         </li>
@@ -312,8 +345,12 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                     key={item.question}
                     className="rounded-[1.35rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f8fafc)] px-5 py-5 shadow-[0_10px_30px_rgba(24,31,43,0.04)]"
                   >
-                    <h3 className="text-xl leading-tight text-[hsl(var(--foreground))]">{item.question}</h3>
-                    <p className="mt-3 text-base leading-8 text-[hsl(var(--muted-foreground))]">{item.answer}</p>
+                    <h3 className="text-xl leading-tight text-[hsl(var(--foreground))]">
+                      {item.question}
+                    </h3>
+                    <p className="mt-3 text-base leading-8 text-[hsl(var(--muted-foreground))]">
+                      {item.answer}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -378,7 +415,11 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                 <p className="text-base leading-8 text-white/70">
                   {pageT("estimate.description")}
                 </p>
-                <Button asChild size="lg" className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92">
+                <Button
+                  asChild
+                  size="lg"
+                  className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92"
+                >
                   <Link href="/#contact">
                     {pageT("estimate.cta")}
                     <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
@@ -392,5 +433,3 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
     </div>
   );
 }
-
-
