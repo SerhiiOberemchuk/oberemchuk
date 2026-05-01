@@ -14,6 +14,7 @@ import JsonLd from "@/components/json-ld";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { getPageAlternates } from "@/lib/seo";
 import { getServicePages } from "@/lib/service-pages";
 
@@ -69,6 +70,22 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
   const pagePath = locale === "en" ? "/en/services" : "/services";
   const baseUrl = "https://oberemchuk.online";
   const isEnglish = locale === "en";
+  const pricingHighlights = pageT.raw("pricing.highlights") as string[];
+  const pricingPrinciples = pageT.raw("pricing.principles") as Array<{
+    title: string;
+    description: string;
+  }>;
+  const pricingCategories = pageT.raw("pricing.categories") as Array<{
+    title: string;
+    audience: string;
+    items: Array<{
+      name: string;
+      price: string;
+      timeline: string;
+      stack: string;
+      scope: string;
+    }>;
+  }>;
   const pageLabel = isEnglish ? "Services" : "Послуги";
   const manifestoLabel = isEnglish
     ? "Commercial offer"
@@ -165,6 +182,114 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
                   </div>
                 </div>
               </AnimationWrapper>
+            </div>
+          </section>
+
+          <section className="mt-20">
+            <AnimationWrapper animation="fade-in">
+              <div className="mb-10 grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+                <div>
+                  <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                    {pageT("pricing.label")}
+                  </p>
+                  <h2 className="max-w-[12ch] text-4xl leading-[0.96] text-[hsl(var(--foreground))] md:text-5xl">
+                    {pageT("pricing.title")}
+                  </h2>
+                </div>
+                <div className="grid gap-4">
+                  <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">
+                    {pageT("pricing.description")}
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    {pricingHighlights.map((item) => (
+                      <Badge key={item} variant="secondary" className="px-3 py-1.5">
+                        {item}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </AnimationWrapper>
+
+            <div className="grid gap-5 md:grid-cols-3">
+              {pricingPrinciples.map((principle) => (
+                <AnimationWrapper key={principle.title} animation="slide-up">
+                  <Card className="h-full rounded-[1.6rem] border-[rgba(24,31,43,0.08)] shadow-[0_18px_55px_rgba(24,31,43,0.05)]">
+                    <CardContent className="p-6">
+                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
+                        {pageT("pricing.principlesLabel")}
+                      </p>
+                      <h3 className="mt-4 text-[1.6rem] leading-tight text-[hsl(var(--foreground))]">
+                        {principle.title}
+                      </h3>
+                      <p className="mt-4 text-sm leading-7 text-[hsl(var(--muted-foreground))]">
+                        {principle.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </AnimationWrapper>
+              ))}
+            </div>
+
+            <div className="mt-8 grid gap-6">
+              {pricingCategories.map((category) => (
+                <AnimationWrapper key={category.title} animation="slide-up">
+                  <article className="overflow-hidden rounded-[1.9rem] border border-[rgba(24,31,43,0.08)] bg-white shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
+                    <div className="grid gap-6 border-b border-[rgba(24,31,43,0.08)] px-6 py-6 lg:grid-cols-[0.44fr_0.56fr] lg:px-8">
+                      <div>
+                        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
+                          {pageT("pricing.audienceLabel")}
+                        </p>
+                        <h3 className="mt-3 text-[2rem] leading-[1.02] text-[hsl(var(--foreground))]">
+                          {category.title}
+                        </h3>
+                      </div>
+                      <p className="max-w-3xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
+                        {category.audience}
+                      </p>
+                    </div>
+
+                    <div className="grid gap-px bg-[rgba(24,31,43,0.08)] md:grid-cols-2">
+                      {category.items.map((item) => (
+                        <div key={item.name} className="bg-white p-6 lg:p-8">
+                          <div className="flex flex-wrap items-start justify-between gap-4">
+                            <div>
+                              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
+                                {item.timeline}
+                              </p>
+                              <h4 className="mt-3 text-[1.55rem] leading-tight text-[hsl(var(--foreground))]">
+                                {item.name}
+                              </h4>
+                            </div>
+                            <Badge variant="secondary" className="px-3 py-1.5">
+                              {item.price}
+                            </Badge>
+                          </div>
+
+                          <div className="mt-6 space-y-4">
+                            <div>
+                              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--muted-foreground))]">
+                                {pageT("pricing.stackLabel")}
+                              </p>
+                              <p className="mt-2 text-sm leading-7 text-[hsl(var(--foreground))]">
+                                {item.stack}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--muted-foreground))]">
+                                {pageT("pricing.scopeLabel")}
+                              </p>
+                              <p className="mt-2 text-sm leading-7 text-[hsl(var(--muted-foreground))]">
+                                {item.scope}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </article>
+                </AnimationWrapper>
+              ))}
             </div>
           </section>
 

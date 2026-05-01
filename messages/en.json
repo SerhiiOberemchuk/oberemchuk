@@ -320,24 +320,36 @@
     },
     "services": [
       {
-        "value": "website",
+        "value": "landing-page",
         "label": "Landing page"
       },
       {
-        "value": "redesign",
+        "value": "corporate-website",
         "label": "Corporate website"
       },
       {
-        "value": "seo",
-        "label": "E-commerce store"
+        "value": "astro-website",
+        "label": "Astro content website"
       },
       {
-        "value": "maintenance",
-        "label": "Web application"
+        "value": "ecommerce",
+        "label": "E-commerce storefront"
       },
       {
-        "value": "consultation",
-        "label": "Website relaunch / update"
+        "value": "payments",
+        "label": "Payment integration"
+      },
+      {
+        "value": "crm",
+        "label": "CRM integration / automation"
+      },
+      {
+        "value": "web-app",
+        "label": "Web application / MVP"
+      },
+      {
+        "value": "support",
+        "label": "SEO / support / relaunch"
       },
       {
         "value": "other",
@@ -593,6 +605,118 @@
     "hero": {
       "title": "Services packaged around outcomes",
       "description": "This is not a task list. It is a set of solution formats for different business goals: paid traffic launches, stronger trust, online sales, product logic or technical SEO readiness."
+    },
+    "pricing": {
+      "label": "Pricing guide",
+      "title": "A larger service menu for real business tasks",
+      "description": "The price list is built around the work I can deliver well with React, Next.js and Astro: commercial websites, storefronts, CRM flows, payment integrations, relaunches and ongoing optimization. These are starting prices for a defined first scope, not abstract hourly estimates.",
+      "highlights": [
+        "React / Next.js / Astro focus",
+        "Productized starting scopes",
+        "Good fit for EU-oriented businesses",
+        "Can be split into phases"
+      ],
+      "principlesLabel": "Pricing logic",
+      "principles": [
+        {
+          "title": "Start from the first useful release",
+          "description": "Instead of inflating scope, I price the first commercially useful version: a launch-ready page, a working integration, a relaunch stage or an initial app module."
+        },
+        {
+          "title": "Integrations are priced by business risk",
+          "description": "Payments, CRM sync and automation affect leads, orders and internal operations. Pricing reflects validation, edge cases, events, webhook handling and handoff quality."
+        },
+        {
+          "title": "Astro is used where content speed matters",
+          "description": "For content-heavy and SEO-oriented projects, Astro can reduce overhead and improve performance, while Next.js stays the main option for application logic and dynamic flows."
+        }
+      ],
+      "audienceLabel": "Best fit",
+      "stackLabel": "Stack / format",
+      "scopeLabel": "What is usually included",
+      "categories": [
+        {
+          "title": "Launch websites and growth pages",
+          "audience": "For businesses that need a visible commercial presence quickly: traffic acquisition, service presentation, expert positioning or SEO landing expansion.",
+          "items": [
+            {
+              "name": "Landing page",
+              "price": "from 800 EUR",
+              "timeline": "1-2 weeks",
+              "stack": "Next.js or Astro, responsive UI, analytics-ready setup",
+              "scope": "Structure, page build, CTA flow, forms, events, baseline SEO and launch preparation."
+            },
+            {
+              "name": "Corporate / service website",
+              "price": "from 1,600 EUR",
+              "timeline": "2-4 weeks",
+              "stack": "Next.js, reusable sections, SEO-ready architecture",
+              "scope": "Homepage, services, about, cases, contact, trust blocks, metadata, schema and scalable page structure."
+            },
+            {
+              "name": "Astro content website",
+              "price": "from 1,200 EUR",
+              "timeline": "1-3 weeks",
+              "stack": "Astro, content collections, light interactive islands",
+              "scope": "Fast marketing or editorial website with high Lighthouse potential, clean content model and SEO-focused structure."
+            }
+          ]
+        },
+        {
+          "title": "Integrations and commercial operations",
+          "audience": "For teams that already have a website or product, but need payment, lead-routing or CRM workflows to work reliably instead of manually.",
+          "items": [
+            {
+              "name": "Payment gateway integration",
+              "price": "from 450 EUR",
+              "timeline": "3-7 days",
+              "stack": "Next.js / React front-end with API or webhook layer",
+              "scope": "Checkout connection, status handling, success/failure flows, event tracking and a safe handoff for finance or ops."
+            },
+            {
+              "name": "CRM integration and lead routing",
+              "price": "from 700 EUR",
+              "timeline": "4-8 days",
+              "stack": "React / Next.js forms, CRM API integration, automation triggers",
+              "scope": "Form-to-CRM mapping, source fields, event sync, lead segmentation and reduction of manual copy-paste work."
+            },
+            {
+              "name": "Website relaunch or migration",
+              "price": "from 900 EUR",
+              "timeline": "1-3 weeks",
+              "stack": "Usually Next.js or Astro depending on content and dynamic needs",
+              "scope": "Front-end rebuild, content migration path, redirects, metadata cleanup, performance reset and rollout planning."
+            }
+          ]
+        },
+        {
+          "title": "Stores, products and ongoing support",
+          "audience": "For businesses moving from a simple site to actual digital operations: storefront logic, dashboards, product interfaces and continuous technical improvement.",
+          "items": [
+            {
+              "name": "E-commerce storefront",
+              "price": "from 2,500 EUR",
+              "timeline": "3-6 weeks",
+              "stack": "Next.js storefront, integrations with CMS, CRM and payments",
+              "scope": "Catalogue, product pages, checkout flow, conversion UX, SEO-ready categories and integration foundation."
+            },
+            {
+              "name": "Web app / MVP module",
+              "price": "from 3,000 EUR",
+              "timeline": "3-6 weeks",
+              "stack": "React / Next.js / TypeScript, API-connected product UI",
+              "scope": "User flows, dashboards, roles, data states, API integration and a foundation for iterative product growth."
+            },
+            {
+              "name": "Technical SEO and monthly support",
+              "price": "from 350 EUR / month",
+              "timeline": "retainer or sprint",
+              "stack": "Existing React, Next.js or Astro project",
+              "scope": "Priority fixes, Core Web Vitals work, page updates, QA, analytics corrections and small ongoing improvements."
+            }
+          ]
+        }
+      ]
     },
     "listAriaLabel": "List of services",
     "includesTitle": "What is included",
