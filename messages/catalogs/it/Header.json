@@ -1,0 +1,15 @@
+{
+  "navigation": {
+    "services": "Servizi",
+    "portfolio": "Casi",
+    "about": "Processo",
+    "contact": "Stima"
+  },
+  "cta": "Richiedi una stima",
+  "menu": "Menu",
+  "primaryNavigation": "Navigazione principale",
+  "mobileNavigation": "Navigazione mobile",
+  "mobileMenu": "Menu mobile",
+  "logoAlt": "Logo di Serhii Oberemchuk",
+  "closeMenu": "Chiudi menu"
+}

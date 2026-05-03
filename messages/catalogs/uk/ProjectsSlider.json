@@ -1,0 +1,9 @@
+{
+  "empty": "Проєкти не знайдено",
+  "regionLabel": "Слайдер проєктів",
+  "detailsCta": "Детальніше",
+  "previousSlide": "Попередній слайд",
+  "nextSlide": "Наступний слайд",
+  "slidesNav": "Навігація слайдів",
+  "slideLabel": "Слайд {index}: {title}"
+}

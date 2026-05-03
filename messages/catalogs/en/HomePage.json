@@ -1,0 +1,99 @@
+{
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "This block answers the main objections before kickoff: pricing, difference in approach, scope changes and what happens after inquiry.",
+    "items": [
+      {
+        "question": "Why can the price be higher than with a typical freelance developer?",
+        "answer": "Because the work is not limited to implementation. I help shape page logic, structure, conversion flow, technical SEO readiness and launch direction. The client gets more than screens or code."
+      },
+      {
+        "question": "How is this different from just “building a website”?",
+        "answer": "I work from the business task: what the site should prove, who it needs to persuade and what action it should drive. That changes the structure, copy priorities, case-study placement and CTA logic."
+      },
+      {
+        "question": "Can the project be made cheaper?",
+        "answer": "Yes, by narrowing the scope. For example, we can start with one focused landing flow instead of a larger multi-page build, or move part of the integrations into a second phase."
+      },
+      {
+        "question": "What if the project changes during the process?",
+        "answer": "That is manageable as long as the base scope is fixed before kickoff and new requests are handled separately. This keeps timeline, budget and delivery priorities under control."
+      },
+      {
+        "question": "Is SEO included in development?",
+        "answer": "Yes. Baseline technical SEO is included: page structure, metadata, sitemap, schema, speed and clean markup. Dedicated SEO landing pages can be added as a separate next phase."
+      },
+      {
+        "question": "What do I get after sending an inquiry?",
+        "answer": "You get a practical next step: an initial scope direction, a rough timeline view and a recommendation on the right project format for your case."
+      }
+    ]
+  },
+  "metadata": {
+    "title": "Serhii Oberemchuk | Web developer for websites, e-commerce and web apps",
+    "description": "Serhii Oberemchuk is a fullstack web developer and digital partner. I build business websites, landing pages, e-commerce stores and custom web applications with React, Next.js, TypeScript and technical SEO.",
+    "keywords": [
+      "fullstack web developer",
+      "website development",
+      "web application development",
+      "corporate website development",
+      "e-commerce development",
+      "React developer",
+      "Next.js developer",
+      "technical SEO"
+    ],
+    "openGraph": {
+      "title": "Serhii Oberemchuk | Web developer for websites, e-commerce and web apps",
+      "description": "Business websites, landing pages, e-commerce stores and web applications with strong structure, clear execution and technical depth.",
+      "imageAlt": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps"
+    },
+    "twitter": {
+      "title": "Serhii Oberemchuk | Web developer for websites, e-commerce and web apps",
+      "description": "Business websites, web apps and technical SEO with strong structure, premium presentation and technical confidence."
+    }
+  },
+  "schema": {
+    "person": {
+      "description": "A fullstack web developer and digital partner building websites and web applications with strong structure, interface quality and technical discipline.",
+      "knowsAbout": [
+        "Web Development",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Technical SEO",
+        "Frontend Development",
+        "Backend Development"
+      ]
+    },
+    "website": {
+      "description": "Websites and web applications for ambitious businesses"
+    },
+    "service": {
+      "description": "Web development services by Serhii Oberemchuk: landing page development, corporate websites, e-commerce stores, custom web applications and technical SEO.",
+      "serviceType": [
+        "Web Development",
+        "E-commerce Development",
+        "Technical SEO"
+      ],
+      "offers": [
+        {
+          "name": "Landing Page Development",
+          "description": "End-to-end landing page development"
+        },
+        {
+          "name": "Corporate Website Development",
+          "description": "Corporate website development"
+        },
+        {
+          "name": "E-commerce Development",
+          "description": "E-commerce store development"
+        },
+        {
+          "name": "Web Application Development",
+          "description": "Web application development"
+        }
+      ]
+    }
+  }
+}

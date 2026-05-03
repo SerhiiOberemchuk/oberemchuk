@@ -1,0 +1,26 @@
+{
+  "backToServices": "Torna ai servizi",
+  "discussProject": "Richiedi una stima",
+  "pageLabel": "Dettaglio servizio",
+  "valueLabel": "Valore business",
+  "offerLabel": "Punto di partenza",
+  "keywordsLabel": "Layer di ricerca",
+  "faqLabel": "FAQ",
+  "valueDescription": "Il servizio e strutturato intorno a cio che dovrebbe cambiare per il business dopo il lancio: posizionamento piu nitido, piu fiducia, flusso richieste migliore, piu vendite o una base piu forte per crescere.",
+  "deliveryLabel": "Cosa entra nella consegna",
+  "resultLabel": "Cosa ottiene il business",
+  "fitForTitle": "Quando questo servizio e adatto",
+  "outcomesTitle": "Cosa ottiene il business",
+  "outcomesDescription": "Il risultato atteso di questo servizio: cosa cambia in posizionamento, conversione, struttura o readiness alla crescita dopo la consegna.",
+  "deliverablesTitle": "Cosa e incluso",
+  "searchIntentTitle": "Query commerciali per cui vale la pena costruire la pagina",
+  "searchIntentDescription": "Per questo servizio, la pagina deve intercettare un'intenzione di ricerca reale. Per questo rendo esplicite parole chiave, scenari d'uso e valore di business dietro l'offerta.",
+  "faqTitle": "FAQ",
+  "relatedTitle": "Servizi correlati",
+  "relatedCta": "Vedi pagina",
+  "estimate": {
+    "title": "Ti serve una stima per il tuo caso specifico?",
+    "description": "Dimmi cosa vendi, chi e il tuo cliente, quale obiettivo di business deve portare il sito e se serve per adv, SEO o presentazione del prodotto. Cosi posso suggerire il formato giusto in fretta.",
+    "cta": "Richiedi una stima"
+  }
+}

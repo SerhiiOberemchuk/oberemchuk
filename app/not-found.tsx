@@ -1,6 +1,17 @@
-﻿import {ArrowLeft} from "lucide-react";
-import {Link} from "@/i18n/navigation";
+import {ArrowLeft} from "lucide-react";
 import {Button} from "@/components/ui/button";
+
+const fallbackCopy = {
+  eyebrow: "Page not found",
+  status: "404",
+  title: "This page does not exist",
+  description:
+    "The address may be outdated, the page may have moved or the link may be incorrect.",
+  nextStepLabel: "Next step",
+  nextStepTitle: "Return to the main routes and continue from there.",
+  backHome: "Back to home",
+  viewServices: "View services"
+} as const;
 
 export default function NotFound() {
   return (
@@ -14,17 +25,17 @@ export default function NotFound() {
           <div className="relative z-10 grid gap-10 px-6 py-16 md:px-10 md:py-20 lg:grid-cols-[0.78fr_1.22fr] lg:gap-12 lg:px-14 lg:py-24">
             <div>
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/54">
-                Not found
+                {fallbackCopy.eyebrow}
               </p>
               <div className="max-w-xl">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
-                  Missing page
+                  {fallbackCopy.status}
                 </p>
                 <h1 className="mt-4 max-w-[10ch] text-5xl leading-[0.92] text-white md:text-7xl">
-                  Page not found
+                  {fallbackCopy.title}
                 </h1>
                 <p className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg">
-                  The link may be outdated, the page may have been moved, or this route no longer exists in the current structure.
+                  {fallbackCopy.description}
                 </p>
               </div>
             </div>
@@ -32,22 +43,31 @@ export default function NotFound() {
             <div className="grid gap-6">
               <div className="rounded-[1.7rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
-                  Next step
+                  {fallbackCopy.nextStepLabel}
                 </p>
                 <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
-                  Return to the main navigation and continue from a stable entry point.
+                  {fallbackCopy.nextStepTitle}
                 </p>
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Button asChild size="lg" className="min-w-[220px] bg-white text-[hsl(var(--foreground))] hover:bg-white/92">
+                <Button
+                  asChild
+                  size="lg"
+                  className="min-w-[220px] bg-white text-[hsl(var(--foreground))] hover:bg-white/92"
+                >
                   <a href="/">
                     <ArrowLeft className="h-4 w-4" />
-                    Back to home
+                    {fallbackCopy.backHome}
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="min-w-[220px] border-white/14 bg-white/6 text-white hover:bg-white/10 hover:text-white">
-                  <a href="/services">View services</a>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="min-w-[220px] border-white/14 bg-white/6 text-white hover:bg-white/10 hover:text-white"
+                >
+                  <a href="/services">{fallbackCopy.viewServices}</a>
                 </Button>
               </div>
             </div>
@@ -57,5 +77,3 @@ export default function NotFound() {
     </div>
   );
 }
-
-

@@ -1,33 +1,41 @@
-import type {Metadata} from "next";
-import {notFound} from "next/navigation";
-import {ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays} from "lucide-react";
-import {setRequestLocale} from "next-intl/server";
+import type { Metadata } from "next";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  CalendarDays,
+} from "lucide-react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
-import {Link} from "@/i18n/navigation";
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
-import {blogPostSlugs, getBlogPost, getBlogPosts} from "@/lib/blog-posts";
-import {getPageAlternates} from "@/lib/seo";
-import {getSeoLanding} from "@/lib/seo-landings";
-import {getSiteUrl} from "@/lib/site-config";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import { appLocales, type AppLocale } from "@/i18n/locales";
+import { blogPostSlugs, getBlogPost, getBlogPosts } from "@/lib/blog-posts";
+import { getPageAlternates } from "@/lib/seo";
+import { getSeoLanding } from "@/lib/seo-landings";
+import { getSiteUrl } from "@/lib/site-config";
 
 type BlogPostPageProps = {
-  params: Promise<{locale: string; slug: string}>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
-  return ["uk", "en"].flatMap((locale) =>
+  return appLocales.flatMap((locale) =>
     blogPostSlugs.map((slug) => ({
       locale,
-      slug
-    }))
+      slug,
+    })),
   );
 }
 
-export async function generateMetadata({params}: BlogPostPageProps): Promise<Metadata> {
-  const {locale, slug} = await params;
-  const post = getBlogPost(locale as "uk" | "en", slug);
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const post = getBlogPost(locale as AppLocale, slug);
 
   if (!post) {
     return {};
@@ -37,44 +45,48 @@ export async function generateMetadata({params}: BlogPostPageProps): Promise<Met
     title: post.metaTitle,
     description: post.metaDescription,
     keywords: post.keywords,
-    alternates: getPageAlternates(locale as "uk" | "en", `/blog/${post.slug}`),
+    alternates: getPageAlternates(locale as AppLocale, `/blog/${post.slug}`),
     openGraph: {
       title: post.metaTitle,
       description: post.metaDescription,
-      url: locale === "en" ? `/en/blog/${post.slug}` : `/blog/${post.slug}`,
+      url: locale === "uk" ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`,
       type: "article",
       images: [
         {
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: post.metaTitle
-        }
-      ]
+          alt: post.metaTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.metaTitle,
       description: post.metaDescription,
-      images: ["/og-image.png"]
-    }
+      images: ["/og-image.png"],
+    },
   };
 }
 
-export default async function BlogPostPage({params}: BlogPostPageProps) {
-  const {locale, slug} = await params;
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { locale, slug } = await params;
   setRequestLocale(locale);
-  const isEnglish = locale === "en";
-  const post = getBlogPost(locale as "uk" | "en", slug);
+  const t = await getTranslations({ locale, namespace: "BlogPostPage" });
+  const post = getBlogPost(locale as AppLocale, slug);
 
   if (!post) {
     notFound();
   }
 
   const siteUrl = getSiteUrl();
-  const pagePath = isEnglish ? `/en/blog/${post.slug}` : `/blog/${post.slug}`;
-  const relatedLanding = getSeoLanding(locale as "uk" | "en", post.relatedLandingSlug);
-  const relatedPosts = getBlogPosts(locale as "uk" | "en")
+  const pagePath =
+    locale === "uk" ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`;
+  const relatedLanding = getSeoLanding(
+    locale as AppLocale,
+    post.relatedLandingSlug,
+  );
+  const relatedPosts = getBlogPosts(locale as AppLocale)
     .filter((item) => item.slug !== post.slug)
     .slice(0, 2);
 
@@ -88,15 +100,15 @@ export default async function BlogPostPage({params}: BlogPostPageProps) {
     author: {
       "@type": "Person",
       name: "Serhii Oberemchuk",
-      url: siteUrl
+      url: siteUrl,
     },
     publisher: {
       "@type": "Person",
-      name: "Serhii Oberemchuk"
+      name: "Serhii Oberemchuk",
     },
     mainEntityOfPage: `${siteUrl}${pagePath}`,
     url: `${siteUrl}${pagePath}`,
-    keywords: post.keywords.join(", ")
+    keywords: post.keywords.join(", "),
   };
 
   return (
@@ -111,11 +123,11 @@ export default async function BlogPostPage({params}: BlogPostPageProps) {
               className="inline-flex items-center gap-2 rounded-full border border-[rgba(24,31,43,0.08)] bg-white/88 px-4 py-2.5 text-sm text-[hsl(var(--foreground))] shadow-[0_14px_40px_rgba(24,31,43,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(24,31,43,0.16)]"
             >
               <ArrowLeft className="h-4 w-4" />
-              {isEnglish ? "Back to blog" : "Назад до блогу"}
+              {t("back")}
             </Link>
             <Button asChild size="lg" className="hidden sm:inline-flex">
               <Link href="/#contact">
-                {isEnglish ? "Get an estimate" : "Отримати оцінку"}
+                {t("estimate")}
                 <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
               </Link>
             </Button>
@@ -139,7 +151,11 @@ export default async function BlogPostPage({params}: BlogPostPageProps) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {post.keywords.map((item) => (
-                <Badge key={item} variant="outline" className="rounded-full border-[rgba(24,31,43,0.08)] px-4 py-2 text-sm">
+                <Badge
+                  key={item}
+                  variant="outline"
+                  className="rounded-full border-[rgba(24,31,43,0.08)] px-4 py-2 text-sm"
+                >
                   {item}
                 </Badge>
               ))}
@@ -155,10 +171,15 @@ export default async function BlogPostPage({params}: BlogPostPageProps) {
               delay={((index % 4) * 100) as 0 | 100 | 200 | 300 | 400 | 500}
             >
               <article className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f8fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
-                <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">{section.title}</h2>
+                <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                  {section.title}
+                </h2>
                 <div className="mt-6 space-y-4">
                   {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph} className="text-base leading-8 text-[hsl(var(--foreground))]/78">
+                    <p
+                      key={paragraph}
+                      className="text-base leading-8 text-[hsl(var(--foreground))]/78"
+                    >
                       {paragraph}
                     </p>
                   ))}
@@ -188,24 +209,35 @@ export default async function BlogPostPage({params}: BlogPostPageProps) {
                 <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
                   <div>
                     <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/44">
-                      {isEnglish ? "Related landing page" : "Пов'язана SEO-сторінка"}
+                      {t("relatedLanding")}
                     </p>
                     <h2 className="max-w-3xl text-4xl leading-[0.96] md:text-5xl">
                       {relatedLanding.title}
                     </h2>
                   </div>
                   <div>
-                    <p className="text-base leading-8 text-white/70">{relatedLanding.metaDescription}</p>
+                    <p className="text-base leading-8 text-white/70">
+                      {relatedLanding.metaDescription}
+                    </p>
                     <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                      <Button asChild size="lg" className="bg-white text-[hsl(var(--foreground))] hover:bg-white/92">
+                      <Button
+                        asChild
+                        size="lg"
+                        className="bg-white text-[hsl(var(--foreground))] hover:bg-white/92"
+                      >
                         <Link href={`/solutions/${relatedLanding.slug}`}>
-                          {isEnglish ? "Open SEO page" : "Відкрити SEO-сторінку"}
+                          {t("openSeo")}
                           <ArrowRight className="button-arrow-right h-4 w-4" />
                         </Link>
                       </Button>
-                      <Button asChild size="lg" variant="outline" className="border-white/16 bg-transparent text-white hover:bg-white/8">
+                      <Button
+                        asChild
+                        size="lg"
+                        variant="outline"
+                        className="border-white/16 bg-transparent text-white hover:bg-white/8"
+                      >
                         <Link href="/#contact">
-                          {isEnglish ? "Get an estimate" : "Отримати оцінку"}
+                          {t("estimate")}
                           <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                         </Link>
                       </Button>
@@ -222,10 +254,10 @@ export default async function BlogPostPage({params}: BlogPostPageProps) {
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
               <div>
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                  {isEnglish ? "More reading" : "Ще матеріали"}
+                  {t("moreReading")}
                 </p>
                 <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                  {isEnglish ? "Continue through related articles" : "Продовжити через пов'язані статті"}
+                  {t("continue")}
                 </h2>
               </div>
 

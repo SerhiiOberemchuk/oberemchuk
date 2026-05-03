@@ -1,0 +1,36 @@
+{
+  "badge": "Technical partner for websites that should generate trust, leads and sales",
+  "titlePrefix": "I build",
+  "titleHighlight": "websites that drive",
+  "titleSuffix": "leads and sales",
+  "description": "I build landing pages, company websites, e-commerce projects and web apps for businesses that need more than a polished presence online. The goal is a digital asset ready for trust, traffic, SEO, ads and growth.",
+  "primaryCta": "Get an estimate",
+  "secondaryCta": "View case studies",
+  "manifesto": {
+    "label": "Positioning",
+    "title": "Commercial website logic, not freelance filler.",
+    "body": "Positioning, structure, development and launch are assembled as one system aimed at business impact."
+  },
+  "proof": {
+    "label": "What matters",
+    "body": "Not just a polished site, but a digital asset ready for traffic, trust and conversion."
+  },
+  "stats": [
+    {
+      "value": "50+",
+      "label": "delivered projects"
+    },
+    {
+      "value": "5+",
+      "label": "years of experience"
+    },
+    {
+      "value": "B2B",
+      "label": "brands and products"
+    },
+    {
+      "value": "Fullstack",
+      "label": "from structure to launch"
+    }
+  ]
+}

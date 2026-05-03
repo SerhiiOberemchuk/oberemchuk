@@ -1,51 +1,51 @@
-﻿import type {Metadata} from "next";
-import {getTranslations} from "next-intl/server";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import LegalPageShell from "@/components/legal-page-shell";
-import {Link} from "@/i18n/navigation";
-import {getPageAlternates} from "@/lib/seo";
+import { Link } from "@/i18n/navigation";
+import { type AppLocale } from "@/i18n/locales";
+import { getPageAlternates } from "@/lib/seo";
 
 type TermsOfServicePageProps = {
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({params}: TermsOfServicePageProps): Promise<Metadata> {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: "TermsOfServicePage.metadata"});
-  const pagePath = locale === "en" ? "/en/terms-of-service" : "/terms-of-service";
+export async function generateMetadata({ params }: TermsOfServicePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "TermsOfServicePage.metadata" });
+  const pagePath = locale === "uk" ? "/terms-of-service" : `/${locale}/terms-of-service`;
 
   return {
     title: t("title"),
     description: t("description"),
-    alternates: getPageAlternates(locale as "uk" | "en", "/terms-of-service"),
+    alternates: getPageAlternates(locale as AppLocale, "/terms-of-service"),
     openGraph: {
       title: t("openGraph.title"),
       description: t("openGraph.description"),
       url: pagePath,
       type: "article",
-      images: ["/og-image.png"]
+      images: ["/og-image.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: t("twitter.title"),
       description: t("twitter.description"),
-      images: ["/og-image.png"]
-    }
+      images: ["/og-image.png"],
+    },
   };
 }
 
-export default async function TermsOfServicePage({params}: TermsOfServicePageProps) {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: "TermsOfServicePage"});
-  const isEnglish = locale === "en";
+export default async function TermsOfServicePage({ params }: TermsOfServicePageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "TermsOfServicePage" });
 
   return (
     <LegalPageShell
-      eyebrow={isEnglish ? "Terms of service" : "Умови використання"}
+      eyebrow={t("eyebrow")}
       title={t("title")}
       description={t("sections.intro.description")}
       lastUpdated={t("lastUpdated")}
-      footerTitle={isEnglish ? "Need the supporting policies too?" : "Потрібні й супровідні політики?"}
-      footerDescription={isEnglish ? "From here you can return to the site or open the privacy and cookie documents for related terms." : "Звідси можна повернутися на сайт або відкрити політики конфіденційності та cookies для пов’язаних умов."}
+      footerTitle={t("footer.title")}
+      footerDescription={t("footer.description")}
       primaryCta={t("navigation.home")}
       secondaryCta={t("navigation.privacy")}
       primaryHref="/"
@@ -99,7 +99,7 @@ export default async function TermsOfServicePage({params}: TermsOfServicePagePro
             <Link href="/privacy-policy" className="text-[hsl(var(--foreground))] underline underline-offset-4">
               {chunks}
             </Link>
-          )
+          ),
         })}
       </p>
 
@@ -110,7 +110,7 @@ export default async function TermsOfServicePage({params}: TermsOfServicePagePro
             <Link href="/cookies" className="text-[hsl(var(--foreground))] underline underline-offset-4">
               {chunks}
             </Link>
-          )
+          ),
         })}
       </p>
 
@@ -128,9 +128,6 @@ export default async function TermsOfServicePage({params}: TermsOfServicePagePro
       <ul>
         <li>{t("sections.contact.email")}</li>
       </ul>
-
-
     </LegalPageShell>
   );
 }
-

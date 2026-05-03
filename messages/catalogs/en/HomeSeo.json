@@ -1,0 +1,46 @@
+{
+  "badge": "Operational thinking",
+  "title": "What makes the work commercially effective",
+  "description": "A strong web presence is not built from aesthetics alone. It works when structure, discoverability, messaging and technical execution support the same business goal.",
+  "pillars": [
+    {
+      "title": "Commercial structure",
+      "description": "Pages, hierarchy and calls to action are built around decision-making, not just content placement."
+    },
+    {
+      "title": "Technical SEO",
+      "description": "Metadata, schema, speed, internal linking and clean HTML support visibility without making the product feel mechanical."
+    },
+    {
+      "title": "Scalable system",
+      "description": "The site is prepared for new pages, campaigns, services and content growth instead of being trapped in a one-off layout."
+    },
+    {
+      "title": "Performance discipline",
+      "description": "Fast rendering, maintainable code and predictable production quality are part of the product standard."
+    }
+  ],
+  "keywordsTitle": "Core growth layers",
+  "keywords": [
+    "structure",
+    "SEO",
+    "performance",
+    "copy",
+    "analytics",
+    "scalability",
+    "conversion",
+    "maintainability"
+  ],
+  "reasonsTitle": "What this changes for a business",
+  "reasons": [
+    "Sharper positioning on the page",
+    "Better discoverability without SEO theater",
+    "Cleaner user journeys and calls to action",
+    "A technical base that can support future growth"
+  ],
+  "ctaTitle": "Product logic before noise",
+  "ctaQuote": "SEO should sit inside the product logic, not hang on the page like a checklist.",
+  "ctaDescription": "The work is strongest when design, content and implementation support the same commercial direction. That is how I approach product websites, service sites and custom web platforms.",
+  "primaryCta": "Discuss the task",
+  "secondaryCta": "View services"
+}

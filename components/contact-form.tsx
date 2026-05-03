@@ -1,12 +1,14 @@
 "use client";
 
-import type React from "react";
-
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
+import { useFormStatus } from "react-dom";
+import { toast } from "sonner";
+import { useLocale, useTranslations } from "next-intl";
+import { submitContactForm, initialContactActionState } from "@/app/actions/contact";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -14,122 +16,98 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
-import { useTranslations } from "next-intl";
-
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  service: string;
-  budget: string;
-  message: string;
-}
+import { Textarea } from "@/components/ui/textarea";
 
 type Option = {
   value: string;
   label: string;
 };
 
+type ContactFormValues = {
+  locale: string;
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  budget: string;
+  message: string;
+};
+
+const initialValues = (locale: string): ContactFormValues => ({
+  locale,
+  name: "",
+  email: "",
+  phone: "",
+  service: "",
+  budget: "",
+  message: "",
+});
+
+function SubmitButton({ label, loadingLabel }: { label: string; loadingLabel: string }) {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button type="submit" size="lg" className="w-full" disabled={pending}>
+      {pending ? (
+        <>
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          {loadingLabel}
+        </>
+      ) : (
+        label
+      )}
+    </Button>
+  );
+}
+
 export default function ContactForm() {
   const t = useTranslations("ContactForm");
+  const locale = useLocale();
   const services = t.raw("services") as Option[];
   const budgets = t.raw("budgets") as Option[];
-
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-    budget: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [state, formAction] = useActionState(submitContactForm, initialContactActionState);
+  const [formValues, setFormValues] = useState<ContactFormValues>(initialValues(locale));
   const formHintId = "contact-form-hint";
   const messageHintId = "contact-form-message-hint";
 
+  useEffect(() => {
+    if (state.status === "success" && state.messageKey) {
+      toast.success(t(state.messageKey));
+      setFormValues(initialValues(locale));
+    }
+
+    if (state.status === "error" && state.messageKey) {
+      toast.error(t(state.messageKey));
+    }
+  }, [locale, state, t]);
+
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
+    const { name, value } = event.target;
+    setFormValues((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({
+  const handleSelectChange = (name: "service" | "budget", value: string) => {
+    setFormValues((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    if (!formData.name.trim()) {
-      toast.error(t("validation.nameRequired"));
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!formData.email.trim()) {
-      toast.error(t("validation.emailRequired"));
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!formData.email.includes("@")) {
-      toast.error(t("validation.emailInvalid"));
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!formData.message.trim()) {
-      toast.error(t("validation.messageRequired"));
-      setIsSubmitting(false);
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        toast.success(t("submit.success"));
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          service: "",
-          budget: "",
-          message: "",
-        });
-      } else {
-        const errorData = await response.json();
-        toast.error(errorData.error || t("submit.error"));
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error(t("submit.error"));
-    } finally {
-      setIsSubmitting(false);
-    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" aria-describedby={formHintId}>
+    <form action={formAction} className="space-y-6" aria-describedby={formHintId}>
+      <input type="hidden" name="locale" value={formValues.locale} />
+      <input type="hidden" name="service" value={formValues.service} />
+      <input type="hidden" name="budget" value={formValues.budget} />
+
       <p id={formHintId} className="text-sm leading-7 text-[hsl(var(--muted-foreground))]">
         {t("formHint")}
       </p>
+
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name">{t("fields.name")}</Label>
@@ -137,7 +115,7 @@ export default function ContactForm() {
             id="name"
             name="name"
             type="text"
-            value={formData.name}
+            value={formValues.name}
             onChange={handleInputChange}
             required
             aria-required="true"
@@ -151,7 +129,7 @@ export default function ContactForm() {
             id="email"
             name="email"
             type="email"
-            value={formData.email}
+            value={formValues.email}
             onChange={handleInputChange}
             required
             aria-required="true"
@@ -165,7 +143,7 @@ export default function ContactForm() {
         <div className="space-y-2">
           <Label htmlFor="service">{t("fields.service")}</Label>
           <Select
-            value={formData.service}
+            value={formValues.service}
             onValueChange={(value) => handleSelectChange("service", value)}
           >
             <SelectTrigger aria-label={t("fields.serviceAria")} aria-describedby={formHintId}>
@@ -173,7 +151,9 @@ export default function ContactForm() {
             </SelectTrigger>
             <SelectContent>
               {services.map((service) => (
-                <SelectItem key={service.value} value={service.value}>{service.label}</SelectItem>
+                <SelectItem key={service.value} value={service.value}>
+                  {service.label}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -181,7 +161,7 @@ export default function ContactForm() {
         <div className="space-y-2">
           <Label htmlFor="budget">{t("fields.budget")}</Label>
           <Select
-            value={formData.budget}
+            value={formValues.budget}
             onValueChange={(value) => handleSelectChange("budget", value)}
           >
             <SelectTrigger aria-label={t("fields.budgetAria")} aria-describedby={formHintId}>
@@ -189,7 +169,9 @@ export default function ContactForm() {
             </SelectTrigger>
             <SelectContent>
               {budgets.map((budget) => (
-                <SelectItem key={budget.value} value={budget.value}>{budget.label}</SelectItem>
+                <SelectItem key={budget.value} value={budget.value}>
+                  {budget.label}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -202,7 +184,7 @@ export default function ContactForm() {
           id="phone"
           name="phone"
           type="tel"
-          value={formData.phone}
+          value={formValues.phone}
           onChange={handleInputChange}
           placeholder={t("fields.phonePlaceholder")}
           autoComplete="tel"
@@ -214,7 +196,7 @@ export default function ContactForm() {
         <Textarea
           id="message"
           name="message"
-          value={formData.message}
+          value={formValues.message}
           onChange={handleInputChange}
           required
           aria-required="true"
@@ -227,16 +209,10 @@ export default function ContactForm() {
         </p>
       </div>
 
-      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            {t("submit.loading")}
-          </>
-        ) : (
-          t("submit.button")
-        )}
-      </Button>
+      <SubmitButton
+        label={t("submit.button")}
+        loadingLabel={t("submit.loading")}
+      />
     </form>
   );
 }

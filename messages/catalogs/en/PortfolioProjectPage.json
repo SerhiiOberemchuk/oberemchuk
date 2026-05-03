@@ -1,0 +1,32 @@
+{
+  "notFound": {
+    "title": "Project not found",
+    "description": "The requested project could not be found."
+  },
+  "backToPortfolio": "Back to portfolio",
+  "year": "Year",
+  "client": "Client",
+  "viewSite": "View website",
+  "technologies": "Technologies",
+  "features": "Features",
+  "challenge": "Challenge",
+  "solution": "Solution",
+  "result": "Result",
+  "challengeTitle": "What needed to be solved",
+  "solutionTitle": "How the project was assembled",
+  "resultTitle": "What this created in the end",
+  "overviewLabel": "Project overview",
+  "buildLabel": "Build details",
+  "projectLabel": "Case study",
+  "challengeText": "The project required more than a clean interface. The structure, messaging and technical foundation had to support the product or service in a commercially clear way.",
+  "solutionText": "The solution was built through a clear page structure, controlled front-end execution, strong content hierarchy and a dependable technical base for launch and future growth.",
+  "resultText": "The outcome is more than a set of screens. It is a digital product with stronger presentation, clearer interaction flow and a better base for SEO, campaigns or scaling.",
+  "featureIntro": "Key elements that shape the product and commercial value of this case.",
+  "metadata": {
+    "siteSuffix": "Oberemchuk Serhii - Web Development",
+    "keywordsPrefix": "web development"
+  },
+  "schema": {
+    "creatorName": "Oberemchuk Serhii"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "fallbacks": {
+    "notProvided": "Non specificato"
+  },
+  "serviceTypes": {
+    "website": "Sviluppo sito web",
+    "redesign": "Restyling del sito",
+    "seo": "Ottimizzazione SEO",
+    "maintenance": "Manutenzione del sito",
+    "consultation": "Consulenza",
+    "other": "Altro"
+  },
+  "budgets": {
+    "under-1000": "Fino a $1,000",
+    "1000-3000": "$1,000 - $3,000",
+    "3000-5000": "$3,000 - $5,000",
+    "5000-10000": "$5,000 - $10,000",
+    "over-10000": "Oltre $10,000",
+    "discuss": "Da discutere"
+  },
+  "layout": {
+    "brandSubtitle": "Siti, web app e SEO tecnico per il business",
+    "detailsTitle": "Dettagli della richiesta",
+    "messageTitle": "Descrizione del task"
+  },
+  "admin": {
+    "eyebrow": "Nuova richiesta",
+    "title": "Nuova richiesta da {name}",
+    "intro": "E arrivata una nuova richiesta tramite il form di contatto del sito.",
+    "summary": "Questa email e strutturata per aiutarti a valutare rapidamente contesto, budget e tipo di servizio senza leggere testo grezzo.",
+    "footerNote": "Notifica automatica dal form di contatto del sito.",
+    "ctaLabel": "Rispondi al cliente",
+    "subject": "Nuova richiesta da {name} - Serhii Oberemchuk"
+  },
+  "client": {
+    "eyebrow": "Richiesta ricevuta",
+    "title": "Grazie per la richiesta",
+    "intro": "Ciao, {name}. Ho ricevuto la tua richiesta e ti rispondero dopo aver rivisto i dettagli.",
+    "summary": "Qui sotto trovi una copia del tuo messaggio. Aiuta a mantenere allineato il contesto se continuiamo via email o Telegram.",
+    "footerNote": "Se vuoi aggiungere altro contesto, rispondi a questa email o scrivi su Telegram.",
+    "ctaLabel": "Scrivi su Telegram",
+    "subject": "Grazie per la tua richiesta"
+  },
+  "fields": {
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefono",
+    "service": "Tipo di servizio",
+    "budget": "Budget"
+  },
+  "errors": {
+    "required": "Compila tutti i campi obbligatori",
+    "sendFailed": "Si e verificato un errore durante l'invio del messaggio",
+    "consolePrefix": "Errore invio email:"
+  }
+}

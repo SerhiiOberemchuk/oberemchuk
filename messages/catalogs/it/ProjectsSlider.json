@@ -1,0 +1,9 @@
+{
+  "empty": "Nessun progetto trovato",
+  "regionLabel": "Slider progetti",
+  "detailsCta": "Scopri di piu",
+  "previousSlide": "Slide precedente",
+  "nextSlide": "Slide successiva",
+  "slidesNav": "Navigazione slide",
+  "slideLabel": "Slide {index}: {title}"
+}

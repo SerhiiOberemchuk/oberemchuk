@@ -1,51 +1,51 @@
-﻿import type {Metadata} from "next";
-import {getTranslations} from "next-intl/server";
-import CookieSettingsButton from "@/components/cookie-settings-button";
-import LegalPageShell from "@/components/legal-page-shell";
-import {Link} from "@/i18n/navigation";
-import {getPageAlternates} from "@/lib/seo";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
+import CookieSettingsButton from "@/components/cookie-settings-button";
+import LegalPageShell from "@/components/legal-page-shell";
+import { type AppLocale } from "@/i18n/locales";
+import { getPageAlternates } from "@/lib/seo";
 
 type CookiesPageProps = {
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({params}: CookiesPageProps): Promise<Metadata> {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: "CookiesPage.metadata"});
-  const pagePath = locale === "en" ? "/en/cookies" : "/cookies";
+export async function generateMetadata({ params }: CookiesPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "CookiesPage.metadata" });
+  const pagePath = locale === "uk" ? "/cookies" : `/${locale}/cookies`;
 
   return {
     title: t("title"),
     description: t("description"),
-    alternates: getPageAlternates(locale as "uk" | "en", "/cookies"),
+    alternates: getPageAlternates(locale as AppLocale, "/cookies"),
     openGraph: {
       title: t("openGraph.title"),
       description: t("openGraph.description"),
       url: pagePath,
       type: "article",
-      images: ["/og-image.png"]
+      images: ["/og-image.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: t("twitter.title"),
       description: t("twitter.description"),
-      images: ["/og-image.png"]
-    }
+      images: ["/og-image.png"],
+    },
   };
 }
 
-export default async function CookiesPage({params}: CookiesPageProps) {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: "CookiesPage"});
-  const footerLegalT = await getTranslations({locale, namespace: "Footer.legal"});
+export default async function CookiesPage({ params }: CookiesPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "CookiesPage" });
+  const footerLegalT = await getTranslations({ locale, namespace: "Footer.legal" });
   const cookieTypes = t.raw("types.rows") as Array<{
     name: string;
     purpose: string;
@@ -55,16 +55,15 @@ export default async function CookiesPage({params}: CookiesPageProps) {
     name: string;
     href: string;
   }>;
-  const isEnglish = locale === "en";
 
   return (
     <LegalPageShell
-      eyebrow={isEnglish ? "Cookie policy" : "Політика cookies"}
+      eyebrow={t("eyebrow")}
       title={t("title")}
       description={t("usage.description")}
       lastUpdated={t("lastUpdated")}
-      footerTitle={isEnglish ? "Need to review the related documents too?" : "Потрібно переглянути й пов’язані документи?"}
-      footerDescription={isEnglish ? "You can return to the main site or continue to the privacy policy from here." : "Звідси можна повернутися на основний сайт або перейти до політики конфіденційності."}
+      footerTitle={t("footer.title")}
+      footerDescription={t("footer.description")}
       primaryCta={t("navigation.home")}
       secondaryCta={t("navigation.privacy")}
       primaryHref="/"
@@ -126,14 +125,10 @@ export default async function CookiesPage({params}: CookiesPageProps) {
       <p>
         {t.rich("googleAnalytics.paragraphs.2", {
           optOutLink: (chunks) => (
-            <a
-              href="https://tools.google.com/dlpage/gaoptout"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">
               {chunks}
             </a>
-          )
+          ),
         })}
       </p>
 
@@ -176,10 +171,6 @@ export default async function CookiesPage({params}: CookiesPageProps) {
       <ul>
         <li>{t("contact.email")}</li>
       </ul>
-
-
     </LegalPageShell>
   );
 }
-
-

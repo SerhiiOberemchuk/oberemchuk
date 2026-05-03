@@ -1,0 +1,96 @@
+{
+  "validation": {
+    "nameRequired": "Please enter your name",
+    "emailRequired": "Please enter your email",
+    "emailInvalid": "Please enter a valid email",
+    "messageRequired": "Please enter your message"
+  },
+  "submit": {
+    "success": "Your message has been sent successfully!",
+    "error": "Failed to send the message",
+    "loading": "Sending...",
+    "button": "Get an estimate"
+  },
+  "fields": {
+    "name": "Name *",
+    "namePlaceholder": "Your name",
+    "email": "Email *",
+    "phone": "Phone (optional)",
+    "phonePlaceholder": "+49 XX XXX XX XX",
+    "service": "What do you need?",
+    "servicePlaceholder": "Choose the project format",
+    "serviceAria": "Choose a service type",
+    "budget": "Budget",
+    "budgetPlaceholder": "Choose the budget range",
+    "budgetAria": "Choose a project budget",
+    "message": "Short task description *",
+    "messagePlaceholder": "What do you sell, to whom, and what should the site achieve?",
+    "emailPlaceholder": "you@example.com",
+    "messageHint": "A short note on the task, business goal, timeline or expected outcome is enough."
+  },
+  "services": [
+    {
+      "value": "landing-page",
+      "label": "Landing page"
+    },
+    {
+      "value": "corporate-website",
+      "label": "Corporate website"
+    },
+    {
+      "value": "astro-website",
+      "label": "Astro content website"
+    },
+    {
+      "value": "ecommerce",
+      "label": "E-commerce storefront"
+    },
+    {
+      "value": "payments",
+      "label": "Payment integration"
+    },
+    {
+      "value": "crm",
+      "label": "CRM integration / automation"
+    },
+    {
+      "value": "web-app",
+      "label": "Web application / MVP"
+    },
+    {
+      "value": "support",
+      "label": "SEO / support / relaunch"
+    },
+    {
+      "value": "other",
+      "label": "Other"
+    }
+  ],
+  "budgets": [
+    {
+      "value": "under-1000",
+      "label": "Up to EUR 1,000"
+    },
+    {
+      "value": "1000-3000",
+      "label": "EUR 1,000 - EUR 3,000"
+    },
+    {
+      "value": "3000-5000",
+      "label": "EUR 3,000 - EUR 5,000"
+    },
+    {
+      "value": "5000-10000",
+      "label": "EUR 5,000 - EUR 10,000"
+    },
+    {
+      "value": "over-10000",
+      "label": "Over EUR 10,000"
+    },
+    {
+      "value": "discuss",
+      "label": "Discuss individually"
+    }
+  ],
+  "formHint": "Fill in the short request. Contact details, project format, budget and the core task are enough."
+}

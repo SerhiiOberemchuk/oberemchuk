@@ -1,39 +1,30 @@
-"use client"
-
-import type { ReactNode } from "react"
-import { useInView } from "@/hooks/use-in-view"
-import { cn } from "@/lib/utils"
+import type {CSSProperties, ReactNode} from "react";
+import {cn} from "@/lib/utils";
 
 interface AnimationWrapperProps {
-  children: ReactNode
-  animation: "fade-in" | "slide-up" | "slide-right" | "slide-left" | "scale"
-  className?: string
-  delay?: number
-  threshold?: number
-  rootMargin?: string
-  triggerOnce?: boolean
+  children: ReactNode;
+  animation: "fade-in" | "slide-up" | "slide-right" | "slide-left" | "scale";
+  className?: string;
+  delay?: number;
 }
 
 export default function AnimationWrapper({
   children,
   animation,
   className,
-  delay = 0,
-  threshold = 0.1,
-  rootMargin = "0px",
-  triggerOnce = true,
+  delay = 0
 }: AnimationWrapperProps) {
-  const [ref, isInView] = useInView({
-    threshold,
-    rootMargin,
-    triggerOnce,
-  })
-
-  const delayClass = delay ? `delay-${delay}` : ""
+  const style =
+    delay > 0
+      ? ({"--inview-delay": `${delay}ms`} as CSSProperties)
+      : undefined;
 
   return (
-    <div ref={ref} className={cn(`animate-${animation}`, isInView && "in-view", delayClass, className)}>
+    <div
+      className={cn("inview-reveal", `animate-${animation}`, className)}
+      style={style}
+    >
       {children}
     </div>
-  )
+  );
 }

@@ -1,0 +1,31 @@
+{
+  "description": "Websites, e-commerce and web products for businesses that need stronger positioning, clearer structure and a digital asset built for leads, SEO and growth.",
+  "cta": {
+    "title": "Next step",
+    "description": "If the website needs stronger positioning, better structure and a clearer inquiry path, start with a short estimate.",
+    "label": "Get an estimate"
+  },
+  "navigation": {
+    "title": "Navigation",
+    "services": "Services",
+    "portfolio": "Cases",
+    "about": "Process",
+    "contact": "Estimate",
+    "solutions": "SEO pages",
+    "blog": "Blog"
+  },
+  "legal": {
+    "title": "Legal",
+    "privacy": "Privacy policy",
+    "cookies": "Cookie policy",
+    "terms": "Terms of service",
+    "cookieSettings": "Cookie settings"
+  },
+  "contact": {
+    "title": "Contact",
+    "remote": "Working as an independent technical partner for commercial websites and digital products."
+  },
+  "copyright": "All rights reserved.",
+  "tagline": "From structure to launch.",
+  "logoAlt": "Serhii Oberemchuk logo"
+}

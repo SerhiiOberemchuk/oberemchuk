@@ -1,0 +1,26 @@
+{
+  "backToServices": "Back to services",
+  "discussProject": "Get an estimate",
+  "pageLabel": "Service detail",
+  "valueLabel": "Business value",
+  "offerLabel": "Starting point",
+  "keywordsLabel": "Search layer",
+  "faqLabel": "FAQ",
+  "valueDescription": "The service is structured around what should change for the business after launch: sharper positioning, stronger trust, better inquiry flow, more sales or a stronger base for growth.",
+  "deliveryLabel": "What goes into delivery",
+  "resultLabel": "What the business gets",
+  "fitForTitle": "When this service is the right fit",
+  "outcomesTitle": "What the business gets",
+  "outcomesDescription": "The expected result of this service: what changes in positioning, conversion flow, structure or growth-readiness once the work is delivered.",
+  "deliverablesTitle": "What is included",
+  "searchIntentTitle": "Commercial queries worth building the page for",
+  "searchIntentDescription": "For this service, the page should match real search intent. That is why I explicitly outline key phrasing, usage scenarios and the business value behind the offer.",
+  "faqTitle": "FAQ",
+  "relatedTitle": "Related services",
+  "relatedCta": "View page",
+  "estimate": {
+    "title": "Need an estimate for your exact case?",
+    "description": "Tell me what you sell, who your client is, what the business goal should be and whether the site is meant for ads, SEO or product presentation. That makes it possible to suggest the right format quickly.",
+    "cta": "Get an estimate"
+  }
+}

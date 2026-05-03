@@ -1,9 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import MobileMenu, { MobileMenuProps } from "./Mobile-Menu/mobile-menu";
+import type { MobileMenuProps } from "./Mobile-Menu/mobile-menu";
+
+const MobileMenu = dynamic(() => import("./Mobile-Menu/mobile-menu"));
 type HeaderMobileControlsProps = Pick<
   MobileMenuProps,
   "closeLabel" | "ctaLabel" | "dialogTitle" | "navigationAriaLabel" | "navItems"
@@ -36,15 +39,17 @@ export default function HeaderMobileControls({
         <Menu className="h-5 w-5" />
       </Button>
 
-      <MobileMenu
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-        ctaLabel={ctaLabel}
-        closeLabel={closeLabel}
-        dialogTitle={dialogTitle}
-        navigationAriaLabel={navigationAriaLabel}
-        navItems={navItems}
-      />
+      {isMenuOpen ? (
+        <MobileMenu
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          ctaLabel={ctaLabel}
+          closeLabel={closeLabel}
+          dialogTitle={dialogTitle}
+          navigationAriaLabel={navigationAriaLabel}
+          navItems={navItems}
+        />
+      ) : null}
     </>
   );
 }

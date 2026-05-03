@@ -1,0 +1,38 @@
+{
+  "badge": "Project estimate and kickoff",
+  "title": "Get an estimate for your project",
+  "description": "Share the task, budget range and website goal. You will get a practical next step on structure, format and launch rather than a vague reply.",
+  "infoTitle": "Contact information",
+  "infoDescription": "Short intake, clear estimate logic and a practical next step.",
+  "startTitle": "What you get at the start",
+  "stackTitle": "Stack and specialization",
+  "emailCta": "Send an email",
+  "telegramCta": "Message on Telegram",
+  "briefTitle": "Short request",
+  "briefDescription": "What needs to be built, for what kind of business and what the website should achieve.",
+  "briefBody": "Share what needs to be built, what the business goal is and what budget range you are considering. That is enough to move from vague interest to a real plan.",
+  "advantages": [
+    "A clear site plan before kickoff",
+    "Defined scope of work",
+    "A realistic timeline outlook",
+    "A site prepared for SEO and ads"
+  ],
+  "contactItems": {
+    "email": {
+      "label": "Email",
+      "value": "serhiioberemchuk@gmail.com"
+    },
+    "telegram": {
+      "label": "Telegram",
+      "value": "@SerhiiOberemchuk"
+    },
+    "workMode": {
+      "label": "Engagement",
+      "value": "Independent technical partner for commercial websites and digital products"
+    },
+    "workRhythm": {
+      "label": "Response rhythm",
+      "value": "Reply within 24 hours with a practical next step"
+    }
+  }
+}

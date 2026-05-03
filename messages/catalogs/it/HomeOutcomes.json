@@ -1,0 +1,23 @@
+{
+  "title": "Cosa ottiene il cliente",
+  "subtitle": "Non solo un sito finito, ma un piano chiaro, una consegna controllata e una base pronta per crescere dopo il lancio.",
+  "cta": "Richiedi una stima",
+  "items": [
+    {
+      "title": "Un piano chiaro prima di partire",
+      "description": "Prima dell'avvio capisci struttura della pagina, logica dei blocchi e come il sito deve portare richieste o vendite."
+    },
+    {
+      "title": "Ambito e priorita definiti",
+      "description": "Ambito, priorita e aspettative vengono fissati presto per evitare rumore, iterazioni inutili e budget sfocato."
+    },
+    {
+      "title": "Un percorso di lancio realistico",
+      "description": "Il risultato non e sviluppo astratto, ma un sito o prodotto pronto per campagne, traffico, SEO o la fase successiva."
+    },
+    {
+      "title": "Una base tecnica senza debito",
+      "description": "Struttura, performance, responsive, analytics e SEO nascono nel sistema invece di essere aggiunti dopo il rilascio."
+    }
+  ]
+}

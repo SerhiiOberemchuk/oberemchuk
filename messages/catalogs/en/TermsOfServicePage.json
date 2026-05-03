@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "title": "Terms of service",
+    "description": "Terms of service for the Serhii Oberemchuk website. Review the rules and conditions for using the website and related services.",
+    "openGraph": {
+      "title": "Terms of service | Serhii Oberemchuk",
+      "description": "Terms of service for the Serhii Oberemchuk website. Review the rules and conditions for using the website and related services."
+    },
+    "twitter": {
+      "title": "Terms of service | Serhii Oberemchuk",
+      "description": "Terms of service for the Serhii Oberemchuk website. Review the rules and conditions for using the website and related services."
+    }
+  },
+  "title": "Terms of service",
+  "eyebrow": "Terms of service",
+  "lastUpdated": "Last updated: June 1, 2024",
+  "sections": {
+    "intro": {
+      "title": "1. Introduction",
+      "description": "Welcome to the Serhii Oberemchuk website. By using this website, you agree to follow these terms. If you do not agree with any part of them, please do not use the website."
+    },
+    "definitions": {
+      "title": "2. Definitions",
+      "user": "\"User\" means any person who accesses or uses the website.",
+      "content": "\"Content\" means any information, text, graphics, images, video, audio, data and other materials published on the website.",
+      "services": "\"Services\" means the services described on the website, including web development, web design, SEO and related technical solutions."
+    },
+    "websiteUse": {
+      "title": "3. Use of the website",
+      "description": "By using the website, you agree to:",
+      "items": [
+        "Use the website only for lawful purposes and without violating the rights of third parties.",
+        "Not perform actions that could damage, overload or destabilize the website.",
+        "Not attempt to gain unauthorized access to any part of the website or related systems.",
+        "Not collect information about other users without their consent.",
+        "Not use the website to distribute malicious software or for other abusive scenarios."
+      ]
+    },
+    "ip": {
+      "title": "4. Intellectual property",
+      "description": "The website, its content, design, code, graphics and other materials belong to me or are used on lawful grounds. They are protected by copyright and related rights legislation."
+    },
+    "orders": {
+      "title": "5. Ordering services",
+      "paragraphs": [
+        "If you submit an inquiry or brief through the website, you agree to provide accurate, current and sufficient information about the task.",
+        "Any cooperation regarding services is clarified separately: scope, timing, price and delivery terms are fixed through a separate agreement."
+      ]
+    },
+    "pricing": {
+      "title": "6. Pricing and payments",
+      "description": "Prices shown on the website are indicative. Final pricing depends on scope, technical requirements and required integrations."
+    },
+    "liability": {
+      "title": "7. Limitation of liability",
+      "description": "I am not liable for indirect, incidental or consequential damages that may arise in connection with the use of the website.",
+      "items": [
+        "Your use of, or inability to use, the website.",
+        "Actions I take or do not take in response to your requests or messages.",
+        "Errors, interruptions, delays in operation or technical failures.",
+        "Unauthorized access to information you transmit.",
+        "Actions of third parties or external services linked from the website."
+      ]
+    },
+    "warranty": {
+      "title": "8. Disclaimer of warranties",
+      "description": "The website is provided \"as is\" and \"as available\". I do not guarantee uninterrupted operation, absolute security or complete absence of errors."
+    },
+    "privacy": {
+      "title": "9. Privacy",
+      "description": "Your privacy matters to me. More about collection, processing and storage of data is described in the <privacyLink>Privacy policy</privacyLink>."
+    },
+    "cookies": {
+      "title": "10. Cookies",
+      "description": "The website uses cookies to improve the user experience. More details are available in the <cookiesLink>Cookie policy</cookiesLink>."
+    },
+    "changes": {
+      "title": "11. Changes to the terms",
+      "description": "I may update these terms from time to time. The current version will always be published on this page, and continued use of the website means acceptance of the updated terms."
+    },
+    "termination": {
+      "title": "12. Suspension of access",
+      "description": "I may restrict or suspend access to the website in case of violation of these terms or for other justified reasons."
+    },
+    "law": {
+      "title": "13. Governing law",
+      "description": "These terms are interpreted under applicable law, taking into account the jurisdiction in which cooperation is actually carried out."
+    },
+    "contact": {
+      "title": "14. Contact information",
+      "description": "If you have questions about these terms, please contact me:",
+      "email": "Email: serhiioberemchuk@gmail.com"
+    }
+  },
+  "navigation": {
+    "home": "Back to home",
+    "privacy": "Privacy policy",
+    "cookies": "Cookie policy"
+  },
+  "footer": {
+    "title": "Need the supporting policies too?",
+    "description": "From here you can return to the site or open the privacy and cookie documents for related terms."
+  }
+}

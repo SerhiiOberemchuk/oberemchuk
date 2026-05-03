@@ -1,4 +1,4 @@
-﻿import {
+import {
   ArrowUpRight,
   Globe,
   Monitor,
@@ -6,9 +6,10 @@
   Sparkles,
   Workflow,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import AnimationWrapper from "@/components/animation-wrapper";
 import SmoothScrollLink from "@/components/smooth-scroll-link";
+import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
 type ServiceItem = {
@@ -48,11 +49,7 @@ export default function ServicesSection({
   servicesContent,
   advantages,
 }: ServicesSectionProps) {
-  const isEnglish = title === "Services";
-  const sectionLabel = isEnglish ? "Services" : "Послуги";
-  const estimatePitch = isEnglish
-    ? "Clear scope, realistic timing and a launch plan that makes commercial sense."
-    : "Чіткий обсяг, реальні строки і план запуску, який має комерційний сенс.";
+  const t = useTranslations("HomeServices");
 
   const services = [
     {
@@ -94,7 +91,7 @@ export default function ServicesSection({
           <div className="mb-16 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-                {sectionLabel}
+                {t("labels.section")}
               </p>
               <h2
                 id="services-title"
@@ -230,7 +227,7 @@ export default function ServicesSection({
                   {estimateTitle}
                 </p>
                 <p className="text-3xl leading-[1.06] text-[hsl(var(--foreground))] md:text-[2.7rem]">
-                  {estimatePitch}
+                  {t("labels.estimatePitch")}
                 </p>
                 <p className="mt-5 text-base leading-8 text-[hsl(var(--foreground))]/68">
                   {estimateDescription}

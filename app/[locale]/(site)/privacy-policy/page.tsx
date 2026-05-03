@@ -1,51 +1,51 @@
-﻿import type {Metadata} from "next";
-import {getTranslations} from "next-intl/server";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import LegalPageShell from "@/components/legal-page-shell";
-import {Link} from "@/i18n/navigation";
-import {getPageAlternates} from "@/lib/seo";
+import { Link } from "@/i18n/navigation";
+import { type AppLocale } from "@/i18n/locales";
+import { getPageAlternates } from "@/lib/seo";
 
 type PrivacyPolicyPageProps = {
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({params}: PrivacyPolicyPageProps): Promise<Metadata> {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: "PrivacyPolicyPage.metadata"});
-  const pagePath = locale === "en" ? "/en/privacy-policy" : "/privacy-policy";
+export async function generateMetadata({ params }: PrivacyPolicyPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "PrivacyPolicyPage.metadata" });
+  const pagePath = locale === "uk" ? "/privacy-policy" : `/${locale}/privacy-policy`;
 
   return {
     title: t("title"),
     description: t("description"),
-    alternates: getPageAlternates(locale as "uk" | "en", "/privacy-policy"),
+    alternates: getPageAlternates(locale as AppLocale, "/privacy-policy"),
     openGraph: {
       title: t("openGraph.title"),
       description: t("openGraph.description"),
       url: pagePath,
       type: "article",
-      images: ["/og-image.png"]
+      images: ["/og-image.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: t("twitter.title"),
       description: t("twitter.description"),
-      images: ["/og-image.png"]
-    }
+      images: ["/og-image.png"],
+    },
   };
 }
 
-export default async function PrivacyPolicyPage({params}: PrivacyPolicyPageProps) {
-  const {locale} = await params;
-  const t = await getTranslations({locale, namespace: "PrivacyPolicyPage"});
-  const isEnglish = locale === "en";
+export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "PrivacyPolicyPage" });
 
   return (
     <LegalPageShell
-      eyebrow={isEnglish ? "Privacy policy" : "Політика конфіденційності"}
+      eyebrow={t("eyebrow")}
       title={t("title")}
       description={t("intro")}
       lastUpdated={t("lastUpdated")}
-      footerTitle={isEnglish ? "Need the related policies too?" : "Потрібні й пов’язані політики?"}
-      footerDescription={isEnglish ? "From here you can return to the site or open the cookie policy for the technical details layer." : "Звідси можна повернутися на сайт або відкрити політику cookies для технічного шару деталей."}
+      footerTitle={t("footer.title")}
+      footerDescription={t("footer.description")}
       primaryCta={t("navigation.home")}
       secondaryCta={t("navigation.cookies")}
       primaryHref="/"
@@ -69,7 +69,7 @@ export default async function PrivacyPolicyPage({params}: PrivacyPolicyPageProps
             <Link href="/cookies" className="text-[hsl(var(--foreground))] underline underline-offset-4">
               {chunks}
             </Link>
-          )
+          ),
         })}
       </p>
 
@@ -109,9 +109,6 @@ export default async function PrivacyPolicyPage({params}: PrivacyPolicyPageProps
       <ul>
         <li>{t("contact.email")}</li>
       </ul>
-
-
     </LegalPageShell>
   );
 }
-

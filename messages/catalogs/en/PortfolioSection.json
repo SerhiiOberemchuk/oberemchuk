@@ -1,0 +1,55 @@
+{
+  "badge": "Portfolio",
+  "title": "Recent work",
+  "description": "Selected work that shows taste, structure and execution discipline, not just visual output.",
+  "listLabel": "Recent projects",
+  "empty": "No projects found",
+  "cta": "View all projects",
+  "labels": {
+    "featured": "Selected case",
+    "openCase": "Open case",
+    "proof": "Proof"
+  },
+  "pitch": {
+    "title": "Cases should build trust before the user reaches the form.",
+    "body": "This block exists to show outcome thinking, production quality and the level of partner you work with."
+  },
+  "evidence": {
+    "default": {
+      "eyebrow": "Commercial angle",
+      "title": "Designed to communicate faster, build trust earlier and support the next conversion step.",
+      "points": [
+        "Clearer structure",
+        "Earlier trust signals",
+        "Better inquiry path"
+      ]
+    },
+    "raisa": {
+      "eyebrow": "Evidence",
+      "title": "Built to look sharper, load faster and explain the offer with more confidence.",
+      "points": [
+        "Sharper service positioning",
+        "Cleaner mobile experience",
+        "Stronger SEO-ready structure"
+      ]
+    },
+    "commerce": {
+      "eyebrow": "Outcome logic",
+      "title": "Focused on product visibility, easier buying flow and a base for catalogue growth.",
+      "points": [
+        "Product-first storefront",
+        "Cleaner purchase flow",
+        "SEO-ready category structure"
+      ]
+    },
+    "app": {
+      "eyebrow": "Product angle",
+      "title": "Structured as a working interface with clear flows, not as a static showcase.",
+      "points": [
+        "Clear user flows",
+        "Scalable interface logic",
+        "Architecture ready for growth"
+      ]
+    }
+  }
+}

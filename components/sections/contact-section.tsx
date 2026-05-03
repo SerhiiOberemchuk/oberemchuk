@@ -1,8 +1,8 @@
-﻿import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle } from "lucide-react"
 import AnimationWrapper from "@/components/animation-wrapper"
 import ContactForm from "@/components/contact-form"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { contactEmail, contactEmailHref, contactTelegram, contactTelegramHref } from "@/lib/contact-info"
 
 type ContactItem = {
@@ -15,12 +15,14 @@ type ContactSectionProps = {
   title: string
   description: string
   infoTitle: string
+  infoDescription: string
   startTitle: string
   stackTitle: string
   emailCta: string
   telegramCta: string
   briefTitle: string
   briefDescription: string
+  briefBody: string
   advantages: string[]
   contactItems: {
     email: ContactItem
@@ -35,22 +37,17 @@ export default function ContactSection({
   title,
   description,
   infoTitle,
+  infoDescription,
   startTitle,
   stackTitle,
   emailCta,
   telegramCta,
   briefTitle,
   briefDescription,
+  briefBody,
   advantages,
   contactItems
 }: ContactSectionProps) {
-  const isEnglish = /^[\x00-\x7F\s.,'":;!?()-]+$/.test(title)
-  const contactPitch = isEnglish
-    ? "Short intake, clear estimate logic and a practical next step."
-    : "Короткий вхід, зрозуміла логіка оцінки і практичний наступний крок."
-  const briefBody = isEnglish
-    ? "Share what needs to be built, what the business goal is and what budget range you are considering. That is enough to move from vague interest to a real plan."
-    : "Напишіть, що саме треба зробити, яка бізнес-ціль і який діапазон бюджету ви розглядаєте. Цього достатньо, щоб перейти від загального інтересу до реального плану."
   const specializations = ["React", "Next.js", "TypeScript", "Node.js", "SEO", "E-commerce"]
 
   const infoItems = [
@@ -100,7 +97,7 @@ export default function ContactSection({
             <div className="grid gap-10">
               <article className="border-t border-[rgba(24,31,43,0.18)] pt-8">
                 <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">{infoTitle}</p>
-                <p className="max-w-xl text-[2.25rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3rem]">{contactPitch}</p>
+                <p className="max-w-xl text-[2.25rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[3rem]">{infoDescription}</p>
 
                 <ul className="mt-8 space-y-5">
                   {infoItems.map((info) => {

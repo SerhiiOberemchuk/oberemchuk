@@ -1,0 +1,74 @@
+{
+  "title": "Servizi",
+  "subtitle": "Ogni offerta e costruita intorno a un risultato di business, non a una lista di funzioni: lead, fiducia, vendite, scala o un lancio piu forte.",
+  "popularBadge": "Popolare",
+  "detailsCta": "Scopri di piu",
+  "approachTitle": "Perche questo approccio funziona",
+  "estimateTitle": "Ti serve una stima per il tuo caso?",
+  "estimateDescription": "Dimmi cosa vendi, chi e il tuo cliente e quale risultato deve portare il sito. Ti aiutero a definire formato, ambito e un piano di lancio realistico.",
+  "estimateCta": "Richiedi una stima",
+  "labels": {
+    "section": "Servizi",
+    "estimatePitch": "Ambito chiaro, tempi realistici e un piano di lancio che abbia senso sul piano commerciale."
+  },
+  "services": [
+    {
+      "title": "Landing page",
+      "description": "Per traffico a pagamento, test della domanda o lanci rapidi, quando il sito deve spingere un'azione chiara invece di fare solo da brochure.",
+      "price": "da 800 EUR",
+      "features": [
+        "offerta chiara e CTA",
+        "struttura orientata alla conversione",
+        "analytics e form",
+        "lancio rapido"
+      ]
+    },
+    {
+      "title": "Siti aziendali",
+      "description": "Per aziende che devono apparire piu solide, spiegare i servizi con autorevolezza e trasformare traffico qualificato in richieste.",
+      "price": "da 1600 EUR",
+      "features": [
+        "pagine servizio pensate per vendere",
+        "casi studio e blocchi fiducia",
+        "SEO tecnico",
+        "pronto per campagne e crescita"
+      ]
+    },
+    {
+      "title": "Negozi e-commerce",
+      "description": "Per aziende che vogliono vendere online con uno storefront piu forte, un checkout piu chiaro e una struttura catalogo scalabile.",
+      "price": "da 2500 EUR",
+      "features": [
+        "storefront personalizzato",
+        "pagamenti e CRM",
+        "UX mobile-first",
+        "logica categorie SEO-ready"
+      ]
+    },
+    {
+      "title": "Web application",
+      "description": "Per SaaS, piattaforme interne, portali cliente e MVP dove conta piu un prodotto funzionante con logica e architettura scalabile che un guscio generico.",
+      "price": "da 3000 EUR",
+      "features": [
+        "ruoli e permessi",
+        "integrazioni API",
+        "dashboard",
+        "architettura scalabile"
+      ]
+    }
+  ],
+  "advantages": [
+    {
+      "title": "Risultato prima delle feature",
+      "description": "Ogni servizio e costruito intorno a cio che deve cambiare nel business dopo il lancio, non solo intorno a cio che viene sviluppato."
+    },
+    {
+      "title": "Processo chiaro",
+      "description": "Ambito, struttura, stack tecnico e priorita di consegna vengono definiti presto, cosi il progetto resta sotto controllo."
+    },
+    {
+      "title": "Pensato per crescere",
+      "description": "Performance, SEO, analytics ed espansione futura fanno parte del sistema iniziale invece di essere aggiunti dopo."
+    }
+  ]
+}

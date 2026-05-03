@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "title": "Cookie policy",
+    "description": "Detailed information about how I use cookies on my website and how you can manage your preferences.",
+    "openGraph": {
+      "title": "Cookie policy | Serhii Oberemchuk",
+      "description": "Detailed information about how I use cookies on my website and how you can manage your preferences."
+    },
+    "twitter": {
+      "title": "Cookie policy | Serhii Oberemchuk",
+      "description": "Detailed information about how I use cookies on my website and how you can manage your preferences."
+    }
+  },
+  "title": "Cookie policy",
+  "eyebrow": "Cookie policy",
+  "lastUpdated": "Last updated: June 1, 2024",
+  "whatAreCookies": {
+    "title": "What are cookies?",
+    "description": "Cookies are small text files stored on your device while you browse a website. They help the website function correctly, support analytics and remember your preferences."
+  },
+  "usage": {
+    "title": "How I use cookies",
+    "description": "The website may use several categories of cookies: to keep the site working, for baseline analytics and, if introduced later, for future personalization or marketing."
+  },
+  "types": {
+    "title": "Types of cookies used on the site",
+    "headers": {
+      "type": "Type",
+      "purpose": "Purpose",
+      "duration": "Duration"
+    },
+    "rows": [
+      {
+        "name": "Necessary cookies",
+        "purpose": "Required for the website to work correctly, preserve your preferences and support forms.",
+        "duration": "Session / 1 year"
+      },
+      {
+        "name": "Analytics cookies",
+        "purpose": "Help understand how visitors use the website and which pages perform best.",
+        "duration": "2 years"
+      },
+      {
+        "name": "Marketing cookies",
+        "purpose": "May be used for content or advertising personalization if such tools are introduced later.",
+        "duration": "1-2 years"
+      }
+    ]
+  },
+  "details": {
+    "title": "More detailed information about cookies",
+    "necessary": {
+      "title": "Necessary cookies",
+      "items": {
+        "consent": "cookie-consent - stores your consent preferences for cookie usage.",
+        "session": "session - supports stable site behavior and preserves temporary settings during a session."
+      }
+    },
+    "analytics": {
+      "title": "Analytics cookies (Google Analytics)",
+      "items": {
+        "ga": "_ga - stores a unique identifier for baseline analytics. Duration: 2 years.",
+        "gaId": "_ga_[ID] - used by Google Analytics to distinguish sessions and visits. Duration: 2 years.",
+        "gid": "_gid - used for statistics within a 24-hour window.",
+        "gat": "_gat - helps limit request rate. Duration: 1 minute."
+      }
+    },
+    "marketing": {
+      "title": "Marketing cookies",
+      "description": "At the moment the site does not actively use marketing cookies. If such tools are added later, this page will be updated."
+    }
+  },
+  "thirdParty": {
+    "title": "Third-party cookies",
+    "description": "Some cookies may be set by third-party services, for example analytics tools. For details, you should review the privacy policies of those services."
+  },
+  "googleAnalytics": {
+    "title": "Google Analytics",
+    "paragraphs": [
+      "The site may use Google Analytics for baseline traffic analysis. This service uses cookies to collect non-personal statistical information about page visits.",
+      "Information collected through Google Analytics is used to evaluate site performance and improve structure and content.",
+      "You can opt out of Google Analytics via the <optOutLink>Google Analytics opt-out page</optOutLink>."
+    ]
+  },
+  "management": {
+    "title": "How to manage cookies",
+    "description": "You can manage your cookie preferences in several ways:",
+    "siteSettings": "Through the site settings - you can update cookie consent when that mechanism is active on the site.",
+    "browserSettingsTitle": "Through browser settings",
+    "browserSettingsDescription": "Most browsers let you manage cookies through built-in settings:",
+    "browsers": [
+      {
+        "name": "Google Chrome",
+        "href": "https://support.google.com/chrome/answer/95647"
+      },
+      {
+        "name": "Mozilla Firefox",
+        "href": "https://support.mozilla.org/kb/cookies-information-websites-store-on-your-computer"
+      },
+      {
+        "name": "Internet Explorer",
+        "href": "https://support.microsoft.com/help/17442/windows-internet-explorer-delete-manage-cookies"
+      },
+      {
+        "name": "Safari",
+        "href": "https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac"
+      },
+      {
+        "name": "Opera",
+        "href": "https://help.opera.com/en/latest/web-preferences/#cookies"
+      }
+    ]
+  },
+  "settingsCard": {
+    "title": "Update cookie preferences",
+    "description": "If the consent management mechanism is active on the site, you can revise your cookie preferences at any time."
+  },
+  "consequences": {
+    "title": "Consequences of disabling cookies",
+    "paragraphs": [
+      "If you disable certain cookies, some parts of the website may not work as smoothly as intended.",
+      "Disabling analytics cookies does not block basic access to the site, but it reduces the ability to improve it based on real usage patterns."
+    ]
+  },
+  "changes": {
+    "title": "Changes to this Cookie Policy",
+    "paragraphs": [
+      "I may update this policy from time to time. The current version will always be published on this page.",
+      "It is reasonable to review this page periodically to stay aware of changes in the approach to cookies."
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "If you have questions about this Cookie Policy, please contact me:",
+    "email": "Email: serhiioberemchuk@gmail.com"
+  },
+  "navigation": {
+    "home": "Back to home",
+    "privacy": "Privacy policy"
+  },
+  "footer": {
+    "title": "Need to review the related documents too?",
+    "description": "You can return to the main site or continue to the privacy policy from here."
+  }
+}

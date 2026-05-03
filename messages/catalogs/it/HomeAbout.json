@@ -1,0 +1,71 @@
+{
+  "title": "Come si svolge il lavoro",
+  "subtitle": "Entro come partner tecnico: definisco posizionamento, struttura, esecuzione e lancio, cosi il sito lavora come strumento commerciale e non come sola presenza visiva.",
+  "valueTitle": "Cosa ottiene il business",
+  "labels": {
+    "positioning": "Posizionamento",
+    "tooling": "Stack selezionato e strumenti di delivery"
+  },
+  "paragraphs": [
+    "All'inizio aiuto a definire la logica della pagina: cosa deve stare nell'hero, dove mostrare le prove, come guidare verso il contatto e quali pagine meritano un trattamento separato.",
+    "Durante il progetto fissiamo presto ambito, priorita, struttura e logica di lancio. Questo riduce rumore, taglia iterazioni inutili e lascia piu controllo sul risultato.",
+    "Alla fine il cliente ottiene piu del codice: un sito pronto per campagne, SEO, analytics, nuove pagine e crescita futura."
+  ],
+  "summaryStats": [
+    {
+      "value": "50+",
+      "label": "progetti"
+    },
+    {
+      "value": "B2B",
+      "label": "brand e prodotti"
+    },
+    {
+      "value": "5+",
+      "label": "anni di esperienza"
+    },
+    {
+      "value": "End-to-end",
+      "label": "da struttura a lancio"
+    }
+  ],
+  "skillsTitle": "Cosa copro",
+  "skills": [
+    {
+      "title": "Sviluppo frontend",
+      "description": "React, Next.js e TypeScript per interfacce rapide, stabili e scalabili."
+    },
+    {
+      "title": "Sviluppo backend",
+      "description": "Node.js, API, database e integrazioni per servizi, CRM, form e logica di business."
+    },
+    {
+      "title": "Logica di prodotto",
+      "description": "Traduco gli obiettivi di business in struttura di pagina, priorita di contenuto e flussi d'azione coerenti."
+    },
+    {
+      "title": "SEO tecnico",
+      "description": "Struttura, metadata, schema.org e performance vengono pensati fin dall'inizio."
+    },
+    {
+      "title": "Mobile-first",
+      "description": "Le interfacce sono progettate per funzionare bene su telefono, tablet e desktop senza compromessi UX."
+    }
+  ],
+  "processTitle": "Processo",
+  "process": [
+    {
+      "title": "Strategia e struttura",
+      "description": "Definiamo obiettivo, pubblico, logica di conversione e quali blocchi contano davvero nel processo decisionale."
+    },
+    {
+      "title": "Design e sviluppo",
+      "description": "Trasformo la struttura in un'interfaccia funzionante, con gerarchia chiara, integrazioni e user flow."
+    },
+    {
+      "title": "Lancio e crescita",
+      "description": "Preparo base SEO, analytics, form, deploy stabile e spazio per campagne, visibilita e crescita dopo il lancio."
+    }
+  ],
+  "technologiesTitle": "Tecnologie con cui lavoro"
+}

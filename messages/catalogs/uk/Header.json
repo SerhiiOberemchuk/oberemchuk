@@ -1,0 +1,15 @@
+{
+  "navigation": {
+    "services": "Послуги",
+    "portfolio": "Кейси",
+    "about": "Процес",
+    "contact": "Оцінка"
+  },
+  "cta": "Отримати оцінку",
+  "menu": "Меню",
+  "primaryNavigation": "Основна навігація",
+  "mobileNavigation": "Мобільна навігація",
+  "mobileMenu": "Мобільне меню",
+  "logoAlt": "Логотип Serhii Oberemchuk",
+  "closeMenu": "Закрити меню"
+}

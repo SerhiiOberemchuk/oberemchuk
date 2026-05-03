@@ -1,0 +1,462 @@
+[
+  {
+    "slug": "landing-pages",
+    "title": "Sviluppo landing page end-to-end",
+    "shortTitle": "Landing page",
+    "metaTitle": "Sviluppo landing page per aziende in Europa",
+    "metaDescription": "Realizzo landing page complete per SaaS, aziende di servizi, esperti e business locali in Europa. Lancio rapido, struttura forte, base SEO-ready e focus sulla conversione.",
+    "heroTitle": "Landing page per traffico a pagamento, vendite e validazione della domanda",
+    "heroDescription": "Una soluzione adatta quando serve una pagina focalizzata per advertising, presentazione del prodotto o lead generation. Definisco la struttura, costruisco i blocchi di contenuto, sviluppo in React / Next.js e preparo tutto per analytics e SEO.",
+    "priceFrom": "da 800 EUR",
+    "keywords": [
+      "sviluppo landing page",
+      "landing page per SaaS",
+      "landing page Europa",
+      "landing page orientata alla conversione",
+      "landing page Next.js"
+    ],
+    "outcomes": [
+      "struttura chiara intorno a un'unica azione",
+      "lancio piu rapido delle campagne paid",
+      "esperienza mobile-friendly per il traffico adv",
+      "pronta per analytics e A/B test"
+    ],
+    "deliverables": [
+      "struttura della pagina o wireframe dei blocchi",
+      "sviluppo landing page con Next.js",
+      "ottimizzazione SEO di base",
+      "setup di form, analytics e tracciamento eventi",
+      "implementazione pronta al lancio"
+    ],
+    "fitFor": [
+      "prodotti SaaS e tech",
+      "consulenza e servizi di esperti",
+      "lead generation B2B",
+      "attivita locali in Europa"
+    ],
+    "faq": [
+      {
+        "question": "Quanto tempo richiede lo sviluppo di una landing page?",
+        "answer": "Di solito 1-2 settimane se la struttura e approvata e i materiali sono disponibili. Se copy, wireframe e design vanno creati da zero, la timeline si allunga."
+      },
+      {
+        "question": "Le campagne paid possono partire subito dopo il lancio?",
+        "answer": "Si. Preparo la pagina da subito per analytics, eventi, form e requisiti tecnici necessari al traffico a pagamento."
+      }
+    ]
+  },
+  {
+    "slug": "corporate-websites",
+    "title": "Sviluppo di siti aziendali",
+    "shortTitle": "Siti aziendali",
+    "metaTitle": "Sviluppo di siti aziendali per imprese in Europa",
+    "metaDescription": "Sviluppo siti aziendali per imprese B2B, di servizi e manifatturiere in Europa. Struttura chiara, presentazione forte dei servizi, SEO e affidabilita tecnica.",
+    "heroTitle": "Un sito aziendale che spiega il tuo valore e sostiene le vendite",
+    "heroDescription": "Realizzo siti multipagina per aziende che devono apparire credibili, spiegare i servizi con chiarezza e generare richieste da nuovi clienti in Europa.",
+    "priceFrom": "da 1600 EUR",
+    "keywords": [
+      "sviluppo sito aziendale",
+      "sviluppo sito per azienda",
+      "sito B2B Europa",
+      "sito per azienda di servizi",
+      "sviluppo sito multipagina"
+    ],
+    "outcomes": [
+      "struttura chiara per servizi e casi studio",
+      "piu fiducia attraverso la presentazione aziendale",
+      "landing dedicate per le linee di servizio",
+      "maggiore visibilita su ricerche commerciali"
+    ],
+    "deliverables": [
+      "mappa del sito e struttura delle pagine",
+      "home, servizi, about, casi studio e contatti",
+      "sviluppo Next.js basato su componenti",
+      "metadata SEO, schema.org e sitemap",
+      "form, integrazioni e CMS base se necessario"
+    ],
+    "fitFor": [
+      "aziende B2B",
+      "agenzie e studi",
+      "imprese manifatturiere e logistiche",
+      "aziende locali che entrano in mercati internazionali"
+    ],
+    "faq": [
+      {
+        "question": "Si possono aggiungere nuove pagine dopo il lancio?",
+        "answer": "Si. Imposto l'architettura in modo che il sito possa crescere senza dover ricostruire la base in seguito."
+      },
+      {
+        "question": "Un sito aziendale e un buon formato per la SEO?",
+        "answer": "Si. E uno dei formati piu solidi per la SEO dei servizi, perche permette di creare pagine dedicate a intenti di ricerca specifici."
+      }
+    ]
+  },
+  {
+    "slug": "astro-content-websites",
+    "title": "Sviluppo di siti contenutistici con Astro",
+    "shortTitle": "Siti Astro",
+    "metaTitle": "Sviluppo siti Astro per progetti content e SEO-focused",
+    "metaDescription": "Realizzo siti content e marketing veloci con Astro per blog, progetti editoriali, crescita SEO e siti commerciali leggeri.",
+    "heroTitle": "Siti Astro per velocita, chiarezza dei contenuti e crescita SEO",
+    "heroDescription": "Questo formato funziona bene per progetti guidati da contenuti e marketing, dove contano velocita di rilascio, architettura pulita e performance piu di un grande application layer.",
+    "priceFrom": "da 1200 EUR",
+    "keywords": [
+      "sviluppo sito Astro",
+      "sito Astro SEO",
+      "sviluppo sito content",
+      "sito marketing Astro",
+      "sviluppatore Astro Europa"
+    ],
+    "outcomes": [
+      "caricamento rapido e Core Web Vitals migliori",
+      "struttura chiara per SEO e crescita dei contenuti",
+      "meno overhead tecnico per progetti content-led",
+      "sistema piu pulito per blog, editoriali e knowledge hub"
+    ],
+    "deliverables": [
+      "pianificazione dell'architettura dei contenuti",
+      "implementazione del sito con Astro",
+      "content collections o setup di pagine scalabile",
+      "metadata SEO, sitemap e schema.org",
+      "isole interattive leggere solo dove aggiungono valore"
+    ],
+    "fitFor": [
+      "progetti editoriali e guidati dai contenuti",
+      "siti marketing con focus SEO",
+      "knowledge base e hub documentali",
+      "aziende che vogliono massima velocita senza logica applicativa complessa"
+    ],
+    "faq": [
+      {
+        "question": "Quando Astro e una scelta migliore di Next.js?",
+        "answer": "Quando il progetto e soprattutto contenutistico e non richiede logica di prodotto complessa. In quei casi Astro e spesso piu leggero, piu veloce e piu facile da mantenere."
+      },
+      {
+        "question": "Si possono comunque aggiungere elementi interattivi a un sito Astro?",
+        "answer": "Si. Si possono aggiungere React islands per form, calcolatori, filtri o altre zone di interazione locale quando serve."
+      }
+    ]
+  },
+  {
+    "slug": "ecommerce-development",
+    "title": "Sviluppo e-commerce",
+    "shortTitle": "Negozi e-commerce",
+    "metaTitle": "Sviluppo e-commerce per brand e retail in Europa",
+    "metaDescription": "Realizzo negozi e-commerce per brand e retailer in Europa con catalogo, schede prodotto, checkout, integrazioni, struttura SEO e performance elevate.",
+    "heroTitle": "Un e-commerce fluido da usare e che non rallenta le vendite",
+    "heroDescription": "Lavoro su progetti e-commerce dove contano velocita, UX pulita, categorie SEO-ready e una base tecnica pronta per crescita assortimento, marketing e integrazioni.",
+    "priceFrom": "da 2500 EUR",
+    "keywords": [
+      "sviluppo e-commerce",
+      "sviluppo negozio online",
+      "e-commerce Next.js",
+      "storefront personalizzato",
+      "e-commerce Europa"
+    ],
+    "outcomes": [
+      "catalogo e filtri piu comodi da usare",
+      "storefront rapido e mobile-first",
+      "struttura categorie pronta per SEO",
+      "pronto per pagamenti e integrazioni CRM"
+    ],
+    "deliverables": [
+      "architettura catalogo e schede prodotto",
+      "front-end storefront con Next.js",
+      "checkout e form ordine",
+      "integrazioni con CMS, CRM o pagamenti",
+      "ottimizzazione SEO tecnica del negozio"
+    ],
+    "fitFor": [
+      "brand D2C",
+      "shop online di nicchia",
+      "cataloghi B2B con ordini",
+      "negozi che richiedono un setup custom"
+    ],
+    "faq": [
+      {
+        "question": "Realizzi negozi custom e non solo template?",
+        "answer": "Si. Se un template standard non regge la vostra logica di vendita, costruisco uno storefront custom con le integrazioni necessarie."
+      },
+      {
+        "question": "Si puo partire da un MVP e-commerce?",
+        "answer": "Si. Spesso e la strada migliore: si lancia una prima versione snella e poi si aggiungono moduli con la crescita del business."
+      }
+    ]
+  },
+  {
+    "slug": "payment-gateway-integration",
+    "title": "Integrazione sistemi di pagamento",
+    "shortTitle": "Integrazioni pagamenti",
+    "metaTitle": "Integrazione pagamenti per siti e prodotti web",
+    "metaDescription": "Integro gateway di pagamento in siti, storefront e prodotti web con checkout affidabili, gestione stati, eventi, webhook e chiarezza tecnica.",
+    "heroTitle": "Integrazione pagamenti che mantiene stabile il checkout e sotto controllo gli ordini",
+    "heroDescription": "Se hai gia uno storefront, un sito o un MVP, collego il layer di pagamento in modo affidabile: stati, flussi di successo o errore, eventi, webhook e handoff tecnico pulito.",
+    "priceFrom": "da 450 EUR",
+    "keywords": [
+      "integrazione gateway pagamento",
+      "checkout integration Next.js",
+      "pagamenti su sito web",
+      "React payment gateway",
+      "checkout personalizzato"
+    ],
+    "outcomes": [
+      "checkout stabile senza workaround manuali",
+      "gestione corretta di success, fail e pending",
+      "pronto per analytics e conversion tracking",
+      "meno rischio di ordini persi per gap tecnici"
+    ],
+    "deliverables": [
+      "review del flow di checkout e dei punti di rischio",
+      "integrazione del provider o payment form",
+      "gestione di callback, webhook e status sync",
+      "tracking degli eventi di pagamento critici",
+      "documentazione tecnica e handoff"
+    ],
+    "fitFor": [
+      "storefront e-commerce",
+      "prodotti digitali con pagamenti",
+      "piattaforme booking o di servizio",
+      "progetti con logica checkout custom"
+    ],
+    "faq": [
+      {
+        "question": "Ti occupi solo del front-end del pagamento?",
+        "answer": "No. Posso coprire anche il lato server: stati, validazione, gestione webhook, sync ordini ed eventi legati al pagamento."
+      },
+      {
+        "question": "Si possono integrare anche provider locali o non standard?",
+        "answer": "Si, se esistono documentazione tecnica utile o un'API praticabile. La portata finale dipende dalla complessita del protocollo e della logica business."
+      }
+    ]
+  },
+  {
+    "slug": "crm-integrations",
+    "title": "Integrazione CRM e lead routing",
+    "shortTitle": "Integrazioni CRM",
+    "metaTitle": "Integrazione CRM per siti, form e processi di vendita",
+    "metaDescription": "Collego siti e prodotti web ai CRM tramite form, lead routing, campi sorgente, sync eventi e automazioni operative che riducono il lavoro manuale.",
+    "heroTitle": "Integrazione CRM che elimina attrito tra sito e flusso vendite",
+    "heroDescription": "Questo servizio serve quando i lead ci sono, ma si perdono, si duplicano o entrano nel CRM senza il contesto giusto. Costruisco un passaggio piu pulito da form o evento al team sales.",
+    "priceFrom": "da 700 EUR",
+    "keywords": [
+      "integrazione CRM",
+      "crm integration sito web",
+      "lead routing automation",
+      "integrazione form CRM",
+      "sales workflow sync"
+    ],
+    "outcomes": [
+      "i lead arrivano nel CRM senza copia-incolla manuale",
+      "le richieste includono sorgente, contesto e campi chiave",
+      "meno attrito tra marketing e vendite",
+      "visibilita piu chiara sulla resa dei canali"
+    ],
+    "deliverables": [
+      "review dell'attuale lead flow",
+      "mapping dei campi da form o eventi al CRM",
+      "lead routing e trigger base di automazione",
+      "sincronizzazione di source, UTM e business field",
+      "test tecnico e handoff"
+    ],
+    "fitFor": [
+      "siti B2B e di servizi",
+      "siti marketing con paid acquisition",
+      "team sales che vogliono un lead flow piu pulito",
+      "aziende in cui il form esiste ma il follow-up non funziona"
+    ],
+    "faq": [
+      {
+        "question": "L'integrazione CRM si puo aggiungere a un sito esistente senza rifarlo?",
+        "answer": "Si. Nella maggior parte dei casi e un layer tecnico separato che si puo aggiungere senza ricostruire l'intero sito."
+      },
+      {
+        "question": "Lavori con campi custom, tag e logiche di segmentazione?",
+        "answer": "Si. Spesso e proprio questo il valore principale dell'integrazione, perche senza struttura il CRM diventa rapidamente rumore operativo."
+      }
+    ]
+  },
+  {
+    "slug": "web-app-development",
+    "title": "Sviluppo web application",
+    "shortTitle": "Web application",
+    "metaTitle": "Sviluppo web application con React e Next.js per l'Europa",
+    "metaDescription": "Sviluppo web application con React, Next.js e TypeScript per SaaS, sistemi interni e piattaforme cliente in Europa. Architettura affidabile, UX e scalabilita.",
+    "heroTitle": "Web app per SaaS, portali cliente e piattaforme interne",
+    "heroDescription": "Quando un normale sito non basta piu, entro nel lavoro di interfaccia prodotto: ruoli utente, dashboard, integrazioni, API, logica complessa e scalabilita futura.",
+    "priceFrom": "da 3000 EUR",
+    "keywords": [
+      "sviluppo web application",
+      "sviluppatore React Europa",
+      "sviluppatore Next.js Europa",
+      "sviluppo SaaS",
+      "web app custom"
+    ],
+    "outcomes": [
+      "interfaccia usabile per workflow quotidiani",
+      "architettura front-end scalabile",
+      "scenari chiari per ruoli e accessi",
+      "pronta per ulteriore sviluppo prodotto"
+    ],
+    "deliverables": [
+      "planning moduli e user flow",
+      "sviluppo interfaccia con React / Next.js",
+      "integrazione con API e backend",
+      "autenticazione, ruoli e dashboard",
+      "test e handoff tecnico del modulo"
+    ],
+    "fitFor": [
+      "prodotti SaaS",
+      "portali cliente",
+      "dashboard interne",
+      "MVP di prodotti digitali"
+    ],
+    "faq": [
+      {
+        "question": "Lavori solo sul front-end o anche full stack?",
+        "answer": "Posso coprire anche la parte fullstack oppure lavorare insieme al vostro team backend. Il setup esatto dipende dall'architettura del progetto."
+      },
+      {
+        "question": "E una buona scelta per un MVP startup?",
+        "answer": "Si. Un MVP in formato web app e spesso il modo migliore per validare un prodotto senza spendere troppo nel primo rilascio."
+      }
+    ]
+  },
+  {
+    "slug": "website-relaunch-migration",
+    "title": "Rilancio sito e migrazione",
+    "shortTitle": "Rilancio / migrazione",
+    "metaTitle": "Rilancio sito, redesign e migrazione a Next.js o Astro",
+    "metaDescription": "Rilancio siti, li migro a Next.js o Astro, riduco il debito tecnico, preservo i segnali SEO e preparo una base piu pulita per la crescita.",
+    "heroTitle": "Rilancio sito senza perdere struttura, SEO e controllo del delivery",
+    "heroDescription": "Se il sito attuale e datato, difficile da mantenere o non risponde piu al business, costruisco una versione piu pulita con percorso di migrazione controllato, piano rollout e fondamenta tecniche migliori.",
+    "priceFrom": "da 900 EUR",
+    "keywords": [
+      "rilancio sito web",
+      "migrazione sito Next.js",
+      "redesign e migrazione sito",
+      "migrazione SEO-safe",
+      "migrazione Astro"
+    ],
+    "outcomes": [
+      "base tecnica piu pulita e con meno debito",
+      "transizione controllata di contenuti e URL",
+      "piu velocita e manutenzione piu semplice",
+      "meno rischio SEO durante il rollout"
+    ],
+    "deliverables": [
+      "audit del sito attuale e delle aree di rischio",
+      "piano di migrazione per contenuti, URL e redirect",
+      "nuova implementazione front-end con Next.js o Astro",
+      "pulizia di metadata, sitemap, canonical e struttura",
+      "piano di rollout e verifica post-lancio"
+    ],
+    "fitFor": [
+      "siti cresciuti con anni di modifiche frammentate",
+      "aziende che passano a un nuovo stack tecnico",
+      "progetti dopo rebranding o riposizionamento",
+      "team che devono preservare SEO ed evitare danni all'indicizzazione"
+    ],
+    "faq": [
+      {
+        "question": "Un rilancio puo essere diviso in fasi invece di un unico grande rilascio?",
+        "answer": "Si. In molti casi e la strada piu sicura: il rollout viene diviso in fasi logiche, cosi il rischio resta piu basso e la transizione piu controllata."
+      },
+      {
+        "question": "Copri anche il lato SEO della migrazione?",
+        "answer": "Si. Redirect mapping, metadata, gestione canonical, aggiornamento sitemap, revisione struttura e controlli post-lancio fanno parte del lavoro."
+      }
+    ]
+  },
+  {
+    "slug": "seo-support-retainers",
+    "title": "SEO tecnico e supporto sito",
+    "shortTitle": "SEO / supporto",
+    "metaTitle": "SEO tecnico, supporto sito e ottimizzazione continua",
+    "metaDescription": "Supporto siti React, Next.js e Astro con SEO tecnico, Core Web Vitals, aggiornamenti pagina, QA, fix analytics e miglioramento continuo strutturato.",
+    "heroTitle": "Supporto sito per team che cercano continuita tecnica, non fix casuali",
+    "heroDescription": "Questo formato serve a business con un sito gia online che ora richiede miglioramento tecnico regolare: SEO, performance, piccoli rilasci, correzioni analytics, QA e qualita sotto controllo.",
+    "priceFrom": "da 350 EUR / mese",
+    "keywords": [
+      "supporto sito web continuativo",
+      "supporto SEO tecnico",
+      "manutenzione Next.js",
+      "ottimizzazione Core Web Vitals",
+      "supporto sito mensile"
+    ],
+    "outcomes": [
+      "il sito evolve senza accumulare piccolo debito tecnico",
+      "SEO e performance restano curate in modo sistematico",
+      "meno rischio in produzione da modifiche ad hoc",
+      "backlog e priorita tecniche piu chiari nel tempo"
+    ],
+    "deliverables": [
+      "lista mensile di task tecnici prioritari",
+      "miglioramenti SEO, velocita e Core Web Vitals",
+      "update di pagine, blocchi e piccole feature",
+      "QA, review analytics e controlli di rilascio",
+      "raccomandazioni per le prossime fasi di crescita"
+    ],
+    "fitFor": [
+      "business dopo il lancio di un nuovo sito",
+      "siti marketing con campagne ricorrenti",
+      "team senza una risorsa front-end interna dedicata",
+      "progetti dove il lancio e solo l'inizio e conta una manutenzione stabile"
+    ],
+    "faq": [
+      {
+        "question": "E un pacchetto fisso o un supporto flessibile?",
+        "answer": "Dipende dal formato di collaborazione. Di solito c'e una base mensile con backlog prioritario gestito per iterazioni."
+      },
+      {
+        "question": "Questo puo includere anche nuovi piccoli blocchi o pagine?",
+        "answer": "Si, se rientrano nell'ambito concordato. Feature piu grandi o nuovi moduli e meglio separarli in uno scope dedicato."
+      }
+    ]
+  },
+  {
+    "slug": "seo-optimization",
+    "title": "Ottimizzazione SEO tecnica",
+    "shortTitle": "SEO tecnica",
+    "metaTitle": "Ottimizzazione SEO tecnica per aziende in Europa",
+    "metaDescription": "Miglioro la base SEO tecnica dei siti: velocita, metadata, schema.org, struttura interna, indicizzazione e Core Web Vitals per aziende in Europa.",
+    "heroTitle": "SEO tecnica che migliora la visibilita senza promesse vaghe",
+    "heroDescription": "Mi concentro su cio che impatta davvero indicizzazione e visibilita: struttura pagina, metadata, link interni, sitemap, schema.org, velocita e usabilita mobile.",
+    "priceFrom": "da 600 EUR",
+    "keywords": [
+      "SEO tecnica",
+      "ottimizzazione SEO sito web",
+      "ottimizzazione Core Web Vitals",
+      "SEO per Next.js",
+      "audit SEO Europa"
+    ],
+    "outcomes": [
+      "title e description puliti e senza duplicati",
+      "indicizzazione migliore delle pagine importanti",
+      "struttura chiara per l'intento commerciale",
+      "velocita e Core Web Vitals migliorati"
+    ],
+    "deliverables": [
+      "audit SEO tecnico",
+      "correzioni a metadata e canonical",
+      "migliorie a schema.org, sitemap e robots",
+      "update di linking interno e struttura pagine",
+      "lista prioritaria di task content e SEO"
+    ],
+    "fitFor": [
+      "siti di servizi",
+      "siti aziendali",
+      "store Next.js",
+      "progetti dopo redesign o migrazione"
+    ],
+    "faq": [
+      {
+        "question": "Lavori anche sulla strategia SEO dei contenuti?",
+        "answer": "Si, ma il mio focus principale resta la base tecnica e la struttura delle pagine. Se serve, posso anche definire un piano contenuti per le pagine commerciali."
+      },
+      {
+        "question": "Si puo ottimizzare un sito esistente senza rifarlo da zero?",
+        "answer": "Si. Molti problemi si risolvono senza redesign completo: metadata, struttura, velocita e indicizzazione corretti possono produrre un impatto misurabile."
+      }
+    ]
+  }
+]

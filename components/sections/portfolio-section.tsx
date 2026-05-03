@@ -1,114 +1,86 @@
-import { ArrowRight } from "lucide-react"
-import { getTranslations } from "next-intl/server"
-import { Link } from "@/i18n/navigation"
-import { Button } from "@/components/ui/button"
-import PortfolioItem from "@/components/portfolio-item"
-import AnimationWrapper from "@/components/animation-wrapper"
-import type { Project } from "@/types/projects"
-import { getProjects } from "@/lib/projects-server"
-import { localizeProjects, type AppLocale } from "@/lib/projects-i18n"
+import { ArrowRight } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+import AnimationWrapper from "@/components/animation-wrapper";
+import PortfolioItem from "@/components/portfolio-item";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import { localizeProjects, type AppLocale } from "@/lib/projects-i18n";
+import { getProjects } from "@/lib/projects-server";
+import type { Project } from "@/types/projects";
 
 type PortfolioSectionProps = {
-  locale: AppLocale
-}
+  locale: AppLocale;
+};
 
 type CaseEvidence = {
-  eyebrow: string
-  title: string
-  points: string[]
-}
+  eyebrow: string;
+  title: string;
+  points: string[];
+};
 
 function getCaseEvidence(
   project: { slug: string; category: string; features: string[] },
-  locale: AppLocale
+  evidence: {
+    default: CaseEvidence;
+    raisa: CaseEvidence;
+    commerce: CaseEvidence;
+    app: CaseEvidence;
+  },
 ): CaseEvidence {
-  const isEnglish = locale === "en"
-  const featurePoints = project.features.slice(0, 3)
+  const featurePoints = project.features.slice(0, 3);
+
+  const pickEvidence = (item: CaseEvidence): CaseEvidence => ({
+    ...item,
+    points: featurePoints.length > 0 ? featurePoints : item.points,
+  });
 
   if (project.slug === "raisa-regress") {
-    return isEnglish
-      ? {
-          eyebrow: "Evidence",
-          title: "Built to look sharper, load faster and explain the offer with more confidence.",
-          points: featurePoints.length
-            ? featurePoints
-            : ["Sharper service positioning", "Cleaner mobile experience", "Stronger SEO-ready structure"],
-        }
-      : {
-          eyebrow: "Доказ",
-          title: "Сайт зібраний так, щоб виглядати сильніше, працювати швидше і чіткіше пояснювати цінність послуги.",
-          points: featurePoints.length
-            ? featurePoints
-            : ["Сильніше позиціонування послуг", "Чистіший mobile experience", "Структура, готова до SEO"],
-        }
+    return pickEvidence(evidence.raisa);
   }
 
   if (/shop|store|commerce|магазин/i.test(project.category)) {
-    return isEnglish
-      ? {
-          eyebrow: "Outcome logic",
-          title: "Focused on product visibility, easier buying flow and a base for catalogue growth.",
-          points: featurePoints.length
-            ? featurePoints
-            : ["Product-first storefront", "Cleaner purchase flow", "SEO-ready category structure"],
-        }
-      : {
-          eyebrow: "Логіка результату",
-          title: "Акцент на видимості товарів, простішому сценарії покупки і базі для росту каталогу.",
-          points: featurePoints.length
-            ? featurePoints
-            : ["Storefront під продукт", "Простіший сценарій покупки", "Структура категорій під SEO"],
-        }
+    return pickEvidence(evidence.commerce);
   }
 
   if (/app|saas|platform|додат/i.test(project.category)) {
-    return isEnglish
-      ? {
-          eyebrow: "Product angle",
-          title: "Structured as a working interface with clear flows, not as a static showcase.",
-          points: featurePoints.length
-            ? featurePoints
-            : ["Clear user flows", "Scalable interface logic", "Architecture ready for growth"],
-        }
-      : {
-          eyebrow: "Продуктовий акцент",
-          title: "Побудовано як робочий інтерфейс із чіткими сценаріями, а не як статичну вітрину.",
-          points: featurePoints.length
-            ? featurePoints
-            : ["Чіткі user flows", "Масштабована логіка інтерфейсу", "Архітектура під ріст"],
-        }
+    return pickEvidence(evidence.app);
   }
 
-  return isEnglish
-    ? {
-        eyebrow: "Commercial angle",
-        title: "Designed to communicate faster, build trust earlier and support the next conversion step.",
-        points: featurePoints.length ? featurePoints : ["Clearer structure", "Earlier trust signals", "Better inquiry path"],
-      }
-    : {
-        eyebrow: "Комерційний акцент",
-        title: "Спроєктовано так, щоб швидше доносити цінність, раніше створювати довіру і вести до заявки.",
-        points: featurePoints.length ? featurePoints : ["Чіткіша структура", "Раніші сигнали довіри", "Кращий сценарій заявки"],
-      }
+  return pickEvidence(evidence.default);
 }
 
-export default async function PortfolioSection({ locale }: PortfolioSectionProps) {
-  const t = await getTranslations("PortfolioSection")
-  const projects: Project[] = localizeProjects(await getProjects(), locale).slice(0, 3)
-  const featuredProject = projects[0]
-  const secondaryProjects = projects.slice(1, 3)
-  const isEnglish = t("title") === "Recent work"
-  const featuredLabel = isEnglish ? "Selected case" : "Ключовий кейс"
-  const openCaseLabel = isEnglish ? "Open case" : "Відкрити кейс"
-  const portfolioLabel = isEnglish ? "Proof" : "Доказ"
-  const portfolioPitch = isEnglish ? "Cases should build trust before the user reaches the form." : "Кейси мають створювати довіру ще до того, як людина дійде до форми."
-  const portfolioBody = isEnglish
-    ? "This block exists to show outcome thinking, production quality and the level of partner you work with."
-    : "Цей блок тут, щоб показати мислення на результат, якість реалізації і рівень партнера, з яким ви працюєте."
-  const featuredEvidence = featuredProject ? getCaseEvidence(featuredProject, locale) : null
+export default async function PortfolioSection({
+  locale,
+}: PortfolioSectionProps) {
+  const t = await getTranslations("PortfolioSection");
+  const projects: Project[] = localizeProjects(await getProjects(), locale).slice(0, 3);
+  const featuredProject = projects[0];
+  const secondaryProjects = projects.slice(1, 3);
+  const labels = t.raw("labels") as {
+    featured: string;
+    openCase: string;
+    proof: string;
+  };
+  const pitch = t.raw("pitch") as {
+    title: string;
+    body: string;
+  };
+  const evidence = t.raw("evidence") as {
+    default: CaseEvidence;
+    raisa: CaseEvidence;
+    commerce: CaseEvidence;
+    app: CaseEvidence;
+  };
+  const featuredEvidence = featuredProject
+    ? getCaseEvidence(featuredProject, evidence)
+    : null;
 
   return (
-    <section id="portfolio" className="px-4 py-24 md:px-6" aria-labelledby="portfolio-title">
+    <section
+      id="portfolio"
+      className="px-4 py-24 md:px-6"
+      aria-labelledby="portfolio-title"
+    >
       <div className="mx-auto max-w-7xl">
         <AnimationWrapper animation="slide-up">
           <header className="mb-16 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
@@ -116,11 +88,16 @@ export default async function PortfolioSection({ locale }: PortfolioSectionProps
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
                 {t("badge")}
               </p>
-              <h2 id="portfolio-title" className="text-4xl text-[hsl(var(--foreground))] md:text-6xl">
+              <h2
+                id="portfolio-title"
+                className="text-4xl text-[hsl(var(--foreground))] md:text-6xl"
+              >
                 {t("title")}
               </h2>
             </div>
-            <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">{t("description")}</p>
+            <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">
+              {t("description")}
+            </p>
           </header>
         </AnimationWrapper>
 
@@ -131,12 +108,16 @@ export default async function PortfolioSection({ locale }: PortfolioSectionProps
                 <div className="grid gap-6 border-t border-[rgba(24,31,43,0.14)] pt-8">
                   <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
                     <div>
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">{featuredLabel}</p>
-                      <p className="mt-3 text-[2.8rem] leading-[0.96] text-[hsl(var(--foreground))] md:text-[4.1rem]">{featuredProject.title}</p>
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
+                        {labels.featured}
+                      </p>
+                      <p className="mt-3 text-[2.8rem] leading-[0.96] text-[hsl(var(--foreground))] md:text-[4.1rem]">
+                        {featuredProject.title}
+                      </p>
                     </div>
                     <Button asChild variant="outline">
                       <Link href={`/portfolio/${featuredProject.slug}`}>
-                        {openCaseLabel}
+                        {labels.openCase}
                         <ArrowRight className="button-arrow-right h-4 w-4" />
                       </Link>
                     </Button>
@@ -192,7 +173,7 @@ export default async function PortfolioSection({ locale }: PortfolioSectionProps
                       title={project.title}
                       category={project.category}
                       description={project.description}
-                      highlights={getCaseEvidence(project, locale).points}
+                      highlights={getCaseEvidence(project, evidence).points}
                     />
                   </AnimationWrapper>
                 ))}
@@ -201,10 +182,14 @@ export default async function PortfolioSection({ locale }: PortfolioSectionProps
               <AnimationWrapper animation="slide-up" delay={300}>
                 <div className="border-l border-[rgba(24,31,43,0.08)] pl-6">
                   <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                    {portfolioLabel}
+                    {labels.proof}
                   </p>
-                  <p className="text-3xl leading-[1.06] text-[hsl(var(--foreground))]">{portfolioPitch}</p>
-                  <p className="mt-4 text-base leading-8 text-[hsl(var(--muted-foreground))]">{portfolioBody}</p>
+                  <p className="text-3xl leading-[1.06] text-[hsl(var(--foreground))]">
+                    {pitch.title}
+                  </p>
+                  <p className="mt-4 text-base leading-8 text-[hsl(var(--muted-foreground))]">
+                    {pitch.body}
+                  </p>
                   <Button asChild size="lg" className="mt-6">
                     <Link href="/portfolio">
                       {t("cta")}
@@ -216,9 +201,11 @@ export default async function PortfolioSection({ locale }: PortfolioSectionProps
             </div>
           </div>
         ) : (
-          <div className="py-8 text-center text-[hsl(var(--muted-foreground))]">{t("empty")}</div>
+          <div className="py-8 text-center text-[hsl(var(--muted-foreground))]">
+            {t("empty")}
+          </div>
         )}
       </div>
     </section>
-  )
+  );
 }

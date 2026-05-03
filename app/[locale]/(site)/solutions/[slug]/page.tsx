@@ -1,34 +1,41 @@
-import type {Metadata} from "next";
-import {notFound} from "next/navigation";
-import {ArrowLeft, ArrowRight, ArrowUpRight, Check, Search} from "lucide-react";
-import {setRequestLocale} from "next-intl/server";
+import type { Metadata } from "next";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Search } from "lucide-react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
-import {Link} from "@/i18n/navigation";
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
-import {getBlogPosts} from "@/lib/blog-posts";
-import {getPageAlternates} from "@/lib/seo";
-import {getSeoLanding, getSeoLandings, seoLandingSlugs} from "@/lib/seo-landings";
-import {getServicePages} from "@/lib/service-pages";
-import {getSiteUrl} from "@/lib/site-config";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import { appLocales, type AppLocale } from "@/i18n/locales";
+import { getBlogPosts } from "@/lib/blog-posts";
+import { getPageAlternates } from "@/lib/seo";
+import {
+  getSeoLanding,
+  getSeoLandings,
+  seoLandingSlugs,
+} from "@/lib/seo-landings";
+import { getServicePages } from "@/lib/service-pages";
+import { getSiteUrl } from "@/lib/site-config";
 
 type SolutionDetailPageProps = {
-  params: Promise<{locale: string; slug: string}>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
-  return ["uk", "en"].flatMap((locale) =>
+  return appLocales.flatMap((locale) =>
     seoLandingSlugs.map((slug) => ({
       locale,
-      slug
-    }))
+      slug,
+    })),
   );
 }
 
-export async function generateMetadata({params}: SolutionDetailPageProps): Promise<Metadata> {
-  const {locale, slug} = await params;
-  const page = getSeoLanding(locale as "uk" | "en", slug);
+export async function generateMetadata({
+  params,
+}: SolutionDetailPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const page = getSeoLanding(locale as AppLocale, slug);
 
   if (!page) {
     return {};
@@ -38,45 +45,57 @@ export async function generateMetadata({params}: SolutionDetailPageProps): Promi
     title: page.metaTitle,
     description: page.metaDescription,
     keywords: page.searchIntent.split(",").map((item) => item.trim()),
-    alternates: getPageAlternates(locale as "uk" | "en", `/solutions/${page.slug}`),
+    alternates: getPageAlternates(locale as AppLocale, `/solutions/${page.slug}`),
     openGraph: {
       title: page.metaTitle,
       description: page.metaDescription,
-      url: locale === "en" ? `/en/solutions/${page.slug}` : `/solutions/${page.slug}`,
+      url:
+        locale === "uk"
+          ? `/solutions/${page.slug}`
+          : `/${locale}/solutions/${page.slug}`,
       type: "website",
       images: [
         {
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: page.metaTitle
-        }
-      ]
+          alt: page.metaTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: page.metaTitle,
       description: page.metaDescription,
-      images: ["/og-image.png"]
-    }
+      images: ["/og-image.png"],
+    },
   };
 }
 
-export default async function SolutionDetailPage({params}: SolutionDetailPageProps) {
-  const {locale, slug} = await params;
+export default async function SolutionDetailPage({
+  params,
+}: SolutionDetailPageProps) {
+  const { locale, slug } = await params;
   setRequestLocale(locale);
-  const isEnglish = locale === "en";
-  const page = getSeoLanding(locale as "uk" | "en", slug);
+  const t = await getTranslations({ locale, namespace: "SolutionDetailPage" });
+  const page = getSeoLanding(locale as AppLocale, slug);
 
   if (!page) {
     notFound();
   }
 
   const siteUrl = getSiteUrl();
-  const pagePath = isEnglish ? `/en/solutions/${page.slug}` : `/solutions/${page.slug}`;
-  const services = getServicePages(locale as "uk" | "en").filter((service) => page.relatedServiceSlugs.includes(service.slug));
-  const posts = getBlogPosts(locale as "uk" | "en").filter((post) => page.relatedPostSlugs.includes(post.slug));
-  const relatedPages = getSeoLandings(locale as "uk" | "en")
+  const pagePath =
+    locale === "uk"
+      ? `/solutions/${page.slug}`
+      : `/${locale}/solutions/${page.slug}`;
+  const services = getServicePages(locale as AppLocale).filter((service) =>
+    page.relatedServiceSlugs.includes(service.slug),
+  );
+  const posts = getBlogPosts(locale as AppLocale).filter((post) =>
+    page.relatedPostSlugs.includes(post.slug),
+  );
+  const relatedPages = getSeoLandings(locale as AppLocale)
     .filter((item) => item.slug !== page.slug)
     .slice(0, 2);
 
@@ -88,7 +107,7 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
     provider: {
       "@type": "Person",
       name: "Serhii Oberemchuk",
-      url: siteUrl
+      url: siteUrl,
     },
     url: `${siteUrl}${pagePath}`,
     areaServed: "Europe",
@@ -100,10 +119,10 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
         name: item.question,
         acceptedAnswer: {
           "@type": "Answer",
-          text: item.answer
-        }
-      }))
-    }
+          text: item.answer,
+        },
+      })),
+    },
   };
 
   return (
@@ -118,11 +137,11 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
               className="inline-flex items-center gap-2 rounded-full border border-[rgba(24,31,43,0.08)] bg-white/88 px-4 py-2.5 text-sm text-[hsl(var(--foreground))] shadow-[0_14px_40px_rgba(24,31,43,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(24,31,43,0.16)]"
             >
               <ArrowLeft className="h-4 w-4" />
-              {isEnglish ? "Back to SEO pages" : "Назад до SEO-сторінок"}
+              {t("back")}
             </Link>
             <Button asChild size="lg" className="hidden sm:inline-flex">
               <Link href="/#contact">
-                {isEnglish ? "Get an estimate" : "Отримати оцінку"}
+                {t("estimate")}
                 <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
               </Link>
             </Button>
@@ -138,11 +157,11 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
             <AnimationWrapper animation="slide-right">
               <div className="flex h-full flex-col">
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/54">
-                  {isEnglish ? "SEO landing page" : "SEO-сторінка"}
+                  {t("seoLanding")}
                 </p>
                 <div className="max-w-xl min-h-[16rem]">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
-                    {isEnglish ? "Commercial intent" : "Комерційний намір"}
+                    {t("intent")}
                   </p>
                   <h1 className="mt-4 max-w-[13ch] text-5xl leading-[0.92] text-white md:text-7xl">
                     {page.heroTitle}
@@ -158,7 +177,7 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
               <div className="grid gap-6">
                 <div className="rounded-[1.7rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
-                    {isEnglish ? "Search intent covered" : "Який намір закриває"}
+                    {t("intentCovered")}
                   </p>
                   <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
                     {page.searchIntent}
@@ -169,10 +188,12 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
                   <div className="flex items-center gap-2 text-white/44">
                     <Search className="h-4 w-4" />
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-                      {isEnglish ? "Offer summary" : "Коротко про пропозицію"}
+                      {t("offerSummary")}
                     </p>
                   </div>
-                  <p className="mt-4 text-base leading-8 text-white/74">{page.offerSummary}</p>
+                  <p className="mt-4 text-base leading-8 text-white/74">
+                    {page.offerSummary}
+                  </p>
                 </div>
               </div>
             </AnimationWrapper>
@@ -183,14 +204,17 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           <AnimationWrapper animation="slide-up">
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {isEnglish ? "Ideal fit" : "Для кого це підходить"}
+                {t("fit")}
               </p>
               <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                {isEnglish ? "Use this page when the business task is specific" : "Ця сторінка сильна, коли задача вже конкретна"}
+                {t("fitTitle")}
               </h2>
               <ul className="mt-8 grid gap-4">
                 {page.idealFor.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-base leading-7 text-[hsl(var(--foreground))]">
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-base leading-7 text-[hsl(var(--foreground))]"
+                  >
                     <Check className="mt-1 h-4 w-4 shrink-0 text-[hsl(var(--primary))]" />
                     <span>{item}</span>
                   </li>
@@ -202,10 +226,10 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           <AnimationWrapper animation="slide-up" delay={100}>
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f7fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {isEnglish ? "Business outcome" : "Бізнес-результат"}
+                {t("outcome")}
               </p>
               <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                {isEnglish ? "What changes after launch" : "Що має змінитися після запуску"}
+                {t("outcomeTitle")}
               </h2>
               <ul className="mt-8 grid gap-4">
                 {page.benefits.map((item) => (
@@ -225,10 +249,10 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           <AnimationWrapper animation="slide-up">
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f7fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {isEnglish ? "Delivery scope" : "Що входить"}
+                {t("scope")}
               </p>
               <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                {isEnglish ? "What gets packaged into this landing page" : "Що входить у таку посадкову сторінку"}
+                {t("scopeTitle")}
               </h2>
               <ul className="mt-8 grid gap-4 sm:grid-cols-2">
                 {page.deliverables.map((item) => (
@@ -248,10 +272,10 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           <AnimationWrapper animation="slide-up">
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                FAQ
+                {t("faqEyebrow")}
               </p>
               <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                {isEnglish ? "Common questions" : "Часті питання"}
+                {t("faqTitle")}
               </h2>
             </div>
           </AnimationWrapper>
@@ -263,8 +287,12 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
                   key={item.question}
                   className="rounded-[1.35rem] border border-[rgba(24,31,43,0.08)] bg-white px-5 py-5 shadow-[0_10px_30px_rgba(24,31,43,0.04)]"
                 >
-                  <h3 className="text-xl leading-tight text-[hsl(var(--foreground))]">{item.question}</h3>
-                  <p className="mt-3 text-base leading-8 text-[hsl(var(--muted-foreground))]">{item.answer}</p>
+                  <h3 className="text-xl leading-tight text-[hsl(var(--foreground))]">
+                    {item.question}
+                  </h3>
+                  <p className="mt-3 text-base leading-8 text-[hsl(var(--muted-foreground))]">
+                    {item.answer}
+                  </p>
                 </div>
               ))}
             </div>
@@ -275,7 +303,7 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           <AnimationWrapper animation="slide-up">
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {isEnglish ? "Related services" : "Пов'язані послуги"}
+                {t("relatedServices")}
               </p>
               <div className="grid gap-4">
                 {services.map((service) => (
@@ -287,8 +315,12 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
                     <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
                       {service.priceFrom}
                     </p>
-                    <h3 className="mt-3 text-2xl leading-tight text-[hsl(var(--foreground))]">{service.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{service.metaDescription}</p>
+                    <h3 className="mt-3 text-2xl leading-tight text-[hsl(var(--foreground))]">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-[hsl(var(--muted-foreground))]">
+                      {service.metaDescription}
+                    </p>
                   </Link>
                 ))}
               </div>
@@ -298,7 +330,7 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
           <AnimationWrapper animation="slide-up" delay={100}>
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f8fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {isEnglish ? "Related articles" : "Пов'язані матеріали"}
+                {t("relatedArticles")}
               </p>
               <div className="grid gap-4">
                 {posts.map((post) => (
@@ -311,8 +343,12 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
                       <span>{post.category}</span>
                       <span>{post.readingTime}</span>
                     </div>
-                    <h3 className="mt-3 text-2xl leading-tight text-[hsl(var(--foreground))]">{post.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{post.excerpt}</p>
+                    <h3 className="mt-3 text-2xl leading-tight text-[hsl(var(--foreground))]">
+                      {post.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-[hsl(var(--muted-foreground))]">
+                      {post.excerpt}
+                    </p>
                   </Link>
                 ))}
               </div>
@@ -325,10 +361,10 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
               <div>
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                  {isEnglish ? "Other entry points" : "Інші точки входу"}
+                  {t("otherPoints")}
                 </p>
                 <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                  {isEnglish ? "More search-intent pages" : "Ще сторінки під пошуковий намір"}
+                  {t("otherTitle")}
                 </h2>
               </div>
 
@@ -341,7 +377,7 @@ export default async function SolutionDetailPage({params}: SolutionDetailPagePro
                   >
                     <div className="flex items-start justify-between gap-6">
                       <div className="min-w-0">
-                        <Badge variant="secondary">{isEnglish ? "SEO page" : "SEO-сторінка"}</Badge>
+                        <Badge variant="secondary">{t("seoPage")}</Badge>
                         <h3 className="mt-3 text-[1.8rem] leading-tight text-[hsl(var(--foreground))]">
                           {item.title}
                         </h3>

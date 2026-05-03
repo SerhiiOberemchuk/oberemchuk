@@ -1,0 +1,146 @@
+[
+  {
+    "slug": "website-development-europe",
+    "title": "Website development for businesses in Europe",
+    "metaTitle": "Website development for businesses in Europe",
+    "metaDescription": "Website development for service companies, SaaS teams and local brands in Europe. Strong structure, SEO-ready foundation, speed and commercial messaging.",
+    "heroTitle": "A business website for Europe that supports trust, inquiries and growth",
+    "heroDescription": "This page targets search intent where a company does not need a generic freelancer profile, but a technical partner who can launch a strong website ready for sales, ads, SEO and scale.",
+    "searchIntent": "website development Europe, company website development, B2B website Europe, end-to-end website build",
+    "offerSummary": "A fit for companies that need a commercial structure, stronger service presentation, technical reliability and a base for dedicated SEO pages as they grow.",
+    "idealFor": [
+      "service companies and B2B businesses",
+      "expert businesses and consulting firms",
+      "local brands entering international markets",
+      "teams planning a stronger website relaunch"
+    ],
+    "benefits": [
+      "clear page structure built for inquiries and trust",
+      "ready for ads, SEO and future page expansion",
+      "controlled scope and a technical base without debt",
+      "commercial messaging instead of a generic brochure feel"
+    ],
+    "deliverables": [
+      "website architecture and page logic",
+      "React / Next.js implementation",
+      "metadata, schema.org, sitemap and internal linking",
+      "forms, analytics, events and launch-ready technical setup"
+    ],
+    "faq": [
+      {
+        "question": "How is this different from a standard service page?",
+        "answer": "This page is built around a specific search intent and explains one exact business scenario: website development for companies in Europe, with a strong focus on structure, trust and technical growth readiness."
+      },
+      {
+        "question": "Is this only for brand-new websites?",
+        "answer": "No. It also fits relaunch and redesign projects when the current website no longer supports sales, SEO or the company’s positioning."
+      }
+    ],
+    "relatedServiceSlugs": [
+      "corporate-websites",
+      "landing-pages",
+      "seo-optimization"
+    ],
+    "relatedPostSlugs": [
+      "website-structure-for-leads",
+      "seo-ready-website-launch"
+    ],
+    "updatedAt": "2026-04-23"
+  },
+  {
+    "slug": "nextjs-development-europe",
+    "title": "Next.js development for websites and web products",
+    "metaTitle": "Next.js development for businesses in Europe",
+    "metaDescription": "Next.js development for landing pages, corporate websites, e-commerce and web applications. Speed, SEO-ready architecture, scalability and clean front-end execution.",
+    "heroTitle": "Next.js development for businesses that care about speed, SEO and scale",
+    "heroDescription": "This page targets intent such as Next.js developer Europe or Next.js development services. The point is not the framework alone, but the business outcome it enables across product, performance and growth.",
+    "searchIntent": "Next.js developer Europe, Next.js development services, React / Next.js developer, frontend partner for business websites",
+    "offerSummary": "A strong fit when you need a modern technical base for fast websites, SEO-friendly pages, a custom storefront or a scalable product interface.",
+    "idealFor": [
+      "landing pages for ads and demand validation",
+      "multi-page corporate websites",
+      "e-commerce storefronts and custom integrations",
+      "portals, dashboards and web app MVPs"
+    ],
+    "benefits": [
+      "high speed and controlled production quality",
+      "stronger base for technical SEO and Core Web Vitals",
+      "scalable component architecture",
+      "ready for localization, new pages and integrations"
+    ],
+    "deliverables": [
+      "front-end architecture with React / Next.js",
+      "routing, layout system and reusable components",
+      "SEO metadata, schema.org and structured content layer",
+      "forms, API integrations, analytics and render optimization"
+    ],
+    "faq": [
+      {
+        "question": "When is Next.js actually justified?",
+        "answer": "When SEO, speed, component scalability and product control matter. For marketing websites and web apps, it is often one of the strongest stacks available."
+      },
+      {
+        "question": "Is this only a front-end offer?",
+        "answer": "No. It can stay focused on the front-end layer, or connect with APIs, CMS, CRM tools and your backend environment."
+      }
+    ],
+    "relatedServiceSlugs": [
+      "landing-pages",
+      "web-app-development",
+      "seo-optimization"
+    ],
+    "relatedPostSlugs": [
+      "nextjs-for-business-websites",
+      "seo-ready-website-launch"
+    ],
+    "updatedAt": "2026-04-23"
+  },
+  {
+    "slug": "website-redesign-seo-migration",
+    "title": "Website redesign without losing the SEO foundation",
+    "metaTitle": "Website redesign without losing SEO structure",
+    "metaDescription": "Website redesign or relaunch without breaking the SEO foundation: new structure, page migration, metadata, redirects, sitemap, internal links and technical control.",
+    "heroTitle": "A website redesign without losing critical pages, structure and SEO groundwork",
+    "heroDescription": "This landing page targets the intent where a business needs a redesign or relaunch, but cannot afford to lose indexed pages, traffic, page logic or commercial structure.",
+    "searchIntent": "website redesign SEO migration, redesign without losing SEO, relaunch website structure, technical SEO migration",
+    "offerSummary": "The focus is on refreshing the presentation and the page system without chaotic losses in structure, redirects, metadata and search visibility.",
+    "idealFor": [
+      "outdated websites that no longer support the brand",
+      "projects after rebranding or a positioning shift",
+      "businesses migrating to Next.js",
+      "companies adding new SEO pages without breaking the old base"
+    ],
+    "benefits": [
+      "controlled migration of URLs and pages",
+      "clean redirects, metadata and internal linking",
+      "stronger structure without losing valuable existing assets",
+      "a new system ready for SEO and post-launch growth"
+    ],
+    "deliverables": [
+      "map of old and new pages",
+      "redirect plan and canonical logic",
+      "updated page structure and technical SEO base",
+      "controlled relaunch with sitemap, schema and indexing checks"
+    ],
+    "faq": [
+      {
+        "question": "Can the site be refreshed without destroying the old structure?",
+        "answer": "Yes. The strongest path is often not a full reset, but a controlled migration of valuable pages and search intent into a new architecture."
+      },
+      {
+        "question": "What usually gets broken during relaunch?",
+        "answer": "URL structure, redirects, titles, canonical tags, sitemap, internal links and the logic of which pages should even remain indexable."
+      }
+    ],
+    "relatedServiceSlugs": [
+      "corporate-websites",
+      "seo-optimization",
+      "web-app-development"
+    ],
+    "relatedPostSlugs": [
+      "website-redesign-without-losing-seo",
+      "website-structure-for-leads"
+    ],
+    "updatedAt": "2026-04-23"
+  }
+]

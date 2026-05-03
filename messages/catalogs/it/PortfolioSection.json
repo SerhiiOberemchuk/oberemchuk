@@ -1,0 +1,55 @@
+{
+  "badge": "Portfolio",
+  "title": "Lavori recenti",
+  "description": "Una selezione di lavori che mostra gusto, struttura e disciplina esecutiva, non solo resa visiva.",
+  "listLabel": "Progetti recenti",
+  "empty": "Nessun progetto trovato",
+  "cta": "Vedi tutti i progetti",
+  "labels": {
+    "featured": "Caso selezionato",
+    "openCase": "Apri caso",
+    "proof": "Prova"
+  },
+  "pitch": {
+    "title": "I casi dovrebbero costruire fiducia prima che l'utente arrivi al form.",
+    "body": "Questo blocco serve a mostrare orientamento al risultato, qualita di produzione e il livello del partner con cui lavori."
+  },
+  "evidence": {
+    "default": {
+      "eyebrow": "Angolo commerciale",
+      "title": "Progettato per comunicare piu in fretta, costruire fiducia prima e supportare il passo successivo verso la richiesta.",
+      "points": [
+        "Struttura piu chiara",
+        "Segnali di fiducia anticipati",
+        "Percorso richiesta migliore"
+      ]
+    },
+    "raisa": {
+      "eyebrow": "Prova",
+      "title": "Costruito per apparire piu preciso, caricarsi piu in fretta e spiegare meglio il valore del servizio.",
+      "points": [
+        "Posizionamento del servizio piu netto",
+        "Esperienza mobile piu pulita",
+        "Struttura pronta per SEO"
+      ]
+    },
+    "commerce": {
+      "eyebrow": "Logica del risultato",
+      "title": "Focus su visibilita prodotto, percorso d'acquisto piu semplice e base per far crescere il catalogo.",
+      "points": [
+        "Storefront orientato al prodotto",
+        "Flusso d'acquisto piu pulito",
+        "Struttura categorie pronta per SEO"
+      ]
+    },
+    "app": {
+      "eyebrow": "Angolo prodotto",
+      "title": "Strutturato come interfaccia operativa con flussi chiari, non come una vetrina statica.",
+      "points": [
+        "User flow chiari",
+        "Logica interfaccia scalabile",
+        "Architettura pronta alla crescita"
+      ]
+    }
+  }
+}

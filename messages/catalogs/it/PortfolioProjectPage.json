@@ -1,0 +1,32 @@
+{
+  "notFound": {
+    "title": "Progetto non trovato",
+    "description": "Il progetto richiesto non e stato trovato."
+  },
+  "backToPortfolio": "Torna al portfolio",
+  "year": "Anno",
+  "client": "Cliente",
+  "viewSite": "Vedi sito",
+  "technologies": "Tecnologie",
+  "features": "Caratteristiche",
+  "challenge": "Sfida",
+  "solution": "Soluzione",
+  "result": "Risultato",
+  "challengeTitle": "Cosa doveva essere risolto",
+  "solutionTitle": "Come e stato costruito il progetto",
+  "resultTitle": "Cosa ha creato alla fine",
+  "overviewLabel": "Panoramica del progetto",
+  "buildLabel": "Dettagli di build",
+  "projectLabel": "Caso studio",
+  "challengeText": "Il progetto richiedeva piu di un'interfaccia pulita. Struttura, messaggio e base tecnica dovevano sostenere il prodotto o servizio in modo commercialmente chiaro.",
+  "solutionText": "La soluzione e stata costruita con una struttura di pagina chiara, esecuzione front-end controllata, forte gerarchia dei contenuti e una base tecnica affidabile per lancio e crescita.",
+  "resultText": "Il risultato e piu di un insieme di schermate. E un prodotto digitale con presentazione piu forte, flusso di interazione piu chiaro e una base migliore per SEO, campagne o scala.",
+  "featureIntro": "Elementi chiave che definiscono il prodotto e il suo valore commerciale.",
+  "metadata": {
+    "siteSuffix": "Oberemchuk Serhii - Sviluppo Web",
+    "keywordsPrefix": "sviluppo web"
+  },
+  "schema": {
+    "creatorName": "Oberemchuk Serhii"
+  }
+}
