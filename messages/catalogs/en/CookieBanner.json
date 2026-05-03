@@ -1,0 +1,35 @@
+{
+  "detailsLink": "Learn more about cookies",
+  "settings": {
+    "title": "Cookie settings",
+    "closeAria": "Close settings",
+    "necessary": {
+      "title": "Necessary cookies",
+      "description": "These cookies are required for the website to function and cannot be disabled."
+    },
+    "analytics": {
+      "title": "Analytics cookies",
+      "description": "They help us understand how visitors interact with the website by collecting anonymous information."
+    },
+    "marketing": {
+      "title": "Marketing cookies",
+      "description": "They are used to track visitors across websites in order to show relevant advertising."
+    },
+    "actions": {
+      "rejectAll": "Reject all",
+      "acceptNecessary": "Accept necessary",
+      "save": "Save settings"
+    }
+  },
+  "banner": {
+    "title": "We use cookies",
+    "description": "This website uses cookies to improve your experience. You can accept all cookies, reject them or configure your preferences.",
+    "details": "Learn more",
+    "actions": {
+      "settings": "Settings",
+      "reject": "Reject",
+      "necessaryOnly": "Necessary only",
+      "acceptAll": "Accept all"
+    }
+  }
+}

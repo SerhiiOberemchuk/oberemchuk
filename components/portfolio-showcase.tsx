@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,51 +11,16 @@ import type { LocalizedProject } from "@/lib/projects-i18n";
 
 type PortfolioShowcaseProps = {
   projects: LocalizedProject[];
-  locale: "uk" | "en";
 };
 
 export default function PortfolioShowcase({
   projects,
-  locale,
 }: PortfolioShowcaseProps) {
   const [displayIndex, setDisplayIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const slides = projects.slice(0, 6);
   const transitionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const labels = useMemo(
-    () =>
-      locale === "en"
-        ? {
-            eyebrow: "Selected cases",
-            title: "Curated work with visual weight.",
-            description:
-              "A focused edit of websites and digital products where execution quality, interface discipline and presence matter.",
-            previous: "Previous project",
-            next: "Next project",
-            openCase: "Open case",
-            liveSite: "Live site",
-            year: "Year",
-            client: "Client",
-            stack: "Stack",
-            rail: "Project navigation",
-          }
-        : {
-            eyebrow: "Вибрані кейси",
-            title: "Добірка робіт із сильною подачею.",
-            description:
-              "Сфокусована добірка сайтів і цифрових продуктів, де мають значення якість реалізації, дисципліна інтерфейсу та присутність.",
-            previous: "Попередній проєкт",
-            next: "Наступний проєкт",
-            openCase: "Відкрити кейс",
-            liveSite: "Живий сайт",
-            year: "Рік",
-            client: "Клієнт",
-            stack: "Стек",
-            rail: "Навігація проєктами",
-          },
-    [locale],
-  );
+  const t = useTranslations("PortfolioShowcase");
 
   useEffect(() => {
     return () => {
@@ -106,7 +72,9 @@ export default function PortfolioShowcase({
           fill
           className={cn(
             "object-cover transition-[opacity,transform,filter] duration-500 ease-out",
-            isTransitioning ? "scale-[1.015] opacity-0 blur-[1.5px]" : "scale-100 opacity-22 blur-0",
+            isTransitioning
+              ? "scale-[1.015] opacity-0 blur-[1.5px]"
+              : "scale-100 opacity-22 blur-0",
           )}
           priority
         />
@@ -119,13 +87,13 @@ export default function PortfolioShowcase({
         <div className="flex min-h-full flex-col">
           <div className="max-w-xl min-h-[15rem] md:min-h-[18rem]">
             <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/58">
-              {labels.eyebrow}
+              {t("eyebrow")}
             </p>
             <h2 className="max-w-lg text-4xl leading-[0.95] text-white md:text-6xl">
-              {labels.title}
+              {t("title")}
             </h2>
             <p className="mt-6 max-w-xl text-base leading-8 text-white/70 md:text-lg">
-              {labels.description}
+              {t("description")}
             </p>
           </div>
 
@@ -138,7 +106,9 @@ export default function PortfolioShowcase({
                 <h3
                   className={cn(
                     "mt-3 max-w-[18ch] text-3xl leading-[0.98] text-white transition-[opacity,transform] duration-500 ease-out md:text-5xl",
-                    isTransitioning ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100",
+                    isTransitioning
+                      ? "translate-y-2 opacity-0"
+                      : "translate-y-0 opacity-100",
                   )}
                   title={activeProject.title}
                 >
@@ -146,14 +116,17 @@ export default function PortfolioShowcase({
                 </h3>
               </div>
               <p className="text-sm text-white/44">
-                {String(displayIndex + 1).padStart(2, "0")}/{String(slides.length).padStart(2, "0")}
+                {String(displayIndex + 1).padStart(2, "0")}/
+                {String(slides.length).padStart(2, "0")}
               </p>
             </div>
 
             <p
               className={cn(
                 "mt-5 min-h-[8rem] max-h-[10rem] max-w-xl overflow-hidden text-base leading-8 text-white/72 transition-[opacity,transform] duration-500 ease-out md:min-h-[10rem] md:max-h-[10rem] line-clamp-4 md:line-clamp-5",
-                isTransitioning ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100",
+                isTransitioning
+                  ? "translate-y-2 opacity-0"
+                  : "translate-y-0 opacity-100",
               )}
               title={activeProject.description}
             >
@@ -163,21 +136,24 @@ export default function PortfolioShowcase({
             <dl className="mt-8 grid gap-4 sm:grid-cols-3">
               <div className="rounded-[1.35rem] border border-white/10 bg-black/14 px-4 py-4">
                 <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/42">
-                  {labels.year}
+                  {t("year")}
                 </dt>
                 <dd className="mt-2 text-lg text-white">{activeProject.year}</dd>
               </div>
               <div className="rounded-[1.35rem] border border-white/10 bg-black/14 px-4 py-4">
                 <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/42">
-                  {labels.client}
+                  {t("client")}
                 </dt>
-                <dd className="mt-2 line-clamp-2 min-h-[3.5rem] text-lg text-white" title={activeProject.client}>
+                <dd
+                  className="mt-2 line-clamp-2 min-h-[3.5rem] text-lg text-white"
+                  title={activeProject.client}
+                >
                   {activeProject.client}
                 </dd>
               </div>
               <div className="rounded-[1.35rem] border border-white/10 bg-black/14 px-4 py-4">
                 <dt className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/42">
-                  {labels.stack}
+                  {t("stack")}
                 </dt>
                 <dd
                   className="mt-2 line-clamp-2 min-h-[3.5rem] text-lg text-white"
@@ -191,7 +167,7 @@ export default function PortfolioShowcase({
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="min-w-[11rem]">
                 <Link href={`/portfolio/${activeProject.slug}`}>
-                  {labels.openCase}
+                  {t("openCase")}
                   <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                 </Link>
               </Button>
@@ -207,7 +183,7 @@ export default function PortfolioShowcase({
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {labels.liveSite}
+                    {t("liveSite")}
                     <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                   </a>
                 </Button>
@@ -222,7 +198,7 @@ export default function PortfolioShowcase({
               size="icon"
               onClick={goToPrev}
               className="h-12 w-12 border-white/14 bg-white/6 text-white hover:bg-white hover:text-[hsl(var(--foreground))]"
-              aria-label={labels.previous}
+              aria-label={t("previous")}
             >
               <ArrowLeft className="h-4 w-4" />
             </Button>
@@ -232,7 +208,7 @@ export default function PortfolioShowcase({
               size="icon"
               onClick={goToNext}
               className="h-12 w-12 border-white/14 bg-white/6 text-white hover:bg-white hover:text-[hsl(var(--foreground))]"
-              aria-label={labels.next}
+              aria-label={t("next")}
             >
               <ArrowRight className="button-arrow-right h-4 w-4" />
             </Button>
@@ -275,7 +251,10 @@ export default function PortfolioShowcase({
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/42">
                     {activeProject.category}
                   </p>
-                  <p className="mt-2 truncate pr-4 text-xl text-white" title={activeProject.title}>
+                  <p
+                    className="mt-2 truncate pr-4 text-xl text-white"
+                    title={activeProject.title}
+                  >
                     {activeProject.title}
                   </p>
                 </div>
@@ -294,7 +273,7 @@ export default function PortfolioShowcase({
           <div className="mt-10 lg:mt-20">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/40">
-                {labels.rail}
+                {t("rail")}
               </p>
               <div className="hidden items-center gap-2 md:flex">
                 {slides.map((project, index) => (
@@ -322,9 +301,13 @@ export default function PortfolioShowcase({
                   <button
                     key={`${project.slug}-${index}`}
                     type="button"
-                    onClick={() => changeSlide(slides.findIndex((entry) => entry.slug === project.slug))}
+                    onClick={() =>
+                      changeSlide(
+                        slides.findIndex((entry) => entry.slug === project.slug),
+                      )
+                    }
                     className={cn(
-                      "group flex h-full flex-col text-left rounded-[1.5rem] border p-3 transition-all duration-300 ease-out",
+                      "group flex h-full flex-col rounded-[1.5rem] border p-3 text-left transition-all duration-300 ease-out",
                       selected
                         ? "border-white/18 bg-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.16)]"
                         : "border-white/10 bg-white/4 hover:border-white/18 hover:bg-white/8",
@@ -336,14 +319,17 @@ export default function PortfolioShowcase({
                         alt={project.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(12,16,24,0.72)] via-[rgba(12,16,24,0.12)] to-transparent" />
-                      </div>
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(12,16,24,0.72)] via-[rgba(12,16,24,0.12)] to-transparent" />
+                    </div>
                     <div className="mt-3 flex min-h-[5.75rem] flex-col">
                       <p className="min-h-[2rem] text-[0.66rem] font-semibold uppercase tracking-[0.22em] text-white/42">
                         {project.category}
                       </p>
-                      <p className="mt-2 line-clamp-2 min-h-[3.5rem] text-lg leading-tight text-white" title={project.title}>
+                      <p
+                        className="mt-2 line-clamp-2 min-h-[3.5rem] text-lg leading-tight text-white"
+                        title={project.title}
+                      >
                         {project.title}
                       </p>
                     </div>

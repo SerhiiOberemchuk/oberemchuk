@@ -1,0 +1,163 @@
+{
+  "metadata": {
+    "title": "Servizi: siti web, e-commerce e prodotti digitali per il business",
+    "description": "Landing page, siti aziendali, e-commerce, web app e SEO tecnico per aziende che hanno bisogno di piu di un sito: hanno bisogno di un asset commerciale.",
+    "keywords": [
+      "servizi sviluppo web",
+      "sviluppo landing page",
+      "sviluppo siti aziendali",
+      "sviluppo e-commerce",
+      "web application React Next.js",
+      "SEO tecnico"
+    ],
+    "openGraph": {
+      "title": "Servizi | Serhii Oberemchuk",
+      "description": "Siti web, e-commerce e prodotti digitali con struttura piu chiara, posizionamento piu forte e una base tecnica per lead, SEO e crescita.",
+      "imageAlt": "Servizi di sviluppo web di Serhii Oberemchuk"
+    },
+    "twitter": {
+      "title": "Servizi | Serhii Oberemchuk",
+      "description": "Siti commerciali e prodotti web per aziende che hanno bisogno di lead, fiducia e spazio per crescere."
+    }
+  },
+  "schema": {
+    "name": "Servizi di sviluppo web",
+    "description": "Sviluppo landing page, siti aziendali, e-commerce, web application custom e SEO tecnico.",
+    "itemListName": "Elenco dei servizi di sviluppo web"
+  },
+  "hero": {
+    "pageLabel": "Servizi",
+    "archiveLabel": "Mappa dell'offerta",
+    "manifestoLabel": "Offerta commerciale",
+    "manifesto": "Ogni servizio e confezionato intorno all'impatto di business: posizionamento piu chiaro, fiducia piu forte, conversione piu pulita e una base pronta per crescere.",
+    "resultDelivery": "Consegna orientata al risultato",
+    "stackLabel": "React / Next.js / SEO",
+    "title": "Servizi costruiti intorno ai risultati",
+    "description": "Non e una lista di task. E un insieme di formati pensati per obiettivi diversi: lanci con traffico a pagamento, piu fiducia, vendite online, logica di prodotto o una base SEO tecnica."
+  },
+  "archive": {
+    "label": "Mappa dell'offerta",
+    "title": "Scegli il formato giusto per il bisogno di business"
+  },
+  "pricing": {
+    "label": "Guida ai prezzi",
+    "title": "Un menu servizi piu ampio per esigenze reali di business",
+    "description": "Il listino ruota attorno al lavoro che posso consegnare bene con React, Next.js e Astro: siti commerciali, storefront, flussi CRM, integrazioni di pagamento, rilanci e ottimizzazione continua. Sono prezzi iniziali per un primo ambito definito, non stime orarie astratte.",
+    "highlights": [
+      "Focus su React / Next.js / Astro",
+      "Ambiti iniziali ben definiti",
+      "Adatto a business orientati all'Europa",
+      "Possibile dividere in fasi"
+    ],
+    "principlesLabel": "Logica di prezzo",
+    "principles": [
+      {
+        "title": "Si parte dal primo rilascio utile",
+        "description": "Invece di gonfiare l'ambito, valuto la prima versione davvero utile: una pagina pronta al lancio, un'integrazione funzionante, una fase di rilancio o un primo modulo applicativo."
+      },
+      {
+        "title": "Le integrazioni si valutano in base al rischio",
+        "description": "Pagamenti, sincronizzazione CRM e automazioni influenzano lead, ordini e operativita interna. Il prezzo riflette validazione, edge case, eventi, webhook e qualita del passaggio finale."
+      },
+      {
+        "title": "Astro entra dove conta la velocita dei contenuti",
+        "description": "Per progetti ricchi di contenuti e orientati alla SEO, Astro puo ridurre l'overhead e migliorare la performance, mentre Next.js resta l'opzione principale per logica applicativa e flussi dinamici."
+      }
+    ],
+    "audienceLabel": "Fit migliore",
+    "stackLabel": "Stack / formato",
+    "scopeLabel": "Cosa include di solito",
+    "categories": [
+      {
+        "title": "Siti di lancio e pagine di crescita",
+        "audience": "Per aziende che hanno bisogno in fretta di una presenza commerciale visibile: acquisizione traffico, presentazione servizi, posizionamento esperto o espansione di landing SEO.",
+        "items": [
+          {
+            "name": "Landing page",
+            "price": "da 800 EUR",
+            "timeline": "1-2 settimane",
+            "stack": "Next.js o Astro, UI responsive, setup pronto per analytics",
+            "scope": "Struttura, build della pagina, flusso CTA, form, eventi, SEO base e preparazione al lancio."
+          },
+          {
+            "name": "Sito aziendale / di servizi",
+            "price": "da 1,600 EUR",
+            "timeline": "2-4 settimane",
+            "stack": "Next.js, sezioni riutilizzabili, architettura SEO-ready",
+            "scope": "Home, servizi, about, casi studio, contatti, blocchi fiducia, metadata, schema e struttura di pagina scalabile."
+          },
+          {
+            "name": "Sito contenutistico con Astro",
+            "price": "da 1,200 EUR",
+            "timeline": "1-3 settimane",
+            "stack": "Astro, content collections, isole interattive leggere",
+            "scope": "Sito marketing o editoriale veloce, con alto potenziale Lighthouse, modello contenuti pulito e struttura SEO-oriented."
+          }
+        ]
+      },
+      {
+        "title": "Integrazioni e operazioni commerciali",
+        "audience": "Per team che hanno gia un sito o un prodotto, ma hanno bisogno che pagamenti, routing dei lead o flussi CRM funzionino in modo affidabile invece che manuale.",
+        "items": [
+          {
+            "name": "Integrazione gateway di pagamento",
+            "price": "da 450 EUR",
+            "timeline": "3-7 giorni",
+            "stack": "Front-end Next.js / React con livello API o webhook",
+            "scope": "Connessione checkout, gestione stati, flussi successo/errore, tracciamento eventi e handoff sicuro per finance o ops."
+          },
+          {
+            "name": "Integrazione CRM e routing dei lead",
+            "price": "da 700 EUR",
+            "timeline": "4-8 giorni",
+            "stack": "Form React / Next.js, integrazione API CRM, trigger di automazione",
+            "scope": "Mappatura form-CRM, campi sorgente, sync eventi, segmentazione lead e riduzione del lavoro manuale di copia e incolla."
+          },
+          {
+            "name": "Rilancio o migrazione del sito",
+            "price": "da 900 EUR",
+            "timeline": "1-3 settimane",
+            "stack": "Di solito Next.js o Astro, in base a contenuti e parti dinamiche",
+            "scope": "Rebuild front-end, percorso di migrazione contenuti, redirect, pulizia metadata, reset performance e piano di rollout."
+          }
+        ]
+      },
+      {
+        "title": "Store, prodotti e supporto continuo",
+        "audience": "Per aziende che passano da un sito semplice a operazioni digitali vere: logica storefront, dashboard, interfacce prodotto e miglioramento tecnico continuo.",
+        "items": [
+          {
+            "name": "Storefront e-commerce",
+            "price": "da 2,500 EUR",
+            "timeline": "3-6 settimane",
+            "stack": "Storefront Next.js, integrazioni con CMS, CRM e pagamenti",
+            "scope": "Catalogo, pagine prodotto, flusso checkout, UX di conversione, categorie SEO-ready e base per le integrazioni."
+          },
+          {
+            "name": "Modulo web app / MVP",
+            "price": "da 3,000 EUR",
+            "timeline": "3-6 settimane",
+            "stack": "React / Next.js / TypeScript, UI prodotto collegata ad API",
+            "scope": "User flow, dashboard, ruoli, stati dati, integrazione API e una base per la crescita iterativa del prodotto."
+          },
+          {
+            "name": "SEO tecnico e supporto mensile",
+            "price": "da 350 EUR / mese",
+            "timeline": "retainer o sprint",
+            "stack": "Progetto esistente in React, Next.js o Astro",
+            "scope": "Fix prioritari, lavoro su Core Web Vitals, aggiornamenti pagina, QA, correzioni analytics e piccoli miglioramenti continui."
+          }
+        ]
+      }
+    ]
+  },
+  "listAriaLabel": "Elenco dei servizi",
+  "includesTitle": "Cosa e incluso",
+  "outcomesPreviewTitle": "Cosa cambia per il business",
+  "detailsCta": "Vai alla pagina del servizio",
+  "consultation": {
+    "title": "Non sai quale formato possa portare il risultato migliore?",
+    "description": "E normale. La differenza tra una landing page, un sito aziendale, uno store o una web app spesso si chiarisce solo dopo un breve briefing. Posso aiutarti a scegliere il formato giusto senza budget sprecato o una partenza sbagliata.",
+    "cta": "Richiedi una stima"
+  }
+}

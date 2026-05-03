@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "title": "Cookie policy",
+    "description": "Informazioni dettagliate su come uso i cookie sul mio sito e su come puoi gestire le tue preferenze.",
+    "openGraph": {
+      "title": "Cookie policy | Serhii Oberemchuk",
+      "description": "Informazioni dettagliate su come uso i cookie sul mio sito e su come puoi gestire le tue preferenze."
+    },
+    "twitter": {
+      "title": "Cookie policy | Serhii Oberemchuk",
+      "description": "Informazioni dettagliate su come uso i cookie sul mio sito e su come puoi gestire le tue preferenze."
+    }
+  },
+  "title": "Cookie policy",
+  "eyebrow": "Cookie policy",
+  "lastUpdated": "Ultimo aggiornamento: 1 giugno 2024",
+  "whatAreCookies": {
+    "title": "Cosa sono i cookie?",
+    "description": "I cookie sono piccoli file di testo memorizzati sul dispositivo durante la navigazione su un sito. Aiutano il sito a funzionare correttamente, supportano analytics e ricordano le tue preferenze."
+  },
+  "usage": {
+    "title": "Come uso i cookie",
+    "description": "Il sito puo usare diverse categorie di cookie: per il funzionamento del sito, per analytics di base e, se introdotti in futuro, per personalizzazione o marketing."
+  },
+  "types": {
+    "title": "Tipi di cookie usati sul sito",
+    "headers": {
+      "type": "Tipo",
+      "purpose": "Scopo",
+      "duration": "Durata"
+    },
+    "rows": [
+      {
+        "name": "Cookie necessari",
+        "purpose": "Necessari al corretto funzionamento del sito, al salvataggio delle preferenze e al supporto dei form.",
+        "duration": "Sessione / 1 anno"
+      },
+      {
+        "name": "Cookie analitici",
+        "purpose": "Aiutano a capire come i visitatori usano il sito e quali pagine funzionano meglio.",
+        "duration": "2 anni"
+      },
+      {
+        "name": "Cookie marketing",
+        "purpose": "Possono essere usati per personalizzare contenuti o pubblicita se questi strumenti verranno introdotti in futuro.",
+        "duration": "1-2 anni"
+      }
+    ]
+  },
+  "details": {
+    "title": "Informazioni piu dettagliate sui cookie",
+    "necessary": {
+      "title": "Cookie necessari",
+      "items": {
+        "consent": "cookie-consent - salva le tue preferenze di consenso ai cookie.",
+        "session": "session - supporta un comportamento stabile del sito e mantiene impostazioni temporanee durante la sessione."
+      }
+    },
+    "analytics": {
+      "title": "Cookie analitici (Google Analytics)",
+      "items": {
+        "ga": "_ga - salva un identificatore univoco per analytics di base. Durata: 2 anni.",
+        "gaId": "_ga_[ID] - usato da Google Analytics per distinguere sessioni e visite. Durata: 2 anni.",
+        "gid": "_gid - usato per statistiche nell'arco di 24 ore.",
+        "gat": "_gat - aiuta a limitare la frequenza delle richieste. Durata: 1 minuto."
+      }
+    },
+    "marketing": {
+      "title": "Cookie marketing",
+      "description": "Al momento il sito non usa attivamente cookie marketing. Se questi strumenti verranno aggiunti, questa pagina sara aggiornata."
+    }
+  },
+  "thirdParty": {
+    "title": "Cookie di terze parti",
+    "description": "Alcuni cookie possono essere impostati da servizi di terze parti, per esempio strumenti analytics. Per dettagli, consulta le relative privacy policy."
+  },
+  "googleAnalytics": {
+    "title": "Google Analytics",
+    "paragraphs": [
+      "Il sito puo usare Google Analytics per l'analisi di base del traffico. Questo servizio usa cookie per raccogliere informazioni statistiche non personali sulle visite.",
+      "Le informazioni raccolte tramite Google Analytics vengono usate per valutare le performance del sito e migliorare struttura e contenuti.",
+      "Puoi disattivare Google Analytics tramite la <optOutLink>pagina di opt-out di Google Analytics</optOutLink>."
+    ]
+  },
+  "management": {
+    "title": "Come gestire i cookie",
+    "description": "Puoi gestire le tue preferenze sui cookie in diversi modi:",
+    "siteSettings": "Tramite le impostazioni del sito: puoi aggiornare il consenso ai cookie quando questo meccanismo e attivo.",
+    "browserSettingsTitle": "Tramite le impostazioni del browser",
+    "browserSettingsDescription": "La maggior parte dei browser consente di gestire i cookie tramite impostazioni integrate:",
+    "browsers": [
+      {
+        "name": "Google Chrome",
+        "href": "https://support.google.com/chrome/answer/95647"
+      },
+      {
+        "name": "Mozilla Firefox",
+        "href": "https://support.mozilla.org/kb/cookies-information-websites-store-on-your-computer"
+      },
+      {
+        "name": "Internet Explorer",
+        "href": "https://support.microsoft.com/help/17442/windows-internet-explorer-delete-manage-cookies"
+      },
+      {
+        "name": "Safari",
+        "href": "https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac"
+      },
+      {
+        "name": "Opera",
+        "href": "https://help.opera.com/en/latest/web-preferences/#cookies"
+      }
+    ]
+  },
+  "settingsCard": {
+    "title": "Aggiorna le preferenze sui cookie",
+    "description": "Se il meccanismo di gestione del consenso e attivo sul sito, puoi rivedere le tue preferenze in qualsiasi momento."
+  },
+  "consequences": {
+    "title": "Conseguenze della disattivazione dei cookie",
+    "paragraphs": [
+      "Se disattivi alcuni cookie, alcune parti del sito potrebbero non funzionare in modo fluido come previsto.",
+      "Disattivare i cookie analitici non blocca l'accesso di base al sito, ma riduce la possibilita di migliorarlo in base ai comportamenti reali."
+    ]
+  },
+  "changes": {
+    "title": "Modifiche a questa Cookie Policy",
+    "paragraphs": [
+      "Posso aggiornare questa policy di tanto in tanto. La versione corrente sara sempre pubblicata su questa pagina.",
+      "E ragionevole controllare periodicamente questa pagina per restare aggiornati su eventuali cambiamenti nell'approccio ai cookie."
+    ]
+  },
+  "contact": {
+    "title": "Contatto",
+    "description": "Se hai domande su questa Cookie Policy, contattami:",
+    "email": "Email: serhiioberemchuk@gmail.com"
+  },
+  "navigation": {
+    "home": "Torna alla home",
+    "privacy": "Privacy policy"
+  },
+  "footer": {
+    "title": "Vuoi controllare anche i documenti correlati?",
+    "description": "Da qui puoi tornare al sito o passare alla privacy policy."
+  }
+}

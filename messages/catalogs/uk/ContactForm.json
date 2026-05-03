@@ -1,0 +1,96 @@
+{
+  "validation": {
+    "nameRequired": "Будь ласка, введіть ваше ім'я",
+    "emailRequired": "Будь ласка, введіть ваш email",
+    "emailInvalid": "Будь ласка, введіть коректний email",
+    "messageRequired": "Будь ласка, введіть ваше повідомлення"
+  },
+  "submit": {
+    "success": "Повідомлення успішно відправлено!",
+    "error": "Помилка при відправці повідомлення",
+    "loading": "Відправляємо...",
+    "button": "Отримати оцінку"
+  },
+  "fields": {
+    "name": "Ім'я *",
+    "namePlaceholder": "Ваше ім'я",
+    "email": "Email *",
+    "phone": "Телефон (необов'язково)",
+    "phonePlaceholder": "+380 XX XXX XX XX",
+    "service": "Що потрібно?",
+    "servicePlaceholder": "Оберіть формат проєкту",
+    "serviceAria": "Оберіть тип послуги",
+    "budget": "Бюджет",
+    "budgetPlaceholder": "Оберіть діапазон бюджету",
+    "budgetAria": "Оберіть бюджет проєкту",
+    "message": "Короткий опис задачі *",
+    "messagePlaceholder": "Що ви продаєте, кому, і який результат має дати сайт?",
+    "emailPlaceholder": "you@example.com",
+    "messageHint": "Достатньо коротко описати задачу, бізнес-ціль, бажані строки або очікуваний результат."
+  },
+  "services": [
+    {
+      "value": "landing-page",
+      "label": "Лендінг"
+    },
+    {
+      "value": "corporate-website",
+      "label": "Корпоративний сайт"
+    },
+    {
+      "value": "astro-website",
+      "label": "Контентний сайт на Astro"
+    },
+    {
+      "value": "ecommerce",
+      "label": "E-commerce вітрина"
+    },
+    {
+      "value": "payments",
+      "label": "Інтеграція платіжної системи"
+    },
+    {
+      "value": "crm",
+      "label": "CRM інтеграція / автоматизація"
+    },
+    {
+      "value": "web-app",
+      "label": "Веб-додаток / MVP"
+    },
+    {
+      "value": "support",
+      "label": "SEO / підтримка / перезапуск"
+    },
+    {
+      "value": "other",
+      "label": "Інше"
+    }
+  ],
+  "budgets": [
+    {
+      "value": "under-1000",
+      "label": "До €1,000"
+    },
+    {
+      "value": "1000-3000",
+      "label": "€1,000 - €3,000"
+    },
+    {
+      "value": "3000-5000",
+      "label": "€3,000 - €5,000"
+    },
+    {
+      "value": "5000-10000",
+      "label": "€5,000 - €10,000"
+    },
+    {
+      "value": "over-10000",
+      "label": "Понад €10,000"
+    },
+    {
+      "value": "discuss",
+      "label": "Обговорити індивідуально"
+    }
+  ],
+  "formHint": "Заповніть коротку заявку. Достатньо вказати контакт, формат проєкту, бюджет і суть задачі."
+}

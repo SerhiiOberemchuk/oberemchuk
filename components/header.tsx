@@ -25,7 +25,7 @@ export default function Header({
 }: HeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-40 px-4 pt-3 md:px-6">
-      <div className="premium-sheen mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-full border border-[rgba(24,31,43,0.14)] bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.92))] px-4 py-2.5 shadow-[0_20px_70px_rgba(15,23,42,0.1),inset_0_1px_0_rgba(255,255,255,0.96)] backdrop-blur-xl md:px-5">
+      <div className="premium-sheen mx-auto flex max-w-7xl items-center justify-between gap-4 overflow-visible rounded-full border border-[rgba(24,31,43,0.14)] bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.92))] px-4 py-2.5 shadow-[0_20px_70px_rgba(15,23,42,0.1),inset_0_1px_0_rgba(255,255,255,0.96)] backdrop-blur-xl md:px-5">
         <Link href="/" className="group flex items-center gap-3 font-medium">
           <BrandLogo
             alt={logoAlt}

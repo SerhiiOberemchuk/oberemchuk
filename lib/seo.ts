@@ -1,7 +1,8 @@
 import type {Metadata} from "next";
 import {routing} from "@/i18n/routing";
+import {defaultLocale, localeOptions, type AppLocale} from "@/i18n/locales";
 
-export type Locale = "uk" | "en";
+export type Locale = AppLocale;
 
 function normalizePath(path: string) {
   if (!path || path === "/") return "";
@@ -17,15 +18,21 @@ export function getLocalizedPath(locale: Locale, path = "") {
 
 export function getLanguageAlternates(path = ""): NonNullable<Metadata["alternates"]>["languages"] {
   const normalizedPath = normalizePath(path);
-  const defaultPath = getLocalizedPath(routing.defaultLocale, normalizedPath);
-  const englishPath = getLocalizedPath("en", normalizedPath);
+  const defaultPath = getLocalizedPath(defaultLocale, normalizedPath);
+  const localeAlternates = Object.fromEntries(
+    localeOptions.flatMap((locale) => {
+      const localizedPath = getLocalizedPath(locale.code, normalizedPath);
+
+      return [
+        [locale.code, localizedPath],
+        [locale.intlLabel, localizedPath],
+      ];
+    }),
+  ) as NonNullable<Metadata["alternates"]>["languages"];
 
   return {
     "x-default": defaultPath,
-    "uk-UA": defaultPath,
-    uk: defaultPath,
-    "en-GB": englishPath,
-    en: englishPath
+    ...localeAlternates,
   };
 }
 

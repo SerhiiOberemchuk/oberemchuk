@@ -1,6 +1,7 @@
-﻿import { Code, Palette, Search, Server, Smartphone } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { Code, Palette, Search, Server, Smartphone } from "lucide-react"
+import { useTranslations } from "next-intl"
 import AnimationWrapper from "@/components/animation-wrapper"
+import { Badge } from "@/components/ui/badge"
 
 type AboutItem = {
   title: string
@@ -37,9 +38,7 @@ export default function AboutSection({
   process,
   summaryStats
 }: AboutSectionProps) {
-  const isEnglish = /^[\x00-\x7F\s.,'":;!?()-]+$/.test(title)
-  const positioningLabel = isEnglish ? "Positioning" : "Позиціонування"
-  const toolingLabel = isEnglish ? "Selected stack and delivery tools" : "Ключовий стек і робочі інструменти"
+  const t = useTranslations("HomeAbout")
   const technologies = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "PostgreSQL", "Figma", "SEO"]
   const skillIcons = [Code, Server, Palette, Search, Smartphone]
 
@@ -50,7 +49,7 @@ export default function AboutSection({
           <div className="mb-16 grid gap-6 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {positioningLabel}
+                {t("labels.positioning")}
               </p>
               <h2 id="about-title" className="text-4xl text-[hsl(var(--foreground))] md:text-6xl">
                 {title}
@@ -130,7 +129,7 @@ export default function AboutSection({
                   <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
                     {technologiesTitle}
                   </p>
-                  <p className="mb-5 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{toolingLabel}</p>
+                  <p className="mb-5 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{t("labels.tooling")}</p>
                   <div className="flex flex-wrap gap-3">
                     {technologies.map((tech) => (
                       <Badge key={tech} variant="secondary">

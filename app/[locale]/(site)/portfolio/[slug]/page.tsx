@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
@@ -9,12 +9,13 @@ import {
   Layers3,
   User,
 } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
-import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import { appLocales, type AppLocale } from "@/i18n/locales";
 import { getPageAlternates } from "@/lib/seo";
 import { localizeProject } from "@/lib/projects-i18n";
 import { getProjectBySlug, getProjects } from "@/lib/projects-server";
@@ -26,6 +27,191 @@ type PortfolioProjectPageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
+type Narrative = {
+  challenge: string;
+  solution: string;
+  result: string;
+  outcomes: string[];
+};
+
+const portfolioNarratives = {
+  default: {
+    uk: {
+      challenge:
+        "Задача полягала в тому, щоб зібрати сильнішу цифрову подачу з чіткішою структурою, переконливішою комунікацією і технічною базою, готовою до росту.",
+      solution:
+        "Реалізація будувалася через продуману ієрархію сторінки, зрозумілу взаємодію, контрольовану візуальну мову і стабільну front-end основу.",
+      result:
+        "На виході вийшов чистіший сценарій для користувача, сильніші сигнали довіри і продукт, який легше використовувати в продажах, SEO або запуску реклами.",
+      outcomes: [
+        "Чіткіша структура",
+        "Сильніший шар довіри",
+        "Краща готовність до запуску",
+      ],
+    },
+    en: {
+      challenge:
+        "The goal was to create a stronger digital presentation with clearer structure, more confident communication and a technical base that can support growth.",
+      solution:
+        "The implementation focused on page hierarchy, interaction clarity, controlled visual language and a dependable front-end structure.",
+      result:
+        "The end result is a cleaner user path, stronger trust signals and a product that is easier to use as part of sales, SEO or launch activity.",
+      outcomes: [
+        "Clearer structure",
+        "Stronger trust layer",
+        "Better launch readiness",
+      ],
+    },
+    it: {
+      challenge:
+        "L'obiettivo era costruire una presenza digitale piu forte, con struttura piu chiara, comunicazione piu sicura e una base tecnica pronta a sostenere la crescita.",
+      solution:
+        "L'implementazione si e concentrata su gerarchia della pagina, chiarezza dell'interazione, linguaggio visivo controllato e una struttura front-end affidabile.",
+      result:
+        "Il risultato finale e un percorso utente piu pulito, segnali di fiducia piu forti e un prodotto piu semplice da usare in vendita, SEO o lancio.",
+      outcomes: [
+        "Struttura piu chiara",
+        "Layer di fiducia piu forte",
+        "Migliore prontezza al lancio",
+      ],
+    },
+  },
+  raisa: {
+    uk: {
+      challenge:
+        "Задача полягала в тому, щоб подати послугу сильніше, прибрати зайвий шум і зробити сайт швидшим та більш контрольованим у сприйнятті.",
+      solution:
+        "Проєкт був зібраний через чистішу структуру, сильнішу візуальну ієрархію і технічну основу, яка підтримує швидкість та SEO-ready підхід.",
+      result:
+        "У результаті сайт став переконливішим у подачі, чіткішим у взаємодії і дав бізнесу сильнішу основу для залучення клієнтів.",
+      outcomes: [
+        "Сильніше позиціонування послуги",
+        "Швидше відчуття роботи сайту",
+        "Сильніша SEO-структура",
+      ],
+    },
+    en: {
+      challenge:
+        "The challenge was to present the service with more authority, reduce visual noise and make the website feel faster and more controlled.",
+      solution:
+        "The project was rebuilt through cleaner structure, tighter visual hierarchy and a stronger technical base that supports speed and SEO readiness.",
+      result:
+        "The website now communicates with more confidence, feels sharper in interaction and gives the business a stronger base for acquisition.",
+      outcomes: [
+        "Sharper service positioning",
+        "Faster perceived experience",
+        "Stronger SEO structure",
+      ],
+    },
+    it: {
+      challenge:
+        "La sfida era presentare il servizio con piu autorevolezza, ridurre il rumore visivo e far percepire il sito piu rapido e controllato.",
+      solution:
+        "Il progetto e stato ricostruito con struttura piu pulita, gerarchia visiva piu netta e una base tecnica piu forte per velocita e SEO.",
+      result:
+        "Ora il sito comunica con piu sicurezza, risulta piu preciso nell'interazione e offre al business una base piu forte per l'acquisizione.",
+      outcomes: [
+        "Posizionamento del servizio piu netto",
+        "Esperienza percepita piu rapida",
+        "Struttura SEO piu forte",
+      ],
+    },
+  },
+  commerce: {
+    uk: {
+      challenge:
+        "Магазину була потрібна сильніша подача товарів, зрозуміліший сценарій покупки і структура, яка не буде стримувати ріст далі.",
+      solution:
+        "Рішення будувалося навколо зрозумілого storefront, сценарію покупки, інтеграцій і архітектури, яка підтримує ріст каталогу та SEO.",
+      result:
+        "У результаті вийшов чистіший e-commerce сценарій і більш масштабована база для видимості товарів та онлайн-продажів.",
+      outcomes: [
+        "Сильніший storefront",
+        "Чистіша логіка checkout",
+        "Готовність до росту категорій",
+      ],
+    },
+    en: {
+      challenge:
+        "The store needed a stronger product presentation, a clearer buying path and a structure that would not block growth later.",
+      solution:
+        "The solution focused on storefront clarity, purchase flow, integrations and architecture that can support catalogue and SEO expansion.",
+      result:
+        "The result is a cleaner commerce experience and a more scalable base for product visibility and online sales.",
+      outcomes: [
+        "Stronger storefront",
+        "Cleaner checkout logic",
+        "Category growth readiness",
+      ],
+    },
+    it: {
+      challenge:
+        "Lo store aveva bisogno di una presentazione prodotto piu forte, di un percorso d'acquisto piu chiaro e di una struttura che non bloccasse la crescita.",
+      solution:
+        "La soluzione si e concentrata su chiarezza dello storefront, flusso d'acquisto, integrazioni e architettura capace di sostenere catalogo e SEO.",
+      result:
+        "Il risultato e un'esperienza commerce piu pulita e una base piu scalabile per visibilita prodotto e vendite online.",
+      outcomes: [
+        "Storefront piu forte",
+        "Logica checkout piu pulita",
+        "Prontezza alla crescita categorie",
+      ],
+    },
+  },
+  app: {
+    uk: {
+      challenge:
+        "Задача була в тому, щоб перетворити продуктові вимоги в зрозумілий робочий інтерфейс, а не в статичну вітрину.",
+      solution:
+        "Продукт був зібраний через user flows, масштабовану логіку компонентів, готовність до інтеграцій і передбачувану UI-систему.",
+      result:
+        "Це дало сильнішу продуктову основу: зрозумілішу взаємодію, кращу підтримуваність і більше простору для наступного етапу росту.",
+      outcomes: [
+        "Чіткіші user flows",
+        "Масштабована UI-логіка",
+        "Архітектура, готова до росту",
+      ],
+    },
+    en: {
+      challenge:
+        "The task was to turn product requirements into a clear working interface instead of a static showcase layer.",
+      solution:
+        "The product was assembled through user flows, scalable component logic, integration readiness and a predictable UI system.",
+      result:
+        "That created a stronger product surface: clearer interaction, better maintainability and more room for the next growth stage.",
+      outcomes: [
+        "Clearer user flows",
+        "Scalable UI logic",
+        "Growth-ready architecture",
+      ],
+    },
+    it: {
+      challenge:
+        "Il compito era trasformare i requisiti di prodotto in un'interfaccia operativa chiara, non in una vetrina statica.",
+      solution:
+        "Il prodotto e stato costruito tramite user flow, logica componenti scalabile, prontezza alle integrazioni e un sistema UI prevedibile.",
+      result:
+        "Questo ha creato una base prodotto piu forte: interazione piu chiara, migliore manutenibilita e piu spazio per la fase successiva di crescita.",
+      outcomes: [
+        "User flow piu chiari",
+        "Logica UI scalabile",
+        "Architettura pronta alla crescita",
+      ],
+    },
+  },
+} satisfies Record<
+  "default" | "raisa" | "commerce" | "app",
+  Record<AppLocale, Narrative>
+>;
+
+function buildNarrative(kind: keyof typeof portfolioNarratives, locale: AppLocale, featureHighlights: string[]): Narrative {
+  const base = portfolioNarratives[kind][locale];
+  return {
+    ...base,
+    outcomes: featureHighlights.length > 0 ? featureHighlights : base.outcomes,
+  };
+}
+
 function getCaseNarrative(
   project: {
     slug: string;
@@ -33,124 +219,29 @@ function getCaseNarrative(
     description: string;
     features: string[];
   },
-  locale: "uk" | "en",
+  locale: AppLocale,
 ) {
-  const isEnglish = locale === "en";
   const featureHighlights = project.features.slice(0, 3);
 
-  const defaultNarrative = {
-    challenge: isEnglish
-      ? "The goal was to create a stronger digital presentation with clearer structure, more confident communication and a technical base that can support growth."
-      : "Задача полягала в тому, щоб зібрати сильнішу цифрову подачу з чіткішою структурою, переконливішою комунікацією і технічною базою, готовою до росту.",
-    solution: isEnglish
-      ? "The implementation focused on page hierarchy, interaction clarity, controlled visual language and a dependable front-end structure."
-      : "Реалізація будувалася через продуману ієрархію сторінки, зрозумілу взаємодію, контрольовану візуальну мову і стабільну front-end основу.",
-    result: isEnglish
-      ? "The end result is a cleaner user path, stronger trust signals and a product that is easier to use as part of sales, SEO or launch activity."
-      : "На виході вийшов чистіший сценарій для користувача, сильніші сигнали довіри і продукт, який легше використовувати в продажах, SEO або запуску реклами.",
-    outcomes: featureHighlights.length
-      ? featureHighlights
-      : isEnglish
-        ? [
-            "Clearer structure",
-            "Stronger trust layer",
-            "Better launch readiness",
-          ]
-        : [
-            "Чіткіша структура",
-            "Сильніший шар довіри",
-            "Краща готовність до запуску",
-          ],
-  };
-
   if (project.slug === "raisa-regress") {
-    return {
-      challenge: isEnglish
-        ? "The challenge was to present the service with more authority, reduce visual noise and make the website feel faster and more controlled."
-        : "Задача полягала в тому, щоб подати послугу сильніше, прибрати зайвий шум і зробити сайт швидшим та більш контрольованим у сприйнятті.",
-      solution: isEnglish
-        ? "The project was rebuilt through cleaner structure, tighter visual hierarchy and a stronger technical base that supports speed and SEO readiness."
-        : "Проєкт був зібраний через чистішу структуру, сильнішу візуальну ієрархію і технічну основу, яка підтримує швидкість та SEO-ready підхід.",
-      result: isEnglish
-        ? "The website now communicates with more confidence, feels sharper in interaction and gives the business a stronger base for acquisition."
-        : "У результаті сайт став переконливішим у подачі, чіткішим у взаємодії і дав бізнесу сильнішу основу для залучення клієнтів.",
-      outcomes: featureHighlights.length
-        ? featureHighlights
-        : isEnglish
-          ? [
-              "Sharper service positioning",
-              "Faster perceived experience",
-              "Stronger SEO structure",
-            ]
-          : [
-              "Сильніше позиціонування послуги",
-              "Швидше відчуття роботи сайту",
-              "Сильніша SEO-структура",
-            ],
-    };
+    return buildNarrative("raisa", locale, featureHighlights);
   }
 
   if (/shop|store|commerce|магазин/i.test(project.category)) {
-    return {
-      challenge: isEnglish
-        ? "The store needed a stronger product presentation, a clearer buying path and a structure that would not block growth later."
-        : "Магазину була потрібна сильніша подача товарів, зрозуміліший сценарій покупки і структура, яка не буде стримувати ріст далі.",
-      solution: isEnglish
-        ? "The solution focused on storefront clarity, purchase flow, integrations and architecture that can support catalogue and SEO expansion."
-        : "Рішення будувалося навколо зрозумілого storefront, сценарію покупки, інтеграцій і архітектури, яка підтримує ріст каталогу та SEO.",
-      result: isEnglish
-        ? "The result is a cleaner commerce experience and a more scalable base for product visibility and online sales."
-        : "У результаті вийшов чистіший e-commerce сценарій і більш масштабована база для видимості товарів та онлайн-продажів.",
-      outcomes: featureHighlights.length
-        ? featureHighlights
-        : isEnglish
-          ? [
-              "Stronger storefront",
-              "Cleaner checkout logic",
-              "Category growth readiness",
-            ]
-          : [
-              "Сильніший storefront",
-              "Чистіша логіка checkout",
-              "Готовність до росту категорій",
-            ],
-    };
+    return buildNarrative("commerce", locale, featureHighlights);
   }
 
   if (/app|saas|platform|додат/i.test(project.category)) {
-    return {
-      challenge: isEnglish
-        ? "The task was to turn product requirements into a clear working interface instead of a static showcase layer."
-        : "Задача була в тому, щоб перетворити продуктові вимоги в зрозумілий робочий інтерфейс, а не в статичну вітрину.",
-      solution: isEnglish
-        ? "The product was assembled through user flows, scalable component logic, integration readiness and a predictable UI system."
-        : "Продукт був зібраний через user flows, масштабовану логіку компонентів, готовність до інтеграцій і передбачувану UI-систему.",
-      result: isEnglish
-        ? "That created a stronger product surface: clearer interaction, better maintainability and more room for the next growth stage."
-        : "Це дало сильнішу продуктову основу: зрозумілішу взаємодію, кращу підтримуваність і більше простору для наступного етапу росту.",
-      outcomes: featureHighlights.length
-        ? featureHighlights
-        : isEnglish
-          ? [
-              "Clearer user flows",
-              "Scalable UI logic",
-              "Growth-ready architecture",
-            ]
-          : [
-              "Чіткіші user flows",
-              "Масштабована UI-логіка",
-              "Архітектура, готова до росту",
-            ],
-    };
+    return buildNarrative("app", locale, featureHighlights);
   }
 
-  return defaultNarrative;
+  return buildNarrative("default", locale, featureHighlights);
 }
 
 export async function generateStaticParams() {
   const projects = await getProjects();
 
-  return ["uk", "en"].flatMap((locale) =>
+  return appLocales.flatMap((locale) =>
     projects.map((project: Project) => ({
       locale,
       slug: project.slug,
@@ -162,6 +253,7 @@ export async function generateMetadata({
   params,
 }: PortfolioProjectPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const pageT = await getTranslations({
     locale,
     namespace: "PortfolioProjectPage",
@@ -175,15 +267,15 @@ export async function generateMetadata({
     };
   }
 
-  const localizedProject = localizeProject(project, locale as "uk" | "en");
+  const localizedProject = localizeProject(project, locale as AppLocale);
   const pagePath =
-    locale === "en" ? `/en/portfolio/${slug}` : `/portfolio/${slug}`;
+    locale === "uk" ? `/portfolio/${slug}` : `/${locale}/portfolio/${slug}`;
 
   return {
     title: localizedProject.title,
     description: localizedProject.description,
     keywords: `${localizedProject.title}, ${localizedProject.category}, ${pageT("metadata.keywordsPrefix")}, ${localizedProject.technologies.join(", ")}`,
-    alternates: getPageAlternates(locale as "uk" | "en", `/portfolio/${slug}`),
+    alternates: getPageAlternates(locale as AppLocale, `/portfolio/${slug}`),
     openGraph: {
       title: `${localizedProject.title} | ${pageT("metadata.siteSuffix")}`,
       description: localizedProject.description,
@@ -211,20 +303,21 @@ export default async function ProjectPage({
   params,
 }: PortfolioProjectPageProps) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const pageT = await getTranslations({
     locale,
     namespace: "PortfolioProjectPage",
   });
-  const isEnglish = locale === "en";
   const project = await getProjectBySlug(slug);
 
   if (!project) {
     notFound();
   }
 
-  const localizedProject = localizeProject(project, locale as "uk" | "en");
-  const pagePath = isEnglish ? `/en/portfolio/${slug}` : `/portfolio/${slug}`;
-  const narrative = getCaseNarrative(localizedProject, locale as "uk" | "en");
+  const localizedProject = localizeProject(project, locale as AppLocale);
+  const pagePath =
+    locale === "uk" ? `/portfolio/${slug}` : `/${locale}/portfolio/${slug}`;
+  const narrative = getCaseNarrative(localizedProject, locale as AppLocale);
   const overviewLabel = pageT("overviewLabel");
   const buildLabel = pageT("buildLabel");
   const projectLabel = pageT("projectLabel");

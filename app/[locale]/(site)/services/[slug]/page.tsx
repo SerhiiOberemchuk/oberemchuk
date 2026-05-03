@@ -1,63 +1,61 @@
-﻿import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import type {Metadata} from "next";
+import {notFound} from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   BriefcaseBusiness,
-  Check,
+  Check
 } from "lucide-react";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import {getTranslations, setRequestLocale} from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
-import { Link } from "@/i18n/navigation";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { getPageAlternates } from "@/lib/seo";
+import {Badge} from "@/components/ui/badge";
+import {Button} from "@/components/ui/button";
+import {appLocales, type AppLocale} from "@/i18n/locales";
+import {Link} from "@/i18n/navigation";
+import {getPageAlternates} from "@/lib/seo";
 import {
   getServicePage,
   getServicePages,
-  servicePageSlugs,
+  servicePageSlugs
 } from "@/lib/service-pages";
 
 const SITE_URL = process.env.SITE_URL || "https://oberemchuk.online";
 
 type ServicePageProps = {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{locale: string; slug: string}>;
 };
 
 export function generateStaticParams() {
-  return ["uk", "en"].flatMap((locale) =>
+  return appLocales.flatMap((locale) =>
     servicePageSlugs.map((slug) => ({
       locale,
-      slug,
-    })),
+      slug
+    }))
   );
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: ServicePageProps): Promise<Metadata> {
-  const { locale, slug } = await params;
-  const service = getServicePage(locale as "uk" | "en", slug);
+  const {locale, slug} = await params;
+  const service = getServicePage(locale as AppLocale, slug);
 
   if (!service) {
     return {};
   }
 
   const pagePath =
-    locale === "en"
-      ? `/en/services/${service.slug}`
-      : `/services/${service.slug}`;
+    locale === "uk"
+      ? `/services/${service.slug}`
+      : `/${locale}/services/${service.slug}`;
 
   return {
     title: service.metaTitle,
     description: service.metaDescription,
     keywords: service.keywords,
-    alternates: getPageAlternates(
-      locale as "uk" | "en",
-      `/services/${service.slug}`,
-    ),
+    alternates: getPageAlternates(locale as AppLocale, `/services/${service.slug}`),
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
@@ -68,44 +66,40 @@ export async function generateMetadata({
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: service.metaTitle,
-        },
-      ],
+          alt: service.metaTitle
+        }
+      ]
     },
     twitter: {
       card: "summary_large_image",
       title: service.metaTitle,
       description: service.metaDescription,
-      images: ["/og-image.png"],
-    },
+      images: ["/og-image.png"]
+    }
   };
 }
 
-export default async function ServiceDetailPage({ params }: ServicePageProps) {
-  const { locale, slug } = await params;
+export default async function ServiceDetailPage({params}: ServicePageProps) {
+  const {locale, slug} = await params;
   setRequestLocale(locale);
+
   const pageT = await getTranslations({
     locale,
-    namespace: "ServiceDetailPage",
+    namespace: "ServiceDetailPage"
   });
-  const service = getServicePage(locale as "uk" | "en", slug);
+  const service = getServicePage(locale as AppLocale, slug);
 
   if (!service) {
     notFound();
   }
 
-  const isEnglish = locale === "en";
-  const pagePath = isEnglish
-    ? `/en/services/${service.slug}`
-    : `/services/${service.slug}`;
-  const relatedServices = getServicePages(locale as "uk" | "en")
+  const pagePath =
+    locale === "uk"
+      ? `/services/${service.slug}`
+      : `/${locale}/services/${service.slug}`;
+  const relatedServices = getServicePages(locale as AppLocale)
     .filter((item) => item.slug !== service.slug)
     .slice(0, 3);
-
-  const pageLabel = isEnglish ? "Service detail" : "Деталі послуги";
-  const valueLabel = isEnglish ? "Business value" : "Цінність для бізнесу";
-  const offerLabel = isEnglish ? "Starting point" : "Стартова вартість";
-  const keywordsLabel = isEnglish ? "Search layer" : "Пошуковий шар";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -116,15 +110,15 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     provider: {
       "@type": "Person",
       name: "Serhii Oberemchuk",
-      url: SITE_URL,
+      url: SITE_URL
     },
     offers: {
       "@type": "Offer",
       priceSpecification: {
         "@type": "PriceSpecification",
         priceCurrency: "EUR",
-        description: service.priceFrom,
-      },
+        description: service.priceFrom
+      }
     },
     url: `${SITE_URL}${pagePath}`,
     mainEntityOfPage: `${SITE_URL}${pagePath}`,
@@ -135,10 +129,10 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         name: item.question,
         acceptedAnswer: {
           "@type": "Answer",
-          text: item.answer,
-        },
-      })),
-    },
+          text: item.answer
+        }
+      }))
+    }
   };
 
   return (
@@ -173,7 +167,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <AnimationWrapper animation="slide-right">
               <div className="flex h-full flex-col">
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/54">
-                  {pageLabel}
+                  {pageT("pageLabel")}
                 </p>
                 <div className="max-w-xl min-h-[16rem]">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
@@ -192,7 +186,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                     <div className="flex items-center gap-2 text-white/44">
                       <BriefcaseBusiness className="h-4 w-4" />
                       <p className="text-[0.64rem] font-semibold uppercase tracking-[0.24em]">
-                        {offerLabel}
+                        {pageT("offerLabel")}
                       </p>
                     </div>
                     <p className="mt-2.5 text-[1.05rem] text-white">
@@ -207,7 +201,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               <div className="grid gap-6">
                 <div className="rounded-[1.7rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
-                    {valueLabel}
+                    {pageT("valueLabel")}
                   </p>
                   <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
                     {pageT("valueDescription")}
@@ -305,7 +299,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <AnimationWrapper animation="slide-up">
             <div className="rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f7fafc)] p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
               <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                {keywordsLabel}
+                {pageT("keywordsLabel")}
               </p>
               <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
                 {pageT("searchIntentTitle")}
@@ -333,7 +327,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <div className="grid gap-6 rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)] lg:grid-cols-[0.9fr_1.1fr]">
               <div>
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                  FAQ
+                  {pageT("faqLabel")}
                 </p>
                 <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
                   {pageT("faqTitle")}
@@ -363,7 +357,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
               <div>
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                  {pageLabel}
+                  {pageT("pageLabel")}
                 </p>
                 <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
                   {pageT("relatedTitle")}
@@ -405,7 +399,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
               <div>
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/44">
-                  {offerLabel}
+                  {pageT("offerLabel")}
                 </p>
                 <h2 className="max-w-3xl text-4xl leading-[0.96] md:text-5xl">
                   {pageT("estimate.title")}

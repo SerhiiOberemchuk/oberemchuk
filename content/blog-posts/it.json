@@ -1,0 +1,197 @@
+[
+  {
+    "slug": "website-structure-for-leads",
+    "title": "Quale struttura del sito genera davvero richieste",
+    "excerpt": "Perche molti siti spiegano l'azienda ma non portano all'azione, e come costruire una struttura commerciale orientata alle richieste.",
+    "metaTitle": "Struttura del sito che genera richieste",
+    "metaDescription": "Come costruire una struttura sito orientata alle richieste: hero, prove, servizi, FAQ, casi studio, CTA e flusso tra le pagine.",
+    "category": "Strategia del sito",
+    "readingTime": "6 min",
+    "publishedAt": "2026-04-23",
+    "heroTitle": "Una struttura del sito che non si limita a spiegare, ma porta verso la richiesta",
+    "heroDescription": "I siti deboli hanno spesso molte sezioni ma poca logica decisionale. I siti forti si costruiscono intorno a cio che il cliente deve capire nei primi secondi e a cosa deve fare subito dopo.",
+    "keywords": [
+      "struttura del sito",
+      "sito per lead",
+      "hero section",
+      "casi studio e CTA"
+    ],
+    "sections": [
+      {
+        "title": "Perche i siti spesso non vendono",
+        "paragraphs": [
+          "Un errore comune e costruire la pagina come profilo aziendale. Il visitatore vede una hero astratta, una lunga sezione sul team e una lista di tecnologie, ma non capisce mai come questo aiuti davvero il business.",
+          "Senza un percorso decisionale chiaro, anche un buon design non converte. L'utente semplicemente non viene guidato verso l'azione successiva."
+        ],
+        "bullets": [
+          "nessuna promessa forte orientata al risultato nella hero",
+          "prove e casi studio troppo in basso",
+          "servizi descritti per feature e non per valore",
+          "CTA generica che non definisce il prossimo passo"
+        ]
+      },
+      {
+        "title": "Quale struttura tende a funzionare meglio",
+        "paragraphs": [
+          "Per la maggior parte dei siti B2B e di servizi, la struttura piu forte e quella che risponde in fretta a tre domande: cosa fai, per chi lo fai e perche il business dovrebbe fidarsi di te.",
+          "Dopo questo, il punto non e continuare a parlare di se stessi, ma ridurre il rischio con casi studio, processo, risultati attesi e un modo semplice per ottenere una stima."
+        ],
+        "bullets": [
+          "hero con offerta commerciale e CTA chiara",
+          "servizi presentati come soluzione a un problema",
+          "casi studio come prova e livello di fiducia",
+          "processo e FAQ come riduzione del rischio",
+          "blocco contatti come chiusura logica della pagina"
+        ]
+      },
+      {
+        "title": "Cosa cambia dopo questa ristrutturazione",
+        "paragraphs": [
+          "Il sito smette di comportarsi come una brochure decorativa e inizia a funzionare come un sistema decisionale. Non crea traffico da solo, ma migliora la percezione e aumenta la probabilita che i visitatori qualificati si facciano avanti.",
+          "Questo vale soprattutto per servizi piu complessi e per aziende che entrano in mercati internazionali, dove la fiducia nella presentazione pesa molto."
+        ]
+      }
+    ],
+    "relatedLandingSlug": "website-development-europe"
+  },
+  {
+    "slug": "nextjs-for-business-websites",
+    "title": "Quando Next.js e davvero la scelta giusta per un sito business",
+    "excerpt": "Non hype sul framework, ma motivi reali per cui Next.js e sensato per un sito, uno storefront o un'interfaccia di prodotto.",
+    "metaTitle": "Quando Next.js e adatto a un sito business",
+    "metaDescription": "Quando scegliere Next.js per un sito business: velocita, SEO, scalabilita, routing, localizzazione e architettura prodotto.",
+    "category": "Stack tecnico",
+    "readingTime": "5 min",
+    "publishedAt": "2026-04-23",
+    "heroTitle": "Next.js per un sito business: vantaggio reale, non semplice trend",
+    "heroDescription": "Un framework da solo non vende nulla. Ma puo offrire una base forte per velocita, SEO, scalabilita e crescita controllata di un sito o prodotto.",
+    "keywords": [
+      "Next.js",
+      "sviluppo React",
+      "frontend SEO-ready",
+      "sito business"
+    ],
+    "sections": [
+      {
+        "title": "Cosa ottiene davvero il business da Next.js",
+        "paragraphs": [
+          "Il vantaggio reale non e il nome dello stack, ma il modo in cui permette di costruire il sito come un sistema controllato: routing, layout, metadata, localizzazione e performance che lavorano insieme.",
+          "Per i siti marketing questo conta perche SEO e velocita non dovrebbero essere un ripensamento. Per le web app conta perche l'interfaccia deve crescere senza caos."
+        ],
+        "bullets": [
+          "base piu forte per il SEO tecnico",
+          "rendering piu rapido e miglior controllo delle performance",
+          "buona scelta per molti contenuti e piu lingue",
+          "scalabilita piu semplice del codice nel tempo"
+        ]
+      },
+      {
+        "title": "Quando Next.js non dovrebbe essere l'obiettivo in se",
+        "paragraphs": [
+          "Se al business serve solo un microsito temporaneo senza piano di crescita, il framework conta molto meno. Ma quando il sito diventa parte delle vendite o della ricerca organica, una base tecnica debole diventa un problema di business.",
+          "Per questo la domanda migliore non e 'ci serve Next.js?', ma 'ci serve un sito pronto per SEO, nuove pagine e crescita futura?'."
+        ]
+      },
+      {
+        "title": "Dove il vantaggio si vede di piu",
+        "paragraphs": [
+          "Il beneficio emerge piu chiaramente su landing page per traffico paid, siti aziendali multipagina, storefront custom e prodotti con portali cliente."
+        ],
+        "bullets": [
+          "landing page",
+          "siti aziendali",
+          "storefront e-commerce",
+          "MVP web app e dashboard"
+        ]
+      }
+    ],
+    "relatedLandingSlug": "nextjs-development-europe"
+  },
+  {
+    "slug": "website-redesign-without-losing-seo",
+    "title": "Come rilanciare un sito senza rompere la SEO",
+    "excerpt": "Una traccia pratica di cio che le aziende perdono spesso durante redesign o rilancio, e di come evitarlo con una migrazione controllata.",
+    "metaTitle": "Come rifare un sito senza perdere SEO",
+    "metaDescription": "Redesign sito senza perdere SEO: redirect, metadata, URL, sitemap, indicizzazione e migrazione delle pagine di valore in una nuova struttura.",
+    "category": "Rilancio e SEO",
+    "readingTime": "7 min",
+    "publishedAt": "2026-04-23",
+    "heroTitle": "Redesign senza perdere SEO: cosa deve restare sotto controllo",
+    "heroDescription": "Il problema del redesign non e il nuovo strato visivo. E il fatto che le aziende spesso rompono pagine che gia funzionavano nella ricerca o sostenevano le vendite.",
+    "keywords": [
+      "website redesign",
+      "SEO migration",
+      "piano redirect",
+      "technical SEO relaunch"
+    ],
+    "sections": [
+      {
+        "title": "Cosa si perde piu spesso durante un rilancio",
+        "paragraphs": [
+          "Lo scenario peggiore e semplice: il nuovo sito appare migliore, ma i vecchi URL spariscono, i redirect mancano, i metadata vengono riscritti in modo caotico e la sitemap non riflette piu la struttura reale.",
+          "Il risultato e un prodotto piu pulito visivamente, ma con meno visibilita e cali sulle pagine importanti."
+        ],
+        "bullets": [
+          "si rompe la logica dei vecchi URL",
+          "spariscono pagine con valore di ricerca",
+          "nuovi title e description si duplicano",
+          "i link interni puntano ai posti sbagliati"
+        ]
+      },
+      {
+        "title": "Cosa deve succedere prima del lancio",
+        "paragraphs": [
+          "Prima del rilascio deve esistere una mappa di migrazione: quali pagine restano, quali si uniscono, quali ricevono un nuovo URL e come vengono gestiti i redirect.",
+          "Metadata, canonical, sitemap, robots e la nuova struttura vanno rivisti per assicurarsi che il rilancio sia davvero piu forte e non semplicemente diverso."
+        ]
+      },
+      {
+        "title": "Perche questo conta sul piano commerciale",
+        "paragraphs": [
+          "Un rilancio controllato permette al business di aggiornare posizionamento, design e base tecnica senza perdere il valore SEO e le pagine che gia sostenevano le vendite."
+        ]
+      }
+    ],
+    "relatedLandingSlug": "website-redesign-seo-migration"
+  },
+  {
+    "slug": "seo-ready-website-launch",
+    "title": "Cosa significa davvero lanciare un sito SEO-ready",
+    "excerpt": "Un sito SEO-ready non significa crescita immediata. Significa che struttura e base tecnica non ostacolano la performance organica dopo il lancio.",
+    "metaTitle": "Cosa significa un lancio sito SEO-ready",
+    "metaDescription": "Cosa rientra in un lancio SEO-ready: metadata, struttura pagine, schema.org, sitemap, link interni e base tecnica per la crescita organica.",
+    "category": "SEO tecnico",
+    "readingTime": "5 min",
+    "publishedAt": "2026-04-23",
+    "heroTitle": "Lancio sito SEO-ready: cosa significa in pratica",
+    "heroDescription": "Un sito non diventa visibile solo perche sono stati aggiunti title e description. Ma puo uscire online con una base tecnica che non blocca il lavoro SEO futuro.",
+    "keywords": [
+      "sito SEO-ready",
+      "lancio SEO tecnico",
+      "metadata",
+      "schema.org"
+    ],
+    "sections": [
+      {
+        "title": "Cosa rientra nel layer base SEO-ready",
+        "paragraphs": [
+          "Il minimo per un lancio solido e una struttura pagina pulita, title e description chiari, canonical, sitemap, robots, schema.org e linking interno.",
+          "Contano anche velocita e qualita mobile, perche una UX debole puo ridurre il valore anche di una struttura tecnicamente corretta."
+        ],
+        "bullets": [
+          "metadata senza duplicazioni",
+          "logica URL e gerarchia delle pagine",
+          "schema.org e sitemap",
+          "link interni e qualita mobile-first"
+        ]
+      },
+      {
+        "title": "Cosa il layer SEO-ready non fa",
+        "paragraphs": [
+          "Non sostituisce la strategia contenuti e non garantisce crescita immediata. Quello che fa e rimuovere blocchi tecnici e permettere alla SEO di espandersi dopo, senza rifare le fondamenta."
+        ]
+      }
+    ],
+    "relatedLandingSlug": "nextjs-development-europe"
+  }
+]

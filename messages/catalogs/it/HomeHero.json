@@ -1,0 +1,36 @@
+{
+  "badge": "Partner tecnico per siti che devono generare fiducia, richieste e vendite",
+  "titlePrefix": "Creo",
+  "titleHighlight": "siti web che portano",
+  "titleSuffix": "richieste e vendite",
+  "description": "Creo landing page, siti aziendali, progetti e-commerce e web app per aziende che hanno bisogno di piu di una presenza online ben rifinita.",
+  "primaryCta": "Richiedi una stima",
+  "secondaryCta": "Vedi i casi studio",
+  "manifesto": {
+    "label": "Posizionamento",
+    "title": "Logica commerciale del sito, non riempitivo da freelance.",
+    "body": "Posizionamento, struttura, sviluppo e lancio vengono assemblati come un unico sistema orientato all'impatto business."
+  },
+  "proof": {
+    "label": "Cosa conta",
+    "body": "Non solo un sito curato, ma un asset digitale pronto per traffico, fiducia e conversione."
+  },
+  "stats": [
+    {
+      "value": "50+",
+      "label": "progetti consegnati"
+    },
+    {
+      "value": "5+",
+      "label": "anni di esperienza"
+    },
+    {
+      "value": "B2B",
+      "label": "brand e prodotti"
+    },
+    {
+      "value": "Fullstack",
+      "label": "da struttura a lancio"
+    }
+  ]
+}

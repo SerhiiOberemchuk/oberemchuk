@@ -1,0 +1,71 @@
+{
+  "title": "How The Work Runs",
+  "subtitle": "I step in as a technical partner: shaping positioning, structure, execution and launch so the website works as a commercial tool rather than a decorative presence.",
+  "valueTitle": "What the business gets",
+  "labels": {
+    "positioning": "Positioning",
+    "tooling": "Selected stack and delivery tools"
+  },
+  "paragraphs": [
+    "At the start, I help define the page logic: what belongs in the hero, where proof should appear, how the page leads to inquiry and which pages deserve separate treatment.",
+    "During the project, scope, priorities, structure and launch logic are fixed early. That reduces noise, cuts wasted iterations and gives the business control over the result.",
+    "At the end, the client gets more than code: a site prepared for ads, SEO, analytics, new pages and future growth."
+  ],
+  "summaryStats": [
+    {
+      "value": "50+",
+      "label": "projects"
+    },
+    {
+      "value": "B2B",
+      "label": "brands and products"
+    },
+    {
+      "value": "5+",
+      "label": "years of experience"
+    },
+    {
+      "value": "End-to-end",
+      "label": "from structure to launch"
+    }
+  ],
+  "skillsTitle": "What I cover",
+  "skills": [
+    {
+      "title": "Frontend development",
+      "description": "React, Next.js and TypeScript for fast, stable and scalable interfaces."
+    },
+    {
+      "title": "Backend development",
+      "description": "Node.js, APIs, databases and integrations for services, CRMs, forms and business logic."
+    },
+    {
+      "title": "Product logic",
+      "description": "I translate business goals into page structure, content priorities and action flows that make the product commercially coherent."
+    },
+    {
+      "title": "Technical SEO",
+      "description": "Page structure, metadata, schema.org and performance are built in from the start."
+    },
+    {
+      "title": "Mobile-first",
+      "description": "Interfaces are designed to work well on phones, tablets and desktop without UX compromises."
+    }
+  ],
+  "processTitle": "Process",
+  "process": [
+    {
+      "title": "Strategy and structure",
+      "description": "We define the business goal, target audience, conversion logic and which blocks actually matter for decision-making."
+    },
+    {
+      "title": "Design and development",
+      "description": "I turn the structure into a working interface, content hierarchy, integrations and user flows."
+    },
+    {
+      "title": "Launch and growth",
+      "description": "I prepare the SEO base, analytics, forms, stable deployment and room for campaigns, discoverability and scaling after launch."
+    }
+  ],
+  "technologiesTitle": "Technologies I work with"
+}

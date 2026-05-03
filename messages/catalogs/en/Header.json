@@ -1,0 +1,15 @@
+{
+  "navigation": {
+    "services": "Services",
+    "portfolio": "Cases",
+    "about": "Process",
+    "contact": "Estimate"
+  },
+  "cta": "Get an estimate",
+  "menu": "Menu",
+  "primaryNavigation": "Primary navigation",
+  "mobileNavigation": "Mobile navigation",
+  "mobileMenu": "Mobile menu",
+  "logoAlt": "Serhii Oberemchuk logo",
+  "closeMenu": "Close menu"
+}

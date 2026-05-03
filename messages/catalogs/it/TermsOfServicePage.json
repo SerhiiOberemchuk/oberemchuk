@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "title": "Termini di servizio",
+    "description": "Termini di servizio del sito di Serhii Oberemchuk. Consulta regole e condizioni per l'uso del sito e dei servizi collegati.",
+    "openGraph": {
+      "title": "Termini di servizio | Serhii Oberemchuk",
+      "description": "Termini di servizio del sito di Serhii Oberemchuk. Consulta regole e condizioni per l'uso del sito e dei servizi collegati."
+    },
+    "twitter": {
+      "title": "Termini di servizio | Serhii Oberemchuk",
+      "description": "Termini di servizio del sito di Serhii Oberemchuk. Consulta regole e condizioni per l'uso del sito e dei servizi collegati."
+    }
+  },
+  "title": "Termini di servizio",
+  "eyebrow": "Termini di servizio",
+  "lastUpdated": "Ultimo aggiornamento: 1 giugno 2024",
+  "sections": {
+    "intro": {
+      "title": "1. Introduzione",
+      "description": "Benvenuto nel sito di Serhii Oberemchuk. Usando questo sito accetti di rispettare questi termini. Se non sei d'accordo con una qualsiasi parte, ti prego di non usare il sito."
+    },
+    "definitions": {
+      "title": "2. Definizioni",
+      "user": "\"Utente\" indica qualsiasi persona che accede o usa il sito.",
+      "content": "\"Contenuto\" indica qualsiasi informazione, testo, grafica, immagine, video, audio, dato o altro materiale pubblicato sul sito.",
+      "services": "\"Servizi\" indica i servizi descritti sul sito, inclusi sviluppo web, web design, SEO e relative soluzioni tecniche."
+    },
+    "websiteUse": {
+      "title": "3. Uso del sito",
+      "description": "Usando il sito, accetti di:",
+      "items": [
+        "Usare il sito solo per scopi leciti e senza violare i diritti di terzi.",
+        "Non compiere azioni che possano danneggiare, sovraccaricare o destabilizzare il sito.",
+        "Non tentare di ottenere accesso non autorizzato a qualsiasi parte del sito o dei sistemi collegati.",
+        "Non raccogliere informazioni su altri utenti senza il loro consenso.",
+        "Non usare il sito per distribuire software dannoso o altri scenari abusivi."
+      ]
+    },
+    "ip": {
+      "title": "4. Proprietà intellettuale",
+      "description": "Il sito, i suoi contenuti, design, codice, grafica e altri materiali appartengono a me o sono usati su base lecita. Sono protetti dalla normativa su copyright e diritti connessi."
+    },
+    "orders": {
+      "title": "5. Richiesta di servizi",
+      "paragraphs": [
+        "Se invii una richiesta o un brief tramite il sito, accetti di fornire informazioni accurate, aggiornate e sufficienti sul compito.",
+        "Ogni collaborazione relativa ai servizi viene chiarita separatamente: ambito, tempi, prezzo e condizioni di consegna sono definiti tramite accordo separato."
+      ]
+    },
+    "pricing": {
+      "title": "6. Prezzi e pagamenti",
+      "description": "I prezzi mostrati sul sito sono indicativi. Il prezzo finale dipende da ambito, requisiti tecnici e integrazioni necessarie."
+    },
+    "liability": {
+      "title": "7. Limitazione di responsabilita",
+      "description": "Non sono responsabile per danni indiretti, incidentali o consequenziali che possano derivare dall'uso del sito.",
+      "items": [
+        "Il tuo uso del sito o l'impossibilita di usarlo.",
+        "Azioni che compio o non compio in risposta alle tue richieste o messaggi.",
+        "Errori, interruzioni, ritardi di funzionamento o guasti tecnici.",
+        "Accesso non autorizzato alle informazioni che trasmetti.",
+        "Azioni di terze parti o servizi esterni collegati dal sito."
+      ]
+    },
+    "warranty": {
+      "title": "8. Esclusione di garanzie",
+      "description": "Il sito viene fornito \"cosi com'e\" e \"come disponibile\". Non garantisco funzionamento ininterrotto, sicurezza assoluta o totale assenza di errori."
+    },
+    "privacy": {
+      "title": "9. Privacy",
+      "description": "La tua privacy e importante per me. Maggiori dettagli su raccolta, trattamento e conservazione dei dati sono descritti nella <privacyLink>Privacy policy</privacyLink>."
+    },
+    "cookies": {
+      "title": "10. Cookie",
+      "description": "Il sito usa cookie per migliorare l'esperienza utente. Maggiori dettagli sono disponibili nella <cookiesLink>Cookie policy</cookiesLink>."
+    },
+    "changes": {
+      "title": "11. Modifiche ai termini",
+      "description": "Posso aggiornare questi termini di tanto in tanto. La versione corrente sara sempre pubblicata su questa pagina e l'uso continuato del sito implica accettazione dei termini aggiornati."
+    },
+    "termination": {
+      "title": "12. Sospensione dell'accesso",
+      "description": "Posso limitare o sospendere l'accesso al sito in caso di violazione di questi termini o per altre ragioni giustificate."
+    },
+    "law": {
+      "title": "13. Legge applicabile",
+      "description": "Questi termini sono interpretati secondo la legge applicabile, tenendo conto della giurisdizione in cui la collaborazione viene effettivamente svolta."
+    },
+    "contact": {
+      "title": "14. Informazioni di contatto",
+      "description": "Se hai domande su questi termini, contattami:",
+      "email": "Email: serhiioberemchuk@gmail.com"
+    }
+  },
+  "navigation": {
+    "home": "Torna alla home",
+    "privacy": "Privacy policy",
+    "cookies": "Cookie policy"
+  },
+  "footer": {
+    "title": "Ti servono anche le policy di supporto?",
+    "description": "Da qui puoi tornare al sito o aprire i documenti su privacy e cookie."
+  }
+}

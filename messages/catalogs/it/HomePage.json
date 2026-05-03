@@ -1,0 +1,99 @@
+{
+  "faq": {
+    "title": "Domande frequenti",
+    "subtitle": "Questo blocco risponde alle principali obiezioni prima dell'avvio: prezzo, approccio, cambi di ambito e cosa succede dopo la richiesta.",
+    "items": [
+      {
+        "question": "Perche il prezzo puo essere piu alto rispetto a un freelance tipico?",
+        "answer": "Perche il lavoro non si limita all'implementazione. Aiuto a definire logica della pagina, struttura, flusso di conversione, base SEO tecnica e direzione di lancio."
+      },
+      {
+        "question": "In cosa e diverso dal semplice “fare un sito”?",
+        "answer": "Parto dal compito di business: cosa deve dimostrare il sito, chi deve convincere e quale azione deve portare. Questo cambia struttura, priorita del copy, casi studio e CTA."
+      },
+      {
+        "question": "Il progetto puo costare meno?",
+        "answer": "Si, restringendo l'ambito. Per esempio si puo partire da una landing focalizzata invece di un sito piu ampio, o spostare parte delle integrazioni in una seconda fase."
+      },
+      {
+        "question": "Cosa succede se il progetto cambia durante il lavoro?",
+        "answer": "Si gestisce bene finche l'ambito base viene fissato prima dell'avvio e le nuove richieste vengono trattate a parte. Cosi tempi, budget e priorita restano sotto controllo."
+      },
+      {
+        "question": "Il SEO e incluso nello sviluppo?",
+        "answer": "Si. La base SEO tecnica e inclusa: struttura pagina, metadata, sitemap, schema, velocita e markup pulito. Le landing SEO dedicate possono essere aggiunte in una fase successiva."
+      },
+      {
+        "question": "Cosa ricevo dopo aver inviato una richiesta?",
+        "answer": "Ricevi un prossimo passo pratico: una prima direzione di ambito, una stima iniziale dei tempi e un consiglio sul formato piu adatto al tuo caso."
+      }
+    ]
+  },
+  "metadata": {
+    "title": "Serhii Oberemchuk | Sviluppatore web per siti, e-commerce e web app",
+    "description": "Serhii Oberemchuk e uno sviluppatore web fullstack e partner digitale. Creo siti aziendali, landing page, e-commerce e web application con React, Next.js e SEO tecnico.",
+    "keywords": [
+      "sviluppatore web fullstack",
+      "sviluppo siti web",
+      "sviluppo web application",
+      "sviluppo siti aziendali",
+      "sviluppo e-commerce",
+      "sviluppatore React",
+      "sviluppatore Next.js",
+      "SEO tecnico"
+    ],
+    "openGraph": {
+      "title": "Serhii Oberemchuk | Sviluppatore web per siti, e-commerce e web app",
+      "description": "Siti aziendali, landing page, e-commerce e web app con struttura forte, esecuzione chiara e profondita tecnica.",
+      "imageAlt": "Serhii Oberemchuk - sviluppatore web per siti, e-commerce e web app"
+    },
+    "twitter": {
+      "title": "Serhii Oberemchuk | Sviluppatore web per siti, e-commerce e web app",
+      "description": "Siti business, web app e SEO tecnico con struttura forte, presentazione curata e solidita tecnica."
+    }
+  },
+  "schema": {
+    "person": {
+      "description": "Sviluppatore web fullstack e partner digitale che crea siti e web application con struttura forte, qualita dell'interfaccia e disciplina tecnica.",
+      "knowsAbout": [
+        "Web Development",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Technical SEO",
+        "Frontend Development",
+        "Backend Development"
+      ]
+    },
+    "website": {
+      "description": "Siti web e web application per aziende ambiziose"
+    },
+    "service": {
+      "description": "Servizi di sviluppo web di Serhii Oberemchuk: landing page, siti aziendali, e-commerce, web application custom e SEO tecnico.",
+      "serviceType": [
+        "Web Development",
+        "E-commerce Development",
+        "Technical SEO"
+      ],
+      "offers": [
+        {
+          "name": "Sviluppo landing page",
+          "description": "Sviluppo completo di landing page"
+        },
+        {
+          "name": "Sviluppo siti aziendali",
+          "description": "Sviluppo di siti aziendali"
+        },
+        {
+          "name": "Sviluppo e-commerce",
+          "description": "Sviluppo di storefront e-commerce"
+        },
+        {
+          "name": "Sviluppo web application",
+          "description": "Sviluppo di web application"
+        }
+      ]
+    }
+  }
+}

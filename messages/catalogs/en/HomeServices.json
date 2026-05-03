@@ -1,0 +1,74 @@
+{
+  "title": "Services",
+  "subtitle": "Each offer is framed around a business outcome rather than a feature list: leads, trust, sales, scale or a stronger launch path.",
+  "popularBadge": "Popular",
+  "detailsCta": "Learn more",
+  "approachTitle": "Why this approach works",
+  "estimateTitle": "Need an estimate for your case?",
+  "estimateDescription": "Tell me what you sell, who your client is and what the website should achieve. I will help define the right format, scope and a realistic launch plan.",
+  "estimateCta": "Get an estimate",
+  "labels": {
+    "section": "Services",
+    "estimatePitch": "Clear scope, realistic timing and a launch plan that makes commercial sense."
+  },
+  "services": [
+    {
+      "title": "Landing pages",
+      "description": "For paid traffic, demand testing or fast offer launches, when the website should drive one clear action instead of behaving like a brochure.",
+      "price": "from 800 EUR",
+      "features": [
+        "clear offer and CTA",
+        "conversion-focused structure",
+        "analytics and forms",
+        "fast launch"
+      ]
+    },
+    {
+      "title": "Corporate websites",
+      "description": "For companies that need to look stronger, explain services with authority and turn qualified traffic into inquiries.",
+      "price": "from 1600 EUR",
+      "features": [
+        "service pages built to sell",
+        "case studies and trust blocks",
+        "technical SEO",
+        "ready for ads and growth"
+      ]
+    },
+    {
+      "title": "E-commerce stores",
+      "description": "For businesses that want to sell online through a stronger storefront, a clearer checkout flow and a scalable catalogue structure.",
+      "price": "from 2500 EUR",
+      "features": [
+        "custom storefront",
+        "payments and CRM",
+        "mobile-first UX",
+        "SEO-ready category logic"
+      ]
+    },
+    {
+      "title": "Web applications",
+      "description": "For SaaS, internal platforms, client portals and MVPs where a working product with logic and scalable architecture matters more than a generic website shell.",
+      "price": "from 3000 EUR",
+      "features": [
+        "roles and permissions",
+        "API integrations",
+        "dashboards",
+        "scalable architecture"
+      ]
+    }
+  ],
+  "advantages": [
+    {
+      "title": "Outcome over feature list",
+      "description": "Each service is packaged around what should change for the business after launch, not just what gets built."
+    },
+    {
+      "title": "Clear process",
+      "description": "Scope, structure, technical stack and delivery priorities are defined early, so the project stays controlled."
+    },
+    {
+      "title": "Built for growth",
+      "description": "Performance, SEO, analytics and future expansion are part of the initial system instead of patched in later."
+    }
+  ]
+}

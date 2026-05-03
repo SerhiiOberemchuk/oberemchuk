@@ -1,0 +1,38 @@
+{
+  "badge": "Stima progetto e avvio",
+  "title": "Richiedi una stima per il tuo progetto",
+  "description": "Condividi il compito, la fascia di budget e l'obiettivo del sito. Riceverai un prossimo passo pratico, non una risposta vaga.",
+  "infoTitle": "Informazioni di contatto",
+  "infoDescription": "Brief iniziale, logica di stima chiara e un prossimo passo pratico.",
+  "startTitle": "Cosa ottieni all'inizio",
+  "stackTitle": "Stack e specializzazione",
+  "emailCta": "Invia un'email",
+  "telegramCta": "Scrivi su Telegram",
+  "briefTitle": "Richiesta breve",
+  "briefDescription": "Cosa va realizzato, per quale tipo di azienda e quale risultato deve portare il sito.",
+  "briefBody": "Scrivi cosa va realizzato, qual e l'obiettivo business e quale fascia di budget stai valutando. Basta questo per passare da un interesse generico a un piano reale.",
+  "advantages": [
+    "Un piano chiaro prima dell'avvio",
+    "Ambito di lavoro definito",
+    "Una stima realistica dei tempi",
+    "Un sito pronto per SEO e campagne"
+  ],
+  "contactItems": {
+    "email": {
+      "label": "Email",
+      "value": "serhiioberemchuk@gmail.com"
+    },
+    "telegram": {
+      "label": "Telegram",
+      "value": "@SerhiiOberemchuk"
+    },
+    "workMode": {
+      "label": "Collaborazione",
+      "value": "Partner tecnico indipendente per siti commerciali e prodotti digitali"
+    },
+    "workRhythm": {
+      "label": "Tempi di risposta",
+      "value": "Risposta entro 24 ore con un prossimo passo pratico"
+    }
+  }
+}

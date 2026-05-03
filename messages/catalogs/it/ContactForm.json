@@ -1,0 +1,96 @@
+{
+  "validation": {
+    "nameRequired": "Inserisci il tuo nome",
+    "emailRequired": "Inserisci la tua email",
+    "emailInvalid": "Inserisci un'email valida",
+    "messageRequired": "Inserisci il tuo messaggio"
+  },
+  "submit": {
+    "success": "Il tuo messaggio e stato inviato con successo!",
+    "error": "Invio del messaggio non riuscito",
+    "loading": "Invio in corso...",
+    "button": "Richiedi una stima"
+  },
+  "fields": {
+    "name": "Nome *",
+    "namePlaceholder": "Il tuo nome",
+    "email": "Email *",
+    "phone": "Telefono (facoltativo)",
+    "phonePlaceholder": "+39 XX XXX XX XX",
+    "service": "Di cosa hai bisogno?",
+    "servicePlaceholder": "Scegli il formato del progetto",
+    "serviceAria": "Scegli un tipo di servizio",
+    "budget": "Budget",
+    "budgetPlaceholder": "Scegli la fascia di budget",
+    "budgetAria": "Scegli il budget del progetto",
+    "message": "Breve descrizione del compito *",
+    "messagePlaceholder": "Cosa vendi, a chi e quale risultato deve portare il sito?",
+    "emailPlaceholder": "tuo@email.com",
+    "messageHint": "Basta una breve nota su compito, obiettivo, tempistiche o risultato atteso."
+  },
+  "services": [
+    {
+      "value": "landing-page",
+      "label": "Landing page"
+    },
+    {
+      "value": "corporate-website",
+      "label": "Sito aziendale"
+    },
+    {
+      "value": "astro-website",
+      "label": "Sito contenutistico con Astro"
+    },
+    {
+      "value": "ecommerce",
+      "label": "Storefront e-commerce"
+    },
+    {
+      "value": "payments",
+      "label": "Integrazione pagamenti"
+    },
+    {
+      "value": "crm",
+      "label": "Integrazione CRM / automazione"
+    },
+    {
+      "value": "web-app",
+      "label": "Web application / MVP"
+    },
+    {
+      "value": "support",
+      "label": "SEO / supporto / rilancio"
+    },
+    {
+      "value": "other",
+      "label": "Altro"
+    }
+  ],
+  "budgets": [
+    {
+      "value": "under-1000",
+      "label": "Fino a 1.000 EUR"
+    },
+    {
+      "value": "1000-3000",
+      "label": "1.000 - 3.000 EUR"
+    },
+    {
+      "value": "3000-5000",
+      "label": "3.000 - 5.000 EUR"
+    },
+    {
+      "value": "5000-10000",
+      "label": "5.000 - 10.000 EUR"
+    },
+    {
+      "value": "over-10000",
+      "label": "Oltre 10.000 EUR"
+    },
+    {
+      "value": "discuss",
+      "label": "Da discutere"
+    }
+  ],
+  "formHint": "Compila la richiesta breve. Bastano contatti, formato progetto, budget e compito principale."
+}

@@ -1,0 +1,23 @@
+{
+  "title": "What the client gets",
+  "subtitle": "Not just a finished website, but a clear plan, controlled delivery and a base for growth after launch.",
+  "cta": "Get an estimate",
+  "items": [
+    {
+      "title": "A clear plan before kickoff",
+      "description": "Before delivery starts, you understand the page structure, block logic and how the site is meant to drive inquiries or sales."
+    },
+    {
+      "title": "Defined scope and priorities",
+      "description": "Scope, priorities and expectations are fixed early to avoid project noise, wasted iterations and a blurred budget."
+    },
+    {
+      "title": "A realistic launch path",
+      "description": "The outcome is not abstract development work but a site or product prepared for campaigns, traffic, SEO or the next stage of growth."
+    },
+    {
+      "title": "A technical base without debt",
+      "description": "Structure, performance, responsiveness, analytics and SEO are built in from the start instead of patched after release."
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "title": "Portfolio sviluppo web | Casi studio su siti, e-commerce e web app",
+    "description": "Portfolio di sviluppo web di Serhii Oberemchuk con casi studio su siti, e-commerce e web application, con focus su struttura, qualita dell'interfaccia, performance ed esecuzione tecnica.",
+    "keywords": [
+      "portfolio sviluppo web",
+      "portfolio siti web",
+      "portfolio e-commerce",
+      "portfolio web application",
+      "casi studio siti web",
+      "portfolio sviluppatore Next.js",
+      "portfolio sviluppatore React",
+      "portfolio Serhii Oberemchuk"
+    ],
+    "openGraph": {
+      "title": "Portfolio | Serhii Oberemchuk",
+      "description": "Casi studio selezionati di sviluppo web: siti, progetti e-commerce e web application con struttura forte e buona qualita esecutiva.",
+      "imageAlt": "Portfolio di Serhii Oberemchuk"
+    },
+    "twitter": {
+      "title": "Portfolio | Serhii Oberemchuk",
+      "description": "Casi studio selezionati di sviluppo web con forte qualita esecutiva."
+    }
+  },
+  "schema": {
+    "name": "Portfolio di sviluppo web di Serhii Oberemchuk",
+    "description": "Un portfolio di casi studio su siti web, e-commerce e web application."
+  },
+  "archive": {
+    "label": "Casi studio",
+    "pitch": "Un archivio piu ampio di siti, e-commerce e web app, presentato come casi studio."
+  },
+  "hero": {
+    "title": "Portfolio",
+    "description": "Casi studio selezionati su siti web, e-commerce e web application, che mostrano qualita di implementazione, pensiero SEO tecnico, giudizio e disciplina in produzione."
+  },
+  "loadingLabel": "Caricamento progetti",
+  "listLabel": "Archivio casi studio",
+  "empty": "Nessun progetto trovato",
+  "seoText": {
+    "title": "Cosa mostra questo portfolio di sviluppo web",
+    "paragraphs": [
+      "Questo portfolio e una selezione di casi studio di sviluppo web, non solo screenshot. Mostra come affronto landing page, siti di servizio, siti aziendali multipagina, e-commerce, interfacce di prodotto e miglioramenti tecnici su prodotti esistenti.",
+      "Per un cliente conta non solo l'aspetto di una schermata, ma se lo sviluppatore sa lavorare con struttura della pagina, performance, SEO tecnico, integrazioni, form, analytics e scala. Questo e il livello di esecuzione che porto in ogni rilascio.",
+      "Se stai valutando un portfolio di sviluppo web per capire qualita di implementazione, esecuzione e-commerce, lavoro su web app e attenzione al dettaglio, questo archivio offre una vista rapida e concreta."
+    ]
+  }
+}

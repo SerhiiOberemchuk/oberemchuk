@@ -159,106 +159,142 @@
   -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
-.animate-fade-in {
-  opacity: 0;
-  transition: opacity 0.8s ease-out;
+.faq-item > summary::-webkit-details-marker,
+.seo-text > summary::-webkit-details-marker {
+  display: none;
 }
 
-.animate-fade-in.in-view {
-  opacity: 1;
+.faq-item > summary::marker,
+.seo-text > summary::marker {
+  content: "";
 }
 
-.animate-slide-up {
-  opacity: 0;
-  transform: translateY(50px);
-  transition:
-    opacity 0.8s ease-out,
-    transform 0.8s ease-out;
+.faq-item .faq-panel {
+  grid-template-rows: 0fr;
 }
 
-.animate-slide-up.in-view {
-  opacity: 1;
-  transform: translateY(0);
+.faq-item[open] .faq-panel {
+  grid-template-rows: 1fr;
 }
 
-.animate-slide-right {
-  opacity: 0;
-  transform: translateX(-50px);
-  transition:
-    opacity 0.8s ease-out,
-    transform 0.8s ease-out;
+.seo-text .seo-text-content {
+  max-height: 150px;
 }
 
-.animate-slide-right.in-view {
-  opacity: 1;
-  transform: translateX(0);
+.seo-text[open] .seo-text-content {
+  max-height: 2000px;
 }
 
-.animate-slide-left {
-  opacity: 0;
-  transform: translateX(50px);
-  transition:
-    opacity 0.8s ease-out,
-    transform 0.8s ease-out;
+.seo-text .prose {
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
 }
 
-.animate-slide-left.in-view {
-  opacity: 1;
-  transform: translateX(0);
+.seo-text[open] .prose {
+  mask-image: none;
+  -webkit-mask-image: none;
 }
 
-.animate-scale {
-  opacity: 0;
-  transform: scale(0.8);
-  transition:
-    opacity 0.8s ease-out,
-    transform 0.8s ease-out;
+.inview-reveal {
+  --inview-delay: 0ms;
 }
 
-.animate-scale.in-view {
-  opacity: 1;
-  transform: scale(1);
+@supports (animation-timeline: view()) {
+  .inview-reveal {
+    animation-duration: 0.9s;
+    animation-delay: var(--inview-delay);
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-timeline: view();
+    animation-range: entry 12% cover 34%;
+    will-change: opacity, transform;
+  }
+
+  .animate-fade-in {
+    animation-name: inview-fade-in;
+  }
+
+  .animate-slide-up {
+    animation-name: inview-slide-up;
+  }
+
+  .animate-slide-right {
+    animation-name: inview-slide-right;
+  }
+
+  .animate-slide-left {
+    animation-name: inview-slide-left;
+  }
+
+  .animate-scale {
+    animation-name: inview-scale;
+  }
 }
 
-.delay-100 {
-  transition-delay: 100ms;
+@media (prefers-reduced-motion: reduce) {
+  .inview-reveal {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 
-.delay-200 {
-  transition-delay: 200ms;
+@keyframes inview-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
-.delay-300 {
-  transition-delay: 300ms;
+@keyframes inview-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.delay-400 {
-  transition-delay: 400ms;
+@keyframes inview-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.delay-500 {
-  transition-delay: 500ms;
+@keyframes inview-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.swiper-pagination {
-  position: relative !important;
-  margin-top: 1rem;
-}
+@keyframes inview-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
 
-.swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  background-color: rgba(24, 31, 43, 0.28);
-  opacity: 0.75;
-  transition: all 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: hsl(var(--primary));
-  opacity: 1;
-  width: 20px;
-  height: 10px;
-  border-radius: 999px;
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .prose {
@@ -423,7 +459,7 @@
 
 .premium-sheen {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .premium-sheen::after {

@@ -1,0 +1,46 @@
+{
+  "badge": "Pensiero operativo",
+  "title": "Cosa rende il lavoro efficace sul piano commerciale",
+  "description": "Una presenza web forte non nasce solo dall'estetica. Funziona quando struttura, visibilita, messaggio ed esecuzione tecnica sostengono lo stesso obiettivo.",
+  "pillars": [
+    {
+      "title": "Struttura commerciale",
+      "description": "Pagine, gerarchia e call to action sono costruite intorno alle decisioni, non solo alla disposizione dei contenuti."
+    },
+    {
+      "title": "SEO tecnico",
+      "description": "Metadata, schema, velocita, linking interno e HTML pulito aiutano la visibilita senza rendere il prodotto meccanico."
+    },
+    {
+      "title": "Sistema scalabile",
+      "description": "Il sito e pronto per nuove pagine, campagne, servizi e crescita dei contenuti invece di restare bloccato in un layout una tantum."
+    },
+    {
+      "title": "Disciplina sulla performance",
+      "description": "Rendering rapido, codice manutenibile e qualita prevedibile in produzione fanno parte dello standard."
+    }
+  ],
+  "keywordsTitle": "Livelli chiave della crescita",
+  "keywords": [
+    "struttura",
+    "SEO",
+    "performance",
+    "copy",
+    "analytics",
+    "scalabilita",
+    "conversione",
+    "manutenibilita"
+  ],
+  "reasonsTitle": "Cosa cambia per il business",
+  "reasons": [
+    "Posizionamento piu nitido nella pagina",
+    "Maggiore visibilita senza teatro SEO",
+    "Percorsi utente e CTA piu puliti",
+    "Una base tecnica pronta a sostenere la crescita"
+  ],
+  "ctaTitle": "Logica di prodotto prima del rumore",
+  "ctaQuote": "La SEO deve stare dentro la logica del prodotto, non appesa alla pagina come una checklist.",
+  "ctaDescription": "Il lavoro rende di piu quando design, contenuto e implementazione sostengono la stessa direzione commerciale. E cosi che affronto siti di prodotto, siti di servizio e piattaforme web custom.",
+  "primaryCta": "Parliamo del progetto",
+  "secondaryCta": "Vedi i servizi"
+}

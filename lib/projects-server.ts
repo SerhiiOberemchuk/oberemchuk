@@ -1,6 +1,7 @@
 import "server-only";
 
-import type { Project } from "@/types/projects";
+import {cache} from "react";
+import type {Project} from "@/types/projects";
 
 type ProjectsResponse = {
   success?: boolean;
@@ -18,14 +19,14 @@ const PROJECTS_API_BASE_URL = (
 ).replace(/\/+$/, "");
 const PROJECTS_REVALIDATE_SECONDS = 86400;
 
-export async function getProjects(): Promise<Project[]> {
+async function fetchProjectsJson<T>(path: string, tags: string[]): Promise<T | null> {
   try {
-    const response = await fetch(`${PROJECTS_API_BASE_URL}/api/projects`, {
+    const response = await fetch(`${PROJECTS_API_BASE_URL}${path}`, {
       cache: "force-cache",
       next: {
         revalidate: PROJECTS_REVALIDATE_SECONDS,
-        tags: ["projects"],
-      },
+        tags
+      }
     });
 
     if (!response.ok) {
@@ -33,45 +34,46 @@ export async function getProjects(): Promise<Project[]> {
         "Failed to fetch projects:",
         response.status,
         response.statusText,
+        path
       );
-      return [];
+      return null;
     }
 
-    const payload = (await response.json()) as ProjectsResponse;
-    if (payload.success && Array.isArray(payload.data)) {
-      return payload.data;
-    }
-
-    return [];
+    return (await response.json()) as T;
   } catch (error) {
-    console.error("Error fetching projects:", error);
-    return [];
+    console.error("Error fetching projects:", path, error);
+    return null;
   }
 }
 
-export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  try {
-    const response = await fetch(
-      `${PROJECTS_API_BASE_URL}/api/projects/by-slug/${slug}`,
-      {
-        cache: "force-cache",
-        next: {
-          revalidate: PROJECTS_REVALIDATE_SECONDS,
-          tags: ["projects", `projects:${slug}`],
-        },
-      },
+const getProjectsCached = cache(async (): Promise<Project[]> => {
+  const payload = await fetchProjectsJson<ProjectsResponse>("/api/projects", [
+    "projects"
+  ]);
+
+  return payload?.success && Array.isArray(payload.data) ? payload.data : [];
+});
+
+const getProjectBySlugCached = cache(
+  async (slug: string): Promise<Project | null> => {
+    const payload = await fetchProjectsJson<ProjectResponse>(
+      `/api/projects/by-slug/${slug}`,
+      ["projects", `projects:${slug}`]
     );
 
-    if (response.ok) {
-      const payload = (await response.json()) as ProjectResponse;
-      if (payload.success && payload.data) {
-        return payload.data;
-      }
+    if (payload?.success && payload.data) {
+      return payload.data;
     }
-  } catch (error) {
-    console.error("Error fetching project by slug:", error);
-  }
 
-  const projects = await getProjects();
-  return projects.find((project) => project.slug === slug) ?? null;
+    const projects = await getProjectsCached();
+    return projects.find((project) => project.slug === slug) ?? null;
+  }
+);
+
+export async function getProjects(): Promise<Project[]> {
+  return getProjectsCached();
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  return getProjectBySlugCached(slug);
 }

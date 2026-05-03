@@ -1,0 +1,31 @@
+{
+  "description": "Siti web, e-commerce e prodotti digitali per aziende che hanno bisogno di una posizione piu forte, una struttura piu chiara e un asset pronto per crescere.",
+  "cta": {
+    "title": "Prossimo passo",
+    "description": "Se il sito ha bisogno di una posizione piu forte e di un percorso di contatto piu chiaro, si parte da una breve stima.",
+    "label": "Richiedi una stima"
+  },
+  "navigation": {
+    "title": "Navigazione",
+    "services": "Servizi",
+    "portfolio": "Casi",
+    "about": "Processo",
+    "contact": "Stima",
+    "solutions": "Pagine SEO",
+    "blog": "Blog"
+  },
+  "legal": {
+    "title": "Legale",
+    "privacy": "Privacy policy",
+    "cookies": "Cookie policy",
+    "terms": "Termini di servizio",
+    "cookieSettings": "Impostazioni cookie"
+  },
+  "contact": {
+    "title": "Contatto",
+    "remote": "Lavoro come partner tecnico indipendente per siti commerciali e prodotti digitali."
+  },
+  "copyright": "Tutti i diritti riservati.",
+  "tagline": "Da struttura a lancio.",
+  "logoAlt": "Logo di Serhii Oberemchuk"
+}

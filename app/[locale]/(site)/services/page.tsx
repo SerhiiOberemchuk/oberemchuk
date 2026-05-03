@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { connection } from "next/server";
 import { Suspense } from "react";
 import {
@@ -12,6 +12,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
 import { Link } from "@/i18n/navigation";
+import { type AppLocale } from "@/i18n/locales";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -31,13 +32,13 @@ export async function generateMetadata({
     locale,
     namespace: "ServicesPage.metadata",
   });
-  const pagePath = locale === "en" ? "/en/services" : "/services";
+  const pagePath = locale === "uk" ? "/services" : `/${locale}/services`;
 
   return {
     title: t("title"),
     description: t("description"),
     keywords: t.raw("keywords") as string[],
-    alternates: getPageAlternates(locale as "uk" | "en", "/services"),
+    alternates: getPageAlternates(locale as AppLocale, "/services"),
     openGraph: {
       title: t("openGraph.title"),
       description: t("openGraph.description"),
@@ -66,10 +67,9 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const pageT = await getTranslations({ locale, namespace: "ServicesPage" });
-  const servicePages = getServicePages(locale as "uk" | "en");
-  const pagePath = locale === "en" ? "/en/services" : "/services";
+  const servicePages = getServicePages(locale as AppLocale);
+  const pagePath = locale === "uk" ? "/services" : `/${locale}/services`;
   const baseUrl = "https://oberemchuk.online";
-  const isEnglish = locale === "en";
   const pricingHighlights = pageT.raw("pricing.highlights") as string[];
   const pricingPrinciples = pageT.raw("pricing.principles") as Array<{
     title: string;
@@ -86,14 +86,6 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
       scope: string;
     }>;
   }>;
-  const pageLabel = isEnglish ? "Services" : "Послуги";
-  const manifestoLabel = isEnglish
-    ? "Commercial offer"
-    : "Комерційна пропозиція";
-  const manifesto = isEnglish
-    ? "Each service is packaged around business impact: clearer positioning, stronger trust, cleaner conversion paths and a system ready for growth."
-    : "Кожна послуга упакована навколо бізнес-результату: чіткішого позиціонування, сильнішої довіри, кращого сценарію конверсії і системи, готової до росту.";
-  const archiveLabel = isEnglish ? "Offer map" : "Карта пропозиції";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -107,7 +99,7 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
       itemListElement: servicePages.map((service, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `${baseUrl}${locale === "en" ? `/en/services/${service.slug}` : `/services/${service.slug}`}`,
+        url: `${baseUrl}${locale === "uk" ? `/services/${service.slug}` : `/${locale}/services/${service.slug}`}`,
         name: service.title,
       })),
     },
@@ -127,11 +119,11 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
               <AnimationWrapper animation="slide-right">
                 <div className="flex h-full flex-col">
                   <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/54">
-                    {pageLabel}
+                    {pageT("hero.pageLabel")}
                   </p>
                   <div className="max-w-xl min-h-[15rem]">
                     <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
-                      {archiveLabel}
+                      {pageT("hero.archiveLabel")}
                     </p>
                     <h1 className="mt-4 max-w-[12ch] text-5xl leading-[0.92] text-white md:text-7xl">
                       {pageT("hero.title")}
@@ -147,10 +139,10 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
                 <div className="grid gap-6">
                   <div className="rounded-[1.7rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
                     <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
-                      {manifestoLabel}
+                      {pageT("hero.manifestoLabel")}
                     </p>
                     <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
-                      {manifesto}
+                      {pageT("hero.manifesto")}
                     </p>
                   </div>
 
@@ -162,22 +154,16 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
                           {pageT("includesTitle")}
                         </p>
                       </div>
-                      <p className="mt-3 text-lg text-white">
-                        {servicePages.length}
-                      </p>
+                      <p className="mt-3 text-lg text-white">{servicePages.length}</p>
                     </div>
                     <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
                       <div className="flex items-center gap-2 text-white/44">
                         <Sparkles className="h-4 w-4" />
                         <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-                          React / Next.js / SEO
+                          {pageT("hero.stackLabel")}
                         </p>
                       </div>
-                      <p className="mt-3 text-lg text-white">
-                        {isEnglish
-                          ? "Result-first delivery"
-                          : "Реалізація від результату"}
-                      </p>
+                      <p className="mt-3 text-lg text-white">{pageT("hero.resultDelivery")}</p>
                     </div>
                   </div>
                 </div>
@@ -298,12 +284,10 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
               <div className="mb-10 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
                 <div>
                   <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                    {archiveLabel}
+                    {pageT("archive.label")}
                   </p>
                   <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                    {isEnglish
-                      ? "Choose the right format for the business task"
-                      : "Оберіть формат під бізнес-задачу"}
+                    {pageT("archive.title")}
                   </h2>
                 </div>
                 <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">
@@ -312,10 +296,7 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
               </div>
             </AnimationWrapper>
 
-            <ul
-              className="grid grid-cols-1 gap-5 md:grid-cols-2"
-              aria-label={pageT("listAriaLabel")}
-            >
+            <ul className="grid grid-cols-1 gap-5 md:grid-cols-2" aria-label={pageT("listAriaLabel")}>
               {servicePages.map((service) => (
                 <li key={service.slug}>
                   <AnimationWrapper animation="slide-up">
@@ -358,15 +339,8 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
                           </ul>
                         </div>
 
-                        <Button
-                          asChild
-                          variant="outline"
-                          className="mt-auto w-full bg-transparent"
-                        >
-                          <Link
-                            href={`/services/${service.slug}`}
-                            aria-label={`${pageT("detailsCta")}: ${service.title}`}
-                          >
+                        <Button asChild variant="outline" className="mt-auto w-full bg-transparent">
+                          <Link href={`/services/${service.slug}`} aria-label={`${pageT("detailsCta")}: ${service.title}`}>
                             {service.title}
                             <ArrowRight className="button-arrow-right h-4 w-4" />
                           </Link>
@@ -384,7 +358,7 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
               <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
                 <div>
                   <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/44">
-                    {pageLabel}
+                    {pageT("hero.pageLabel")}
                   </p>
                   <h2 className="max-w-3xl text-4xl leading-[0.96] md:text-5xl">
                     {pageT("consultation.title")}
@@ -394,11 +368,7 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
                   <p className="text-base leading-8 text-white/70">
                     {pageT("consultation.description")}
                   </p>
-                  <Button
-                    asChild
-                    size="lg"
-                    className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92"
-                  >
+                  <Button asChild size="lg" className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92">
                     <Link href="/#contact">
                       {pageT("consultation.cta")}
                       <ArrowUpRight className="button-arrow-up-right h-4 w-4" />

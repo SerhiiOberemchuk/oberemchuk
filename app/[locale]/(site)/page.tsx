@@ -8,11 +8,12 @@ import PortfolioSection from "@/components/sections/portfolio-section";
 import ServicesSection from "@/components/sections/services-section";
 import FaqSection from "@/components/faq-section";
 import JsonLd from "@/components/json-ld";
+import type { AppLocale } from "@/i18n/locales";
 import { contactEmail } from "@/lib/contact-info";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 
 type HomePageProps = {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: AppLocale }>;
 };
 
 type FaqItem = {
@@ -30,11 +31,11 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     keywords: t.raw("keywords") as string[],
-    alternates: getPageAlternates(locale as "uk" | "en"),
+    alternates: getPageAlternates(locale),
     openGraph: {
       title: t("openGraph.title"),
       description: t("openGraph.description"),
-      url: locale === "en" ? "/en" : "/",
+      url: getLocalizedPath(locale),
       type: "website",
       images: [
         {
@@ -72,6 +73,7 @@ export default async function HomePage({ params }: HomePageProps) {
     namespace: "HomeOutcomes",
   });
   const contactT = await getTranslations({ locale, namespace: "HomeContact" });
+  const faqT = await getTranslations({ locale, namespace: "FaqSection" });
   const faqs = pageT.raw("faq.items") as FaqItem[];
   const heroStats = heroT.raw("stats") as Array<{
     value: string;
@@ -199,7 +201,7 @@ export default async function HomePage({ params }: HomePageProps) {
         servicesContent={serviceCards}
         advantages={serviceAdvantages}
       />
-      <PortfolioSection locale={locale as "uk" | "en"} />
+      <PortfolioSection locale={locale} />
       <AboutSection
         title={aboutT("title")}
         subtitle={aboutT("subtitle")}
@@ -219,6 +221,7 @@ export default async function HomePage({ params }: HomePageProps) {
         items={clientOutcomes}
       />
       <FaqSection
+        label={faqT("label")}
         title={pageT("faq.title")}
         subtitle={pageT("faq.subtitle")}
         faqs={faqs}
@@ -228,12 +231,14 @@ export default async function HomePage({ params }: HomePageProps) {
         title={contactT("title")}
         description={contactT("description")}
         infoTitle={contactT("infoTitle")}
+        infoDescription={contactT("infoDescription")}
         startTitle={contactT("startTitle")}
         stackTitle={contactT("stackTitle")}
         emailCta={contactT("emailCta")}
         telegramCta={contactT("telegramCta")}
         briefTitle={contactT("briefTitle")}
         briefDescription={contactT("briefDescription")}
+        briefBody={contactT("briefBody")}
         advantages={contactAdvantages}
         contactItems={contactItems}
       />

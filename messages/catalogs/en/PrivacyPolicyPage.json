@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "title": "Privacy policy",
+    "description": "Privacy policy for the Serhii Oberemchuk website. Learn how I collect, use and protect your personal information.",
+    "openGraph": {
+      "title": "Privacy policy | Serhii Oberemchuk",
+      "description": "Privacy policy for the Serhii Oberemchuk website. Learn how I collect, use and protect your personal information."
+    },
+    "twitter": {
+      "title": "Privacy policy | Serhii Oberemchuk",
+      "description": "Privacy policy for the Serhii Oberemchuk website. Learn how I collect, use and protect your personal information."
+    }
+  },
+  "title": "Privacy policy",
+  "eyebrow": "Privacy policy",
+  "lastUpdated": "Last updated: June 1, 2024",
+  "intro": "This Privacy Policy explains how I, Serhii Oberemchuk, collect, use and disclose your personal information when you use my website.",
+  "collection": {
+    "title": "Information I collect",
+    "description": "I may collect different types of information, including:",
+    "items": {
+      "personal": "Personal information such as your name, email address and phone number when you submit forms on my website.",
+      "usage": "Usage information such as IP address, browser type, visit time and interaction with the pages.",
+      "device": "Device information such as device type, operating system and basic browser environment details."
+    }
+  },
+  "cookies": {
+    "title": "Cookies",
+    "description": "My website uses cookies to improve your experience. Cookies are small text files stored on your device while you browse the website.",
+    "moreInfo": "More details about how I use cookies are available in the <cookiesLink>Cookie policy</cookiesLink>."
+  },
+  "usage": {
+    "title": "How I use your information",
+    "description": "I use the information collected to:",
+    "items": {
+      "provide": "Provide, maintain and improve my website and services.",
+      "respond": "Respond to your requests and communicate about your project.",
+      "analyze": "Analyze website usage to improve the user experience.",
+      "protect": "Protect against fraud, abuse and technical risks."
+    }
+  },
+  "disclosure": {
+    "title": "Disclosure of information",
+    "description": "I may disclose your information in the following situations:",
+    "items": {
+      "providers": "To service providers who help me operate and maintain the website.",
+      "legal": "If required by law or necessary to protect my rights.",
+      "transfer": "As part of a transfer of assets or reorganization, with notice where appropriate."
+    }
+  },
+  "rights": {
+    "title": "Your rights",
+    "description": "Depending on your jurisdiction, you may have the following rights regarding your personal data:",
+    "items": {
+      "access": "The right to access your personal information.",
+      "correction": "The right to correct inaccurate or incomplete information.",
+      "deletion": "The right to request deletion of your personal data.",
+      "restriction": "The right to restrict processing.",
+      "portability": "The right to data portability.",
+      "objection": "The right to object to processing in cases provided by law."
+    }
+  },
+  "changes": {
+    "title": "Changes to this Privacy Policy",
+    "description": "I may update this Privacy Policy from time to time. The current version will always be published on this page."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "If you have questions about this Privacy Policy, please contact me:",
+    "email": "Email: serhiioberemchuk@gmail.com"
+  },
+  "navigation": {
+    "home": "Back to home",
+    "cookies": "Cookie policy"
+  },
+  "footer": {
+    "title": "Need the related policies too?",
+    "description": "From here you can return to the site or open the cookie policy for the technical details layer."
+  }
+}

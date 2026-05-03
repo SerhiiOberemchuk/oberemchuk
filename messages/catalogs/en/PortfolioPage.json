@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "title": "Web Development Portfolio | Website, E-commerce and Web App Case Studies",
+    "description": "Web development portfolio of Serhii Oberemchuk with website, e-commerce and web application case studies focused on structure, interface quality, performance and technical execution.",
+    "keywords": [
+      "web development portfolio",
+      "website portfolio",
+      "e-commerce portfolio",
+      "web application portfolio",
+      "website case studies",
+      "Next.js developer portfolio",
+      "React developer portfolio",
+      "Serhii Oberemchuk portfolio"
+    ],
+    "openGraph": {
+      "title": "Portfolio | Serhii Oberemchuk",
+      "description": "Selected web development case studies: websites, e-commerce projects and web applications with strong structure and execution quality.",
+      "imageAlt": "Portfolio of Serhii Oberemchuk"
+    },
+    "twitter": {
+      "title": "Portfolio | Serhii Oberemchuk",
+      "description": "Selected web development case studies with strong execution quality."
+    }
+  },
+  "schema": {
+    "name": "Web development portfolio of Serhii Oberemchuk",
+    "description": "A portfolio of website, e-commerce and web application case studies."
+  },
+  "archive": {
+    "label": "Case studies",
+    "pitch": "A broader archive of websites, e-commerce work and web applications, presented as case studies."
+  },
+  "hero": {
+    "title": "Portfolio",
+    "description": "Selected case studies in website development, e-commerce and web applications, showing implementation quality, technical SEO thinking, judgment and production discipline."
+  },
+  "loadingLabel": "Loading projects",
+  "listLabel": "Case studies archive",
+  "empty": "No projects found",
+  "seoText": {
+    "title": "What this web development portfolio shows",
+    "paragraphs": [
+      "This portfolio is a selection of web development case studies, not just screenshots. It shows how I approach landing pages, service websites, multi-page corporate websites, e-commerce builds, product interfaces and technical improvements for existing products.",
+      "For a client, it matters not only how a screen looks but whether the developer can work with page structure, performance, technical SEO, integrations, forms, analytics and scaling. That is the level of execution I build into each release.",
+      "If you are reviewing a web development portfolio to evaluate website implementation quality, e-commerce execution, web application work and attention to detail, this archive gives a fast, practical view."
+    ]
+  }
+}

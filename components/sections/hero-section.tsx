@@ -1,8 +1,9 @@
-﻿import { ArrowUpRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { ArrowUpRight } from "lucide-react"
+import { useTranslations } from "next-intl"
 import AnimationWrapper from "@/components/animation-wrapper"
 import SmoothScrollLink from "@/components/smooth-scroll-link"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/navigation"
 
 type HeroStat = {
@@ -31,16 +32,7 @@ export default function HeroSection({
   secondaryCta,
   stats
 }: HeroSectionProps) {
-  const isEnglish = titlePrefix === "I build"
-  const manifestoLabel = isEnglish ? "Positioning" : "Позиціонування"
-  const manifestoTitle = isEnglish ? "Commercial website logic, not freelance filler." : "Комерційна логіка сайту, а не фриланс-подача."
-  const manifestoBody = isEnglish
-    ? "Positioning, structure, development and launch are assembled as one system aimed at business impact."
-    : "Позиціонування, структура, розробка і запуск збираються як одна система під бізнес-результат."
-  const proofLabel = isEnglish ? "What matters" : "Що важливо"
-  const proofBody = isEnglish
-    ? "Not just a polished site, but a digital asset ready for traffic, trust and conversion."
-    : "Не просто акуратний сайт, а цифровий актив, готовий до трафіку, довіри й конверсії."
+  const t = useTranslations("HomeHero")
 
   return (
     <section className="relative -mt-16 overflow-hidden px-4 pb-18 pt-22 md:px-6 md:pt-30" aria-labelledby="hero-title">
@@ -85,9 +77,9 @@ export default function HeroSection({
                 <div className="hidden lg:block">
                   <div className="premium-float-delayed rounded-[28px] border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.78)] p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl">
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-[hsl(var(--foreground))]/54">
-                      {proofLabel}
+                      {t("proof.label")}
                     </p>
-                    <p className="mt-4 max-w-[12rem] text-sm leading-7 text-[hsl(var(--foreground))]/72">{proofBody}</p>
+                    <p className="mt-4 max-w-[12rem] text-sm leading-7 text-[hsl(var(--foreground))]/72">{t("proof.body")}</p>
                   </div>
                 </div>
               </div>
@@ -98,14 +90,14 @@ export default function HeroSection({
                 <div className="grid gap-8 md:grid-cols-[1.05fr_0.95fr] lg:grid-cols-1">
                   <div>
                     <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-[hsl(var(--foreground))]/54">
-                      {manifestoLabel}
+                      {t("manifesto.label")}
                     </p>
                     <p className="mt-4 text-[2.05rem] leading-[1.04] text-[hsl(var(--foreground))] md:text-[2.45rem]">
-                      {manifestoTitle}
+                      {t("manifesto.title")}
                     </p>
                   </div>
                   <p className="max-w-xl border-l border-[rgba(24,31,43,0.14)] pl-5 text-base leading-8 text-[hsl(var(--foreground))]/72">
-                    {manifestoBody}
+                    {t("manifesto.body")}
                   </p>
                 </div>
               </div>
