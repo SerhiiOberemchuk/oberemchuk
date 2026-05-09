@@ -96,11 +96,10 @@ export async function generateMetadata({
     },
     icons: {
       icon: [
-        {url: "/icon.svg", type: "image/svg+xml"},
         {url: "/favicon.svg", type: "image/svg+xml"}
       ],
       shortcut: [{url: "/favicon.svg", type: "image/svg+xml"}],
-      apple: [{url: "/apple-icon.svg", type: "image/svg+xml"}]
+      apple: [{url: "/apple-touch-icon.png", type: "image/png"}]
     },
     manifest: "/manifest.json",
     robots: {
@@ -175,7 +174,6 @@ export default async function LocaleLayout({children, params}: LayoutProps) {
         <meta name="apple-mobile-web-app-title" content="Serhii Oberemchuk" />
         <meta name="application-name" content="Serhii Oberemchuk" />
         <meta name="msapplication-TileColor" content="#f7fafc" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
       <body className={manrope.className}>
         <NextIntlClientProvider locale={locale} messages={clientMessages}>

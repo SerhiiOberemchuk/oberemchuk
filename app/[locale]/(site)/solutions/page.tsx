@@ -168,7 +168,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "/og-image.png",
+          url: "/og-solutions.png",
           width: 1200,
           height: 630,
           alt: copy.imageAlt,
@@ -179,7 +179,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: copy.metadataTitle,
       description: copy.twitterDescription,
-      images: ["/og-image.png"],
+      images: ["/og-solutions.png"],
     },
   };
 }

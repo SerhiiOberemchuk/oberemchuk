@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getPageAlternates } from "@/lib/seo";
 import { getServicePages } from "@/lib/service-pages";
+import { getSiteUrl } from "@/lib/site-config";
 
 type ServicesPageProps = {
   params: Promise<{ locale: string }>;
@@ -44,7 +45,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "/og-image.png",
+          url: "/og-services.png",
           width: 1200,
           height: 630,
           alt: t("openGraph.imageAlt"),
@@ -55,7 +56,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("twitter.title"),
       description: t("twitter.description"),
-      images: ["/og-image.png"],
+      images: ["/og-services.png"],
     },
   };
 }
@@ -66,7 +67,7 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
   const pageT = await getTranslations({ locale, namespace: "ServicesPage" });
   const servicePages = getServicePages(locale as AppLocale);
   const pagePath = locale === "uk" ? "/services" : `/${locale}/services`;
-  const baseUrl = "https://oberemchuk.online";
+  const baseUrl = getSiteUrl();
   const pricingHighlights = pageT.raw("pricing.highlights") as string[];
   const pricingPrinciples = pageT.raw("pricing.principles") as Array<{
     title: string;

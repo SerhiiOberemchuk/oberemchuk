@@ -11,6 +11,7 @@ import JsonLd from "@/components/json-ld";
 import type { AppLocale } from "@/i18n/locales";
 import { contactEmail } from "@/lib/contact-info";
 import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
+import { getSiteUrl } from "@/lib/site-config";
 
 type HomePageProps = {
   params: Promise<{ locale: AppLocale }>;
@@ -113,6 +114,7 @@ export default async function HomePage({ params }: HomePageProps) {
     workMode: { label: string; value: string };
     workRhythm: { label: string; value: string };
   };
+  const siteUrl = getSiteUrl();
 
   const jsonLdData = [
     {
@@ -121,7 +123,7 @@ export default async function HomePage({ params }: HomePageProps) {
       name: "Serhii Oberemchuk",
       jobTitle: "Fullstack Web Developer",
       description: schemaT("person.description"),
-      url: "https://oberemchuk.online",
+      url: siteUrl,
       sameAs: [
         "https://www.linkedin.com/in/serhii-oberemchuk",
         "https://github.com/oberemchuk",
@@ -134,7 +136,7 @@ export default async function HomePage({ params }: HomePageProps) {
       "@type": "WebSite",
       name: "Serhii Oberemchuk",
       description: schemaT("website.description"),
-      url: "https://oberemchuk.online",
+      url: siteUrl,
       author: { "@type": "Person", name: "Serhii Oberemchuk" },
     },
     {
@@ -142,7 +144,7 @@ export default async function HomePage({ params }: HomePageProps) {
       "@type": "ProfessionalService",
       name: "Serhii Oberemchuk - Digital Product and Web Development Services",
       description: schemaT("service.description"),
-      url: "https://oberemchuk.online",
+      url: siteUrl,
       telephone: "+393516648498",
       email: contactEmail,
       serviceType: schemaT.raw("service.serviceType") as string[],

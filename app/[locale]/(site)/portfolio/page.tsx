@@ -9,6 +9,7 @@ import { type AppLocale } from "@/i18n/locales";
 import { localizeProjects } from "@/lib/projects-i18n";
 import { getProjects } from "@/lib/projects-server";
 import { getPageAlternates } from "@/lib/seo";
+import { getSiteUrl } from "@/lib/site-config";
 
 type PortfolioPageProps = {
   params: Promise<{ locale: string }>;
@@ -37,7 +38,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "/og-image.png",
+          url: "/og-portfolio.png",
           width: 1200,
           height: 630,
           alt: t("openGraph.imageAlt"),
@@ -48,7 +49,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("twitter.title"),
       description: t("twitter.description"),
-      images: ["/og-image.png"],
+      images: ["/og-portfolio.png"],
     },
   };
 }
@@ -60,17 +61,18 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
   const seoT = await getTranslations({ locale, namespace: "SeoText" });
   const projects = localizeProjects(await getProjects(), locale as AppLocale);
   const pagePath = locale === "uk" ? "/portfolio" : `/${locale}/portfolio`;
+  const siteUrl = getSiteUrl();
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: pageT("schema.name"),
     description: pageT("schema.description"),
-    url: `https://oberemchuk.online${pagePath}`,
+    url: `${siteUrl}${pagePath}`,
     author: {
       "@type": "Person",
       name: "Serhii Oberemchuk",
-      url: "https://oberemchuk.online",
+      url: siteUrl,
     },
     mainEntity: {
       "@type": "ItemList",
@@ -82,14 +84,14 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
           "@type": "CreativeWork",
           name: project.title,
           description: project.description,
-          url: `https://oberemchuk.online${locale === "uk" ? `/portfolio/${project.slug}` : `/${locale}/portfolio/${project.slug}`}`,
+          url: `${siteUrl}${locale === "uk" ? `/portfolio/${project.slug}` : `/${locale}/portfolio/${project.slug}`}`,
           image: project.image_src,
           dateCreated: project.created_at,
           dateModified: project.updated_at,
           creator: {
             "@type": "Person",
             name: "Serhii Oberemchuk",
-            url: "https://oberemchuk.online",
+            url: siteUrl,
           },
         },
       })),
