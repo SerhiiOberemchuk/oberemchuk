@@ -15,13 +15,12 @@ import {Button} from "@/components/ui/button";
 import {appLocales, type AppLocale} from "@/i18n/locales";
 import {Link} from "@/i18n/navigation";
 import {getPageAlternates} from "@/lib/seo";
+import {getSiteUrl} from "@/lib/site-config";
 import {
   getServicePage,
   getServicePages,
   servicePageSlugs
 } from "@/lib/service-pages";
-
-const SITE_URL = process.env.SITE_URL || "https://oberemchuk.online";
 
 type ServicePageProps = {
   params: Promise<{locale: string; slug: string}>;
@@ -41,6 +40,7 @@ export async function generateMetadata({
 }: ServicePageProps): Promise<Metadata> {
   const {locale, slug} = await params;
   const service = getServicePage(locale as AppLocale, slug);
+  const siteUrl = getSiteUrl();
 
   if (!service) {
     return {};
@@ -59,7 +59,7 @@ export async function generateMetadata({
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
-      url: `${SITE_URL}${pagePath}`,
+      url: `${siteUrl}${pagePath}`,
       type: "website",
       images: [
         {
@@ -97,6 +97,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
     locale === "uk"
       ? `/services/${service.slug}`
       : `/${locale}/services/${service.slug}`;
+  const siteUrl = getSiteUrl();
   const relatedServices = getServicePages(locale as AppLocale)
     .filter((item) => item.slug !== service.slug)
     .slice(0, 3);
@@ -110,7 +111,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
     provider: {
       "@type": "Person",
       name: "Serhii Oberemchuk",
-      url: SITE_URL
+      url: siteUrl
     },
     offers: {
       "@type": "Offer",
@@ -120,8 +121,8 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
         description: service.priceFrom
       }
     },
-    url: `${SITE_URL}${pagePath}`,
-    mainEntityOfPage: `${SITE_URL}${pagePath}`,
+    url: `${siteUrl}${pagePath}`,
+    mainEntityOfPage: `${siteUrl}${pagePath}`,
     hasFAQPage: {
       "@type": "FAQPage",
       mainEntity: service.faq.map((item) => ({

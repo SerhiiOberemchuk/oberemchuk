@@ -17,11 +17,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { appLocales, type AppLocale } from "@/i18n/locales";
 import { getPageAlternates } from "@/lib/seo";
+import { getSiteUrl } from "@/lib/site-config";
 import { localizeProject } from "@/lib/projects-i18n";
 import { getProjectBySlug, getProjects } from "@/lib/projects-server";
 import type { Project } from "@/types/projects";
-
-const SITE_URL = process.env.SITE_URL || "https://oberemchuk.online";
 
 type PortfolioProjectPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -268,6 +267,7 @@ export async function generateMetadata({
   }
 
   const localizedProject = localizeProject(project, locale as AppLocale);
+  const siteUrl = getSiteUrl();
   const pagePath =
     locale === "uk" ? `/portfolio/${slug}` : `/${locale}/portfolio/${slug}`;
 
@@ -279,7 +279,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${localizedProject.title} | ${pageT("metadata.siteSuffix")}`,
       description: localizedProject.description,
-      url: `${SITE_URL}${pagePath}`,
+      url: `${siteUrl}${pagePath}`,
       images: [
         {
           url: localizedProject.image_src,
@@ -317,6 +317,7 @@ export default async function ProjectPage({
   const localizedProject = localizeProject(project, locale as AppLocale);
   const pagePath =
     locale === "uk" ? `/portfolio/${slug}` : `/${locale}/portfolio/${slug}`;
+  const siteUrl = getSiteUrl();
   const narrative = getCaseNarrative(localizedProject, locale as AppLocale);
   const overviewLabel = pageT("overviewLabel");
   const buildLabel = pageT("buildLabel");
@@ -328,7 +329,7 @@ export default async function ProjectPage({
     name: localizedProject.title,
     description: localizedProject.description,
     image: localizedProject.image_src,
-    url: `${SITE_URL}${pagePath}`,
+    url: `${siteUrl}${pagePath}`,
     creator: {
       "@type": "Person",
       name: pageT("schema.creatorName"),

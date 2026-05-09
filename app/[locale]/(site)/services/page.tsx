@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { connection } from "next/server";
-import { Suspense } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -62,8 +60,7 @@ export async function generateMetadata({
   };
 }
 
-async function ServicesPageContent({ params }: ServicesPageProps) {
-  await connection();
+export default async function ServicesPage({ params }: ServicesPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const pageT = await getTranslations({ locale, namespace: "ServicesPage" });
@@ -381,13 +378,5 @@ async function ServicesPageContent({ params }: ServicesPageProps) {
         </div>
       </div>
     </>
-  );
-}
-
-export default function ServicesPage(props: ServicesPageProps) {
-  return (
-    <Suspense fallback={<div className="min-h-screen bg-white py-16" />}>
-      <ServicesPageContent {...props} />
-    </Suspense>
   );
 }
