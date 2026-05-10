@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
 import { useLocale, useTranslations } from "next-intl";
-import { submitContactForm, initialContactActionState } from "@/app/actions/contact";
+import { submitContactForm, type ContactActionState } from "@/app/actions/contact";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -42,6 +42,10 @@ const initialValues = (locale: string): ContactFormValues => ({
   budget: "",
   message: "",
 });
+
+const initialContactActionState: ContactActionState = {
+  status: "idle",
+};
 
 function SubmitButton({ label, loadingLabel }: { label: string; loadingLabel: string }) {
   const { pending } = useFormStatus();

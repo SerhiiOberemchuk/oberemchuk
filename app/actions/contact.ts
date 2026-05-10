@@ -25,10 +25,6 @@ const contactSchema = z.object({
   message: z.string().trim().min(1),
 });
 
-export const initialContactActionState: ContactActionState = {
-  status: "idle",
-};
-
 export async function submitContactForm(
   _prevState: ContactActionState,
   formData: FormData,
