@@ -11,6 +11,7 @@ export const messageNamespaces = [
   "ContactForm",
   "ContactEmail",
   "HomePage",
+  "EstimatePage",
   "Footer",
   "CookieBanner",
   "ScrollToTop",

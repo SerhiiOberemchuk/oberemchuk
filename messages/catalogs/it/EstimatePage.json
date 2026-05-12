@@ -1,0 +1,255 @@
+{
+  "metadata": {
+    "title": "Calcolatore online del costo di sviluppo web",
+    "description": "Calcola costo e tempi indicativi per sito web, e-commerce, landing page o web app. Ricevi una stima AI con budget, fasi, scope e rischi.",
+    "keywords": [
+      "calcolatore costo sito web",
+      "preventivo sviluppo sito web",
+      "costo sviluppo e-commerce",
+      "prezzo landing page",
+      "tempi sviluppo sito web",
+      "stima progetto AI"
+    ],
+    "openGraph": {
+      "imageAlt": "Calcolatore online del costo di sviluppo web di Serhii Oberemchuk"
+    }
+  },
+  "hero": {
+    "eyebrow": "Stima progetto con AI",
+    "title": "Stima online di costo e tempi",
+    "description": "Descrivi il progetto in linguaggio naturale. Il calcolatore restituisce un intervallo di pianificazione con budget, tempi, fasi, ipotesi, rischi e domande da chiarire prima dell'avvio.",
+    "previewAlt": "Anteprima del calcolatore online del costo di sviluppo web con form progetto e risultato AI"
+  },
+  "stats": {
+    "cost": {
+      "label": "Budget",
+      "value": "Intervallo di costo"
+    },
+    "timeline": {
+      "label": "Tempi",
+      "value": "Stima in settimane"
+    },
+    "scope": {
+      "label": "Scope",
+      "value": "Fasi e rischi"
+    }
+  },
+  "formTitle": "Descrivi la richiesta",
+  "formDescription": "Più sono specifici obiettivi, funzioni, integrazioni e vincoli, più utile sarà l'intervallo di pianificazione. Non è un preventivo finale, ma una prima stima operativa.",
+  "validation": {
+    "description": "Descrivi il progetto in modo più dettagliato: almeno 40 caratteri.",
+    "required": "Compila i campi obbligatori prima del calcolo."
+  },
+  "submit": {
+    "missingKey": "La chiave API di AI Gateway non è configurata sul server.",
+    "rateLimited": "Troppe richieste di stima. Attendi un po' e riprova più tardi.",
+    "error": "Non è stato possibile generare la stima AI. Riprova più tardi."
+  },
+  "form": {
+    "fields": {
+      "projectType": "Tipo di progetto",
+      "description": "Descrizione del progetto",
+      "goals": "Obiettivi di business",
+      "pagesCount": "Dimensione indicativa",
+      "designReadiness": "Stato del design",
+      "deadline": "Tempistica desiderata",
+      "budget": "Riferimento budget",
+      "integrations": "Integrazioni",
+      "features": "Funzioni richieste"
+    },
+    "placeholders": {
+      "projectType": "Scegli il tipo",
+      "description": "Esempio: serve un sito corporate per un'azienda B2B con versioni italiana e inglese, pagine servizi, portfolio, struttura SEO e form di contatto...",
+      "goals": "Esempio: generare lead, spiegare i servizi, preparare il sito per advertising e SEO.",
+      "pagesCount": "Scegli la dimensione",
+      "designReadiness": "Scegli lo stato",
+      "deadline": "Scegli i tempi",
+      "budget": "Scegli l'intervallo",
+      "integrations": "CRM, pagamenti, Telegram, email, CMS, analytics..."
+    },
+    "hints": {
+      "description": "Aggiungi pubblico, lingue, pagine, account utente, pagamenti, CMS o vincoli importanti."
+    },
+    "submit": "Calcola il progetto",
+    "loading": "Calcolo...",
+    "cooldownButton": "Riprova tra {seconds}s",
+    "cooldownMessage": "Il limite di richieste è temporaneamente raggiunto. Puoi ripetere la stima tra {seconds}s."
+  },
+  "options": {
+    "projectTypes": [
+      {"value": "not-sure", "label": "Non lo so ancora"},
+      {"value": "landing-page", "label": "Landing page"},
+      {"value": "corporate-website", "label": "Sito corporate"},
+      {"value": "ecommerce", "label": "E-commerce"},
+      {"value": "web-app", "label": "Web app / SaaS"},
+      {"value": "redesign", "label": "Redesign o miglioramento"},
+      {"value": "integrations", "label": "Configurazione integrazioni"},
+      {"value": "basic-seo", "label": "Ottimizzazione SEO base"}
+    ],
+    "pageCounts": [
+      {"value": "1-3", "label": "1-3 pagine"},
+      {"value": "4-8", "label": "4-8 pagine"},
+      {"value": "9-20", "label": "9-20 pagine"},
+      {"value": "20+", "label": "20+ pagine o molti template"}
+    ],
+    "designReadiness": [
+      {"value": "none", "label": "Nessun design"},
+      {"value": "references", "label": "Ci sono riferimenti e struttura"},
+      {"value": "figma", "label": "Design Figma pronto"},
+      {"value": "existing-site", "label": "Sito esistente da ridisegnare"}
+    ],
+    "deadlines": [
+      {"value": "flexible", "label": "Flessibile"},
+      {"value": "2-4-weeks", "label": "2-4 settimane"},
+      {"value": "1-2-months", "label": "1-2 mesi"},
+      {"value": "3-months-plus", "label": "3+ mesi"}
+    ],
+    "budgets": [
+      {"value": "not-sure", "label": "Non lo so ancora"},
+      {"value": "under-1500", "label": "Meno di 1.500 EUR"},
+      {"value": "1500-4000", "label": "1.500 - 4.000 EUR"},
+      {"value": "4000-9000", "label": "4.000 - 9.000 EUR"},
+      {"value": "9000+", "label": "9.000+ EUR"}
+    ],
+    "features": [
+      {"value": "multilingual", "label": "Più lingue"},
+      {"value": "cms", "label": "CMS / modifica contenuti"},
+      {"value": "payments", "label": "Pagamenti online"},
+      {"value": "crm", "label": "CRM o gestione lead"},
+      {"value": "auth", "label": "Area utente"},
+      {"value": "seo", "label": "Struttura SEO"},
+      {"value": "analytics", "label": "Analytics ed eventi"},
+      {"value": "content", "label": "Supporto contenuti"}
+    ]
+  },
+  "empty": {
+    "eyebrow": "Cosa riceverai",
+    "title": "L'AI preparerà un intervallo di pianificazione",
+    "description": "Dopo l'invio del modulo, qui apparirà una stima strutturata. Usala come base per una call di analisi mirata.",
+    "points": [
+      "intervallo di budget nella valuta del progetto",
+      "tempi stimati in settimane",
+      "fasi di sviluppo e scope incluso",
+      "ipotesi, rischi e domande di chiarimento"
+    ]
+  },
+  "lead": {
+    "eyebrow": "Invia la stima",
+    "title": "Invia questa stima per discutere il progetto",
+    "description": "Lascia i tuoi contatti e ricevero la richiesta insieme alla descrizione del progetto e alla stima AI.",
+    "fields": {
+      "name": "Nome",
+      "email": "Email",
+      "phone": "Telefono",
+      "message": "Commento"
+    },
+    "placeholders": {
+      "name": "Il tuo nome",
+      "email": "nome@example.com",
+      "phone": "+39 ...",
+      "message": "Cosa dovrei sapere prima di rispondere?"
+    },
+    "submit": {
+      "success": "La stima e stata inviata. La controllero e ti rispondero.",
+      "rateLimited": "Troppi tentativi di invio. Attendi un po' e riprova piu tardi.",
+      "error": "Non e stato possibile inviare la stima. Riprova piu tardi."
+    },
+    "validation": {
+      "nameRequired": "Inserisci il tuo nome.",
+      "emailRequired": "Inserisci la tua email.",
+      "emailInvalid": "Inserisci un'email valida.",
+      "messageRequired": "Aggiungi un breve commento."
+    },
+    "button": "Invia la stima",
+    "loading": "Invio..."
+  },
+  "seo": {
+    "eyebrow": "Calcolatore costo sito web",
+    "title": "Stima online per siti web ed e-commerce",
+    "descriptionA": "Questa pagina funziona come un calcolatore pratico del costo di sviluppo di un sito web. Aiuta a stimare landing page, siti corporate, e-commerce, redesign, integrazioni, SEO base o applicazioni web piu complesse prima di una call di analisi.",
+    "descriptionB": "La stima considera tipo di progetto, numero di pagine, stato del design, deadline, budget, integrazioni, CMS, pagamenti, contenuti multilingua, analytics e altre funzioni. Il risultato non e un preventivo definitivo, ma un intervallo utile per pianificare budget, tempi, scope, rischi e prossime domande.",
+    "useCases": {
+      "items": [
+        {
+          "title": "Landing page e siti corporate",
+          "description": "Stima il budget per pagine lead generation, siti di servizi, portfolio, siti aziendali multilingua e strutture corporate pronte per SEO."
+        },
+        {
+          "title": "E-commerce e cataloghi",
+          "description": "Pianifica progetti e-commerce con pagine prodotto, checkout, pagamenti, CRM, analytics, gestione contenuti e supporto al lancio."
+        },
+        {
+          "title": "Web app, integrazioni e redesign",
+          "description": "Ottieni un primo intervallo per interfacce SaaS, aree clienti, miglioramenti CMS, integrazioni, performance, SEO o redesign di un sito esistente."
+        }
+      ]
+    },
+    "method": {
+      "eyebrow": "Come funziona",
+      "title": "Cosa influenza costo e tempi",
+      "items": [
+        {
+          "title": "Scope e struttura delle pagine",
+          "description": "Numero di pagine, template, flussi utente e stati di contenuto determinano lavoro di design, frontend, CMS e QA."
+        },
+        {
+          "title": "Stato di design e tecnica",
+          "description": "Figma pronta, riferimenti chiari, sito esistente o struttura mancante cambiano discovery, UX, design e implementazione."
+        },
+        {
+          "title": "Integrazioni e logica business",
+          "description": "Pagamenti, CRM, autenticazione, contenuti multilingua, eventi analytics, cataloghi, dashboard e backend custom aumentano sviluppo e test."
+        },
+        {
+          "title": "Deadline e rischio lancio",
+          "description": "Scadenze urgenti, migrazione, SEO, contenuti e dipendenze di terze parti incidono su durata e rischio di consegna."
+        }
+      ]
+    }
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Domande sul calcolo del costo del sito",
+    "description": "Risposte brevi per chi vuole stimare il costo di sviluppo web prima di inviare una richiesta.",
+    "items": [
+      {
+        "question": "E un prezzo finale di sviluppo?",
+        "answer": "No. Il calcolatore fornisce un intervallo preliminare. Un preventivo finale richiede chiarire scope, contenuti, design, integrazioni, vincoli tecnici e lancio."
+      },
+      {
+        "question": "Posso stimare un e-commerce?",
+        "answer": "Si. Scegli il tipo e-commerce e descrivi prodotti, catalogo, checkout, pagamenti, CRM, spedizione e gestione contenuti."
+      },
+      {
+        "question": "La stima include SEO?",
+        "answer": "Il calcolatore puo includere struttura SEO base, requisiti tecnici, pagine multilingua, eventi analytics e contenuti se li aggiungi al form."
+      },
+      {
+        "question": "Inviare i contatti consuma altri token AI?",
+        "answer": "No. L'invio del risultato manda via email la stima gia generata e non avvia un nuovo calcolo AI."
+      }
+    ]
+  },
+  "schema": {
+    "name": "Calcolatore online del costo di sviluppo web",
+    "description": "Calcolatore AI per stimare costo e tempi di sviluppo di siti web, e-commerce, landing page e web app.",
+    "home": "Home"
+  },
+  "result": {
+    "eyebrow": "Stima preliminare",
+    "timeline": "Tempi",
+    "weeks": "sett.",
+    "format": "Formato consigliato",
+    "confidence": "Affidabilità",
+    "confidenceValues": {
+      "low": "bassa",
+      "medium": "media",
+      "high": "alta"
+    },
+    "phases": "Fasi",
+    "included": "Incluso",
+    "assumptions": "Ipotesi",
+    "risks": "Rischi",
+    "questions": "Domande da chiarire"
+  }
+}

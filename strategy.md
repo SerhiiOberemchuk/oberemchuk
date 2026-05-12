@@ -1,219 +1,143 @@
 # Стратегія оптимізації продуктивності та анімацій
 
-## 1. Що зараз виглядає проблемним
+Оновлено після перевірки поточного стану проєкту.
+
+## 1. Поточний стан
 
 ### Мобільне меню
-- У [components/mobile-menu.tsx](c:/GitHub/oberemchuk/components/mobile-menu.tsx:40) меню відкривається через кастомний `div role="dialog"`, portal і ручне блокування скролу.
-- При `isOpen === true` код змінює `body.style.overflow`, `position`, `width`, `top`, а при закритті відновлює `scrollY`.
-- На мобільних браузерах саме такий патерн часто дає:
-  - ривки під час відкриття/закриття;
-  - стрибки viewport;
-  - зайві reflow/repaint;
-  - конфлікти з address bar / dynamic viewport height.
 
-### Зайвий JS для декоративних анімацій
-- Є окремий `AnimationWrapper` + `useInView`:
-  - [components/animation-wrapper.tsx](c:/GitHub/oberemchuk/components/animation-wrapper.tsx:1)
-  - [hooks/use-in-view.ts](c:/GitHub/oberemchuk/hooks/use-in-view.ts:1)
-- Цей wrapper використовується масово на сторінках і секціях.
-- Це не катастрофа, але це додатковий client-side JS, додаткові observer-и і додаткова гідрація там, де ефект здебільшого декоративний.
+Мобільне меню вже переведене на нативний `<dialog>`:
 
-### CSS вже містить зайвий технічний борг
-- У [app/globals.css](c:/GitHub/oberemchuk/app/globals.css:1) є `@import` Google Fonts, хоча шрифти вже підключені через `next/font` у [app/[locale]/layout.tsx](c:/GitHub/oberemchuk/app/[locale]/layout.tsx:18).
-- У тому ж CSS є кілька наборів анімацій для меню, частина з яких зараз не використовується:
-  - [app/globals.css](c:/GitHub/oberemchuk/app/globals.css:169)
-  - [app/globals.css](c:/GitHub/oberemchuk/app/globals.css:297)
-- Це не головна причина лагів, але це збільшує складність і розмазує відповідальність між JS та CSS.
+- `components/Mobile-Menu/mobile-menu.tsx`
+- `components/Mobile-Menu/mobile-menu.module.css`
 
-## 2. Головна гіпотеза по проблемі зі скролом
+Що вже зроблено:
 
-Проблема швидше не в "важкому JS" як у великій бібліотеці, а в поєднанні трьох речей:
+- використовується `dialog.showModal()` / `dialog.close()`;
+- прибрано старий кастомний `div role="dialog"`;
+- немає ручної фіксації `body.style.position = "fixed"`;
+- backdrop реалізований через `dialog::backdrop`;
+- open-анімація винесена в CSS через `@starting-style`;
+- додано `prefers-reduced-motion` для вимкнення transitions у меню.
 
-1. Ручний scroll lock через `body { position: fixed; top: -scrollY }`.
-2. Portal-рендер повноекранного меню поверх уже прокрученої сторінки.
-3. Одночасна анімація overlay + panel під час зміни layout/viewport на мобілці.
+Цей пункт стратегії вважається виконаним.
 
-Тобто джерело проблеми ближче до архітектури UI-стану, ніж до "розміру bundle".
+### Шрифти
 
-## 3. Що робити в першу чергу
+Дубльованого `@import` Google Fonts у `app/globals.css` вже немає.
 
-### Крок 1. Перевести мобільне меню на нативний `dialog`
-Це найкращий перший крок.
+Шрифти підключаються через `next/font/google` у:
 
-Що дає:
-- нативний top layer;
-- вбудовану модальну поведінку через `showModal()`;
-- простіший focus management;
-- менше ручного JS;
-- простіший scroll lock без фіксації `body`.
+- `app/[locale]/layout.tsx`
 
-Цільова модель:
-- замінити кастомний `div role="dialog"` на `<dialog>`;
-- відкривати через `dialog.showModal()`;
-- закривати через `dialog.close()`;
-- використовувати `::backdrop` замість окремого overlay div;
-- прибрати ручний focus trap;
-- прибрати маніпуляції `body.style.position/top/width`.
+Цей пункт стратегії вважається виконаним.
 
-### Крок 2. Анімацію меню перенести в CSS через `@starting-style`
-Для цього кейсу це підходить дуже добре.
+### JS-анімації
 
-Що варто зробити:
-- анімувати сам `dialog` або внутрішню панель через `opacity`, `transform`;
-- для відкриття використати `@starting-style`;
-- для backdrop анімувати `dialog::backdrop`;
-- обов'язково додати `prefers-reduced-motion`.
+Старого `hooks/use-in-view.ts` вже немає.
 
-Приклад напрямку:
-- closed/open state через атрибут `[open]`;
-- вхід:
-  - panel: `translateX(100%) -> translateX(0)`;
-  - backdrop: `opacity: 0 -> 1`;
-- вихід:
-  - якщо потрібен плавний exit, його краще робити коротким JS-хендлером `close after transitionend`, бо `dialog.close()` одразу прибирає `open`.
+`AnimationWrapper` зараз не є client-компонентом і не використовує `IntersectionObserver`. Він лише додає CSS-класи:
 
-### Крок 3. Перестати "фіксити body", якщо це не критично
-У більшості випадків з `dialog.showModal()` ручний fixed-lock для `body` не потрібен.
+- `components/animation-wrapper.tsx`
+- `.inview-reveal` у `app/globals.css`
 
-Якщо виявиться, що iOS поводиться нестабільно:
-- краще мати дуже тонкий fallback через клас на `html`/`body`;
-- але не через `position: fixed` + `top`.
+Reveal-анімації працюють через CSS:
 
-## 4. Що робити з Motion / JS-анімаціями загалом
-
-### Важливий факт
-- У поточному коді я не знайшов `motion` або `framer-motion` у залежностях.
-- Тобто прибирати `motion` як бібліотеку зараз фактично нема звідки.
-- Але є власний JS-шар для reveal-анімацій, і саме його має сенс скорочувати.
-
-### Рекомендована стратегія
-
-#### Залишити JS тільки там, де без нього справді гірше
-JS ще виправданий для:
-- складного carousel/drag;
-- реального gesture-driven UI;
-- анімацій, що залежать від scroll progress;
-- синхронізації кількох елементів по таймлайну.
-
-#### Все інше переводити на CSS або platform APIs
-Першими кандидатами на спрощення є:
-- mobile menu;
-- hover/focus/press transitions;
-- accordion/open-close анімації;
-- прості reveal ефекти секцій.
-
-## 5. Що робити з reveal-анімаціями секцій
-
-Зараз `AnimationWrapper` використовується дуже широко, тому видаляти його одним комітом не варто.
-
-### Практичний план
-
-#### Варіант A. Мінімальний ризик
-- залишити `useInView`, але:
-  - зменшити кількість місць використання;
-  - прибрати анімацію з усього, що нижче fold не потребує акценту;
-  - не анімувати великі списки/сітки поелементно;
-  - не анімувати елементи, які і так видно above the fold.
-
-#### Варіант B. Більш сучасний напрямок
-Поступово перейти на CSS scroll-driven animation там, де є підтримка:
 - `animation-timeline: view()`;
-- `animation-range`;
-- fallback без анімації для старіших браузерів.
+- fallback без анімації для браузерів без підтримки;
+- `prefers-reduced-motion`.
 
-Це хороший напрямок, але не перший пріоритет. Для меню `dialog + @starting-style` дасть швидший і надійніший виграш.
+Це вже значно краще за старий JS-підхід, але wrappers ще використовуються дуже широко.
 
-## 6. Де `@view-transition` реально доречний
+## 2. Що вже спрощено
 
-`@view-transition` варто застосовувати не до мобільного меню, а до переходів між сторінками або великими layout state changes.
+Перший cleanup-прохід:
 
-Підходить для:
-- переходу між списком кейсів і сторінкою кейсу;
-- переходу між blog list і blog article;
-- анімованої зміни hero/media між route transitions.
+- прибрано reveal-анімацію з hero above the fold;
+- прибрано поелементні reveal wrappers з повторюваних outcome-карток;
+- прибрано поелементні reveal wrappers з другорядних portfolio-карток на головній;
+- прибрано reveal wrappers із головної services-секції;
+- увімкнено `prefers-reduced-motion` для mobile menu CSS.
 
-Не варто робити ним:
-- звичайне off-canvas mobile menu;
-- дрібні hover/focus анімації;
-- банальні open/close стани.
+Збірка після змін проходить:
 
-Тобто:
-- `mobile menu` -> `dialog + @starting-style`
-- `page transitions` -> `view-transition`
+- `cmd /c npm run build`
 
-## 7. Додаткові оптимізації, які варто зробити паралельно
+## 3. Поточна гіпотеза
 
-### Прибрати дубль завантаження шрифтів
-- Видалити `@import url(...)` з [app/globals.css](c:/GitHub/oberemchuk/app/globals.css:1).
-- Залишити лише `next/font`.
+Основний ризик уже не в "важкому JS для меню". Цю проблему фактично знято.
 
-Це дасть:
-- менше зайвих network requests;
-- кращий контроль над font loading;
-- менше ризику CLS/FOIT/FOUT-конфліктів.
+Залишковий технічний борг тепер у двох місцях:
 
-### Прибрати мертвий CSS для старих анімацій меню
-- Перевірити і видалити невикористані блоки в [app/globals.css](c:/GitHub/oberemchuk/app/globals.css:169) і [app/globals.css](c:/GitHub/oberemchuk/app/globals.css:297).
+1. Надмірна кількість декоративних reveal-анімацій у сторінках.
+2. Зайві DOM-wrappers навколо великих блоків і повторюваних карток.
 
-### Переглянути всі `use client`-обгортки з декоративною роллю
-Насамперед:
-- `AnimationWrapper`
-- `ScrollToTop`
-- інші дрібні UI-елементи, де можна зменшити реактивність або відкласти гідрацію.
+Оскільки `AnimationWrapper` більше не client-компонент, це не критична runtime-проблема. Але поступове спрощення все одно корисне:
 
-### Перевірити бандл на зайві залежності
-У `package.json` є багато UI-бібліотек, які можуть не використовуватись.
-Окремо варто пройтися по:
-- `swiper`
-- `embla-carousel-react`
-- великому набору `@radix-ui/*`
+- менше DOM;
+- менше CSS-анімацій на scroll;
+- спокійніший UX;
+- простіша підтримка компонентів.
 
-Ціль:
-- залишити тільки реально використовуване;
-- зменшити install/build/runtime overhead.
+## 4. Подальший план
 
-## 8. Пріоритети впровадження
+### Фаза 1. Завершити cleanup головної сторінки
 
-### Фаза 1. Швидкий виграш
-1. Переписати mobile menu на `<dialog>`.
-2. Перенести open animation на `@starting-style`.
-3. Прибрати `body.style.position = "fixed"` та відновлення `scrollY` вручну.
-4. Видалити `@import` Google Fonts з CSS.
-5. Почистити мертвий CSS меню.
+Пройти компоненти:
 
-### Фаза 2. Скорочення зайвого JS
-1. Провести аудит `AnimationWrapper`.
-2. Зменшити кількість reveal-анімацій.
-3. Прибрати анімації з великих списків і повторюваних карток.
-4. Там, де можливо, замінити на чистий CSS або взагалі на статичний рендер.
+- `components/sections/about-section.tsx`
+- `components/sections/contact-section.tsx`
+- `components/sections/seo-section.tsx`
+- `components/faq-section.tsx`
 
-### Фаза 3. Сучасні platform APIs
-1. Додати `view-transition` для route/page transitions.
-2. Точково протестувати scroll-driven animations як progressive enhancement.
-3. Стандартизувати motion system:
-   - одна крива;
-   - 2-3 тривалості;
-   - чітке правило, де є JS, а де тільки CSS.
+Правило:
 
-## 9. Практичне рішення, яке я б рекомендував
+- залишати анімацію тільки для великих секційних входів;
+- прибирати анімацію з повторюваних карток, списків і контенту, який і так добре сканується;
+- не анімувати above the fold.
 
-Якщо робити без зайвого розкиду:
+### Фаза 2. Сторінки списків
 
-1. Спочатку переписати лише мобільне меню на нативний `dialog`.
-2. Одразу після цього прибрати дубль шрифтів і старий CSS для меню.
-3. Потім окремим етапом пройтись по `AnimationWrapper` і скоротити JS-анімації.
-4. `@view-transition` додавати вже після стабілізації меню, не змішуючи ці задачі.
+Пройти:
 
-## 10. Висновок
+- `app/[locale]/(site)/services/page.tsx`
+- `app/[locale]/(site)/solutions/page.tsx`
+- `app/[locale]/(site)/portfolio/page.tsx`
+- `app/[locale]/(site)/blog/page.tsx`
 
-Поточна проблема майже напевно сидить не в абстрактно "важкому JS", а в конкретній реалізації mobile menu:
-- кастомний dialog;
-- ручний scroll lock;
-- фіксація `body`;
-- ручне відновлення scroll position.
+Правило:
 
-Найбільш правильний технічний напрямок:
-- перейти на нативний `<dialog>`;
-- анімації меню зробити через CSS і `@starting-style`;
-- `@view-transition` використовувати для route transitions, а не для off-canvas меню;
-- поступово скоротити декоративний client-side JS навколо `AnimationWrapper`.
+- не обгортати кожну картку списку в `AnimationWrapper`;
+- якщо потрібен motion, анімувати контейнер секції або використовувати легкий CSS class без додаткового компонента.
+
+### Фаза 3. Detail-сторінки
+
+Пройти:
+
+- `app/[locale]/(site)/services/[slug]/page.tsx`
+- `app/[locale]/(site)/solutions/[slug]/page.tsx`
+- `app/[locale]/(site)/portfolio/[slug]/page.tsx`
+- `app/[locale]/(site)/blog/[slug]/page.tsx`
+
+Правило:
+
+- прибрати reveal-анімації з довгого читабельного контенту;
+- залишити тільки легкі секційні акценти, якщо вони справді покращують структуру.
+
+## 5. Що не треба робити зараз
+
+- Не додавати `framer-motion` або іншу motion-бібліотеку.
+- Не повертати JS `IntersectionObserver` для простих reveal-ефектів.
+- Не використовувати `view-transition` для mobile menu.
+- Не робити великий одноразовий рефактор усіх сторінок, бо ризик регресій буде вищий за користь.
+
+## 6. Рекомендований напрямок
+
+Поточний напрямок правильний:
+
+- menu: нативний `<dialog>` + CSS;
+- reveal: CSS-only, поступово менше;
+- page transitions: розглядати окремо пізніше, якщо буде реальна потреба;
+- залежності: тримати без motion/carousel-бібліотек, якщо вони не використовуються.
+
+Наступний найкращий крок: завершити cleanup `AnimationWrapper` на головній сторінці, потім перейти до сторінок списків.

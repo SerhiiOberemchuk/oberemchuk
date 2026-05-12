@@ -1,0 +1,173 @@
+.wrap {
+  position: relative;
+}
+
+.select {
+  width: 100%;
+  height: 3.5rem;
+  padding: 0 3rem 0 1rem;
+  border: 1px solid rgba(24, 31, 43, 0.12);
+  border-radius: 22px;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 14px 34px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96);
+  color: hsl(var(--foreground));
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.select:hover {
+  border-color: rgba(24, 31, 43, 0.22);
+  background: #fff;
+}
+
+.select:focus {
+  border-color: rgba(24, 31, 43, 0.3);
+  outline: 2px solid hsl(var(--ring) / 0.3);
+  outline-offset: 0;
+}
+
+.wrap > span {
+  position: absolute;
+  top: 50%;
+  right: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  background:
+    linear-gradient(45deg, transparent 0 43%, hsl(var(--foreground) / 0.55) 44% 56%, transparent 57% 100%) left 0.1rem top 0.32rem / 0.55rem 0.55rem no-repeat,
+    linear-gradient(-45deg, transparent 0 43%, hsl(var(--foreground) / 0.55) 44% 56%, transparent 57% 100%) right 0.1rem top 0.32rem / 0.55rem 0.55rem no-repeat;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+@supports (appearance: base-select) {
+  .wrap > span {
+    display: none;
+  }
+
+  .select,
+  .select::picker(select) {
+    appearance: base-select;
+  }
+
+  .select {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.92)),
+      radial-gradient(circle at 8% 18%, rgba(214, 101, 45, 0.1), transparent 28%);
+  }
+
+  .select::picker-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-left: auto;
+    background:
+      linear-gradient(45deg, transparent 0 43%, hsl(var(--foreground) / 0.58) 44% 56%, transparent 57% 100%) left 0.1rem top 0.34rem / 0.55rem 0.55rem no-repeat,
+      linear-gradient(-45deg, transparent 0 43%, hsl(var(--foreground) / 0.58) 44% 56%, transparent 57% 100%) right 0.1rem top 0.34rem / 0.55rem 0.55rem no-repeat;
+    content: "";
+    transition:
+      rotate 180ms ease,
+      background 180ms ease;
+  }
+
+  .select:open {
+    border-color: rgba(166, 76, 32, 0.38);
+    background:
+      linear-gradient(180deg, #fff, rgba(255, 251, 248, 0.96)),
+      radial-gradient(circle at 8% 18%, rgba(214, 101, 45, 0.16), transparent 28%);
+    box-shadow:
+      0 22px 54px rgba(166, 76, 32, 0.13),
+      0 0 0 4px rgba(166, 76, 32, 0.09);
+  }
+
+  .select:open::picker-icon {
+    background:
+      linear-gradient(45deg, transparent 0 43%, hsl(var(--primary)) 44% 56%, transparent 57% 100%) left 0.1rem top 0.34rem / 0.55rem 0.55rem no-repeat,
+      linear-gradient(-45deg, transparent 0 43%, hsl(var(--primary)) 44% 56%, transparent 57% 100%) right 0.1rem top 0.34rem / 0.55rem 0.55rem no-repeat;
+    rotate: 180deg;
+  }
+
+  .select::picker(select) {
+    min-width: anchor-size(width);
+    max-height: min(22rem, calc(100dvh - 2rem));
+    margin-top: 0.65rem;
+    padding: 0.45rem;
+    border: 1px solid rgba(24, 31, 43, 0.1);
+    border-radius: 24px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 249, 251, 0.96)),
+      radial-gradient(circle at 10% 10%, rgba(214, 101, 45, 0.1), transparent 24%);
+    box-shadow:
+      0 30px 80px rgba(15, 23, 42, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.96);
+    overflow: auto;
+  }
+
+  .select option {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: center;
+    min-height: 2.8rem;
+    margin: 0.1rem 0;
+    padding: 0.72rem 0.85rem;
+    border: 0;
+    border-radius: 18px;
+    background: transparent;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    transition:
+      background-color 140ms ease,
+      color 140ms ease,
+      transform 140ms ease;
+  }
+
+  .select option:hover,
+  .select option:focus {
+    background: rgba(24, 31, 43, 0.055);
+    color: hsl(var(--foreground));
+    outline: none;
+    transform: translateX(2px);
+  }
+
+  .select option:checked {
+    background: rgba(166, 76, 32, 0.11);
+    color: hsl(var(--foreground));
+  }
+
+  .select option::checkmark {
+    display: grid;
+    width: 1.1rem;
+    height: 1.1rem;
+    place-items: center;
+    border-radius: 999px;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    content: "✓";
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .select option:disabled {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select {
+    transition: none;
+  }
+}

@@ -3,7 +3,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: 210 25% 97%;
+  --background: 210 33% 98%;
   --foreground: 222 42% 8%;
   --card: 0 0% 100%;
   --card-foreground: 222 42% 8%;
@@ -11,24 +11,24 @@
   --popover-foreground: 222 42% 8%;
   --primary: 17 82% 42%;
   --primary-foreground: 210 40% 98%;
-  --secondary: 210 18% 93%;
+  --secondary: 210 22% 95%;
   --secondary-foreground: 222 32% 14%;
-  --muted: 210 16% 93%;
+  --muted: 210 20% 95%;
   --muted-foreground: 220 16% 26%;
-  --accent: 210 20% 87%;
+  --accent: 210 20% 90%;
   --accent-foreground: 222 32% 14%;
   --destructive: 0 72% 52%;
   --destructive-foreground: 0 0% 100%;
-  --border: 214 18% 76%;
-  --input: 214 20% 84%;
+  --border: 214 18% 82%;
+  --input: 214 20% 88%;
   --ring: 17 82% 42%;
   --radius: 1.5rem;
-  --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.1);
-  --shadow-strong: 0 34px 100px rgba(15, 23, 42, 0.18);
-  --surface: rgba(255, 255, 255, 0.92);
-  --surface-strong: rgba(255, 255, 255, 0.985);
-  --line-soft: rgba(24, 31, 43, 0.12);
-  --line-strong: rgba(24, 31, 43, 0.2);
+  --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.08);
+  --shadow-strong: 0 34px 100px rgba(15, 23, 42, 0.14);
+  --surface: rgba(255, 255, 255, 0.95);
+  --surface-strong: rgba(255, 255, 255, 0.995);
+  --line-soft: rgba(24, 31, 43, 0.1);
+  --line-strong: rgba(24, 31, 43, 0.16);
 }
 
 .dark {
@@ -92,10 +92,20 @@
   body {
     @apply overflow-x-hidden bg-background text-foreground antialiased;
     background-image:
-      radial-gradient(circle at top right, rgba(92, 116, 150, 0.14), transparent 21%),
-      radial-gradient(circle at 10% 8%, rgba(214, 101, 45, 0.09), transparent 18%),
-      linear-gradient(180deg, rgba(252, 254, 255, 0.99), rgba(239, 244, 248, 1));
+      radial-gradient(circle at 88% 0%, rgba(96, 120, 150, 0.08), transparent 24%),
+      radial-gradient(circle at 8% 4%, rgba(214, 101, 45, 0.045), transparent 22%),
+      linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(246, 249, 252, 1) 48%, rgba(242, 247, 250, 1));
     background-color: hsl(var(--background));
+  }
+
+  /*
+   * Radix Select mounts react-remove-scroll while a dropdown is open.
+   * The app already reserves scrollbar space on html, so its body gap
+   * compensation causes the whole centered layout to shift horizontally.
+   */
+  html body[data-scroll-locked] {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
   }
 
   html {

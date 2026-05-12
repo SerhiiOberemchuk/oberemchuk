@@ -1,0 +1,255 @@
+{
+  "metadata": {
+    "title": "Online website development cost calculator",
+    "description": "Calculate the approximate cost and timeline for a website, online store, landing page, or web app. Get an AI-assisted estimate with budget, phases, scope, and risks.",
+    "keywords": [
+      "website cost calculator",
+      "web development cost estimate",
+      "online store development cost",
+      "landing page price calculator",
+      "website development timeline",
+      "AI project estimate"
+    ],
+    "openGraph": {
+      "imageAlt": "Online website development cost calculator by Serhii Oberemchuk"
+    }
+  },
+  "hero": {
+    "eyebrow": "AI project estimate",
+    "title": "Estimate cost and timeline online",
+    "description": "Describe the project in plain language. The calculator returns a planning range with budget, timeline, phases, assumptions, risks, and questions to clarify before work starts.",
+    "previewAlt": "Preview of an online website development cost calculator with project form and AI estimate result"
+  },
+  "stats": {
+    "cost": {
+      "label": "Budget",
+      "value": "Cost range"
+    },
+    "timeline": {
+      "label": "Timeline",
+      "value": "Weeks estimate"
+    },
+    "scope": {
+      "label": "Scope",
+      "value": "Phases and risks"
+    }
+  },
+  "formTitle": "Describe the request",
+  "formDescription": "The more specific the goals, features, integrations, and constraints are, the better the planning range will be. This is not a final quote, but a useful first estimate.",
+  "validation": {
+    "description": "Please describe the project in more detail: at least 40 characters.",
+    "required": "Fill in the required fields before calculating."
+  },
+  "submit": {
+    "missingKey": "AI Gateway API key is not configured on the server.",
+    "rateLimited": "Too many estimate requests. Please wait a bit and try again later.",
+    "error": "The AI estimate could not be generated. Try again a bit later."
+  },
+  "form": {
+    "fields": {
+      "projectType": "Project type",
+      "description": "Project description",
+      "goals": "Business goals",
+      "pagesCount": "Approximate size",
+      "designReadiness": "Design readiness",
+      "deadline": "Desired timeline",
+      "budget": "Budget reference",
+      "integrations": "Integrations",
+      "features": "Required features"
+    },
+    "placeholders": {
+      "projectType": "Choose type",
+      "description": "Example: we need a corporate website for a B2B company with English and Ukrainian versions, service pages, portfolio, SEO structure, and a lead form...",
+      "goals": "Example: generate leads, explain services, prepare the website for ads and SEO.",
+      "pagesCount": "Choose size",
+      "designReadiness": "Choose status",
+      "deadline": "Choose timeline",
+      "budget": "Choose range",
+      "integrations": "CRM, payments, Telegram, email, CMS, analytics..."
+    },
+    "hints": {
+      "description": "Add audience, languages, pages, user accounts, payments, CMS, or any important constraints."
+    },
+    "submit": "Calculate project",
+    "loading": "Calculating...",
+    "cooldownButton": "Try again in {seconds}s",
+    "cooldownMessage": "The request limit is temporarily reached. You can run another estimate in {seconds}s."
+  },
+  "options": {
+    "projectTypes": [
+      {"value": "not-sure", "label": "Not sure yet"},
+      {"value": "landing-page", "label": "Landing page"},
+      {"value": "corporate-website", "label": "Corporate website"},
+      {"value": "ecommerce", "label": "Online store"},
+      {"value": "web-app", "label": "Web app / SaaS"},
+      {"value": "redesign", "label": "Redesign or improvement"},
+      {"value": "integrations", "label": "Integrations setup"},
+      {"value": "basic-seo", "label": "Basic SEO optimization"}
+    ],
+    "pageCounts": [
+      {"value": "1-3", "label": "1-3 pages"},
+      {"value": "4-8", "label": "4-8 pages"},
+      {"value": "9-20", "label": "9-20 pages"},
+      {"value": "20+", "label": "20+ pages or many templates"}
+    ],
+    "designReadiness": [
+      {"value": "none", "label": "No design yet"},
+      {"value": "references", "label": "References and structure exist"},
+      {"value": "figma", "label": "Ready Figma design"},
+      {"value": "existing-site", "label": "Existing site for redesign"}
+    ],
+    "deadlines": [
+      {"value": "flexible", "label": "Flexible"},
+      {"value": "2-4-weeks", "label": "2-4 weeks"},
+      {"value": "1-2-months", "label": "1-2 months"},
+      {"value": "3-months-plus", "label": "3+ months"}
+    ],
+    "budgets": [
+      {"value": "not-sure", "label": "Not sure yet"},
+      {"value": "under-1500", "label": "Under 1,500 EUR"},
+      {"value": "1500-4000", "label": "1,500 - 4,000 EUR"},
+      {"value": "4000-9000", "label": "4,000 - 9,000 EUR"},
+      {"value": "9000+", "label": "9,000+ EUR"}
+    ],
+    "features": [
+      {"value": "multilingual", "label": "Multiple languages"},
+      {"value": "cms", "label": "CMS / content editing"},
+      {"value": "payments", "label": "Online payments"},
+      {"value": "crm", "label": "CRM or lead pipeline"},
+      {"value": "auth", "label": "User account"},
+      {"value": "seo", "label": "SEO structure"},
+      {"value": "analytics", "label": "Analytics and events"},
+      {"value": "content", "label": "Content support"}
+    ]
+  },
+  "empty": {
+    "eyebrow": "What you get",
+    "title": "AI will prepare a planning range",
+    "description": "After submitting the form, a structured estimate will appear here. Use it as a basis for a focused discovery call.",
+    "points": [
+      "budget range in the project currency",
+      "estimated timeline in weeks",
+      "development phases and included scope",
+      "assumptions, risks, and clarification questions"
+    ]
+  },
+  "lead": {
+    "eyebrow": "Send estimate",
+    "title": "Send this estimate to discuss the project",
+    "description": "Leave your contacts and I will receive the request together with the project description and AI estimate.",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Comment"
+    },
+    "placeholders": {
+      "name": "Your name",
+      "email": "name@example.com",
+      "phone": "+1 ...",
+      "message": "What should I know before replying?"
+    },
+    "submit": {
+      "success": "The estimate was sent. I will review it and reply to you.",
+      "rateLimited": "Too many send attempts. Please wait a bit and try again later.",
+      "error": "The estimate could not be sent. Try again a bit later."
+    },
+    "validation": {
+      "nameRequired": "Enter your name.",
+      "emailRequired": "Enter your email.",
+      "emailInvalid": "Enter a valid email.",
+      "messageRequired": "Add a short comment."
+    },
+    "button": "Send estimate",
+    "loading": "Sending..."
+  },
+  "seo": {
+    "eyebrow": "Website cost calculator",
+    "title": "Online estimate for website and e-commerce development",
+    "descriptionA": "This page works as a practical online calculator for the cost of website development. It helps estimate a landing page, corporate website, online store, redesign, integrations, basic SEO setup, or a more complex web application before a discovery call.",
+    "descriptionB": "The estimate is based on project type, page count, design readiness, deadline, budget range, integrations, CMS needs, payments, multilingual content, analytics, and other features. The result is not a fixed commercial offer, but a useful planning range for budget, timeline, scope, risks, and next questions.",
+    "useCases": {
+      "items": [
+        {
+          "title": "Landing pages and corporate websites",
+          "description": "Estimate the budget for lead generation pages, service websites, portfolio websites, multilingual company websites, and SEO-ready corporate structures."
+        },
+        {
+          "title": "Online stores and catalogs",
+          "description": "Plan the development of e-commerce projects with product pages, checkout logic, payment integrations, CRM, analytics, content management, and launch support."
+        },
+        {
+          "title": "Web apps, integrations, and redesign",
+          "description": "Get a first range for SaaS interfaces, client portals, CMS improvements, third-party integrations, performance work, SEO improvements, or redesign of an existing website."
+        }
+      ]
+    },
+    "method": {
+      "eyebrow": "How the estimate works",
+      "title": "What affects cost and timeline",
+      "items": [
+        {
+          "title": "Scope and page structure",
+          "description": "The number of pages, templates, user flows, and content states determines how much design, frontend, CMS, and QA work is needed."
+        },
+        {
+          "title": "Design and technical readiness",
+          "description": "A ready Figma file, clear references, existing website, or missing structure changes the amount of discovery, UX, design, and implementation work."
+        },
+        {
+          "title": "Integrations and business logic",
+          "description": "Payments, CRM, authentication, multilingual content, analytics events, catalogs, dashboards, and custom backend logic increase implementation and testing effort."
+        },
+        {
+          "title": "Timeline and launch risk",
+          "description": "Urgent deadlines, migration, SEO requirements, content preparation, and third-party dependencies influence both project duration and delivery risk."
+        }
+      ]
+    }
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Questions about website cost calculation",
+    "description": "Short answers for clients who want to estimate website development cost before sending a request.",
+    "items": [
+      {
+        "question": "Is this a final website development price?",
+        "answer": "No. The calculator gives a preliminary planning range. A final quote requires clarifying scope, content, design, integrations, technical constraints, and launch requirements."
+      },
+      {
+        "question": "Can I estimate an online store?",
+        "answer": "Yes. Choose the online store project type and describe products, catalog structure, checkout, payment systems, CRM, delivery logic, and content management needs."
+      },
+      {
+        "question": "Does the estimate include SEO optimization?",
+        "answer": "The calculator can include basic SEO structure, technical SEO requirements, multilingual pages, analytics events, and content preparation when you add these details to the form."
+      },
+      {
+        "question": "Will the AI calculation spend tokens when I send contacts?",
+        "answer": "No. Sending the result to discuss the project emails the already generated estimate and does not run a new AI calculation."
+      }
+    ]
+  },
+  "schema": {
+    "name": "Online website development cost calculator",
+    "description": "AI-assisted calculator for estimating website, online store, landing page, and web app development cost and timeline.",
+    "home": "Home"
+  },
+  "result": {
+    "eyebrow": "Preliminary estimate",
+    "timeline": "Timeline",
+    "weeks": "weeks",
+    "format": "Recommended format",
+    "confidence": "Confidence",
+    "confidenceValues": {
+      "low": "low",
+      "medium": "medium",
+      "high": "high"
+    },
+    "phases": "Phases",
+    "included": "Included",
+    "assumptions": "Assumptions",
+    "risks": "Risks",
+    "questions": "Questions to clarify"
+  }
+}

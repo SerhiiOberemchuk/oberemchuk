@@ -52,19 +52,16 @@ export default function ClientOutcomesSection({
             const Icon = icons[index] ?? FileText
 
             return (
-              <AnimationWrapper
+              <article
                 key={item.title}
-                animation="slide-up"
-                delay={(index * 100) as 0 | 100 | 200 | 300 | 400 | 500}
+                className="h-full rounded-[1.75rem] border border-[rgba(24,31,43,0.08)] bg-white p-6 shadow-[0_18px_60px_rgba(24,31,43,0.05)]"
               >
-                <article className="h-full rounded-[1.75rem] border border-[rgba(24,31,43,0.08)] bg-white p-6 shadow-[0_18px_60px_rgba(24,31,43,0.05)]">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(24,31,43,0.1)] bg-[rgba(24,31,43,0.04)] text-[hsl(var(--foreground))]">
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  <h3 className="mt-5 text-[1.7rem] leading-tight text-[hsl(var(--foreground))]">{item.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{item.description}</p>
-                </article>
-              </AnimationWrapper>
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(24,31,43,0.1)] bg-[rgba(24,31,43,0.04)] text-[hsl(var(--foreground))]">
+                  <Icon className="h-4 w-4" />
+                </div>
+                <h3 className="mt-5 text-[1.7rem] leading-tight text-[hsl(var(--foreground))]">{item.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-[hsl(var(--muted-foreground))]">{item.description}</p>
+              </article>
             )
           })}
         </div>

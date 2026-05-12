@@ -161,21 +161,16 @@ export default async function PortfolioSection({
 
             <div className="grid gap-8">
               <div className="grid gap-6 border-t border-[rgba(24,31,43,0.14)] pt-8">
-                {secondaryProjects.map((project, index) => (
-                  <AnimationWrapper
+                {secondaryProjects.map((project) => (
+                  <PortfolioItem
                     key={project.slug}
-                    animation="fade-in"
-                    delay={(index * 100) as 0 | 100 | 200 | 300 | 400 | 500}
-                  >
-                    <PortfolioItem
-                      slug={project.slug}
-                      imageSrc={project.image_src}
-                      title={project.title}
-                      category={project.category}
-                      description={project.description}
-                      highlights={getCaseEvidence(project, evidence).points}
-                    />
-                  </AnimationWrapper>
+                    slug={project.slug}
+                    imageSrc={project.image_src}
+                    title={project.title}
+                    category={project.category}
+                    description={project.description}
+                    highlights={getCaseEvidence(project, evidence).points}
+                  />
                 ))}
               </div>
 

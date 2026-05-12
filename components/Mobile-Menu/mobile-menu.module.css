@@ -46,10 +46,10 @@
   }
 }
 
-/* @media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .dialog::backdrop,
   .panel {
     animation: none !important;
     transition: none !important;
   }
-} */
+}

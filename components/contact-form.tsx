@@ -9,13 +9,7 @@ import { submitContactForm, type ContactActionState } from "@/app/actions/contac
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import NativeSelect from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
 
 type Option = {
@@ -146,39 +140,27 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="service">{t("fields.service")}</Label>
-          <Select
+          <NativeSelect
+            id="service"
             value={formValues.service}
-            onValueChange={(value) => handleSelectChange("service", value)}
-          >
-            <SelectTrigger aria-label={t("fields.serviceAria")} aria-describedby={formHintId}>
-              <SelectValue placeholder={t("fields.servicePlaceholder")} />
-            </SelectTrigger>
-            <SelectContent>
-              {services.map((service) => (
-                <SelectItem key={service.value} value={service.value}>
-                  {service.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            placeholder={t("fields.servicePlaceholder")}
+            options={services}
+            onChange={(value) => handleSelectChange("service", value)}
+            describedBy={formHintId}
+            ariaLabel={t("fields.serviceAria")}
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="budget">{t("fields.budget")}</Label>
-          <Select
+          <NativeSelect
+            id="budget"
             value={formValues.budget}
-            onValueChange={(value) => handleSelectChange("budget", value)}
-          >
-            <SelectTrigger aria-label={t("fields.budgetAria")} aria-describedby={formHintId}>
-              <SelectValue placeholder={t("fields.budgetPlaceholder")} />
-            </SelectTrigger>
-            <SelectContent>
-              {budgets.map((budget) => (
-                <SelectItem key={budget.value} value={budget.value}>
-                  {budget.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            placeholder={t("fields.budgetPlaceholder")}
+            options={budgets}
+            onChange={(value) => handleSelectChange("budget", value)}
+            describedBy={formHintId}
+            ariaLabel={t("fields.budgetAria")}
+          />
         </div>
       </div>
 

@@ -25,6 +25,7 @@ function mergeMessages(
 export const clientMessageNamespaces = [
   "ContactForm",
   "CookieBanner",
+  "EstimatePage",
   "HomeAbout",
   "HomeHero",
   "HomeServices",

@@ -16,6 +16,29 @@ export interface ContactSubmission {
   message: string;
 }
 
+export interface EstimateLeadSubmission {
+  locale: ContactLocale;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  projectType: string;
+  pagesCount: string;
+  designReadiness: string;
+  deadline: string;
+  budget: string;
+  integrations: string;
+  features: string;
+  projectDescription: string;
+  goals: string;
+  estimateSummary: string;
+  estimateRange: string;
+  estimateTimeline: string;
+  estimateConfidence: string;
+  estimateFormat: string;
+  estimateDetails: string;
+}
+
 type ContactEmailMessages = typeof enMessages;
 
 const contactEmailMessages = {
@@ -284,5 +307,85 @@ export async function sendContactSubmission(data: ContactSubmission): Promise<vo
   await Promise.all([
     transporter.sendMail(adminMailOptions),
     transporter.sendMail(clientMailOptions),
+  ]);
+}
+
+export async function sendEstimateLeadSubmission(
+  data: EstimateLeadSubmission,
+): Promise<void> {
+  const messages = getContactEmailMessages(data.locale);
+
+  const detailsTable = [
+    renderDetailRow(getEmailMessage(messages, "fields.name"), data.name),
+    renderDetailRow(getEmailMessage(messages, "fields.email"), data.email),
+    renderDetailRow(getEmailMessage(messages, "fields.phone"), data.phone),
+    renderDetailRow("Тип проєкту", data.projectType),
+    renderDetailRow("Обсяг", data.pagesCount),
+    renderDetailRow("Стан дизайну", data.designReadiness),
+    renderDetailRow("Термін", data.deadline),
+    renderDetailRow(getEmailMessage(messages, "fields.budget"), data.budget),
+    renderDetailRow("Інтеграції", data.integrations),
+    renderDetailRow("Функції", data.features),
+    renderDetailRow("AI бюджет", data.estimateRange),
+    renderDetailRow("AI терміни", data.estimateTimeline),
+    renderDetailRow("AI точність", data.estimateConfidence),
+    renderDetailRow("Формат роботи", data.estimateFormat),
+  ].join("");
+
+  const messageHtml = [
+    `<strong>Коментар клієнта:</strong><br />${nl2br(data.message)}`,
+    `<br /><br /><strong>Опис проєкту:</strong><br />${nl2br(data.projectDescription)}`,
+    data.goals
+      ? `<br /><br /><strong>Бізнес-цілі:</strong><br />${nl2br(data.goals)}`
+      : "",
+    `<br /><br /><strong>AI summary:</strong><br />${nl2br(data.estimateSummary)}`,
+    `<br /><br /><strong>AI details:</strong><br />${nl2br(data.estimateDetails)}`,
+  ].join("");
+
+  const adminEmailHtml = renderEmailLayout({
+    eyebrow: "AI розрахунок",
+    title: `Клієнт залишив контакти: ${data.name}`,
+    intro: "Клієнт переглянув AI-розрахунок і відправив контактні дані для продовження розмови.",
+    summary: data.estimateSummary,
+    detailsTitle: "Контакти, параметри і розрахунок",
+    detailsTable,
+    messageTitle: "Запит клієнта і AI-розрахунок",
+    messageHtml,
+    footerNote: "Автоматичне повідомлення зі сторінки онлайн-розрахунку.",
+    brandSubtitle: getEmailMessage(messages, "layout.brandSubtitle"),
+    ctaLabel: "Відповісти клієнту",
+    ctaHref: `mailto:${data.email}`,
+  });
+
+  const clientEmailHtml = renderEmailLayout({
+    eyebrow: "AI розрахунок",
+    title: `${data.name}, ваш розрахунок отримано`,
+    intro: "Дякую за запит. Нижче копія попереднього AI-розрахунку та дані, які ви відправили для обговорення проєкту.",
+    summary: data.estimateSummary,
+    detailsTitle: "Ваші параметри і попередній розрахунок",
+    detailsTable,
+    messageTitle: "Ваш запит",
+    messageHtml,
+    footerNote: "Це автоматична копія розрахунку. Я перегляну запит і відповім вам окремим листом.",
+    brandSubtitle: getEmailMessage(messages, "layout.brandSubtitle"),
+    ctaLabel: getEmailMessage(messages, "client.ctaLabel"),
+    ctaHref: contactTelegramHref,
+  });
+
+  await Promise.all([
+    transporter.sendMail({
+    from: process.env.GMAIL_USER,
+    to: process.env.GMAIL_USER,
+    replyTo: data.email,
+    subject: `AI розрахунок + контакти від ${data.name} - Serhii Oberemchuk`,
+      html: adminEmailHtml,
+    }),
+    transporter.sendMail({
+      from: process.env.GMAIL_USER,
+      to: data.email,
+      replyTo: process.env.GMAIL_USER,
+      subject: "Копія вашого AI-розрахунку - Serhii Oberemchuk",
+      html: clientEmailHtml,
+    }),
   ]);
 }
