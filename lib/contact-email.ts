@@ -3,6 +3,7 @@ import enMessages from "@/messages/catalogs/en/ContactEmail.json";
 import itMessages from "@/messages/catalogs/it/ContactEmail.json";
 import ukMessages from "@/messages/catalogs/uk/ContactEmail.json";
 import { contactEmail, contactTelegramHref } from "@/lib/contact-info";
+import { getSiteUrl } from "@/lib/site-config";
 
 export type ContactLocale = "uk" | "en" | "it";
 
@@ -46,6 +47,9 @@ const contactEmailMessages = {
   it: itMessages,
   uk: ukMessages,
 } satisfies Record<ContactLocale, ContactEmailMessages>;
+
+const siteUrl = getSiteUrl();
+const logoUrl = `${siteUrl}/Logo.svg`;
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -151,13 +155,19 @@ function renderEmailLayout(params: {
     ctaLabel && ctaHref
       ? `
         <tr>
-          <td style="padding: 0 32px 32px;">
-            <a
-              href="${escapeHtml(ctaHref)}"
-              style="display: inline-block; padding: 14px 22px; border-radius: 999px; background: linear-gradient(135deg, #d4652d 0%, #b25d2f 100%); color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 700;"
-            >
-              ${escapeHtml(ctaLabel)}
-            </a>
+          <td style="background: #ffffff; padding: 0 32px 32px; border-left: 1px solid #d5dde8; border-right: 1px solid #d5dde8;">
+            <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse: separate;">
+              <tr>
+                <td bgcolor="#c65f2b" style="background: #c65f2b; border-radius: 999px; mso-padding-alt: 14px 24px;">
+                  <a
+                    href="${escapeHtml(ctaHref)}"
+                    style="display: inline-block; padding: 14px 24px; border-radius: 999px; background: #c65f2b; color: #ffffff; text-decoration: none; font-size: 14px; line-height: 1.2; font-weight: 800;"
+                  >
+                    ${escapeHtml(ctaLabel)}
+                  </a>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
       `
@@ -171,21 +181,33 @@ function renderEmailLayout(params: {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>${escapeHtml(title)}</title>
       </head>
-      <body style="margin: 0; padding: 24px 12px; background: #f8fafc; color: #0f172a; font-family: Inter, Arial, Helvetica, sans-serif;">
+      <body style="margin: 0; padding: 24px 12px; background: #f6f9fc; color: #181f2b; font-family: Manrope, Inter, Arial, Helvetica, sans-serif;">
         <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
           <tr>
             <td align="center">
               <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width: 680px; border-collapse: collapse;">
                 <tr>
-                  <td style="padding: 0 0 16px; text-align: center; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #b25d2f; font-weight: 700;">
-                    ${escapeHtml(eyebrow)}
+                  <td style="padding: 0 0 16px; text-align: center;">
+                    <a href="${escapeHtml(siteUrl)}" style="display: inline-block; text-decoration: none;">
+                      <img src="${escapeHtml(logoUrl)}" width="44" height="44" alt="Serhii Oberemchuk" style="display: block; width: 44px; height: 44px; margin: 0 auto 10px; border: 0; border-radius: 12px;" />
+                      <span style="display: block; color: #b84916; font-size: 12px; line-height: 1.4; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 800;">
+                        ${escapeHtml(eyebrow)}
+                      </span>
+                    </a>
                   </td>
                 </tr>
                 <tr>
-                  <td style="background: linear-gradient(135deg, #0f172a 0%, #20283a 100%); border-radius: 28px 28px 0 0; padding: 36px 32px 28px;">
-                    <div style="display: inline-block; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.12); color: #f0d5c2; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
-                      Serhii Oberemchuk
-                    </div>
+                  <td bgcolor="#181f2b" style="background: #181f2b; border-radius: 28px 28px 0 0; padding: 36px 32px 28px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                      <tr>
+                        <td style="padding: 0 10px 0 0; vertical-align: middle;">
+                          <img src="${escapeHtml(logoUrl)}" width="36" height="36" alt="" style="display: block; width: 36px; height: 36px; border: 0; border-radius: 10px;" />
+                        </td>
+                        <td style="vertical-align: middle; color: #f0d5c2; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;">
+                          Serhii Oberemchuk
+                        </td>
+                      </tr>
+                    </table>
                     <h1 style="margin: 18px 0 10px; color: #ffffff; font-size: 32px; line-height: 1.15; font-weight: 800;">
                       ${escapeHtml(title)}
                     </h1>
@@ -195,15 +217,15 @@ function renderEmailLayout(params: {
                   </td>
                 </tr>
                 <tr>
-                  <td style="background: #ffffff; padding: 32px; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0;">
-                    <div style="padding: 20px 22px; border-radius: 20px; background: #f8fafc; border: 1px solid #e2e8f0; margin-bottom: 24px;">
+                  <td style="background: #ffffff; padding: 32px; border-left: 1px solid #d5dde8; border-right: 1px solid #d5dde8;">
+                    <div style="padding: 20px 22px; border-radius: 20px; background: #f6f9fc; border: 1px solid #d5dde8; margin-bottom: 24px;">
                       <p style="margin: 0; color: #334155; font-size: 15px; line-height: 1.7;">
                         ${escapeHtml(summary)}
                       </p>
                     </div>
 
-                    <div style="border: 1px solid #e2e8f0; border-radius: 20px; padding: 22px; margin-bottom: 24px;">
-                      <h2 style="margin: 0 0 16px; color: #0f172a; font-size: 18px; font-weight: 800;">${escapeHtml(detailsTitle)}</h2>
+                    <div style="border: 1px solid #d5dde8; border-radius: 20px; padding: 22px; margin-bottom: 24px;">
+                      <h2 style="margin: 0 0 16px; color: #181f2b; font-size: 18px; font-weight: 800;">${escapeHtml(detailsTitle)}</h2>
                       <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
                         ${detailsTable}
                       </table>
@@ -219,11 +241,18 @@ function renderEmailLayout(params: {
                 </tr>
                 ${ctaBlock}
                 <tr>
-                  <td style="background: #ffffff; border: 1px solid #e2e8f0; border-top: 0; border-radius: 0 0 28px 28px; padding: 0 32px 28px;">
-                    <div style="padding-top: 20px; border-top: 1px solid #e2e8f0;">
-                      <p style="margin: 0 0 10px; color: #0f172a; font-size: 14px; font-weight: 700;">Serhii Oberemchuk</p>
+                  <td style="background: #ffffff; border: 1px solid #d5dde8; border-top: 0; border-radius: 0 0 28px 28px; padding: 0 32px 28px;">
+                    <div style="padding-top: 20px; border-top: 1px solid #d5dde8;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                          <td style="padding: 0 10px 0 0; vertical-align: middle;">
+                            <img src="${escapeHtml(logoUrl)}" width="32" height="32" alt="" style="display: block; width: 32px; height: 32px; border: 0; border-radius: 9px;" />
+                          </td>
+                          <td style="vertical-align: middle; color: #181f2b; font-size: 14px; font-weight: 800;">Serhii Oberemchuk</td>
+                        </tr>
+                      </table>
                       <p style="margin: 0 0 6px; color: #475569; font-size: 13px;">${escapeHtml(brandSubtitle)}</p>
-                      <p style="margin: 0 0 6px; color: #475569; font-size: 13px;">Email: <a href="mailto:${escapeHtml(contactEmail)}" style="color: #b25d2f; text-decoration: none;">${escapeHtml(contactEmail)}</a></p>
+                      <p style="margin: 0 0 6px; color: #475569; font-size: 13px;">Email: <a href="mailto:${escapeHtml(contactEmail)}" style="color: #b84916; text-decoration: none;">${escapeHtml(contactEmail)}</a></p>
                       <p style="margin: 0; color: #64748b; font-size: 12px; line-height: 1.6;">${escapeHtml(footerNote)}</p>
                     </div>
                   </td>
