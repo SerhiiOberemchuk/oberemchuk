@@ -4,13 +4,19 @@ import { getLocalizedPath } from "@/lib/seo";
 import { seoLandingSlugs } from "@/lib/seo-landings";
 import { servicePageSlugs } from "@/lib/service-pages";
 import { getSiteUrl } from "@/lib/site-config";
-import { appLocales } from "@/i18n/locales";
+import { appLocales, defaultLocale, type AppLocale } from "@/i18n/locales";
+
+export type SitemapAlternate = {
+  hreflang: AppLocale | "x-default";
+  href: string;
+};
 
 export type SitemapEntry = {
   loc: string;
   lastmod: string;
   changefreq: "yearly" | "monthly" | "weekly" | "daily";
   priority: string;
+  alternates: SitemapAlternate[];
 };
 
 export function toLastMod(value?: string): string {
@@ -57,6 +63,7 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
       lastmod: staticPagesLastMod,
       changefreq: entry.changefreq,
       priority: entry.priority,
+      alternates: getSitemapAlternates(baseUrl, entry.path),
     })),
   );
 
@@ -67,8 +74,24 @@ export async function getSitemapEntries(): Promise<SitemapEntry[]> {
       lastmod: toLastMod(project.updated_at),
       changefreq: "monthly",
       priority: "0.7",
+      alternates: getSitemapAlternates(baseUrl, `/portfolio/${project.slug}`),
     })),
   );
 
   return [...staticPages, ...projectPages];
+}
+
+function getSitemapAlternates(baseUrl: string, path: string): SitemapAlternate[] {
+  const localeAlternates = appLocales.map((locale) => ({
+    hreflang: locale,
+    href: `${baseUrl}${getLocalizedPath(locale, path)}`,
+  }));
+
+  return [
+    ...localeAlternates,
+    {
+      hreflang: "x-default",
+      href: `${baseUrl}${getLocalizedPath(defaultLocale, path)}`,
+    },
+  ];
 }

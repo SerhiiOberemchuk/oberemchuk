@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "title": "Blog and SEO content layer",
+    "description": "Articles on website structure, Next.js, SEO-ready launches and website relaunch strategy for businesses.",
+    "keywords": [
+      "business website blog",
+      "website SEO",
+      "Next.js articles",
+      "lead generation website"
+    ],
+    "openGraph": {
+      "description": "Articles for businesses planning stronger websites, better SEO structure and cleaner launches.",
+      "imageAlt": "Blog"
+    },
+    "twitter": {
+      "description": "Articles on structure, SEO and product-oriented websites."
+    }
+  },
+  "schema": {
+    "name": "Insights and SEO content",
+    "description": "Articles on websites, SEO-ready launches and technical product delivery."
+  },
+  "hero": {
+    "layer": "Content layer",
+    "label": "Blog",
+    "title": "Articles that support search and clarify the offer",
+    "description": "This is the editorial layer around the service and SEO pages: articles that explain decisions, reduce doubt and create more indexed entry points around the core offer.",
+    "addsLabel": "What this adds",
+    "addsText": "A content layer that supports authority, search breadth and better conversion context.",
+    "articles": "Articles",
+    "focus": "Focus",
+    "focusText": "Structure + SEO + launch"
+  },
+  "archive": {
+    "label": "Article archive",
+    "title": "Content built around practical website decisions",
+    "description": "The goal is not generic blogging. Each article supports the commercial pages by clarifying structure, stack choice, launch logic or SEO migration.",
+    "readArticle": "Read article"
+  },
+  "strategy": {
+    "label": "Editorial strategy",
+    "title": "Need content around your service pages too?",
+    "description": "The strongest setup is when service pages capture intent and articles expand the topic, answer doubts and support internal linking.",
+    "cta": "Get an estimate"
+  }
+}

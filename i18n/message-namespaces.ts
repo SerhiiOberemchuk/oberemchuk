@@ -18,6 +18,7 @@ export const messageNamespaces = [
   "Layout",
   "ServicesPage",
   "ServiceDetailPage",
+  "BlogPage",
   "BlogPostPage",
   "PortfolioPage",
   "SeoText",
@@ -29,6 +30,7 @@ export const messageNamespaces = [
   "PortfolioSection",
   "PortfolioShowcase",
   "ProjectsSlider",
+  "SolutionsPage",
   "SolutionDetailPage",
 ] as const;
 

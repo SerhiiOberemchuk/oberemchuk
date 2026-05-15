@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "title": "SEO landing pages for business growth",
+    "description": "Dedicated SEO landing pages for commercial search intent: stronger search visibility, clearer service positioning and conversion-focused structure.",
+    "keywords": [
+      "SEO landing pages",
+      "commercial search intent",
+      "website development Europe",
+      "Next.js development"
+    ],
+    "openGraph": {
+      "description": "Commercial landing pages built for search visibility, stronger messaging and better lead generation.",
+      "imageAlt": "SEO landing pages"
+    },
+    "twitter": {
+      "description": "Dedicated landing pages for commercial search intent."
+    }
+  },
+  "schema": {
+    "name": "SEO landing pages",
+    "description": "Dedicated landing pages for commercial search intent and business growth."
+  },
+  "hero": {
+    "layer": "SEO layer",
+    "intent": "Commercial search intent",
+    "title": "SEO pages built to sell, not just rank",
+    "description": "This is the search-intent layer above the core services: pages built to capture commercial demand, clarify the offer and route the right visitors into an estimate.",
+    "doesLabel": "What this layer does",
+    "doesText": "Turns broad service positioning into dedicated entry points for high-intent traffic.",
+    "coverage": "Search coverage",
+    "builtFor": "Built for",
+    "builtForText": "Visibility + conversion"
+  },
+  "archive": {
+    "label": "Landing pages",
+    "title": "Dedicated pages for concrete search scenarios",
+    "description": "Each page is focused on one commercial intent: website development, Next.js execution or redesign with SEO control. This lets the site rank with more precision and speak in a more relevant tone.",
+    "badge": "SEO landing",
+    "outcome": "Business outcome",
+    "openPage": "Open page"
+  },
+  "next": {
+    "label": "Next step",
+    "title": "Need a page for a specific search intent?",
+    "description": "If you already know the service direction or market, I can package a dedicated landing page around it instead of forcing everything into one generic services page.",
+    "cta": "Get an estimate"
+  }
+}

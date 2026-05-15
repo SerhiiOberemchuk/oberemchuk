@@ -5,7 +5,7 @@ import {
   BookOpenText,
   CalendarDays,
 } from "lucide-react";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
 import { Badge } from "@/components/ui/badge";
@@ -20,148 +20,21 @@ type BlogPageProps = {
   params: Promise<{ locale: string }>;
 };
 
-function getBlogPageCopy(locale: string) {
-  if (locale === "en") {
-    return {
-      metadataTitle: "Blog and SEO content layer",
-      metadataDescription:
-        "Articles on website structure, Next.js, SEO-ready launches and website relaunch strategy for businesses.",
-      metadataKeywords: [
-        "business website blog",
-        "website SEO",
-        "Next.js articles",
-        "lead generation website",
-      ],
-      ogDescription:
-        "Articles for businesses planning stronger websites, better SEO structure and cleaner launches.",
-      twitterDescription:
-        "Articles on structure, SEO and product-oriented websites.",
-      layer: "Content layer",
-      blog: "Blog",
-      heroTitle: "Articles that support search and clarify the offer",
-      heroDescription:
-        "This is the editorial layer around the service and SEO pages: articles that explain decisions, reduce doubt and create more indexed entry points around the core offer.",
-      adds: "What this adds",
-      addsText:
-        "A content layer that supports authority, search breadth and better conversion context.",
-      articles: "Articles",
-      focus: "Focus",
-      focusText: "Structure + SEO + launch",
-      archive: "Article archive",
-      archiveTitle: "Content built around practical website decisions",
-      archiveText:
-        "The goal is not generic blogging. Each article supports the commercial pages by clarifying structure, stack choice, launch logic or SEO migration.",
-      readArticle: "Read article",
-      strategy: "Editorial strategy",
-      strategyTitle: "Need content around your service pages too?",
-      strategyText:
-        "The strongest setup is when service pages capture intent and articles expand the topic, answer doubts and support internal linking.",
-      estimate: "Get an estimate",
-      jsonLdName: "Insights and SEO content",
-      jsonLdDescription:
-        "Articles on websites, SEO-ready launches and technical product delivery.",
-    };
-  }
-
-  if (locale === "it") {
-    return {
-      metadataTitle: "Blog e layer di contenuto SEO",
-      metadataDescription:
-        "Articoli su struttura dei siti, Next.js, lanci SEO-ready e strategia di rilancio per aziende.",
-      metadataKeywords: [
-        "blog siti business",
-        "SEO per siti",
-        "articoli Next.js",
-        "sito per lead",
-      ],
-      ogDescription:
-        "Articoli per aziende che vogliono siti piu forti, una struttura SEO migliore e lanci piu puliti.",
-      twitterDescription:
-        "Articoli su struttura, SEO e siti orientati al prodotto.",
-      layer: "Layer di contenuto",
-      blog: "Blog",
-      heroTitle: "Articoli che sostengono la ricerca e chiariscono l'offerta",
-      heroDescription:
-        "Questo e il layer editoriale intorno a servizi e pagine SEO: articoli che spiegano le decisioni, riducono i dubbi e creano nuovi punti di ingresso indicizzabili attorno all'offerta principale.",
-      adds: "Cosa aggiunge",
-      addsText:
-        "Un layer di contenuto che rafforza autorevolezza, ampiezza della ricerca e contesto di conversione.",
-      articles: "Articoli",
-      focus: "Focus",
-      focusText: "Struttura + SEO + lancio",
-      archive: "Archivio articoli",
-      archiveTitle: "Contenuto costruito attorno a decisioni pratiche sul sito",
-      archiveText:
-        "L'obiettivo non e fare blogging generico. Ogni articolo sostiene le pagine commerciali chiarendo struttura, stack, logica di lancio o migrazione SEO.",
-      readArticle: "Leggi l'articolo",
-      strategy: "Strategia editoriale",
-      strategyTitle:
-        "Ti serve anche un layer di contenuto attorno alle pagine servizio?",
-      strategyText:
-        "L'impianto piu forte e quando le pagine servizio intercettano l'intento e gli articoli ampliano il tema, sciolgono i dubbi e sostengono il linking interno.",
-      estimate: "Richiedi una stima",
-      jsonLdName: "Approfondimenti e contenuto SEO",
-      jsonLdDescription:
-        "Articoli su siti, lanci SEO-ready e delivery tecnico di prodotti digitali.",
-    };
-  }
-
-  return {
-    metadataTitle: "Блог і контентний SEO-шар",
-    metadataDescription:
-      "Матеріали про структуру сайту, Next.js, SEO-ready запуск і relaunch-стратегію для бізнесу.",
-    metadataKeywords: [
-      "блог про сайти",
-      "SEO сайту",
-      "Next.js статті",
-      "сайт під заявки",
-    ],
-    ogDescription:
-      "Матеріали для бізнесу, який планує сильніший сайт, кращу SEO-структуру і чистіший запуск.",
-    twitterDescription:
-      "Матеріали про структуру, SEO і продуктову логіку сайтів.",
-    layer: "Контентний шар",
-    blog: "Блог",
-    heroTitle: "Матеріали, які підсилюють пошук і пояснюють оффер",
-    heroDescription:
-      "Це редакційний шар навколо послуг і SEO-сторінок: матеріали, які пояснюють рішення, знімають сумніви і створюють додаткові точки входу в індексі навколо основного оффера.",
-    adds: "Що це додає",
-    addsText:
-      "Контентний шар, який підсилює експертність, ширину пошуку і контекст для кращої конверсії.",
-    articles: "Матеріали",
-    focus: "Фокус",
-    focusText: "Структура + SEO + запуск",
-    archive: "Архів матеріалів",
-    archiveTitle: "Контент навколо практичних рішень по сайту",
-    archiveText:
-      "Мета не в абстрактному блозі. Кожен матеріал підсилює комерційні сторінки, пояснюючи структуру, вибір стеку, логіку запуску або SEO-міграцію.",
-    readArticle: "Читати матеріал",
-    strategy: "Редакційна стратегія",
-    strategyTitle: "Потрібен контентний шар навколо сторінок послуг?",
-    strategyText:
-      "Найсильніший сценарій, коли сторінки послуг ловлять намір, а матеріали розширюють тему, знімають сумніви і підсилюють внутрішню перелінковку.",
-    estimate: "Отримати оцінку",
-    jsonLdName: "Матеріали і SEO-контент",
-    jsonLdDescription:
-      "Матеріали про сайти, SEO-ready запуск і технічну реалізацію продуктів.",
-  };
-}
-
 export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
   const { locale } = await params;
   const currentLocale = locale as AppLocale;
-  const copy = getBlogPageCopy(locale);
+  const t = await getTranslations({ locale: currentLocale, namespace: "BlogPage" });
 
   return {
-    title: copy.metadataTitle,
-    description: copy.metadataDescription,
-    keywords: copy.metadataKeywords,
+    title: t("metadata.title"),
+    description: t("metadata.description"),
+    keywords: t.raw("metadata.keywords") as string[],
     alternates: getPageAlternates(currentLocale, "/blog"),
     openGraph: {
-      title: copy.metadataTitle,
-      description: copy.ogDescription,
+      title: t("metadata.title"),
+      description: t("metadata.openGraph.description"),
       url: getLocalizedPath(currentLocale, "/blog"),
       type: "website",
       images: [
@@ -169,14 +42,14 @@ export async function generateMetadata({
           url: "/og-blog.png",
           width: 1200,
           height: 630,
-          alt: "Blog",
+          alt: t("metadata.openGraph.imageAlt"),
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: copy.metadataTitle,
-      description: copy.twitterDescription,
+      title: t("metadata.title"),
+      description: t("metadata.twitter.description"),
       images: ["/og-blog.png"],
     },
   };
@@ -186,16 +59,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
+  const t = await getTranslations({ locale: currentLocale, namespace: "BlogPage" });
   const posts = getBlogPosts(currentLocale);
   const siteUrl = getSiteUrl();
   const pageUrl = `${siteUrl}${getLocalizedPath(currentLocale, "/blog")}`;
-  const copy = getBlogPageCopy(locale);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    name: copy.jsonLdName,
-    description: copy.jsonLdDescription,
+    name: t("schema.name"),
+    description: t("schema.description"),
     url: pageUrl,
     blogPost: posts.map((post) => ({
       "@type": "BlogPosting",
@@ -220,17 +93,17 @@ export default async function BlogPage({ params }: BlogPageProps) {
             <AnimationWrapper animation="slide-right">
               <div className="flex h-full flex-col">
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/54">
-                  {copy.layer}
+                  {t("hero.layer")}
                 </p>
-                <div className="max-w-xl min-h-[15rem]">
+                <div className="min-h-[15rem] max-w-xl">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
-                    {copy.blog}
+                    {t("hero.label")}
                   </p>
                   <h1 className="mt-4 max-w-[12ch] text-5xl leading-[0.92] text-white md:text-7xl">
-                    {copy.heroTitle}
+                    {t("hero.title")}
                   </h1>
                   <p className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg">
-                    {copy.heroDescription}
+                    {t("hero.description")}
                   </p>
                 </div>
               </div>
@@ -240,10 +113,10 @@ export default async function BlogPage({ params }: BlogPageProps) {
               <div className="grid gap-6">
                 <div className="rounded-[1.7rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
-                    {copy.adds}
+                    {t("hero.addsLabel")}
                   </p>
                   <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
-                    {copy.addsText}
+                    {t("hero.addsText")}
                   </p>
                 </div>
 
@@ -252,7 +125,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
                     <div className="flex items-center gap-2 text-white/44">
                       <BookOpenText className="h-4 w-4" />
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-                        {copy.articles}
+                        {t("hero.articles")}
                       </p>
                     </div>
                     <p className="mt-3 text-lg text-white">{posts.length}</p>
@@ -261,10 +134,10 @@ export default async function BlogPage({ params }: BlogPageProps) {
                     <div className="flex items-center gap-2 text-white/44">
                       <CalendarDays className="h-4 w-4" />
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-                        {copy.focus}
+                        {t("hero.focus")}
                       </p>
                     </div>
-                    <p className="mt-3 text-lg text-white">{copy.focusText}</p>
+                    <p className="mt-3 text-lg text-white">{t("hero.focusText")}</p>
                   </div>
                 </div>
               </div>
@@ -277,14 +150,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
             <div className="mb-10 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
               <div>
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                  {copy.archive}
+                  {t("archive.label")}
                 </p>
                 <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                  {copy.archiveTitle}
+                  {t("archive.title")}
                 </h2>
               </div>
               <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">
-                {copy.archiveText}
+                {t("archive.description")}
               </p>
             </div>
           </AnimationWrapper>
@@ -326,7 +199,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
                         className="mt-auto w-full bg-transparent"
                       >
                         <Link href={`/blog/${post.slug}`}>
-                          {copy.readArticle}
+                          {t("archive.readArticle")}
                           <ArrowRight className="button-arrow-right h-4 w-4" />
                         </Link>
                       </Button>
@@ -343,15 +216,15 @@ export default async function BlogPage({ params }: BlogPageProps) {
             <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
               <div>
                 <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/44">
-                  {copy.strategy}
+                  {t("strategy.label")}
                 </p>
                 <h2 className="max-w-3xl text-4xl leading-[0.96] md:text-5xl">
-                  {copy.strategyTitle}
+                  {t("strategy.title")}
                 </h2>
               </div>
               <div>
                 <p className="text-base leading-8 text-white/70">
-                  {copy.strategyText}
+                  {t("strategy.description")}
                 </p>
                 <Button
                   asChild
@@ -359,7 +232,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
                   className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92"
                 >
                   <Link href="/#contact">
-                    {copy.estimate}
+                    {t("strategy.cta")}
                     <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
                   </Link>
                 </Button>

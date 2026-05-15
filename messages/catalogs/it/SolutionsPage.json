@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "title": "Landing SEO per la crescita del business",
+    "description": "Landing SEO dedicate all'intento commerciale: visibilita piu forte, posizionamento piu chiaro dei servizi e struttura orientata alla conversione.",
+    "keywords": [
+      "landing SEO",
+      "intento di ricerca commerciale",
+      "sviluppo siti Europa",
+      "sviluppo Next.js"
+    ],
+    "openGraph": {
+      "description": "Landing commerciali costruite per visibilita organica, messaggio piu forte e lead generation migliore.",
+      "imageAlt": "Landing SEO"
+    },
+    "twitter": {
+      "description": "Landing dedicate all'intento di ricerca commerciale."
+    }
+  },
+  "schema": {
+    "name": "Landing SEO",
+    "description": "Landing dedicate all'intento commerciale e alla crescita del business."
+  },
+  "hero": {
+    "layer": "Layer SEO",
+    "intent": "Intento di ricerca commerciale",
+    "title": "Pagine SEO costruite per vendere, non solo per posizionarsi",
+    "description": "Questo e il layer di search intent sopra i servizi principali: pagine costruite per intercettare domanda commerciale, chiarire l'offerta e portare i visitatori giusti verso una stima.",
+    "doesLabel": "Cosa fa questo layer",
+    "doesText": "Trasforma il posizionamento generale dei servizi in punti di ingresso dedicati per traffico ad alto intento.",
+    "coverage": "Copertura di ricerca",
+    "builtFor": "Pensato per",
+    "builtForText": "Visibilita + conversione"
+  },
+  "archive": {
+    "label": "Landing page",
+    "title": "Pagine dedicate per scenari di ricerca concreti",
+    "description": "Ogni pagina e focalizzata su un solo intento commerciale: sviluppo sito, implementazione Next.js o redesign con controllo SEO. Questo rende la visibilita piu precisa e il messaggio piu pertinente.",
+    "badge": "Landing SEO",
+    "outcome": "Risultato business",
+    "openPage": "Apri la pagina"
+  },
+  "next": {
+    "label": "Prossimo passo",
+    "title": "Ti serve una pagina per un intento di ricerca specifico?",
+    "description": "Se conosci gia la direzione del servizio o il mercato, posso costruire una landing dedicata attorno a quell'intento invece di comprimere tutto in un'unica pagina servizi generica.",
+    "cta": "Richiedi una stima"
+  }
+}
