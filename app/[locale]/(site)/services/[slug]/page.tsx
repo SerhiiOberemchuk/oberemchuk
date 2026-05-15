@@ -14,7 +14,7 @@ import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
 import {appLocales, type AppLocale} from "@/i18n/locales";
 import {Link} from "@/i18n/navigation";
-import {getPageAlternates} from "@/lib/seo";
+import {getLocalizedPath, getPageAlternates} from "@/lib/seo";
 import {getSiteUrl} from "@/lib/site-config";
 import {
   getServicePage,
@@ -39,23 +39,21 @@ export async function generateMetadata({
   params
 }: ServicePageProps): Promise<Metadata> {
   const {locale, slug} = await params;
-  const service = getServicePage(locale as AppLocale, slug);
+  const currentLocale = locale as AppLocale;
+  const service = getServicePage(currentLocale, slug);
   const siteUrl = getSiteUrl();
 
   if (!service) {
     return {};
   }
 
-  const pagePath =
-    locale === "uk"
-      ? `/services/${service.slug}`
-      : `/${locale}/services/${service.slug}`;
+  const pagePath = getLocalizedPath(currentLocale, `/services/${service.slug}`);
 
   return {
     title: service.metaTitle,
     description: service.metaDescription,
     keywords: service.keywords,
-    alternates: getPageAlternates(locale as AppLocale, `/services/${service.slug}`),
+    alternates: getPageAlternates(currentLocale, `/services/${service.slug}`),
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
@@ -82,23 +80,21 @@ export async function generateMetadata({
 export default async function ServiceDetailPage({params}: ServicePageProps) {
   const {locale, slug} = await params;
   setRequestLocale(locale);
+  const currentLocale = locale as AppLocale;
 
   const pageT = await getTranslations({
     locale,
     namespace: "ServiceDetailPage"
   });
-  const service = getServicePage(locale as AppLocale, slug);
+  const service = getServicePage(currentLocale, slug);
 
   if (!service) {
     notFound();
   }
 
-  const pagePath =
-    locale === "uk"
-      ? `/services/${service.slug}`
-      : `/${locale}/services/${service.slug}`;
+  const pagePath = getLocalizedPath(currentLocale, `/services/${service.slug}`);
   const siteUrl = getSiteUrl();
-  const relatedServices = getServicePages(locale as AppLocale)
+  const relatedServices = getServicePages(currentLocale)
     .filter((item) => item.slug !== service.slug)
     .slice(0, 3);
 

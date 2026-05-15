@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { type AppLocale } from "@/i18n/locales";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getSeoLandings } from "@/lib/seo-landings";
 import { getSiteUrl } from "@/lib/site-config";
 
@@ -154,17 +154,18 @@ export async function generateMetadata({
   params,
 }: SolutionsPageProps): Promise<Metadata> {
   const { locale } = await params;
+  const currentLocale = locale as AppLocale;
   const copy = getSolutionsPageCopy(locale);
 
   return {
     title: copy.metadataTitle,
     description: copy.metadataDescription,
     keywords: copy.metadataKeywords,
-    alternates: getPageAlternates(locale as AppLocale, "/solutions"),
+    alternates: getPageAlternates(currentLocale, "/solutions"),
     openGraph: {
       title: copy.metadataTitle,
       description: copy.ogDescription,
-      url: locale === "uk" ? "/solutions" : `/${locale}/solutions`,
+      url: getLocalizedPath(currentLocale, "/solutions"),
       type: "website",
       images: [
         {
@@ -187,9 +188,10 @@ export async function generateMetadata({
 export default async function SolutionsPage({ params }: SolutionsPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const pages = getSeoLandings(locale as AppLocale);
+  const currentLocale = locale as AppLocale;
+  const pages = getSeoLandings(currentLocale);
   const siteUrl = getSiteUrl();
-  const pageUrl = `${siteUrl}${locale === "uk" ? "/solutions" : `/${locale}/solutions`}`;
+  const pageUrl = `${siteUrl}${getLocalizedPath(currentLocale, "/solutions")}`;
   const copy = getSolutionsPageCopy(locale);
 
   const jsonLd = {

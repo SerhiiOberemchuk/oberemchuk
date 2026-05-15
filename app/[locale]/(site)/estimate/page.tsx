@@ -4,8 +4,8 @@ import {getTranslations, setRequestLocale} from "next-intl/server";
 import {BarChart3, Clock3, Euro, FileText} from "lucide-react";
 import JsonLd from "@/components/json-ld";
 import ProjectEstimateForm from "@/components/project-estimate-form";
-import {isAppLocale, type AppLocale} from "@/i18n/locales";
-import {getPageAlternates} from "@/lib/seo";
+import {isAppLocale, resolveAppLocale} from "@/i18n/locales";
+import {getLocalizedPath, getPageAlternates} from "@/lib/seo";
 import {getSiteUrl} from "@/lib/site-config";
 
 type EstimatePageProps = {
@@ -16,7 +16,7 @@ export async function generateMetadata({
   params,
 }: EstimatePageProps): Promise<Metadata> {
   const {locale} = await params;
-  const currentLocale = isAppLocale(locale) ? locale : "uk";
+  const currentLocale = resolveAppLocale(locale);
   const t = await getTranslations({
     locale: currentLocale,
     namespace: "EstimatePage.metadata",
@@ -26,12 +26,12 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     keywords: t.raw("keywords") as string[],
-    alternates: getPageAlternates(currentLocale as AppLocale, "/estimate"),
+    alternates: getPageAlternates(currentLocale, "/estimate"),
     openGraph: {
       title: t("title"),
       description: t("description"),
       type: "website",
-      url: currentLocale === "uk" ? "/estimate" : `/${currentLocale}/estimate`,
+      url: getLocalizedPath(currentLocale, "/estimate"),
       images: [
         {
           url: "/og-estimate.png",
@@ -52,7 +52,7 @@ export async function generateMetadata({
 
 export default async function EstimatePage({params}: EstimatePageProps) {
   const {locale} = await params;
-  const currentLocale = isAppLocale(locale) ? locale : "uk";
+  const currentLocale = resolveAppLocale(locale);
 
   if (isAppLocale(locale)) {
     setRequestLocale(locale);
@@ -60,7 +60,7 @@ export default async function EstimatePage({params}: EstimatePageProps) {
 
   const t = await getTranslations({locale: currentLocale, namespace: "EstimatePage"});
   const baseUrl = getSiteUrl();
-  const pagePath = currentLocale === "uk" ? "/estimate" : `/${currentLocale}/estimate`;
+  const pagePath = getLocalizedPath(currentLocale, "/estimate");
   const useCases = t.raw("seo.useCases.items") as Array<{
     title: string;
     description: string;

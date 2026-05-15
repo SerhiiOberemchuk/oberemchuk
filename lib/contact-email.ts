@@ -4,8 +4,9 @@ import itMessages from "@/messages/catalogs/it/ContactEmail.json";
 import ukMessages from "@/messages/catalogs/uk/ContactEmail.json";
 import { contactEmail, contactTelegramHref } from "@/lib/contact-info";
 import { getSiteUrl } from "@/lib/site-config";
+import { type AppLocale, resolveAppLocale } from "@/i18n/locales";
 
-export type ContactLocale = "uk" | "en" | "it";
+export type ContactLocale = AppLocale;
 
 export interface ContactSubmission {
   locale: ContactLocale;
@@ -65,7 +66,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export function getEmailLocale(locale?: string): ContactLocale {
-  return locale === "en" || locale === "it" || locale === "uk" ? locale : "uk";
+  return resolveAppLocale(locale);
 }
 
 export function getContactEmailMessages(locale: ContactLocale): ContactEmailMessages {

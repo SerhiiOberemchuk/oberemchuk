@@ -9,10 +9,10 @@ import {
   getEmailLocale,
   getEmailMessage,
   sendEstimateLeadSubmission,
-  type ContactLocale,
 } from "@/lib/contact-email";
+import { appLocales } from "@/i18n/locales";
 
-const localeSchema = z.enum(["uk", "en", "it"]);
+const localeSchema = z.enum(appLocales);
 const rateLimitCookieName = "estimate_rl";
 const rateLimitWindowMs = 10 * 60 * 1000;
 const rateLimitDayMs = 24 * 60 * 60 * 1000;
@@ -540,7 +540,7 @@ export async function submitProjectEstimateLead(
 
   try {
     await sendEstimateLeadSubmission({
-      locale: parsed.data.locale as ContactLocale,
+      locale: parsed.data.locale,
       name: parsed.data.name,
       email: parsed.data.email,
       phone: parsed.data.phone || fallbackNotProvided,

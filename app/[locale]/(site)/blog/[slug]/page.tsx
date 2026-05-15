@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { appLocales, type AppLocale } from "@/i18n/locales";
 import { blogPostSlugs, getBlogPost, getBlogPosts } from "@/lib/blog-posts";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getSeoLanding } from "@/lib/seo-landings";
 import { getSiteUrl } from "@/lib/site-config";
 
@@ -35,7 +35,8 @@ export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const post = getBlogPost(locale as AppLocale, slug);
+  const currentLocale = locale as AppLocale;
+  const post = getBlogPost(currentLocale, slug);
 
   if (!post) {
     return {};
@@ -45,11 +46,11 @@ export async function generateMetadata({
     title: post.metaTitle,
     description: post.metaDescription,
     keywords: post.keywords,
-    alternates: getPageAlternates(locale as AppLocale, `/blog/${post.slug}`),
+    alternates: getPageAlternates(currentLocale, `/blog/${post.slug}`),
     openGraph: {
       title: post.metaTitle,
       description: post.metaDescription,
-      url: locale === "uk" ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`,
+      url: getLocalizedPath(currentLocale, `/blog/${post.slug}`),
       type: "article",
       images: [
         {
@@ -72,21 +73,21 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  const currentLocale = locale as AppLocale;
   const t = await getTranslations({ locale, namespace: "BlogPostPage" });
-  const post = getBlogPost(locale as AppLocale, slug);
+  const post = getBlogPost(currentLocale, slug);
 
   if (!post) {
     notFound();
   }
 
   const siteUrl = getSiteUrl();
-  const pagePath =
-    locale === "uk" ? `/blog/${post.slug}` : `/${locale}/blog/${post.slug}`;
+  const pagePath = getLocalizedPath(currentLocale, `/blog/${post.slug}`);
   const relatedLanding = getSeoLanding(
-    locale as AppLocale,
+    currentLocale,
     post.relatedLandingSlug,
   );
-  const relatedPosts = getBlogPosts(locale as AppLocale)
+  const relatedPosts = getBlogPosts(currentLocale)
     .filter((item) => item.slug !== post.slug)
     .slice(0, 2);
 

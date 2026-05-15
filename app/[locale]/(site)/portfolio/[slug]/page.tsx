@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { appLocales, type AppLocale } from "@/i18n/locales";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-config";
 import { localizeProject } from "@/lib/projects-i18n";
 import { getProjectBySlug, getProjects } from "@/lib/projects-server";
@@ -253,6 +253,7 @@ export async function generateMetadata({
 }: PortfolioProjectPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  const currentLocale = locale as AppLocale;
   const pageT = await getTranslations({
     locale,
     namespace: "PortfolioProjectPage",
@@ -266,16 +267,15 @@ export async function generateMetadata({
     };
   }
 
-  const localizedProject = localizeProject(project, locale as AppLocale);
+  const localizedProject = localizeProject(project, currentLocale);
   const siteUrl = getSiteUrl();
-  const pagePath =
-    locale === "uk" ? `/portfolio/${slug}` : `/${locale}/portfolio/${slug}`;
+  const pagePath = getLocalizedPath(currentLocale, `/portfolio/${slug}`);
 
   return {
     title: localizedProject.title,
     description: localizedProject.description,
     keywords: `${localizedProject.title}, ${localizedProject.category}, ${pageT("metadata.keywordsPrefix")}, ${localizedProject.technologies.join(", ")}`,
-    alternates: getPageAlternates(locale as AppLocale, `/portfolio/${slug}`),
+    alternates: getPageAlternates(currentLocale, `/portfolio/${slug}`),
     openGraph: {
       title: `${localizedProject.title} | ${pageT("metadata.siteSuffix")}`,
       description: localizedProject.description,
@@ -304,6 +304,7 @@ export default async function ProjectPage({
 }: PortfolioProjectPageProps) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  const currentLocale = locale as AppLocale;
   const pageT = await getTranslations({
     locale,
     namespace: "PortfolioProjectPage",
@@ -314,11 +315,10 @@ export default async function ProjectPage({
     notFound();
   }
 
-  const localizedProject = localizeProject(project, locale as AppLocale);
-  const pagePath =
-    locale === "uk" ? `/portfolio/${slug}` : `/${locale}/portfolio/${slug}`;
+  const localizedProject = localizeProject(project, currentLocale);
+  const pagePath = getLocalizedPath(currentLocale, `/portfolio/${slug}`);
   const siteUrl = getSiteUrl();
-  const narrative = getCaseNarrative(localizedProject, locale as AppLocale);
+  const narrative = getCaseNarrative(localizedProject, currentLocale);
   const overviewLabel = pageT("overviewLabel");
   const buildLabel = pageT("buildLabel");
   const projectLabel = pageT("projectLabel");

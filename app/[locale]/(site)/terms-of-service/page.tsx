@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import LegalPageShell from "@/components/legal-page-shell";
 import { Link } from "@/i18n/navigation";
 import { type AppLocale } from "@/i18n/locales";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 
 type TermsOfServicePageProps = {
   params: Promise<{ locale: string }>;
@@ -12,7 +12,7 @@ type TermsOfServicePageProps = {
 export async function generateMetadata({ params }: TermsOfServicePageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "TermsOfServicePage.metadata" });
-  const pagePath = locale === "uk" ? "/terms-of-service" : `/${locale}/terms-of-service`;
+  const pagePath = getLocalizedPath(locale as AppLocale, "/terms-of-service");
 
   return {
     title: t("title"),

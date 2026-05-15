@@ -41,6 +41,30 @@ export function isAppLocale(value: string | undefined): value is AppLocale {
   return value !== undefined && appLocales.includes(value as AppLocale);
 }
 
+export function resolveAppLocale(value: string | null | undefined): AppLocale {
+  const locale = value ?? undefined;
+  return isAppLocale(locale) ? locale : defaultLocale;
+}
+
+export function isDefaultLocale(locale: AppLocale): boolean {
+  return locale === defaultLocale;
+}
+
+export function getLocalePathPrefix(locale: AppLocale): "" | `/${AppLocale}` {
+  return isDefaultLocale(locale) ? "" : `/${locale}`;
+}
+
+export function localizePath(path: string, locale: AppLocale): string {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const prefix = getLocalePathPrefix(locale);
+
+  if (normalizedPath === "/") {
+    return prefix || "/";
+  }
+
+  return `${prefix}${normalizedPath}`;
+}
+
 export function getContentLocale(locale: AppLocale): ContentLocale {
   return locale === "uk" ? "uk" : "en";
 }

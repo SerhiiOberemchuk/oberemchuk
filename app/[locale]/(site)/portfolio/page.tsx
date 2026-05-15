@@ -8,7 +8,7 @@ import SeoText from "@/components/seo-text";
 import { type AppLocale } from "@/i18n/locales";
 import { localizeProjects } from "@/lib/projects-i18n";
 import { getProjects } from "@/lib/projects-server";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-config";
 
 type PortfolioPageProps = {
@@ -24,13 +24,14 @@ export async function generateMetadata({
     locale,
     namespace: "PortfolioPage.metadata",
   });
-  const pagePath = locale === "uk" ? "/portfolio" : `/${locale}/portfolio`;
+  const currentLocale = locale as AppLocale;
+  const pagePath = getLocalizedPath(currentLocale, "/portfolio");
 
   return {
     title: t("title"),
     description: t("description"),
     keywords: t.raw("keywords") as string[],
-    alternates: getPageAlternates(locale as AppLocale, "/portfolio"),
+    alternates: getPageAlternates(currentLocale, "/portfolio"),
     openGraph: {
       title: t("openGraph.title"),
       description: t("openGraph.description"),
@@ -57,10 +58,11 @@ export async function generateMetadata({
 export default async function PortfolioPage({ params }: PortfolioPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const currentLocale = locale as AppLocale;
   const pageT = await getTranslations({ locale, namespace: "PortfolioPage" });
   const seoT = await getTranslations({ locale, namespace: "SeoText" });
-  const projects = localizeProjects(await getProjects(), locale as AppLocale);
-  const pagePath = locale === "uk" ? "/portfolio" : `/${locale}/portfolio`;
+  const projects = localizeProjects(await getProjects(), currentLocale);
+  const pagePath = getLocalizedPath(currentLocale, "/portfolio");
   const siteUrl = getSiteUrl();
 
   const jsonLd = {
@@ -84,7 +86,7 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
           "@type": "CreativeWork",
           name: project.title,
           description: project.description,
-          url: `${siteUrl}${locale === "uk" ? `/portfolio/${project.slug}` : `/${locale}/portfolio/${project.slug}`}`,
+          url: `${siteUrl}${getLocalizedPath(currentLocale, `/portfolio/${project.slug}`)}`,
           image: project.image_src,
           dateCreated: project.created_at,
           dateModified: project.updated_at,

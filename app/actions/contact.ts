@@ -7,8 +7,8 @@ import {
   getEmailMessage,
   getReadableContactValue,
   sendContactSubmission,
-  type ContactLocale,
 } from "@/lib/contact-email";
+import { appLocales } from "@/i18n/locales";
 
 export type ContactActionState = {
   status: "idle" | "success" | "error";
@@ -16,7 +16,7 @@ export type ContactActionState = {
 };
 
 const contactSchema = z.object({
-  locale: z.enum(["uk", "en", "it"]),
+  locale: z.enum(appLocales),
   name: z.string().trim().min(1),
   email: z.string().trim().email(),
   phone: z.string().trim().optional(),
@@ -67,7 +67,7 @@ export async function submitContactForm(
 
   try {
     await sendContactSubmission({
-      locale: parsed.data.locale as ContactLocale,
+      locale: parsed.data.locale,
       name: parsed.data.name,
       email: parsed.data.email,
       phone: parsed.data.phone || fallbackNotProvided,

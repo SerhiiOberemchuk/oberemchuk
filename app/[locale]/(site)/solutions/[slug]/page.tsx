@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { appLocales, type AppLocale } from "@/i18n/locales";
 import { getBlogPosts } from "@/lib/blog-posts";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import {
   getSeoLanding,
   getSeoLandings,
@@ -35,7 +35,8 @@ export async function generateMetadata({
   params,
 }: SolutionDetailPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const page = getSeoLanding(locale as AppLocale, slug);
+  const currentLocale = locale as AppLocale;
+  const page = getSeoLanding(currentLocale, slug);
 
   if (!page) {
     return {};
@@ -45,14 +46,11 @@ export async function generateMetadata({
     title: page.metaTitle,
     description: page.metaDescription,
     keywords: page.searchIntent.split(",").map((item) => item.trim()),
-    alternates: getPageAlternates(locale as AppLocale, `/solutions/${page.slug}`),
+    alternates: getPageAlternates(currentLocale, `/solutions/${page.slug}`),
     openGraph: {
       title: page.metaTitle,
       description: page.metaDescription,
-      url:
-        locale === "uk"
-          ? `/solutions/${page.slug}`
-          : `/${locale}/solutions/${page.slug}`,
+      url: getLocalizedPath(currentLocale, `/solutions/${page.slug}`),
       type: "website",
       images: [
         {
@@ -77,25 +75,23 @@ export default async function SolutionDetailPage({
 }: SolutionDetailPageProps) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  const currentLocale = locale as AppLocale;
   const t = await getTranslations({ locale, namespace: "SolutionDetailPage" });
-  const page = getSeoLanding(locale as AppLocale, slug);
+  const page = getSeoLanding(currentLocale, slug);
 
   if (!page) {
     notFound();
   }
 
   const siteUrl = getSiteUrl();
-  const pagePath =
-    locale === "uk"
-      ? `/solutions/${page.slug}`
-      : `/${locale}/solutions/${page.slug}`;
-  const services = getServicePages(locale as AppLocale).filter((service) =>
+  const pagePath = getLocalizedPath(currentLocale, `/solutions/${page.slug}`);
+  const services = getServicePages(currentLocale).filter((service) =>
     page.relatedServiceSlugs.includes(service.slug),
   );
-  const posts = getBlogPosts(locale as AppLocale).filter((post) =>
+  const posts = getBlogPosts(currentLocale).filter((post) =>
     page.relatedPostSlugs.includes(post.slug),
   );
-  const relatedPages = getSeoLandings(locale as AppLocale)
+  const relatedPages = getSeoLandings(currentLocale)
     .filter((item) => item.slug !== page.slug)
     .slice(0, 2);
 

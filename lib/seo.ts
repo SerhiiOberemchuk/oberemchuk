@@ -1,6 +1,10 @@
 import type {Metadata} from "next";
-import {routing} from "@/i18n/routing";
-import {defaultLocale, localeOptions, type AppLocale} from "@/i18n/locales";
+import {
+  defaultLocale,
+  localeOptions,
+  localizePath,
+  type AppLocale,
+} from "@/i18n/locales";
 
 export type Locale = AppLocale;
 
@@ -11,9 +15,7 @@ function normalizePath(path: string) {
 
 export function getLocalizedPath(locale: Locale, path = "") {
   const normalizedPath = normalizePath(path);
-  return locale === routing.defaultLocale
-    ? normalizedPath || "/"
-    : `/${locale}${normalizedPath}`;
+  return localizePath(normalizedPath || "/", locale);
 }
 
 export function getLanguageAlternates(path = ""): NonNullable<Metadata["alternates"]>["languages"] {

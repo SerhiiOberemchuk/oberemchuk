@@ -14,7 +14,7 @@ import { type AppLocale } from "@/i18n/locales";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getServicePages } from "@/lib/service-pages";
 import { getSiteUrl } from "@/lib/site-config";
 
@@ -31,13 +31,14 @@ export async function generateMetadata({
     locale,
     namespace: "ServicesPage.metadata",
   });
-  const pagePath = locale === "uk" ? "/services" : `/${locale}/services`;
+  const currentLocale = locale as AppLocale;
+  const pagePath = getLocalizedPath(currentLocale, "/services");
 
   return {
     title: t("title"),
     description: t("description"),
     keywords: t.raw("keywords") as string[],
-    alternates: getPageAlternates(locale as AppLocale, "/services"),
+    alternates: getPageAlternates(currentLocale, "/services"),
     openGraph: {
       title: t("openGraph.title"),
       description: t("openGraph.description"),
@@ -64,9 +65,10 @@ export async function generateMetadata({
 export default async function ServicesPage({ params }: ServicesPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const currentLocale = locale as AppLocale;
   const pageT = await getTranslations({ locale, namespace: "ServicesPage" });
-  const servicePages = getServicePages(locale as AppLocale);
-  const pagePath = locale === "uk" ? "/services" : `/${locale}/services`;
+  const servicePages = getServicePages(currentLocale);
+  const pagePath = getLocalizedPath(currentLocale, "/services");
   const baseUrl = getSiteUrl();
   const pricingHighlights = pageT.raw("pricing.highlights") as string[];
   const pricingPrinciples = pageT.raw("pricing.principles") as Array<{
@@ -97,7 +99,7 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
       itemListElement: servicePages.map((service, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `${baseUrl}${locale === "uk" ? `/services/${service.slug}` : `/${locale}/services/${service.slug}`}`,
+        url: `${baseUrl}${getLocalizedPath(currentLocale, `/services/${service.slug}`)}`,
         name: service.title,
       })),
     },

@@ -11,7 +11,7 @@ import {
 import CookieSettingsButton from "@/components/cookie-settings-button";
 import LegalPageShell from "@/components/legal-page-shell";
 import { type AppLocale } from "@/i18n/locales";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 
 type CookiesPageProps = {
   params: Promise<{ locale: string }>;
@@ -20,7 +20,7 @@ type CookiesPageProps = {
 export async function generateMetadata({ params }: CookiesPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "CookiesPage.metadata" });
-  const pagePath = locale === "uk" ? "/cookies" : `/${locale}/cookies`;
+  const pagePath = getLocalizedPath(locale as AppLocale, "/cookies");
 
   return {
     title: t("title"),

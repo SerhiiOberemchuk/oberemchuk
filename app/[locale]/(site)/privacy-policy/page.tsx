@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import LegalPageShell from "@/components/legal-page-shell";
 import { Link } from "@/i18n/navigation";
 import { type AppLocale } from "@/i18n/locales";
-import { getPageAlternates } from "@/lib/seo";
+import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 
 type PrivacyPolicyPageProps = {
   params: Promise<{ locale: string }>;
@@ -12,7 +12,7 @@ type PrivacyPolicyPageProps = {
 export async function generateMetadata({ params }: PrivacyPolicyPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "PrivacyPolicyPage.metadata" });
-  const pagePath = locale === "uk" ? "/privacy-policy" : `/${locale}/privacy-policy`;
+  const pagePath = getLocalizedPath(locale as AppLocale, "/privacy-policy");
 
   return {
     title: t("title"),

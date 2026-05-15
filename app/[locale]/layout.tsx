@@ -11,9 +11,10 @@ import Header from "@/components/header";
 import LayoutClientWidgets from "@/components/layout-client-widgets";
 import {clientMessageNamespaces, loadMessages} from "@/i18n/load-messages";
 import {
-  defaultLocale,
   isAppLocale,
+  localizePath,
   localeOptions,
+  resolveAppLocale,
   type AppLocale
 } from "@/i18n/locales";
 import {routing} from "@/i18n/routing";
@@ -50,14 +51,14 @@ export async function generateMetadata({
   params: Promise<{locale: string}>;
 }): Promise<Metadata> {
   const {locale} = await params;
-  const currentLocale = isAppLocale(locale) ? locale : defaultLocale;
+  const currentLocale = resolveAppLocale(locale);
   const t = await getTranslations({
     locale: currentLocale,
     namespace: "Layout.metadata"
   });
   const localeMeta =
     localeOptions.find((item) => item.code === currentLocale) ?? localeOptions[0];
-  const localeRoot = currentLocale === defaultLocale ? "/" : `/${currentLocale}`;
+  const localeRoot = localizePath("/", currentLocale);
 
   return {
     title: {
