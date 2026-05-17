@@ -1,73 +1,74 @@
 import type React from "react";
-import type {Metadata, Viewport} from "next";
-import {notFound} from "next/navigation";
-import {Cormorant_Garamond, Manrope} from "next/font/google";
-import {NextIntlClientProvider} from "next-intl";
-import {getTranslations, setRequestLocale} from "next-intl/server";
+import type { Metadata, Viewport } from "next";
+import { notFound } from "next/navigation";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import "../globals.css";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import LayoutClientWidgets from "@/components/layout-client-widgets";
-import {clientMessageNamespaces, loadMessages} from "@/i18n/load-messages";
+import { clientMessageNamespaces, loadMessages } from "@/i18n/load-messages";
 import {
   isAppLocale,
   localizePath,
   localeOptions,
   resolveAppLocale,
-  type AppLocale
+  type AppLocale,
 } from "@/i18n/locales";
-import {routing} from "@/i18n/routing";
-import {getSiteUrl} from "@/lib/site-config";
-import {Toaster} from "sonner";
+import { routing } from "@/i18n/routing";
+import { getSiteUrl } from "@/lib/site-config";
+import { Toaster } from "sonner";
 
 const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
   display: "swap",
-  variable: "--font-sans"
+  variable: "--font-sans",
 });
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin", "cyrillic"],
   display: "swap",
   variable: "--font-display",
-  weight: ["500", "600", "700"]
+  weight: ["500", "600", "700"],
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#f7fafc"
+  themeColor: "#f7fafc",
 };
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({
-  params
+  params,
 }: {
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const {locale} = await params;
+  const { locale } = await params;
   const currentLocale = resolveAppLocale(locale);
   const t = await getTranslations({
     locale: currentLocale,
-    namespace: "Layout.metadata"
+    namespace: "Layout.metadata",
   });
   const localeMeta =
-    localeOptions.find((item) => item.code === currentLocale) ?? localeOptions[0];
+    localeOptions.find((item) => item.code === currentLocale) ??
+    localeOptions[0];
   const localeRoot = localizePath("/", currentLocale);
 
   return {
     title: {
       default: t("titleDefault"),
-      template: t("titleTemplate")
+      template: t("titleTemplate"),
     },
     description: t("description"),
     keywords: t.raw("keywords") as string[],
-    authors: [{name: "Serhii Oberemchuk", url: "https://oberemchuk.online"}],
+    authors: [{ name: "Serhii Oberemchuk", url: "https://oberemchuk.online" }],
     creator: "Serhii Oberemchuk",
     publisher: "Serhii Oberemchuk",
     metadataBase: new URL(getSiteUrl()),
@@ -82,27 +83,29 @@ export async function generateMetadata({
           width: 1200,
           height: 630,
           alt: t("openGraphImageAlt"),
-          type: "image/png"
-        }
+          type: "image/png",
+        },
       ],
       locale: localeMeta.ogLocale,
-      type: "website"
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: t("twitterTitle"),
       description: t("twitterDescription"),
       images: ["/og-image.png"],
-      creator: "@SerhiiOberemchuk"
+      creator: "@SerhiiOberemchuk",
     },
     icons: {
       icon: [
-        {url: "/favicon.ico", sizes: "any"},
-        {url: "/favicon-96x96.png", sizes: "96x96", type: "image/png"},
-        {url: "/favicon.svg", type: "image/svg+xml"}
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
       ],
-      shortcut: [{url: "/favicon.ico"}],
-      apple: [{url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png"}]
+      shortcut: [{ url: "/favicon.ico" }],
+      apple: [
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
     },
     manifest: "/manifest.json",
     robots: {
@@ -113,22 +116,25 @@ export async function generateMetadata({
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
-        "max-snippet": -1
-      }
+        "max-snippet": -1,
+      },
     },
     category: "technology",
     classification: "Digital Product and Web Development Services",
-    referrer: "origin-when-cross-origin"
+    referrer: "origin-when-cross-origin",
+    verification: {
+      other: { "msvalidate.01": "4CC5472328D38C599ED3D0D8DE1788DB" },
+    },
   };
 }
 
 type LayoutProps = Readonly<{
   children: React.ReactNode;
-  params: Promise<{locale: string}>;
+  params: Promise<{ locale: string }>;
 }>;
 
-export default async function LocaleLayout({children, params}: LayoutProps) {
-  const {locale} = await params;
+export default async function LocaleLayout({ children, params }: LayoutProps) {
+  const { locale } = await params;
 
   if (!isAppLocale(locale)) {
     notFound();
@@ -138,27 +144,27 @@ export default async function LocaleLayout({children, params}: LayoutProps) {
 
   const [clientMessages, layoutT, headerT, footerT] = await Promise.all([
     loadMessages(locale, clientMessageNamespaces),
-    getTranslations({locale, namespace: "Layout"}),
-    getTranslations({locale, namespace: "Header"}),
-    getTranslations({locale, namespace: "Footer"})
+    getTranslations({ locale, namespace: "Layout" }),
+    getTranslations({ locale, namespace: "Header" }),
+    getTranslations({ locale, namespace: "Footer" }),
   ]);
 
   const headerNavItems = [
-    {href: "/#services", label: headerT("navigation.services")},
-    {href: "/portfolio", label: headerT("navigation.portfolio")},
-    {href: "/estimate", label: headerT("navigation.estimate")},
-    {href: "/#about", label: headerT("navigation.about")},
-    {href: "/#contact", label: headerT("navigation.contact")}
+    { href: "/#services", label: headerT("navigation.services") },
+    { href: "/portfolio", label: headerT("navigation.portfolio") },
+    { href: "/estimate", label: headerT("navigation.estimate") },
+    { href: "/#about", label: headerT("navigation.about") },
+    { href: "/#contact", label: headerT("navigation.contact") },
   ];
   const footerNavigationItems = [
     ...headerNavItems,
-    {href: "/solutions", label: footerT("navigation.solutions")},
-    {href: "/blog", label: footerT("navigation.blog")}
+    { href: "/solutions", label: footerT("navigation.solutions") },
+    { href: "/blog", label: footerT("navigation.blog") },
   ];
   const footerLegalItems = [
-    {href: "/privacy-policy", label: footerT("legal.privacy")},
-    {href: "/cookies", label: footerT("legal.cookies")},
-    {href: "/terms-of-service", label: footerT("legal.terms")}
+    { href: "/privacy-policy", label: footerT("legal.privacy") },
+    { href: "/cookies", label: footerT("legal.cookies") },
+    { href: "/terms-of-service", label: footerT("legal.terms") },
   ];
 
   return (
