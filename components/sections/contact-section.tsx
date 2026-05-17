@@ -105,7 +105,7 @@ export default function ContactSection({
                     return (
                       <li key={`${info.label}-${info.value}`} className="flex items-center gap-4 border-b border-[rgba(24,31,43,0.12)] pb-5 last:border-b-0 last:pb-0">
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.94)] shadow-[0_12px_26px_rgba(15,23,42,0.06)]">
-                          <Icon className="h-5 w-5 text-[hsl(var(--foreground))]" />
+                          <Icon className="h-5 w-5 text-[hsl(var(--foreground))]" aria-hidden="true" />
                         </div>
                         <div>
                           <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">{info.label}</div>
@@ -117,7 +117,7 @@ export default function ContactSection({
                               rel={info.external ? "noopener noreferrer" : undefined}
                             >
                               {info.value}
-                              <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
+                              <ArrowUpRight className="button-arrow-up-right h-4 w-4" aria-hidden="true" />
                             </a>
                           ) : (
                             <div className="mt-1 text-base text-[hsl(var(--foreground))]">{info.value}</div>

@@ -63,7 +63,7 @@ export default function HeroSection({
                   <Button asChild size="lg" className="min-w-[220px]">
                     <SmoothScrollLink href="#contact">
                       {primaryCta}
-                      <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
+                      <ArrowUpRight className="button-arrow-up-right h-4 w-4" aria-hidden="true" />
                     </SmoothScrollLink>
                   </Button>
                   <Button asChild variant="outline" size="lg" className="min-w-[220px]">

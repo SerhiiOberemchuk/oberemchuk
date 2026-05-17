@@ -8,18 +8,17 @@ type BrandLogoProps = {
   compact?: boolean;
 };
 
-function BrandMark({ compact }: { compact: boolean }) {
+function BrandMark({ alt, compact }: { alt: string; compact: boolean }) {
   return (
     <span
       className={cn(
         "relative flex shrink-0 items-center justify-center ",
         compact ? "h-10 w-10" : "h-11 w-11",
       )}
-      aria-hidden="true"
     >
       <Image
         src="/Logo.svg"
-        alt=""
+        alt={alt}
         fill
         sizes={compact ? "40px" : "44px"}
         className="rounded-xl object-cover object-center"
@@ -42,7 +41,7 @@ export default function BrandLogo({
       className={cn("inline-flex items-center gap-3", className)}
       aria-label={alt}
     >
-      <BrandMark compact={compact} />
+      <BrandMark alt={alt} compact={compact} />
 
       {!compact ? (
         <span

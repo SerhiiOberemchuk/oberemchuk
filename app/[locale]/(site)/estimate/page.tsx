@@ -143,7 +143,7 @@ export default async function EstimatePage({params}: EstimatePageProps) {
   ];
 
   return (
-    <main className="px-4 pb-24 pt-16 md:px-6">
+    <div className="px-4 pb-24 pt-16 md:px-6">
       <JsonLd data={{"@graph": jsonLd}} />
       <section className="relative -mx-4 overflow-hidden px-4 pb-14 pt-16 md:-mx-6 md:px-6 md:pt-24">
         <div className="absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_12%_10%,rgba(214,101,45,0.16),transparent_24%),radial-gradient(circle_at_88%_14%,rgba(77,98,136,0.16),transparent_20%),linear-gradient(180deg,rgba(252,254,255,0.995),rgba(238,243,248,0))]" />
@@ -167,7 +167,7 @@ export default async function EstimatePage({params}: EstimatePageProps) {
                     key={item.label}
                     className="rounded-[24px] border border-[rgba(24,31,43,0.1)] bg-white/78 p-4 shadow-[0_18px_44px_rgba(15,23,42,0.06)] backdrop-blur-xl"
                   >
-                    <Icon className="h-5 w-5 text-[hsl(var(--primary))]" />
+                    <Icon className="h-5 w-5 text-[hsl(var(--primary))]" aria-hidden="true" />
                     <p className="mt-4 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
                       {item.label}
                     </p>
@@ -197,7 +197,7 @@ export default async function EstimatePage({params}: EstimatePageProps) {
         <div className="mb-10 grid gap-6 border-t border-[rgba(24,31,43,0.12)] pt-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <div>
             <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(24,31,43,0.1)] bg-white text-[hsl(var(--foreground))] shadow-[0_14px_34px_rgba(15,23,42,0.06)]">
-              <BarChart3 className="h-5 w-5" />
+              <BarChart3 className="h-5 w-5" aria-hidden="true" />
             </div>
             <h2
               id="estimate-form-title"
@@ -308,6 +308,6 @@ export default async function EstimatePage({params}: EstimatePageProps) {
           ))}
         </div>
       </section>
-    </main>
+    </div>
   );
 }

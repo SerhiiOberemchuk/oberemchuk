@@ -15,7 +15,7 @@ export default function MobileStickyCta({ label }: MobileStickyCtaProps) {
         className="flex items-center justify-center gap-2 rounded-full border border-[rgba(24,31,43,0.12)] bg-[hsl(var(--foreground))] px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_24px_60px_rgba(24,31,43,0.18)]"
       >
         {label}
-        <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
+        <ArrowUpRight className="button-arrow-up-right h-4 w-4" aria-hidden="true" />
       </SmoothScrollLink>
     </div>
   )

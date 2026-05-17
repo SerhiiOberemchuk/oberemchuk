@@ -202,7 +202,7 @@ function renderEmailLayout(params: {
                     <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                       <tr>
                         <td style="padding: 0 10px 0 0; vertical-align: middle;">
-                          <img src="${escapeHtml(logoUrl)}" width="36" height="36" alt="" style="display: block; width: 36px; height: 36px; border: 0; border-radius: 10px;" />
+                          <img src="${escapeHtml(logoUrl)}" width="36" height="36" alt="Serhii Oberemchuk" style="display: block; width: 36px; height: 36px; border: 0; border-radius: 10px;" />
                         </td>
                         <td style="vertical-align: middle; color: #f0d5c2; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;">
                           Serhii Oberemchuk
@@ -247,7 +247,7 @@ function renderEmailLayout(params: {
                       <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 10px;">
                         <tr>
                           <td style="padding: 0 10px 0 0; vertical-align: middle;">
-                            <img src="${escapeHtml(logoUrl)}" width="32" height="32" alt="" style="display: block; width: 32px; height: 32px; border: 0; border-radius: 9px;" />
+                            <img src="${escapeHtml(logoUrl)}" width="32" height="32" alt="Serhii Oberemchuk" style="display: block; width: 32px; height: 32px; border: 0; border-radius: 9px;" />
                           </td>
                           <td style="vertical-align: middle; color: #181f2b; font-size: 14px; font-weight: 800;">Serhii Oberemchuk</td>
                         </tr>

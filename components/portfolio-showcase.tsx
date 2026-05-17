@@ -70,6 +70,7 @@ export default function PortfolioShowcase({
           src={activeProject.image_src || "/placeholder.svg"}
           alt={activeProject.title}
           fill
+          sizes="100vw"
           className={cn(
             "object-cover transition-[opacity,transform,filter] duration-500 ease-out",
             isTransitioning
@@ -235,6 +236,7 @@ export default function PortfolioShowcase({
                     src={activeProject.image_src || "/placeholder.svg"}
                     alt={activeProject.title}
                     fill
+                    sizes="(min-width: 1024px) 42rem, 100vw"
                     className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035]"
                   />
                 </div>
@@ -318,6 +320,7 @@ export default function PortfolioShowcase({
                         src={project.image_src || "/placeholder.svg"}
                         alt={project.title}
                         fill
+                        sizes="(min-width: 768px) 14rem, 33vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(12,16,24,0.72)] via-[rgba(12,16,24,0.12)] to-transparent" />
