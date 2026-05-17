@@ -30,6 +30,7 @@ export default function PortfolioItem({
           alt={title}
           width={600}
           height={400}
+          sizes={isFeatured ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           placeholder="blur"
           blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2U5ZWFlZiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIi8+"

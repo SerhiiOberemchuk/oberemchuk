@@ -53,7 +53,7 @@ const ScrollToTop: React.FC<ScrollToTopProps> = ({ className }) => {
       aria-label={t("label")}
     >
       <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(230,90,48,0.12),transparent_55%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <ArrowUp className="relative h-5 w-5 stroke-[2.3px]" />
+      <ArrowUp className="relative h-5 w-5 stroke-[2.3px]" aria-hidden="true" />
     </button>
   )
 }

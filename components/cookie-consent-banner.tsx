@@ -63,7 +63,7 @@ export default function CookieConsentBanner() {
             <div className="flex justify-between items-center">
               <h3 id={settingsTitleId} className="text-lg font-semibold">{t("settings.title")}</h3>
               <Button ref={settingsCloseRef} variant="ghost" size="icon" onClick={toggleSettings} aria-label={t("settings.closeAria") }>
-                <X className="h-4 w-4" />
+                <X className="h-4 w-4" aria-hidden="true" />
               </Button>
             </div>
 
@@ -117,7 +117,7 @@ export default function CookieConsentBanner() {
         ) : (
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center" role="region" aria-label={t("banner.title")}>
             <div className="flex items-start space-x-3">
-              <Info className="mt-0.5 h-5 w-5 shrink-0 text-[hsl(var(--primary))]" />
+              <Info className="mt-0.5 h-5 w-5 shrink-0 text-[hsl(var(--primary))]" aria-hidden="true" />
               <div>
                 <h3 className="font-semibold">{t("banner.title")}</h3>
                 <p className="text-sm text-gray-500 mt-1">
@@ -131,7 +131,7 @@ export default function CookieConsentBanner() {
 
             <div className="flex flex-wrap gap-3 mt-3 md:mt-0">
               <Button variant="outline" size="sm" onClick={toggleSettings} className="flex items-center">
-                <Settings className="h-4 w-4 mr-2" />
+                <Settings className="h-4 w-4 mr-2" aria-hidden="true" />
                 {t("banner.actions.settings")}
               </Button>
               <Button variant="outline" size="sm" onClick={decline}>{t("banner.actions.reject")}</Button>

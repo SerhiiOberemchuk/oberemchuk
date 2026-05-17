@@ -61,7 +61,7 @@ export default function FaqSection({
                     {faq.question}
                   </span>
                   <span className="faq-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgba(24,31,43,0.12)] bg-white text-[hsl(var(--foreground))] transition-[transform,background-color,border-color,color,box-shadow] duration-300 ease-out group-open:border-[hsl(var(--foreground))] group-open:bg-[hsl(var(--foreground))] group-open:text-white group-open:rotate-180 group-open:shadow-[0_10px_24px_rgba(24,31,43,0.16)]">
-                    <ChevronDown className="h-5 w-5" />
+                    <ChevronDown className="h-5 w-5" aria-hidden="true" />
                   </span>
                 </summary>
                 <div

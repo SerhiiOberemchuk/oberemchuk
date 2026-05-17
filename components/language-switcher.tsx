@@ -72,6 +72,7 @@ export default function LanguageSwitcher() {
         id={listId}
         role="listbox"
         aria-label={t("label")}
+        aria-hidden={!isOpen}
         className={`absolute right-0 top-[calc(100%+0.75rem)] z-[70] min-w-[220px] origin-top-right overflow-hidden rounded-3xl border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.98)] p-2 shadow-[0_24px_64px_rgba(15,23,42,0.16)] backdrop-blur-xl transition-[opacity,transform,visibility] duration-200 ${
           isOpen
             ? "visible pointer-events-auto translate-y-0 scale-100 opacity-100"

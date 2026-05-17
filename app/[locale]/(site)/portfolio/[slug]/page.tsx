@@ -375,6 +375,7 @@ export default async function ProjectPage({
               src={localizedProject.image_src || "/placeholder.svg"}
               alt={localizedProject.title}
               fill
+              sizes="100vw"
               className="object-cover opacity-24"
               priority
             />
@@ -455,6 +456,7 @@ export default async function ProjectPage({
                       src={localizedProject.image_src || "/placeholder.svg"}
                       alt={localizedProject.title}
                       fill
+                      sizes="(min-width: 1024px) 44rem, 100vw"
                       className="object-cover"
                       priority
                       placeholder="blur"

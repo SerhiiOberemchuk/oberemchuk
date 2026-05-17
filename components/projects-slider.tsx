@@ -58,6 +58,7 @@ export default function ProjectsSlider({projects}: ProjectsSliderProps) {
                     src={project.image_src || "/placeholder.svg"}
                     alt={project.title}
                     fill
+                    sizes="(min-width: 1024px) 56rem, 100vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 flex items-end bg-black bg-opacity-40">
