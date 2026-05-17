@@ -50,30 +50,29 @@ if (dryRun) {
   if (urls.length > 10) {
     console.log(`...and ${urls.length - 10} more`);
   }
-  process.exit(0);
-}
+} else {
+  for (let index = 0; index < urls.length; index += MAX_URLS_PER_REQUEST) {
+    const urlList = urls.slice(index, index + MAX_URLS_PER_REQUEST);
+    const response = await fetch(INDEXNOW_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        host,
+        key,
+        keyLocation,
+        urlList,
+      }),
+    });
 
-for (let index = 0; index < urls.length; index += MAX_URLS_PER_REQUEST) {
-  const urlList = urls.slice(index, index + MAX_URLS_PER_REQUEST);
-  const response = await fetch(INDEXNOW_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: JSON.stringify({
-      host,
-      key,
-      keyLocation,
-      urlList,
-    }),
-  });
+    if (!response.ok) {
+      const body = await response.text();
+      fail(`IndexNow submit failed with ${response.status}: ${body}`);
+    }
 
-  if (!response.ok) {
-    const body = await response.text();
-    fail(`IndexNow submit failed with ${response.status}: ${body}`);
+    console.log(`Submitted ${urlList.length} URLs to IndexNow.`);
   }
-
-  console.log(`Submitted ${urlList.length} URLs to IndexNow.`);
 }
 
 function loadDotEnv(filename) {
