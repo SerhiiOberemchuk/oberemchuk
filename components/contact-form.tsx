@@ -65,13 +65,19 @@ export default function ContactForm() {
   const budgets = t.raw("budgets") as Option[];
   const [state, formAction] = useActionState(submitContactForm, initialContactActionState);
   const [formValues, setFormValues] = useState<ContactFormValues>(initialValues(locale));
+  const [startedAt, setStartedAt] = useState("");
   const formHintId = "contact-form-hint";
   const messageHintId = "contact-form-message-hint";
+
+  useEffect(() => {
+    setStartedAt(String(Date.now()));
+  }, []);
 
   useEffect(() => {
     if (state.status === "success" && state.messageKey) {
       toast.success(t(state.messageKey));
       setFormValues(initialValues(locale));
+      setStartedAt(String(Date.now()));
     }
 
     if (state.status === "error" && state.messageKey) {
@@ -101,6 +107,15 @@ export default function ContactForm() {
       <input type="hidden" name="locale" value={formValues.locale} />
       <input type="hidden" name="service" value={formValues.service} />
       <input type="hidden" name="budget" value={formValues.budget} />
+      <input type="hidden" name="startedAt" value={startedAt} />
+      <input
+        type="text"
+        name="company"
+        className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
 
       <p id={formHintId} className="text-sm leading-7 text-[hsl(var(--muted-foreground))]">
         {t("formHint")}
