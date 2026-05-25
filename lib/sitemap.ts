@@ -1,22 +1,16 @@
+import type { MetadataRoute } from "next";
 import { getProjects } from "@/lib/projects-server";
 import { blogPostSlugs } from "@/lib/blog-posts";
 import { getLocalizedPath } from "@/lib/seo";
 import { seoLandingSlugs } from "@/lib/seo-landings";
 import { servicePageSlugs } from "@/lib/service-pages";
 import { getSiteUrl } from "@/lib/site-config";
-import { appLocales, defaultLocale, type AppLocale } from "@/i18n/locales";
+import { appLocales, defaultLocale } from "@/i18n/locales";
 
-export type SitemapAlternate = {
-  hreflang: AppLocale | "x-default";
-  href: string;
-};
-
-export type SitemapEntry = {
-  loc: string;
-  lastmod: string;
-  changefreq: "yearly" | "monthly" | "weekly" | "daily";
-  priority: string;
-  alternates: SitemapAlternate[];
+type SitemapPathEntry = {
+  path: string;
+  changeFrequency: NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;
+  priority: number;
 };
 
 export function toLastMod(value?: string): string {
@@ -28,70 +22,75 @@ export function toLastMod(value?: string): string {
   return Number.isNaN(date.getTime()) ? new Date().toISOString() : date.toISOString();
 }
 
-export async function getSitemapEntries(): Promise<SitemapEntry[]> {
+export async function getSitemapEntries(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getSiteUrl();
   const staticPagesLastMod = toLastMod(process.env.SITE_LASTMOD || "2026-03-14");
-  const staticPaths = [
-    { path: "", changefreq: "weekly" as const, priority: "1.0" },
-    { path: "/portfolio", changefreq: "weekly" as const, priority: "0.9" },
-    { path: "/services", changefreq: "weekly" as const, priority: "0.9" },
-    { path: "/solutions", changefreq: "weekly" as const, priority: "0.85" },
-    { path: "/blog", changefreq: "weekly" as const, priority: "0.85" },
+  const staticPaths: SitemapPathEntry[] = [
+    { path: "", changeFrequency: "weekly", priority: 1.0 },
+    { path: "/portfolio", changeFrequency: "weekly", priority: 0.9 },
+    { path: "/services", changeFrequency: "weekly", priority: 0.9 },
+    { path: "/solutions", changeFrequency: "weekly", priority: 0.85 },
+    { path: "/blog", changeFrequency: "weekly", priority: 0.85 },
     ...servicePageSlugs.map((slug) => ({
       path: `/services/${slug}`,
-      changefreq: "monthly" as const,
-      priority: "0.8",
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
     ...seoLandingSlugs.map((slug) => ({
       path: `/solutions/${slug}`,
-      changefreq: "monthly" as const,
-      priority: "0.75",
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
     })),
     ...blogPostSlugs.map((slug) => ({
       path: `/blog/${slug}`,
-      changefreq: "monthly" as const,
-      priority: "0.7",
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
-    { path: "/privacy-policy", changefreq: "yearly" as const, priority: "0.3" },
-    { path: "/cookies", changefreq: "yearly" as const, priority: "0.3" },
-    { path: "/terms-of-service", changefreq: "yearly" as const, priority: "0.3" },
+    { path: "/privacy-policy", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/cookies", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/terms-of-service", changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const staticPages: SitemapEntry[] = appLocales.flatMap((locale) =>
+  const staticPages: MetadataRoute.Sitemap = appLocales.flatMap((locale) =>
     staticPaths.map((entry) => ({
-      loc: `${baseUrl}${getLocalizedPath(locale, entry.path)}`,
-      lastmod: staticPagesLastMod,
-      changefreq: entry.changefreq,
+      url: `${baseUrl}${getLocalizedPath(locale, entry.path)}`,
+      lastModified: staticPagesLastMod,
+      changeFrequency: entry.changeFrequency,
       priority: entry.priority,
-      alternates: getSitemapAlternates(baseUrl, entry.path),
+      alternates: {
+        languages: getSitemapLanguageAlternates(baseUrl, entry.path),
+      },
     })),
   );
 
   const projects = await getProjects();
-  const projectPages: SitemapEntry[] = appLocales.flatMap((locale) =>
+  const projectPages: MetadataRoute.Sitemap = appLocales.flatMap((locale) =>
     projects.map((project) => ({
-      loc: `${baseUrl}${getLocalizedPath(locale, `/portfolio/${project.slug}`)}`,
-      lastmod: toLastMod(project.updated_at),
-      changefreq: "monthly",
-      priority: "0.7",
-      alternates: getSitemapAlternates(baseUrl, `/portfolio/${project.slug}`),
+      url: `${baseUrl}${getLocalizedPath(locale, `/portfolio/${project.slug}`)}`,
+      lastModified: toLastMod(project.updated_at),
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: getSitemapLanguageAlternates(baseUrl, `/portfolio/${project.slug}`),
+      },
     })),
   );
 
   return [...staticPages, ...projectPages];
 }
 
-function getSitemapAlternates(baseUrl: string, path: string): SitemapAlternate[] {
-  const localeAlternates = appLocales.map((locale) => ({
-    hreflang: locale,
-    href: `${baseUrl}${getLocalizedPath(locale, path)}`,
-  }));
-
+function getSitemapLanguageAlternates(
+  baseUrl: string,
+  path: string,
+): NonNullable<NonNullable<MetadataRoute.Sitemap[number]["alternates"]>["languages"]> {
   return [
-    ...localeAlternates,
-    {
-      hreflang: "x-default",
-      href: `${baseUrl}${getLocalizedPath(defaultLocale, path)}`,
-    },
-  ];
+    ...appLocales.map((locale) => [
+      locale,
+      `${baseUrl}${getLocalizedPath(locale, path)}`,
+    ]),
+    ["x-default", `${baseUrl}${getLocalizedPath(defaultLocale, path)}`],
+  ].reduce<Record<string, string>>((alternates, [locale, href]) => {
+    alternates[locale] = href;
+    return alternates;
+  }, {});
 }
