@@ -18,6 +18,7 @@ import { Link } from "@/i18n/navigation";
 import { appLocales, type AppLocale } from "@/i18n/locales";
 import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-config";
+import { buildBreadcrumbList } from "@/lib/structured-data";
 import { localizeProject } from "@/lib/projects-i18n";
 import { getProjectBySlug, getProjects } from "@/lib/projects-server";
 import type { Project } from "@/types/projects";
@@ -340,9 +341,19 @@ export default async function ProjectPage({
     keywords: localizedProject.technologies.join(", "),
   };
 
+  const breadcrumbT = await getTranslations({
+    locale,
+    namespace: "Breadcrumbs",
+  });
+  const breadcrumb = buildBreadcrumbList(currentLocale, [
+    { name: breadcrumbT("home"), path: "" },
+    { name: breadcrumbT("portfolio"), path: "/portfolio" },
+    { name: localizedProject.title, path: `/portfolio/${slug}` },
+  ]);
+
   return (
     <div className="px-4 py-8 md:px-6 md:py-12">
-      <JsonLd data={jsonLd} />
+      <JsonLd data={[jsonLd, breadcrumb]} />
 
       <div className="mx-auto max-w-7xl">
         <AnimationWrapper animation="fade-in">

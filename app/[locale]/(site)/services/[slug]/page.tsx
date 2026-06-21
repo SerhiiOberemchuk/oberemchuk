@@ -16,6 +16,7 @@ import {appLocales, type AppLocale} from "@/i18n/locales";
 import {Link} from "@/i18n/navigation";
 import {getLocalizedPath, getPageAlternates} from "@/lib/seo";
 import {getSiteUrl} from "@/lib/site-config";
+import {buildBreadcrumbList} from "@/lib/structured-data";
 import {
   getServicePage,
   getServicePages,
@@ -86,6 +87,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
     locale,
     namespace: "ServiceDetailPage"
   });
+  const breadcrumbT = await getTranslations({locale, namespace: "Breadcrumbs"});
   const service = getServicePage(currentLocale, slug);
 
   if (!service) {
@@ -132,9 +134,15 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
     }
   };
 
+  const breadcrumb = buildBreadcrumbList(currentLocale, [
+    {name: breadcrumbT("home"), path: ""},
+    {name: breadcrumbT("services"), path: "/services"},
+    {name: service.title, path: `/services/${service.slug}`}
+  ]);
+
   return (
     <div className="px-4 py-8 md:px-6 md:py-12">
-      <JsonLd data={jsonLd} />
+      <JsonLd data={[jsonLd, breadcrumb]} />
 
       <div className="mx-auto max-w-7xl">
         <AnimationWrapper animation="fade-in">

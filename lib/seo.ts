@@ -21,15 +21,14 @@ export function getLocalizedPath(locale: Locale, path = "") {
 export function getLanguageAlternates(path = ""): NonNullable<Metadata["alternates"]>["languages"] {
   const normalizedPath = normalizePath(path);
   const defaultPath = getLocalizedPath(defaultLocale, normalizedPath);
+  // Emit one hreflang per locale using the plain language code (uk/en/it),
+  // matching the sitemap alternates. Duplicating with region codes (uk-UA …)
+  // only adds redundant tags Google has to reconcile.
   const localeAlternates = Object.fromEntries(
-    localeOptions.flatMap((locale) => {
-      const localizedPath = getLocalizedPath(locale.code, normalizedPath);
-
-      return [
-        [locale.code, localizedPath],
-        [locale.intlLabel, localizedPath],
-      ];
-    }),
+    localeOptions.map((locale) => [
+      locale.code,
+      getLocalizedPath(locale.code, normalizedPath),
+    ]),
   ) as NonNullable<Metadata["alternates"]>["languages"];
 
   return {

@@ -17,6 +17,7 @@ import { blogPostSlugs, getBlogPost, getBlogPosts } from "@/lib/blog-posts";
 import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getSeoLanding } from "@/lib/seo-landings";
 import { getSiteUrl } from "@/lib/site-config";
+import { buildBreadcrumbList } from "@/lib/structured-data";
 
 type BlogPostPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -75,6 +76,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const t = await getTranslations({ locale, namespace: "BlogPostPage" });
+  const breadcrumbT = await getTranslations({ locale, namespace: "Breadcrumbs" });
   const post = getBlogPost(currentLocale, slug);
 
   if (!post) {
@@ -112,9 +114,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     keywords: post.keywords.join(", "),
   };
 
+  const breadcrumb = buildBreadcrumbList(currentLocale, [
+    { name: breadcrumbT("home"), path: "" },
+    { name: breadcrumbT("blog"), path: "/blog" },
+    { name: post.title, path: `/blog/${post.slug}` },
+  ]);
+
   return (
     <div className="px-4 py-8 md:px-6 md:py-12">
-      <JsonLd data={jsonLd} />
+      <JsonLd data={[jsonLd, breadcrumb]} />
 
       <div className="mx-auto max-w-5xl">
         <AnimationWrapper animation="fade-in">

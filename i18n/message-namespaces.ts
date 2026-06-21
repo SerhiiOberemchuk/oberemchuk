@@ -1,5 +1,6 @@
 export const messageNamespaces = [
   "Header",
+  "Breadcrumbs",
   "LanguageSwitcher",
   "HomeHero",
   "HomeAbout",

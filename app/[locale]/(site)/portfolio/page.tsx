@@ -10,6 +10,7 @@ import { localizeProjects } from "@/lib/projects-i18n";
 import { getProjects } from "@/lib/projects-server";
 import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-config";
+import { buildBreadcrumbList } from "@/lib/structured-data";
 
 type PortfolioPageProps = {
   params: Promise<{ locale: string }>;
@@ -60,6 +61,7 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
   setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const pageT = await getTranslations({ locale, namespace: "PortfolioPage" });
+  const breadcrumbT = await getTranslations({ locale, namespace: "Breadcrumbs" });
   const seoT = await getTranslations({ locale, namespace: "SeoText" });
   const projects = localizeProjects(await getProjects(), currentLocale);
   const pagePath = getLocalizedPath(currentLocale, "/portfolio");
@@ -100,11 +102,16 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
     },
   };
 
+  const breadcrumb = buildBreadcrumbList(currentLocale, [
+    { name: breadcrumbT("home"), path: "" },
+    { name: breadcrumbT("portfolio"), path: "/portfolio" },
+  ]);
+
   const seoParagraphs = pageT.raw("seoText.paragraphs") as string[];
 
   return (
     <div className="px-4 py-10 md:px-6 md:py-16">
-      <JsonLd data={jsonLd} />
+      <JsonLd data={[jsonLd, breadcrumb]} />
 
       <div className="mx-auto max-w-7xl">
         <AnimationWrapper animation="fade-in">

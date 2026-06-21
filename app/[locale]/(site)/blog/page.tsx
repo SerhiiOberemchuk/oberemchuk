@@ -15,6 +15,7 @@ import { type AppLocale } from "@/i18n/locales";
 import { getBlogPosts } from "@/lib/blog-posts";
 import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-config";
+import { buildBreadcrumbList } from "@/lib/structured-data";
 
 type BlogPageProps = {
   params: Promise<{ locale: string }>;
@@ -60,6 +61,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
   setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const t = await getTranslations({ locale: currentLocale, namespace: "BlogPage" });
+  const breadcrumbT = await getTranslations({ locale: currentLocale, namespace: "Breadcrumbs" });
   const posts = getBlogPosts(currentLocale);
   const siteUrl = getSiteUrl();
   const pageUrl = `${siteUrl}${getLocalizedPath(currentLocale, "/blog")}`;
@@ -79,9 +81,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
     })),
   };
 
+  const breadcrumb = buildBreadcrumbList(currentLocale, [
+    { name: breadcrumbT("home"), path: "" },
+    { name: breadcrumbT("blog"), path: "/blog" },
+  ]);
+
   return (
     <div className="px-4 py-8 md:px-6 md:py-12">
-      <JsonLd data={jsonLd} />
+      <JsonLd data={[jsonLd, breadcrumb]} />
 
       <div className="mx-auto max-w-7xl">
         <section className="relative overflow-hidden rounded-[2rem] border border-[rgba(255,255,255,0.14)] bg-[hsl(var(--foreground))] text-white shadow-[0_40px_120px_rgba(24,31,43,0.22)]">

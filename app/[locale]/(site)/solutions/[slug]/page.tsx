@@ -17,6 +17,7 @@ import {
 } from "@/lib/seo-landings";
 import { getServicePages } from "@/lib/service-pages";
 import { getSiteUrl } from "@/lib/site-config";
+import { buildBreadcrumbList } from "@/lib/structured-data";
 
 type SolutionDetailPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -77,6 +78,7 @@ export default async function SolutionDetailPage({
   setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const t = await getTranslations({ locale, namespace: "SolutionDetailPage" });
+  const breadcrumbT = await getTranslations({ locale, namespace: "Breadcrumbs" });
   const page = getSeoLanding(currentLocale, slug);
 
   if (!page) {
@@ -121,9 +123,15 @@ export default async function SolutionDetailPage({
     },
   };
 
+  const breadcrumb = buildBreadcrumbList(currentLocale, [
+    { name: breadcrumbT("home"), path: "" },
+    { name: breadcrumbT("solutions"), path: "/solutions" },
+    { name: page.title, path: `/solutions/${page.slug}` },
+  ]);
+
   return (
     <div className="px-4 py-8 md:px-6 md:py-12">
-      <JsonLd data={jsonLd} />
+      <JsonLd data={[jsonLd, breadcrumb]} />
 
       <div className="mx-auto max-w-7xl">
         <AnimationWrapper animation="fade-in">

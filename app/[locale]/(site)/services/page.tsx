@@ -17,6 +17,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getServicePages } from "@/lib/service-pages";
 import { getSiteUrl } from "@/lib/site-config";
+import { buildBreadcrumbList } from "@/lib/structured-data";
 
 type ServicesPageProps = {
   params: Promise<{ locale: string }>;
@@ -67,6 +68,7 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
   setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const pageT = await getTranslations({ locale, namespace: "ServicesPage" });
+  const breadcrumbT = await getTranslations({ locale, namespace: "Breadcrumbs" });
   const servicePages = getServicePages(currentLocale);
   const pagePath = getLocalizedPath(currentLocale, "/services");
   const baseUrl = getSiteUrl();
@@ -105,9 +107,14 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
     },
   };
 
+  const breadcrumb = buildBreadcrumbList(currentLocale, [
+    { name: breadcrumbT("home"), path: "" },
+    { name: breadcrumbT("services"), path: "/services" },
+  ]);
+
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd data={[jsonLd, breadcrumb]} />
       <div className="px-4 py-8 md:px-6 md:py-12">
         <div className="mx-auto max-w-7xl">
           <section className="relative overflow-hidden rounded-[2rem] border border-[rgba(255,255,255,0.14)] bg-[hsl(var(--foreground))] text-white shadow-[0_40px_120px_rgba(24,31,43,0.22)]">
