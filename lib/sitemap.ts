@@ -13,18 +13,18 @@ type SitemapPathEntry = {
   priority: number;
 };
 
-export function toLastMod(value?: string): string {
+export function toLastModified(value?: string): Date {
   if (!value) {
-    return new Date().toISOString();
+    return new Date();
   }
 
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? new Date().toISOString() : date.toISOString();
+  return Number.isNaN(date.getTime()) ? new Date() : date;
 }
 
 export async function getSitemapEntries(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getSiteUrl();
-  const staticPagesLastMod = toLastMod(process.env.SITE_LASTMOD || "2026-03-14");
+  const staticPagesLastModified = toLastModified(process.env.SITE_LASTMOD || "2026-03-14");
   const staticPaths: SitemapPathEntry[] = [
     { path: "", changeFrequency: "weekly", priority: 1.0 },
     { path: "/portfolio", changeFrequency: "weekly", priority: 0.9 },
@@ -54,7 +54,7 @@ export async function getSitemapEntries(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = appLocales.flatMap((locale) =>
     staticPaths.map((entry) => ({
       url: `${baseUrl}${getLocalizedPath(locale, entry.path)}`,
-      lastModified: staticPagesLastMod,
+      lastModified: staticPagesLastModified,
       changeFrequency: entry.changeFrequency,
       priority: entry.priority,
       alternates: {
@@ -67,7 +67,7 @@ export async function getSitemapEntries(): Promise<MetadataRoute.Sitemap> {
   const projectPages: MetadataRoute.Sitemap = appLocales.flatMap((locale) =>
     projects.map((project) => ({
       url: `${baseUrl}${getLocalizedPath(locale, `/portfolio/${project.slug}`)}`,
-      lastModified: toLastMod(project.updated_at),
+      lastModified: toLastModified(project.updated_at),
       changeFrequency: "monthly",
       priority: 0.7,
       alternates: {
@@ -83,14 +83,8 @@ function getSitemapLanguageAlternates(
   baseUrl: string,
   path: string,
 ): NonNullable<NonNullable<MetadataRoute.Sitemap[number]["alternates"]>["languages"]> {
-  return [
-    ...appLocales.map((locale) => [
-      locale,
-      `${baseUrl}${getLocalizedPath(locale, path)}`,
-    ]),
+  return Object.fromEntries([
+    ...appLocales.map((locale) => [locale, `${baseUrl}${getLocalizedPath(locale, path)}`]),
     ["x-default", `${baseUrl}${getLocalizedPath(defaultLocale, path)}`],
-  ].reduce<Record<string, string>>((alternates, [locale, href]) => {
-    alternates[locale] = href;
-    return alternates;
-  }, {});
+  ]);
 }
