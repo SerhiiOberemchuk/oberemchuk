@@ -1,7 +1,7 @@
 {
   "badge": "Pensiero operativo",
   "title": "Cosa rende il lavoro efficace sul piano commerciale",
-  "description": "Una presenza web forte non nasce solo dall'estetica. Funziona quando struttura, visibilita, messaggio ed esecuzione tecnica sostengono lo stesso obiettivo.",
+  "description": "Una presenza web forte non nasce solo dall'estetica. Funziona quando struttura, visibilità, messaggio ed esecuzione tecnica sostengono lo stesso obiettivo.",
   "pillars": [
     {
       "title": "Struttura commerciale",
@@ -9,7 +9,7 @@
     },
     {
       "title": "SEO tecnico",
-      "description": "Metadata, schema, velocita, linking interno e HTML pulito aiutano la visibilita senza rendere il prodotto meccanico."
+      "description": "Metadata, schema, velocità, linking interno e HTML pulito aiutano la visibilità senza rendere il prodotto meccanico."
     },
     {
       "title": "Sistema scalabile",
@@ -17,7 +17,7 @@
     },
     {
       "title": "Disciplina sulla performance",
-      "description": "Rendering rapido, codice manutenibile e qualita prevedibile in produzione fanno parte dello standard."
+      "description": "Rendering rapido, codice manutenibile e qualità prevedibile in produzione fanno parte dello standard."
     }
   ],
   "keywordsTitle": "Livelli chiave della crescita",
@@ -27,20 +27,20 @@
     "performance",
     "copy",
     "analytics",
-    "scalabilita",
+    "scalabilità",
     "conversione",
-    "manutenibilita"
+    "manutenibilità"
   ],
   "reasonsTitle": "Cosa cambia per il business",
   "reasons": [
-    "Posizionamento piu nitido nella pagina",
-    "Maggiore visibilita senza teatro SEO",
-    "Percorsi utente e CTA piu puliti",
+    "Posizionamento più nitido nella pagina",
+    "Maggiore visibilità senza teatro SEO",
+    "Percorsi utente e CTA più puliti",
     "Una base tecnica pronta a sostenere la crescita"
   ],
   "ctaTitle": "Logica di prodotto prima del rumore",
   "ctaQuote": "La SEO deve stare dentro la logica del prodotto, non appesa alla pagina come una checklist.",
-  "ctaDescription": "Il lavoro rende di piu quando design, contenuto e implementazione sostengono la stessa direzione commerciale. E cosi che affronto siti di prodotto, siti di servizio e piattaforme web custom.",
+  "ctaDescription": "Il lavoro rende di più quando design, contenuto e implementazione sostengono la stessa direzione commerciale. È così che affronto siti di prodotto, siti di servizio e piattaforme web custom.",
   "primaryCta": "Parliamo del progetto",
   "secondaryCta": "Vedi i servizi"
 }

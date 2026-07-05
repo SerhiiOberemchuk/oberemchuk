@@ -1,6 +1,6 @@
 {
   "title": "Come si svolge il lavoro",
-  "subtitle": "Entro come partner tecnico: definisco posizionamento, struttura, esecuzione e lancio, cosi il sito lavora come strumento commerciale e non come sola presenza visiva.",
+  "subtitle": "Entro come partner tecnico: definisco posizionamento, struttura, esecuzione e lancio, così il sito lavora come strumento commerciale e non come sola presenza visiva.",
   "valueTitle": "Cosa ottiene il business",
   "labels": {
     "positioning": "Posizionamento",
@@ -8,8 +8,8 @@
   },
   "paragraphs": [
     "All'inizio aiuto a definire la logica della pagina: cosa deve stare nell'hero, dove mostrare le prove, come guidare verso il contatto e quali pagine meritano un trattamento separato.",
-    "Durante il progetto fissiamo presto ambito, priorita, struttura e logica di lancio. Questo riduce rumore, taglia iterazioni inutili e lascia piu controllo sul risultato.",
-    "Alla fine il cliente ottiene piu del codice: un sito pronto per campagne, SEO, analytics, nuove pagine e crescita futura."
+    "Durante il progetto fissiamo presto ambito, priorità, struttura e logica di lancio. Questo riduce rumore, taglia iterazioni inutili e lascia più controllo sul risultato.",
+    "Alla fine il cliente ottiene più del codice: un sito pronto per campagne, SEO, analytics, nuove pagine e crescita futura."
   ],
   "summaryStats": [
     {
@@ -41,7 +41,7 @@
     },
     {
       "title": "Logica di prodotto",
-      "description": "Traduco gli obiettivi di business in struttura di pagina, priorita di contenuto e flussi d'azione coerenti."
+      "description": "Traduco gli obiettivi di business in struttura di pagina, priorità di contenuto e flussi d'azione coerenti."
     },
     {
       "title": "SEO tecnico",
@@ -64,7 +64,7 @@
     },
     {
       "title": "Lancio e crescita",
-      "description": "Preparo base SEO, analytics, form, deploy stabile e spazio per campagne, visibilita e crescita dopo il lancio."
+      "description": "Preparo base SEO, analytics, form, deploy stabile e spazio per campagne, visibilità e crescita dopo il lancio."
     }
   ],
   "technologiesTitle": "Tecnologie con cui lavoro"

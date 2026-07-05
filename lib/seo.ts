@@ -1,8 +1,8 @@
 import type {Metadata} from "next";
 import {
-  defaultLocale,
   localeOptions,
   localizePath,
+  xDefaultLocale,
   type AppLocale,
 } from "@/i18n/locales";
 
@@ -20,7 +20,7 @@ export function getLocalizedPath(locale: Locale, path = "") {
 
 export function getLanguageAlternates(path = ""): NonNullable<Metadata["alternates"]>["languages"] {
   const normalizedPath = normalizePath(path);
-  const defaultPath = getLocalizedPath(defaultLocale, normalizedPath);
+  const xDefaultPath = getLocalizedPath(xDefaultLocale, normalizedPath);
   // Emit one hreflang per locale using the plain language code (uk/en/it),
   // matching the sitemap alternates. Duplicating with region codes (uk-UA …)
   // only adds redundant tags Google has to reconcile.
@@ -32,7 +32,7 @@ export function getLanguageAlternates(path = ""): NonNullable<Metadata["alternat
   ) as NonNullable<Metadata["alternates"]>["languages"];
 
   return {
-    "x-default": defaultPath,
+    "x-default": xDefaultPath,
     ...localeAlternates,
   };
 }

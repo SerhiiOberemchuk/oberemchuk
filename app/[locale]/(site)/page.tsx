@@ -9,7 +9,7 @@ import ServicesSection from "@/components/sections/services-section";
 import FaqSection from "@/components/faq-section";
 import JsonLd from "@/components/json-ld";
 import type { AppLocale } from "@/i18n/locales";
-import { contactEmail } from "@/lib/contact-info";
+import { contactEmail, contactTelegramHref } from "@/lib/contact-info";
 import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-config";
 
@@ -133,8 +133,8 @@ export default async function HomePage({ params }: HomePageProps) {
       },
       sameAs: [
         "https://www.linkedin.com/in/serhii-oberemchuk",
-        "https://github.com/oberemchuk",
-        "https://t.me/oberemchuk",
+        "https://github.com/SerhiiOberemchuk",
+        contactTelegramHref,
       ],
       knowsAbout: schemaT.raw("person.knowsAbout") as string[],
       knowsLanguage: ["uk", "en", "it"],

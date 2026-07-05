@@ -37,6 +37,10 @@ export const localeOptions: LocaleOption[] = [
 
 export const defaultLocale: AppLocale = "uk";
 
+// hreflang x-default target: English is the safest fallback for
+// international visitors who match none of the site's locales.
+export const xDefaultLocale: AppLocale = "en";
+
 export function isAppLocale(value: string | undefined): value is AppLocale {
   return value !== undefined && appLocales.includes(value as AppLocale);
 }

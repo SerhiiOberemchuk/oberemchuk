@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Servizi di sviluppo web",
-    "description": "Landing page, siti aziendali, e-commerce, web app e SEO tecnico per aziende che hanno bisogno di piu di un sito: hanno bisogno di un asset commerciale.",
+    "description": "Landing page, siti aziendali, e-commerce, web app e SEO tecnico per aziende che hanno bisogno di più di un sito: hanno bisogno di un asset commerciale.",
     "keywords": [
       "servizi sviluppo web",
       "sviluppo landing page",
@@ -12,7 +12,7 @@
     ],
     "openGraph": {
       "title": "Servizi | Serhii Oberemchuk",
-      "description": "Siti web, e-commerce e prodotti digitali con struttura piu chiara, posizionamento piu forte e una base tecnica per lead, SEO e crescita.",
+      "description": "Siti web, e-commerce e prodotti digitali con struttura più chiara, posizionamento più forte e una base tecnica per lead, SEO e crescita.",
       "imageAlt": "Servizi di sviluppo web di Serhii Oberemchuk"
     },
     "twitter": {
@@ -29,11 +29,11 @@
     "pageLabel": "Servizi",
     "archiveLabel": "Mappa dell'offerta",
     "manifestoLabel": "Offerta commerciale",
-    "manifesto": "Ogni servizio e confezionato intorno all'impatto di business: posizionamento piu chiaro, fiducia piu forte, conversione piu pulita e una base pronta per crescere.",
+    "manifesto": "Ogni servizio e confezionato intorno all'impatto di business: posizionamento più chiaro, fiducia più forte, conversione più pulita e una base pronta per crescere.",
     "resultDelivery": "Consegna orientata al risultato",
     "stackLabel": "React / Next.js / SEO",
     "title": "Servizi costruiti intorno ai risultati",
-    "description": "Non e una lista di task. E un insieme di formati pensati per obiettivi diversi: lanci con traffico a pagamento, piu fiducia, vendite online, logica di prodotto o una base SEO tecnica."
+    "description": "Non è una lista di task. È un insieme di formati pensati per obiettivi diversi: lanci con traffico a pagamento, più fiducia, vendite online, logica di prodotto o una base SEO tecnica."
   },
   "archive": {
     "label": "Mappa dell'offerta",
@@ -41,7 +41,7 @@
   },
   "pricing": {
     "label": "Guida ai prezzi",
-    "title": "Un menu servizi piu ampio per esigenze reali di business",
+    "title": "Un menu servizi più ampio per esigenze reali di business",
     "description": "Il listino ruota attorno al lavoro che posso consegnare bene con React, Next.js e Astro: siti commerciali, storefront, flussi CRM, integrazioni di pagamento, rilanci e ottimizzazione continua. Sono prezzi iniziali per un primo ambito definito, non stime orarie astratte.",
     "highlights": [
       "Focus su React / Next.js / Astro",
@@ -57,11 +57,11 @@
       },
       {
         "title": "Le integrazioni si valutano in base al rischio",
-        "description": "Pagamenti, sincronizzazione CRM e automazioni influenzano lead, ordini e operativita interna. Il prezzo riflette validazione, edge case, eventi, webhook e qualita del passaggio finale."
+        "description": "Pagamenti, sincronizzazione CRM e automazioni influenzano lead, ordini e operativita interna. Il prezzo riflette validazione, edge case, eventi, webhook e qualità del passaggio finale."
       },
       {
-        "title": "Astro entra dove conta la velocita dei contenuti",
-        "description": "Per progetti ricchi di contenuti e orientati alla SEO, Astro puo ridurre l'overhead e migliorare la performance, mentre Next.js resta l'opzione principale per logica applicativa e flussi dinamici."
+        "title": "Astro entra dove conta la velocità dei contenuti",
+        "description": "Per progetti ricchi di contenuti e orientati alla SEO, Astro può ridurre l'overhead e migliorare la performance, mentre Next.js resta l'opzione principale per logica applicativa e flussi dinamici."
       }
     ],
     "audienceLabel": "Fit migliore",
@@ -97,7 +97,7 @@
       },
       {
         "title": "Integrazioni e operazioni commerciali",
-        "audience": "Per team che hanno gia un sito o un prodotto, ma hanno bisogno che pagamenti, routing dei lead o flussi CRM funzionino in modo affidabile invece che manuale.",
+        "audience": "Per team che hanno già un sito o un prodotto, ma hanno bisogno che pagamenti, routing dei lead o flussi CRM funzionino in modo affidabile invece che manuale.",
         "items": [
           {
             "name": "Integrazione gateway di pagamento",
@@ -152,12 +152,12 @@
     ]
   },
   "listAriaLabel": "Elenco dei servizi",
-  "includesTitle": "Cosa e incluso",
+  "includesTitle": "Cosa è incluso",
   "outcomesPreviewTitle": "Cosa cambia per il business",
   "detailsCta": "Vai alla pagina del servizio",
   "consultation": {
     "title": "Non sai quale formato possa portare il risultato migliore?",
-    "description": "E normale. La differenza tra una landing page, un sito aziendale, uno store o una web app spesso si chiarisce solo dopo un breve briefing. Posso aiutarti a scegliere il formato giusto senza budget sprecato o una partenza sbagliata.",
+    "description": "È normale. La differenza tra una landing page, un sito aziendale, uno store o una web app spesso si chiarisce solo dopo un breve briefing. Posso aiutarti a scegliere il formato giusto senza budget sprecato o una partenza sbagliata.",
     "cta": "Richiedi una stima"
   }
 }

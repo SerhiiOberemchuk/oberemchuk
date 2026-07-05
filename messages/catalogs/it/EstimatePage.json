@@ -151,8 +151,8 @@
     },
     "submit": {
       "success": "La stima e stata inviata. La controllero e ti rispondero.",
-      "rateLimited": "Troppi tentativi di invio. Attendi un po' e riprova piu tardi.",
-      "error": "Non e stato possibile inviare la stima. Riprova piu tardi."
+      "rateLimited": "Troppi tentativi di invio. Attendi un po' e riprova più tardi.",
+      "error": "Non e stato possibile inviare la stima. Riprova più tardi."
     },
     "validation": {
       "nameRequired": "Inserisci il tuo nome.",
@@ -166,8 +166,8 @@
   "seo": {
     "eyebrow": "Calcolatore costo sito web",
     "title": "Stima online per siti web ed e-commerce",
-    "descriptionA": "Questa pagina funziona come un calcolatore pratico del costo di sviluppo di un sito web. Aiuta a stimare landing page, siti corporate, e-commerce, redesign, integrazioni, SEO base o applicazioni web piu complesse prima di una call di analisi.",
-    "descriptionB": "La stima considera tipo di progetto, numero di pagine, stato del design, deadline, budget, integrazioni, CMS, pagamenti, contenuti multilingua, analytics e altre funzioni. Il risultato non e un preventivo definitivo, ma un intervallo utile per pianificare budget, tempi, scope, rischi e prossime domande.",
+    "descriptionA": "Questa pagina funziona come un calcolatore pratico del costo di sviluppo di un sito web. Aiuta a stimare landing page, siti corporate, e-commerce, redesign, integrazioni, SEO base o applicazioni web più complesse prima di una call di analisi.",
+    "descriptionB": "La stima considera tipo di progetto, numero di pagine, stato del design, deadline, budget, integrazioni, CMS, pagamenti, contenuti multilingua, analytics e altre funzioni. Il risultato non è un preventivo definitivo, ma un intervallo utile per pianificare budget, tempi, scope, rischi e prossime domande.",
     "useCases": {
       "items": [
         {
@@ -213,20 +213,20 @@
     "description": "Risposte brevi per chi vuole stimare il costo di sviluppo web prima di inviare una richiesta.",
     "items": [
       {
-        "question": "E un prezzo finale di sviluppo?",
+        "question": "È un prezzo finale di sviluppo?",
         "answer": "No. Il calcolatore fornisce un intervallo preliminare. Un preventivo finale richiede chiarire scope, contenuti, design, integrazioni, vincoli tecnici e lancio."
       },
       {
         "question": "Posso stimare un e-commerce?",
-        "answer": "Si. Scegli il tipo e-commerce e descrivi prodotti, catalogo, checkout, pagamenti, CRM, spedizione e gestione contenuti."
+        "answer": "Sì. Scegli il tipo e-commerce e descrivi prodotti, catalogo, checkout, pagamenti, CRM, spedizione e gestione contenuti."
       },
       {
         "question": "La stima include SEO?",
-        "answer": "Il calcolatore puo includere struttura SEO base, requisiti tecnici, pagine multilingua, eventi analytics e contenuti se li aggiungi al form."
+        "answer": "Il calcolatore può includere struttura SEO base, requisiti tecnici, pagine multilingua, eventi analytics e contenuti se li aggiungi al form."
       },
       {
         "question": "Inviare i contatti consuma altri token AI?",
-        "answer": "No. L'invio del risultato manda via email la stima gia generata e non avvia un nuovo calcolo AI."
+        "answer": "No. L'invio del risultato manda via email la stima già generata e non avvia un nuovo calcolo AI."
       }
     ]
   },

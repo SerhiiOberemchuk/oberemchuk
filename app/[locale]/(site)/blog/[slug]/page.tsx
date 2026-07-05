@@ -98,6 +98,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.metaDescription,
+    image: `${siteUrl}/og-blog.png`,
+    inLanguage: currentLocale,
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
     author: {

@@ -120,18 +120,20 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
       }
     },
     url: `${siteUrl}${pagePath}`,
-    mainEntityOfPage: `${siteUrl}${pagePath}`,
-    hasFAQPage: {
-      "@type": "FAQPage",
-      mainEntity: service.faq.map((item) => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.answer
-        }
-      }))
-    }
+    mainEntityOfPage: `${siteUrl}${pagePath}`
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: service.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
   };
 
   const breadcrumb = buildBreadcrumbList(currentLocale, [
@@ -142,7 +144,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
 
   return (
     <div className="px-4 py-8 md:px-6 md:py-12">
-      <JsonLd data={[jsonLd, breadcrumb]} />
+      <JsonLd data={[jsonLd, faqJsonLd, breadcrumb]} />
 
       <div className="mx-auto max-w-7xl">
         <AnimationWrapper animation="fade-in">

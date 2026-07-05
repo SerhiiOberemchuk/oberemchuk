@@ -1,11 +1,11 @@
 {
   "title": "Servizi",
-  "subtitle": "Ogni offerta e costruita intorno a un risultato di business, non a una lista di funzioni: lead, fiducia, vendite, scala o un lancio piu forte.",
+  "subtitle": "Ogni offerta e costruita intorno a un risultato di business, non a una lista di funzioni: lead, fiducia, vendite, scala o un lancio più forte.",
   "popularBadge": "Popolare",
-  "detailsCta": "Scopri di piu",
-  "approachTitle": "Perche questo approccio funziona",
+  "detailsCta": "Scopri di più",
+  "approachTitle": "Perché questo approccio funziona",
   "estimateTitle": "Ti serve una stima per il tuo caso?",
-  "estimateDescription": "Dimmi cosa vendi, chi e il tuo cliente e quale risultato deve portare il sito. Ti aiutero a definire formato, ambito e un piano di lancio realistico.",
+  "estimateDescription": "Dimmi cosa vendi, chi è il tuo cliente e quale risultato deve portare il sito. Ti aiutero a definire formato, ambito e un piano di lancio realistico.",
   "estimateCta": "Richiedi una stima",
   "labels": {
     "section": "Servizi",
@@ -25,7 +25,7 @@
     },
     {
       "title": "Siti aziendali",
-      "description": "Per aziende che devono apparire piu solide, spiegare i servizi con autorevolezza e trasformare traffico qualificato in richieste.",
+      "description": "Per aziende che devono apparire più solide, spiegare i servizi con autorevolezza e trasformare traffico qualificato in richieste.",
       "price": "da 1600 EUR",
       "features": [
         "pagine servizio pensate per vendere",
@@ -36,7 +36,7 @@
     },
     {
       "title": "Negozi e-commerce",
-      "description": "Per aziende che vogliono vendere online con uno storefront piu forte, un checkout piu chiaro e una struttura catalogo scalabile.",
+      "description": "Per aziende che vogliono vendere online con uno storefront più forte, un checkout più chiaro e una struttura catalogo scalabile.",
       "price": "da 2500 EUR",
       "features": [
         "storefront personalizzato",
@@ -47,7 +47,7 @@
     },
     {
       "title": "Web application",
-      "description": "Per SaaS, piattaforme interne, portali cliente e MVP dove conta piu un prodotto funzionante con logica e architettura scalabile che un guscio generico.",
+      "description": "Per SaaS, piattaforme interne, portali cliente e MVP dove conta più un prodotto funzionante con logica e architettura scalabile che un guscio generico.",
       "price": "da 3000 EUR",
       "features": [
         "ruoli e permessi",
@@ -64,7 +64,7 @@
     },
     {
       "title": "Processo chiaro",
-      "description": "Ambito, struttura, stack tecnico e priorita di consegna vengono definiti presto, cosi il progetto resta sotto controllo."
+      "description": "Ambito, struttura, stack tecnico e priorità di consegna vengono definiti presto, così il progetto resta sotto controllo."
     },
     {
       "title": "Pensato per crescere",

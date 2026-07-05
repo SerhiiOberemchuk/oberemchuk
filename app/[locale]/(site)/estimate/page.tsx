@@ -7,6 +7,7 @@ import ProjectEstimateForm from "@/components/project-estimate-form";
 import {isAppLocale, resolveAppLocale} from "@/i18n/locales";
 import {getLocalizedPath, getPageAlternates} from "@/lib/seo";
 import {getSiteUrl} from "@/lib/site-config";
+import {buildBreadcrumbList} from "@/lib/structured-data";
 
 type EstimatePageProps = {
   params: Promise<{locale: string}>;
@@ -122,24 +123,10 @@ export default async function EstimatePage({params}: EstimatePageProps) {
         },
       })),
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: t("schema.home"),
-          item: baseUrl,
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: t("schema.name"),
-          item: `${baseUrl}${pagePath}`,
-        },
-      ],
-    },
+    buildBreadcrumbList(currentLocale, [
+      {name: t("schema.home"), path: ""},
+      {name: t("schema.name"), path: "/estimate"},
+    ]),
   ];
 
   return (

@@ -4,34 +4,34 @@
     "subtitle": "Questo blocco risponde alle principali obiezioni prima dell'avvio: prezzo, approccio, cambi di ambito e cosa succede dopo la richiesta.",
     "items": [
       {
-        "question": "Perche il prezzo puo essere piu alto rispetto a un freelance tipico?",
-        "answer": "Perche il lavoro non si limita all'implementazione. Aiuto a definire logica della pagina, struttura, flusso di conversione, base SEO tecnica e direzione di lancio."
+        "question": "Perché il prezzo può essere più alto rispetto a un freelance tipico?",
+        "answer": "Perché il lavoro non si limita all'implementazione. Aiuto a definire logica della pagina, struttura, flusso di conversione, base SEO tecnica e direzione di lancio."
       },
       {
-        "question": "In cosa e diverso dal semplice “fare un sito”?",
-        "answer": "Parto dal compito di business: cosa deve dimostrare il sito, chi deve convincere e quale azione deve portare. Questo cambia struttura, priorita del copy, casi studio e CTA."
+        "question": "In cosa è diverso dal semplice “fare un sito”?",
+        "answer": "Parto dal compito di business: cosa deve dimostrare il sito, chi deve convincere e quale azione deve portare. Questo cambia struttura, priorità del copy, casi studio e CTA."
       },
       {
-        "question": "Il progetto puo costare meno?",
-        "answer": "Si, restringendo l'ambito. Per esempio si puo partire da una landing focalizzata invece di un sito piu ampio, o spostare parte delle integrazioni in una seconda fase."
+        "question": "Il progetto può costare meno?",
+        "answer": "Sì, restringendo l'ambito. Per esempio si può partire da una landing focalizzata invece di un sito più ampio, o spostare parte delle integrazioni in una seconda fase."
       },
       {
         "question": "Cosa succede se il progetto cambia durante il lavoro?",
-        "answer": "Si gestisce bene finche l'ambito base viene fissato prima dell'avvio e le nuove richieste vengono trattate a parte. Cosi tempi, budget e priorita restano sotto controllo."
+        "answer": "Si gestisce bene finché l'ambito base viene fissato prima dell'avvio e le nuove richieste vengono trattate a parte. Così tempi, budget e priorità restano sotto controllo."
       },
       {
-        "question": "Il SEO e incluso nello sviluppo?",
-        "answer": "Si. La base SEO tecnica e inclusa: struttura pagina, metadata, sitemap, schema, velocita e markup pulito. Le landing SEO dedicate possono essere aggiunte in una fase successiva."
+        "question": "Il SEO è incluso nello sviluppo?",
+        "answer": "Sì. La base SEO tecnica è inclusa: struttura pagina, metadata, sitemap, schema, velocità e markup pulito. Le landing SEO dedicate possono essere aggiunte in una fase successiva."
       },
       {
         "question": "Cosa ricevo dopo aver inviato una richiesta?",
-        "answer": "Ricevi un prossimo passo pratico: una prima direzione di ambito, una stima iniziale dei tempi e un consiglio sul formato piu adatto al tuo caso."
+        "answer": "Ricevi un prossimo passo pratico: una prima direzione di ambito, una stima iniziale dei tempi e un consiglio sul formato più adatto al tuo caso."
       }
     ]
   },
   "metadata": {
-    "title": "Serhii Oberemchuk | Sviluppatore web per siti, e-commerce e web app",
-    "description": "Serhii Oberemchuk e uno sviluppatore web fullstack e partner digitale. Creo siti aziendali, landing page, e-commerce e web application con React, Next.js e SEO tecnico.",
+    "title": "Sviluppatore web per siti, e-commerce e web app",
+    "description": "Serhii Oberemchuk è uno sviluppatore web fullstack e partner digitale. Creo siti aziendali, landing page, e-commerce e web application con React, Next.js e SEO tecnico.",
     "keywords": [
       "sviluppatore web fullstack",
       "sviluppo siti web",
@@ -44,17 +44,17 @@
     ],
     "openGraph": {
       "title": "Serhii Oberemchuk | Sviluppatore web per siti, e-commerce e web app",
-      "description": "Siti aziendali, landing page, e-commerce e web app con struttura forte, esecuzione chiara e profondita tecnica.",
+      "description": "Siti aziendali, landing page, e-commerce e web app con struttura forte, esecuzione chiara e profondità tecnica.",
       "imageAlt": "Serhii Oberemchuk - sviluppatore web per siti, e-commerce e web app"
     },
     "twitter": {
       "title": "Serhii Oberemchuk | Sviluppatore web per siti, e-commerce e web app",
-      "description": "Siti business, web app e SEO tecnico con struttura forte, presentazione curata e solidita tecnica."
+      "description": "Siti business, web app e SEO tecnico con struttura forte, presentazione curata e solidità tecnica."
     }
   },
   "schema": {
     "person": {
-      "description": "Sviluppatore web fullstack e partner digitale che crea siti e web application con struttura forte, qualita dell'interfaccia e disciplina tecnica.",
+      "description": "Sviluppatore web fullstack e partner digitale che crea siti e web application con struttura forte, qualità dell'interfaccia e disciplina tecnica.",
       "knowsAbout": [
         "Web Development",
         "React",

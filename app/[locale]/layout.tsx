@@ -1,6 +1,5 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
-import { notFound } from "next/navigation";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -11,11 +10,9 @@ import Header from "@/components/header";
 import LayoutClientWidgets from "@/components/layout-client-widgets";
 import { clientMessageNamespaces, loadMessages } from "@/i18n/load-messages";
 import {
-  isAppLocale,
   localizePath,
   localeOptions,
   resolveAppLocale,
-  type AppLocale,
 } from "@/i18n/locales";
 import { routing } from "@/i18n/routing";
 import { getSiteUrl } from "@/lib/site-config";
@@ -136,21 +133,23 @@ type LayoutProps = Readonly<{
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
 
-  if (!isAppLocale(locale)) {
-    notFound();
-  }
+  // Junk locale params (e.g. dotted paths like /foo.bar that bypass the proxy
+  // matcher) must still render this layout so the not-found boundary below can
+  // produce a 404 page; a notFound() thrown here has no root boundary and
+  // would surface as a 500. The (site) layout rejects invalid locales.
+  const currentLocale = resolveAppLocale(locale);
 
-  setRequestLocale(locale);
+  setRequestLocale(currentLocale);
 
   const [clientMessages, layoutT, headerT, footerT] = await Promise.all([
-    loadMessages(locale, clientMessageNamespaces),
-    getTranslations({ locale, namespace: "Layout" }),
-    getTranslations({ locale, namespace: "Header" }),
-    getTranslations({ locale, namespace: "Footer" }),
+    loadMessages(currentLocale, clientMessageNamespaces),
+    getTranslations({ locale: currentLocale, namespace: "Layout" }),
+    getTranslations({ locale: currentLocale, namespace: "Header" }),
+    getTranslations({ locale: currentLocale, namespace: "Footer" }),
   ]);
 
   const headerNavItems = [
-    { href: "/#services", label: headerT("navigation.services") },
+    { href: "/services", label: headerT("navigation.services") },
     { href: "/portfolio", label: headerT("navigation.portfolio") },
     { href: "/estimate", label: headerT("navigation.estimate") },
     { href: "/#about", label: headerT("navigation.about") },
@@ -169,7 +168,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
 
   return (
     <html
-      lang={locale}
+      lang={currentLocale}
       className={`${manrope.variable} ${cormorant.variable}`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
@@ -186,7 +185,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         <meta name="msapplication-TileColor" content="#f7fafc" />
       </head>
       <body className={manrope.className}>
-        <NextIntlClientProvider locale={locale} messages={clientMessages}>
+        <NextIntlClientProvider locale={currentLocale} messages={clientMessages}>
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900 focus:shadow-lg"

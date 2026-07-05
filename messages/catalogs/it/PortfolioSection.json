@@ -12,33 +12,33 @@
   },
   "pitch": {
     "title": "I casi dovrebbero costruire fiducia prima che l'utente arrivi al form.",
-    "body": "Questo blocco serve a mostrare orientamento al risultato, qualita di produzione e il livello del partner con cui lavori."
+    "body": "Questo blocco serve a mostrare orientamento al risultato, qualità di produzione e il livello del partner con cui lavori."
   },
   "evidence": {
     "default": {
       "eyebrow": "Angolo commerciale",
-      "title": "Progettato per comunicare piu in fretta, costruire fiducia prima e supportare il passo successivo verso la richiesta.",
+      "title": "Progettato per comunicare più in fretta, costruire fiducia prima e supportare il passo successivo verso la richiesta.",
       "points": [
-        "Struttura piu chiara",
+        "Struttura più chiara",
         "Segnali di fiducia anticipati",
         "Percorso richiesta migliore"
       ]
     },
     "raisa": {
       "eyebrow": "Prova",
-      "title": "Costruito per apparire piu preciso, caricarsi piu in fretta e spiegare meglio il valore del servizio.",
+      "title": "Costruito per apparire più preciso, caricarsi più in fretta e spiegare meglio il valore del servizio.",
       "points": [
-        "Posizionamento del servizio piu netto",
-        "Esperienza mobile piu pulita",
+        "Posizionamento del servizio più netto",
+        "Esperienza mobile più pulita",
         "Struttura pronta per SEO"
       ]
     },
     "commerce": {
       "eyebrow": "Logica del risultato",
-      "title": "Focus su visibilita prodotto, percorso d'acquisto piu semplice e base per far crescere il catalogo.",
+      "title": "Focus su visibilità prodotto, percorso d'acquisto più semplice e base per far crescere il catalogo.",
       "points": [
         "Storefront orientato al prodotto",
-        "Flusso d'acquisto piu pulito",
+        "Flusso d'acquisto più pulito",
         "Struttura categorie pronta per SEO"
       ]
     },

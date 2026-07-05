@@ -20,7 +20,7 @@
   },
   "usage": {
     "title": "Come uso i cookie",
-    "description": "Il sito puo usare diverse categorie di cookie: per il funzionamento del sito, per analytics di base e, se introdotti in futuro, per personalizzazione o marketing."
+    "description": "Il sito può usare diverse categorie di cookie: per il funzionamento del sito, per analytics di base e, se introdotti in futuro, per personalizzazione o marketing."
   },
   "types": {
     "title": "Tipi di cookie usati sul sito",
@@ -48,7 +48,7 @@
     ]
   },
   "details": {
-    "title": "Informazioni piu dettagliate sui cookie",
+    "title": "Informazioni più dettagliate sui cookie",
     "necessary": {
       "title": "Cookie necessari",
       "items": {
@@ -67,7 +67,7 @@
     },
     "marketing": {
       "title": "Cookie marketing",
-      "description": "Al momento il sito non usa attivamente cookie marketing. Se questi strumenti verranno aggiunti, questa pagina sara aggiornata."
+      "description": "Al momento il sito non usa attivamente cookie marketing. Se questi strumenti verranno aggiunti, questa pagina sarà aggiornata."
     }
   },
   "thirdParty": {
@@ -77,7 +77,7 @@
   "googleAnalytics": {
     "title": "Google Analytics",
     "paragraphs": [
-      "Il sito puo usare Google Analytics per l'analisi di base del traffico. Questo servizio usa cookie per raccogliere informazioni statistiche non personali sulle visite.",
+      "Il sito può usare Google Analytics per l'analisi di base del traffico. Questo servizio usa cookie per raccogliere informazioni statistiche non personali sulle visite.",
       "Le informazioni raccolte tramite Google Analytics vengono usate per valutare le performance del sito e migliorare struttura e contenuti.",
       "Puoi disattivare Google Analytics tramite la <optOutLink>pagina di opt-out di Google Analytics</optOutLink>."
     ]
@@ -125,8 +125,8 @@
   "changes": {
     "title": "Modifiche a questa Cookie Policy",
     "paragraphs": [
-      "Posso aggiornare questa policy di tanto in tanto. La versione corrente sara sempre pubblicata su questa pagina.",
-      "E ragionevole controllare periodicamente questa pagina per restare aggiornati su eventuali cambiamenti nell'approccio ai cookie."
+      "Posso aggiornare questa policy di tanto in tanto. La versione corrente sarà sempre pubblicata su questa pagina.",
+      "È ragionevole controllare periodicamente questa pagina per restare aggiornati su eventuali cambiamenti nell'approccio ai cookie."
     ]
   },
   "contact": {

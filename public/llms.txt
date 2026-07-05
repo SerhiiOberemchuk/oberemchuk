@@ -1,0 +1,15 @@
+# Serhii Oberemchuk — Fullstack Web Developer
+
+> Freelance fullstack web developer building business websites, landing pages, e-commerce stores and custom web applications with Next.js, React and TypeScript. Based in Italy; works in Ukrainian, English and Italian.
+
+## Pages
+
+- [Services](https://oberemchuk.online/en/services): landing pages, corporate websites, e-commerce development, web app development, SEO support
+- [Portfolio](https://oberemchuk.online/en/portfolio): delivered projects and case studies
+- [Blog](https://oberemchuk.online/en/blog): articles on website structure, Next.js and SEO-safe redesigns
+- [Project estimate](https://oberemchuk.online/en/estimate): free project estimate tool
+
+## Contact
+
+- Email: serhiioberemchuk@gmail.com
+- GitHub: https://github.com/SerhiiOberemchuk

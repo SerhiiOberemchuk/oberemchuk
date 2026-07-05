@@ -1,0 +1,10 @@
+/* TEAM */
+Developer: Serhii Oberemchuk
+Contact: serhiioberemchuk@gmail.com
+GitHub: https://github.com/SerhiiOberemchuk
+From: Italy
+
+/* SITE */
+Site: https://oberemchuk.online
+Languages: Ukrainian / English / Italian
+Stack: Next.js, React, TypeScript, Tailwind CSS

@@ -26,7 +26,7 @@
   "admin": {
     "eyebrow": "Nuova richiesta",
     "title": "Nuova richiesta da {name}",
-    "intro": "E arrivata una nuova richiesta tramite il form di contatto del sito.",
+    "intro": "È arrivata una nuova richiesta tramite il form di contatto del sito.",
     "summary": "Questa email e strutturata per aiutarti a valutare rapidamente contesto, budget e tipo di servizio senza leggere testo grezzo.",
     "footerNote": "Notifica automatica dal form di contatto del sito.",
     "ctaLabel": "Rispondi al cliente",
@@ -50,7 +50,7 @@
   },
   "errors": {
     "required": "Compila tutti i campi obbligatori",
-    "sendFailed": "Si e verificato un errore durante l'invio del messaggio",
+    "sendFailed": "Si è verificato un errore durante l'invio del messaggio",
     "consolePrefix": "Errore invio email:"
   }
 }

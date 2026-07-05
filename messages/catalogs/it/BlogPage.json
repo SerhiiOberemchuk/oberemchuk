@@ -9,7 +9,7 @@
       "sito per lead"
     ],
     "openGraph": {
-      "description": "Articoli per aziende che vogliono siti piu forti, una struttura SEO migliore e lanci piu puliti.",
+      "description": "Articoli per aziende che vogliono siti più forti, una struttura SEO migliore e lanci più puliti.",
       "imageAlt": "Blog"
     },
     "twitter": {
@@ -24,7 +24,7 @@
     "layer": "Layer di contenuto",
     "label": "Blog",
     "title": "Articoli che sostengono la ricerca e chiariscono l'offerta",
-    "description": "Questo e il layer editoriale intorno a servizi e pagine SEO: articoli che spiegano le decisioni, riducono i dubbi e creano nuovi punti di ingresso indicizzabili attorno all'offerta principale.",
+    "description": "Questo è il layer editoriale intorno a servizi e pagine SEO: articoli che spiegano le decisioni, riducono i dubbi e creano nuovi punti di ingresso indicizzabili attorno all'offerta principale.",
     "addsLabel": "Cosa aggiunge",
     "addsText": "Un layer di contenuto che rafforza autorevolezza, ampiezza della ricerca e contesto di conversione.",
     "articles": "Articoli",
@@ -34,13 +34,13 @@
   "archive": {
     "label": "Archivio articoli",
     "title": "Contenuto costruito attorno a decisioni pratiche sul sito",
-    "description": "L'obiettivo non e fare blogging generico. Ogni articolo sostiene le pagine commerciali chiarendo struttura, stack, logica di lancio o migrazione SEO.",
+    "description": "L'obiettivo non è fare blogging generico. Ogni articolo sostiene le pagine commerciali chiarendo struttura, stack, logica di lancio o migrazione SEO.",
     "readArticle": "Leggi l'articolo"
   },
   "strategy": {
     "label": "Strategia editoriale",
     "title": "Ti serve anche un layer di contenuto attorno alle pagine servizio?",
-    "description": "L'impianto piu forte e quando le pagine servizio intercettano l'intento e gli articoli ampliano il tema, sciolgono i dubbi e sostengono il linking interno.",
+    "description": "L'impianto più forte e quando le pagine servizio intercettano l'intento e gli articoli ampliano il tema, sciolgono i dubbi e sostengono il linking interno.",
     "cta": "Richiedi una stima"
   }
 }
