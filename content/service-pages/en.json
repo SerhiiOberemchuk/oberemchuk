@@ -458,5 +458,340 @@
         "answer": "Yes. Many issues can be fixed without a full redesign: metadata, structure, speed and indexing improvements often make a measurable difference."
       }
     ]
+  },
+  {
+    "slug": "nova-poshta-integration",
+    "title": "Нова пошта API integration for custom-coded projects",
+    "shortTitle": "Нова пошта API",
+    "metaTitle": "Нова пошта API integration for websites and web apps",
+    "metaDescription": "Integration service for custom-coded React, Next.js and API-based projects. I do not focus on website builders or template-only platforms.",
+    "heroTitle": "Нова пошта API integration for a controlled checkout and operations flow",
+    "heroDescription": "I connect delivery, payment, CRM and API services to custom codebases with statuses, webhooks, analytics events and handoff documentation.",
+    "priceFrom": "from 600 EUR",
+    "visualTheme": "logistics",
+    "differentiatorTitle": "Окрема сторінка під доставку, логістику і український checkout",
+    "differentiatorDescription": "Акцент на український ринок, популярні комерційні запити і проєкти, написані кодом, де інтеграція має бути частиною архітектури.",
+    "keywords": [
+      "інтеграція нова пошта",
+      "нова пошта api інтеграція",
+      "підключити нову пошту до сайту",
+      "інтеграція нової пошти в інтернет магазин",
+      "створення ТТН нова пошта api"
+    ],
+    "outcomes": [
+      "cleaner operational flow between the website and external services",
+      "less manual work for managers and support teams",
+      "status handling for orders, payments, deliveries or leads",
+      "a setup that fits custom business logic instead of generic plugins"
+    ],
+    "deliverables": [
+      "integration flow review",
+      "API, webhook or checkout implementation",
+      "status synchronization and error handling",
+      "analytics or CRM event mapping",
+      "testing and technical handoff"
+    ],
+    "fitFor": [
+      "custom React and Next.js projects",
+      "e-commerce stores and service platforms",
+      "teams that need business-specific logic",
+      "projects where no ready-made plugin is enough"
+    ],
+    "intentBlocks": [
+      {
+        "title": "Checkout для України",
+        "text": "Враховую мобільний checkout, міста, відділення, поштомати, кур'єрські сценарії і передачу даних у замовлення."
+      },
+      {
+        "title": "Кастомний код",
+        "text": "Працюю з проєктами, написаними кодом: React, Next.js, Node.js, API-шари, власні адмінки і нестандартні бізнес-правила."
+      },
+      {
+        "title": "Синхронізація статусів",
+        "text": "Статуси доставки, оплати, заявки або замовлення мають оновлюватися там, де команда реально працює: CRM, адмінка або внутрішня система."
+      },
+      {
+        "title": "Аналітика і контроль",
+        "text": "За потреби додаються події для GA4, рекламних кабінетів або CRM, щоб бачити реальні конверсії та проблемні місця flow."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do you work with website builders?",
+        "answer": "No. The main focus is custom-coded projects where the integration can be built into the actual application logic."
+      },
+      {
+        "question": "Can this be added to an existing project?",
+        "answer": "Yes, if the current architecture allows a clean API or server-side integration layer."
+      }
+    ]
+  },
+  {
+    "slug": "hutko-payment-integration",
+    "title": "Hutko payment integration for custom-coded projects",
+    "shortTitle": "Hutko payment",
+    "metaTitle": "Hutko payment integration for websites and web apps",
+    "metaDescription": "Integration service for custom-coded React, Next.js and API-based projects. I do not focus on website builders or template-only platforms.",
+    "heroTitle": "Hutko payment integration for a controlled checkout and operations flow",
+    "heroDescription": "I connect delivery, payment, CRM and API services to custom codebases with statuses, webhooks, analytics events and handoff documentation.",
+    "priceFrom": "from 500 EUR",
+    "visualTheme": "payments",
+    "differentiatorTitle": "Окрема сторінка під платіжний намір і checkout-логіку",
+    "differentiatorDescription": "Акцент на український ринок, популярні комерційні запити і проєкти, написані кодом, де інтеграція має бути частиною архітектури.",
+    "keywords": [
+      "інтеграція hutko",
+      "hutko payment integration",
+      "підключити hutko до сайту",
+      "інтеграція платіжної системи hutko",
+      "hutko checkout next.js"
+    ],
+    "outcomes": [
+      "cleaner operational flow between the website and external services",
+      "less manual work for managers and support teams",
+      "status handling for orders, payments, deliveries or leads",
+      "a setup that fits custom business logic instead of generic plugins"
+    ],
+    "deliverables": [
+      "integration flow review",
+      "API, webhook or checkout implementation",
+      "status synchronization and error handling",
+      "analytics or CRM event mapping",
+      "testing and technical handoff"
+    ],
+    "fitFor": [
+      "custom React and Next.js projects",
+      "e-commerce stores and service platforms",
+      "teams that need business-specific logic",
+      "projects where no ready-made plugin is enough"
+    ],
+    "intentBlocks": [
+      {
+        "title": "Payment lifecycle",
+        "text": "Проєктується повний шлях платежу: старт оплати, callback, webhook, статус замовлення, помилки і повторна перевірка."
+      },
+      {
+        "title": "Кастомний код",
+        "text": "Працюю з проєктами, написаними кодом: React, Next.js, Node.js, API-шари, власні адмінки і нестандартні бізнес-правила."
+      },
+      {
+        "title": "Синхронізація статусів",
+        "text": "Статуси доставки, оплати, заявки або замовлення мають оновлюватися там, де команда реально працює: CRM, адмінка або внутрішня система."
+      },
+      {
+        "title": "Аналітика і контроль",
+        "text": "За потреби додаються події для GA4, рекламних кабінетів або CRM, щоб бачити реальні конверсії та проблемні місця flow."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do you work with website builders?",
+        "answer": "No. The main focus is custom-coded projects where the integration can be built into the actual application logic."
+      },
+      {
+        "question": "Can this be added to an existing project?",
+        "answer": "Yes, if the current architecture allows a clean API or server-side integration layer."
+      }
+    ]
+  },
+  {
+    "slug": "ukraine-delivery-integrations",
+    "title": "Доставка Україна integration for custom-coded projects",
+    "shortTitle": "Доставка Україна",
+    "metaTitle": "Доставка Україна integration for websites and web apps",
+    "metaDescription": "Integration service for custom-coded React, Next.js and API-based projects. I do not focus on website builders or template-only platforms.",
+    "heroTitle": "Доставка Україна integration for a controlled checkout and operations flow",
+    "heroDescription": "I connect delivery, payment, CRM and API services to custom codebases with statuses, webhooks, analytics events and handoff documentation.",
+    "priceFrom": "from 700 EUR",
+    "visualTheme": "logistics",
+    "differentiatorTitle": "Окрема сторінка під доставку, логістику і український checkout",
+    "differentiatorDescription": "Акцент на український ринок, популярні комерційні запити і проєкти, написані кодом, де інтеграція має бути частиною архітектури.",
+    "keywords": [
+      "інтеграція доставки на сайт",
+      "підключити доставку до інтернет магазину",
+      "інтеграція служб доставки",
+      "доставка checkout україна",
+      "api доставки для інтернет магазину"
+    ],
+    "outcomes": [
+      "cleaner operational flow between the website and external services",
+      "less manual work for managers and support teams",
+      "status handling for orders, payments, deliveries or leads",
+      "a setup that fits custom business logic instead of generic plugins"
+    ],
+    "deliverables": [
+      "integration flow review",
+      "API, webhook or checkout implementation",
+      "status synchronization and error handling",
+      "analytics or CRM event mapping",
+      "testing and technical handoff"
+    ],
+    "fitFor": [
+      "custom React and Next.js projects",
+      "e-commerce stores and service platforms",
+      "teams that need business-specific logic",
+      "projects where no ready-made plugin is enough"
+    ],
+    "intentBlocks": [
+      {
+        "title": "Checkout для України",
+        "text": "Враховую мобільний checkout, міста, відділення, поштомати, кур'єрські сценарії і передачу даних у замовлення."
+      },
+      {
+        "title": "Кастомний код",
+        "text": "Працюю з проєктами, написаними кодом: React, Next.js, Node.js, API-шари, власні адмінки і нестандартні бізнес-правила."
+      },
+      {
+        "title": "Синхронізація статусів",
+        "text": "Статуси доставки, оплати, заявки або замовлення мають оновлюватися там, де команда реально працює: CRM, адмінка або внутрішня система."
+      },
+      {
+        "title": "Аналітика і контроль",
+        "text": "За потреби додаються події для GA4, рекламних кабінетів або CRM, щоб бачити реальні конверсії та проблемні місця flow."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do you work with website builders?",
+        "answer": "No. The main focus is custom-coded projects where the integration can be built into the actual application logic."
+      },
+      {
+        "question": "Can this be added to an existing project?",
+        "answer": "Yes, if the current architecture allows a clean API or server-side integration layer."
+      }
+    ]
+  },
+  {
+    "slug": "ukraine-payment-systems-integration",
+    "title": "Оплата Україна integration for custom-coded projects",
+    "shortTitle": "Оплата Україна",
+    "metaTitle": "Оплата Україна integration for websites and web apps",
+    "metaDescription": "Integration service for custom-coded React, Next.js and API-based projects. I do not focus on website builders or template-only platforms.",
+    "heroTitle": "Оплата Україна integration for a controlled checkout and operations flow",
+    "heroDescription": "I connect delivery, payment, CRM and API services to custom codebases with statuses, webhooks, analytics events and handoff documentation.",
+    "priceFrom": "from 550 EUR",
+    "visualTheme": "payments",
+    "differentiatorTitle": "Окрема сторінка під платіжний намір і checkout-логіку",
+    "differentiatorDescription": "Акцент на український ринок, популярні комерційні запити і проєкти, написані кодом, де інтеграція має бути частиною архітектури.",
+    "keywords": [
+      "інтеграція liqpay",
+      "інтеграція wayforpay",
+      "підключити оплату до сайту україна",
+      "інтеграція платіжної системи",
+      "payment gateway україна"
+    ],
+    "outcomes": [
+      "cleaner operational flow between the website and external services",
+      "less manual work for managers and support teams",
+      "status handling for orders, payments, deliveries or leads",
+      "a setup that fits custom business logic instead of generic plugins"
+    ],
+    "deliverables": [
+      "integration flow review",
+      "API, webhook or checkout implementation",
+      "status synchronization and error handling",
+      "analytics or CRM event mapping",
+      "testing and technical handoff"
+    ],
+    "fitFor": [
+      "custom React and Next.js projects",
+      "e-commerce stores and service platforms",
+      "teams that need business-specific logic",
+      "projects where no ready-made plugin is enough"
+    ],
+    "intentBlocks": [
+      {
+        "title": "Payment lifecycle",
+        "text": "Проєктується повний шлях платежу: старт оплати, callback, webhook, статус замовлення, помилки і повторна перевірка."
+      },
+      {
+        "title": "Кастомний код",
+        "text": "Працюю з проєктами, написаними кодом: React, Next.js, Node.js, API-шари, власні адмінки і нестандартні бізнес-правила."
+      },
+      {
+        "title": "Синхронізація статусів",
+        "text": "Статуси доставки, оплати, заявки або замовлення мають оновлюватися там, де команда реально працює: CRM, адмінка або внутрішня система."
+      },
+      {
+        "title": "Аналітика і контроль",
+        "text": "За потреби додаються події для GA4, рекламних кабінетів або CRM, щоб бачити реальні конверсії та проблемні місця flow."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do you work with website builders?",
+        "answer": "No. The main focus is custom-coded projects where the integration can be built into the actual application logic."
+      },
+      {
+        "question": "Can this be added to an existing project?",
+        "answer": "Yes, if the current architecture allows a clean API or server-side integration layer."
+      }
+    ]
+  },
+  {
+    "slug": "custom-crm-api-integrations",
+    "title": "CRM / API integration for custom-coded projects",
+    "shortTitle": "CRM / API",
+    "metaTitle": "CRM / API integration for websites and web apps",
+    "metaDescription": "Integration service for custom-coded React, Next.js and API-based projects. I do not focus on website builders or template-only platforms.",
+    "heroTitle": "CRM / API integration for a controlled checkout and operations flow",
+    "heroDescription": "I connect delivery, payment, CRM and API services to custom codebases with statuses, webhooks, analytics events and handoff documentation.",
+    "priceFrom": "from 800 EUR",
+    "visualTheme": "operations",
+    "differentiatorTitle": "Окрема сторінка під системні інтеграції, а не просто CRM-форму",
+    "differentiatorDescription": "Акцент на український ринок, популярні комерційні запити і проєкти, написані кодом, де інтеграція має бути частиною архітектури.",
+    "keywords": [
+      "crm інтеграція сайту",
+      "api інтеграція для бізнесу",
+      "інтеграція crm з сайтом",
+      "автоматизація заявок crm",
+      "webhook інтеграція"
+    ],
+    "outcomes": [
+      "cleaner operational flow between the website and external services",
+      "less manual work for managers and support teams",
+      "status handling for orders, payments, deliveries or leads",
+      "a setup that fits custom business logic instead of generic plugins"
+    ],
+    "deliverables": [
+      "integration flow review",
+      "API, webhook or checkout implementation",
+      "status synchronization and error handling",
+      "analytics or CRM event mapping",
+      "testing and technical handoff"
+    ],
+    "fitFor": [
+      "custom React and Next.js projects",
+      "e-commerce stores and service platforms",
+      "teams that need business-specific logic",
+      "projects where no ready-made plugin is enough"
+    ],
+    "intentBlocks": [
+      {
+        "title": "Лід із контекстом",
+        "text": "У CRM має потрапляти не просто контакт, а джерело, UTM, сторінка, обрана послуга, статус і потрібні бізнес-поля."
+      },
+      {
+        "title": "Кастомний код",
+        "text": "Працюю з проєктами, написаними кодом: React, Next.js, Node.js, API-шари, власні адмінки і нестандартні бізнес-правила."
+      },
+      {
+        "title": "Синхронізація статусів",
+        "text": "Статуси доставки, оплати, заявки або замовлення мають оновлюватися там, де команда реально працює: CRM, адмінка або внутрішня система."
+      },
+      {
+        "title": "Аналітика і контроль",
+        "text": "За потреби додаються події для GA4, рекламних кабінетів або CRM, щоб бачити реальні конверсії та проблемні місця flow."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do you work with website builders?",
+        "answer": "No. The main focus is custom-coded projects where the integration can be built into the actual application logic."
+      },
+      {
+        "question": "Can this be added to an existing project?",
+        "answer": "Yes, if the current architecture allows a clean API or server-side integration layer."
+      }
+    ]
   }
 ]

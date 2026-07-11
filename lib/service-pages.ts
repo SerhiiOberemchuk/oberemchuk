@@ -19,6 +19,10 @@ export type ServicePage = {
   deliverables: string[];
   fitFor: string[];
   faq: Array<{question: string; answer: string}>;
+  visualTheme?: string;
+  differentiatorTitle?: string;
+  differentiatorDescription?: string;
+  intentBlocks?: Array<{title: string; text: string}>;
 };
 
 const servicePagesByLocale = {

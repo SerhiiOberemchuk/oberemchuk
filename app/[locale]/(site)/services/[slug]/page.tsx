@@ -99,6 +99,19 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
   const relatedServices = getServicePages(currentLocale)
     .filter((item) => item.slug !== service.slug)
     .slice(0, 3);
+  const themeClassNames: Record<string, string> = {
+    logistics:
+      "bg-[linear-gradient(132deg,#082f49_0%,#0f766e_48%,#f97316_100%)]",
+    payments:
+      "bg-[linear-gradient(132deg,#111827_0%,#1d4ed8_50%,#14b8a6_100%)]",
+    operations:
+      "bg-[linear-gradient(132deg,#172554_0%,#365314_48%,#ca8a04_100%)]",
+    integration:
+      "bg-[linear-gradient(132deg,#18181b_0%,#7c2d12_48%,#0f766e_100%)]"
+  };
+  const heroThemeClass = service.visualTheme
+    ? themeClassNames[service.visualTheme]
+    : "bg-[hsl(var(--foreground))]";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -165,7 +178,9 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
           </div>
         </AnimationWrapper>
 
-        <section className="relative overflow-hidden rounded-[2rem] border border-[rgba(255,255,255,0.14)] bg-[hsl(var(--foreground))] text-white shadow-[0_40px_120px_rgba(24,31,43,0.22)]">
+        <section
+          className={`relative overflow-hidden rounded-[2rem] border border-[rgba(255,255,255,0.14)] ${heroThemeClass} text-white shadow-[0_40px_120px_rgba(24,31,43,0.22)]`}
+        >
           <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(10,14,24,0.98)_8%,rgba(10,14,24,0.88)_52%,rgba(16,23,36,0.76)_100%)]" />
           <div className="absolute -left-12 top-12 h-72 w-72 rounded-full bg-[rgba(230,90,48,0.18)] blur-3xl" />
           <div className="absolute right-10 top-8 h-80 w-80 rounded-full bg-[rgba(108,132,173,0.15)] blur-3xl" />
@@ -328,6 +343,43 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
             </div>
           </AnimationWrapper>
         </section>
+
+        {service.intentBlocks?.length ? (
+          <section className="mt-8">
+            <AnimationWrapper animation="slide-up">
+              <div className="grid gap-6 rounded-[2rem] border border-[rgba(24,31,43,0.08)] bg-white p-8 shadow-[0_24px_80px_rgba(24,31,43,0.06)] lg:grid-cols-[0.78fr_1.22fr]">
+                <div>
+                  <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
+                    {service.shortTitle}
+                  </p>
+                  <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
+                    {service.differentiatorTitle ?? service.title}
+                  </h2>
+                  {service.differentiatorDescription ? (
+                    <p className="mt-5 text-base leading-8 text-[hsl(var(--muted-foreground))]">
+                      {service.differentiatorDescription}
+                    </p>
+                  ) : null}
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  {service.intentBlocks.map((item) => (
+                    <div
+                      key={item.title}
+                      className="rounded-[1.35rem] border border-[rgba(24,31,43,0.08)] bg-[linear-gradient(180deg,#ffffff,#f8fafc)] p-5 shadow-[0_10px_30px_rgba(24,31,43,0.04)]"
+                    >
+                      <h3 className="text-xl leading-tight text-[hsl(var(--foreground))]">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-[hsl(var(--muted-foreground))]">
+                        {item.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </AnimationWrapper>
+          </section>
+        ) : null}
 
         <section className="mt-20">
           <AnimationWrapper animation="slide-up">
