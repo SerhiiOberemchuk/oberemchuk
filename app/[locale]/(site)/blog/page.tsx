@@ -5,7 +5,7 @@ import {
   BookOpenText,
   CalendarDays,
 } from "lucide-react";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
 import { Badge } from "@/components/ui/badge";
@@ -58,7 +58,6 @@ export async function generateMetadata({
 
 export default async function BlogPage({ params }: BlogPageProps) {
   const { locale } = await params;
-  setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const t = await getTranslations({ locale: currentLocale, namespace: "BlogPage" });
   const breadcrumbT = await getTranslations({ locale: currentLocale, namespace: "Breadcrumbs" });

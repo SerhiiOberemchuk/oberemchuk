@@ -1,8 +1,8 @@
 {
-  "description": "Siti web, e-commerce e prodotti digitali per aziende che hanno bisogno di una posizione più forte, una struttura più chiara e un asset pronto per crescere.",
+  "description": "Landing page, siti aziendali e negozi online. Struttura, design, sviluppo e pubblicazione con uno sviluppatore web indipendente.",
   "cta": {
-    "title": "Prossimo passo",
-    "description": "Se il sito ha bisogno di una posizione più forte e di un percorso di contatto più chiaro, si parte da una breve stima.",
+    "title": "Parliamo del tuo sito web",
+    "description": "Descrivi la tua attività, il sito di cui hai bisogno e i tempi desiderati. Ti aiuto a definire il lavoro e preparo una stima dei costi.",
     "label": "Richiedi una stima"
   },
   "navigation": {
@@ -11,7 +11,7 @@
     "portfolio": "Casi",
     "about": "Processo",
     "contact": "Stima",
-    "solutions": "Pagine SEO",
+    "solutions": "Siti per aziende",
     "blog": "Blog"
   },
   "legal": {
@@ -23,7 +23,7 @@
   },
   "contact": {
     "title": "Contatto",
-    "remote": "Lavoro come partner tecnico indipendente per siti commerciali e prodotti digitali."
+    "remote": "Sono Serhii Oberemchuk, sviluppatore web indipendente. Lavori direttamente con me dal primo confronto alla pubblicazione."
   },
   "copyright": "Tutti i diritti riservati.",
   "tagline": "Da struttura a lancio.",

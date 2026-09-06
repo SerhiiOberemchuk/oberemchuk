@@ -2,18 +2,14 @@ import type { Metadata } from "next";
 import {
   ArrowRight,
   ArrowUpRight,
-  BriefcaseBusiness,
   CheckCircle,
-  Sparkles,
 } from "lucide-react";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import AnimationWrapper from "@/components/animation-wrapper";
+import { getTranslations } from "next-intl/server";
 import JsonLd from "@/components/json-ld";
 import { Link } from "@/i18n/navigation";
 import { type AppLocale } from "@/i18n/locales";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { getLocalizedPath, getPageAlternates } from "@/lib/seo";
 import { getServicePages } from "@/lib/service-pages";
 import { getSiteUrl } from "@/lib/site-config";
@@ -27,7 +23,6 @@ export async function generateMetadata({
   params,
 }: ServicesPageProps): Promise<Metadata> {
   const { locale } = await params;
-  setRequestLocale(locale);
   const t = await getTranslations({
     locale,
     namespace: "ServicesPage.metadata",
@@ -65,325 +60,94 @@ export async function generateMetadata({
 
 export default async function ServicesPage({ params }: ServicesPageProps) {
   const { locale } = await params;
-  setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
-  const pageT = await getTranslations({ locale, namespace: "ServicesPage" });
+  const t = await getTranslations({ locale, namespace: "ServicesPage" });
   const breadcrumbT = await getTranslations({ locale, namespace: "Breadcrumbs" });
-  const servicePages = getServicePages(currentLocale);
-  const pagePath = getLocalizedPath(currentLocale, "/services");
+  const services = getServicePages(currentLocale);
+  const primarySlugs = ["landing-pages", "corporate-websites", "ecommerce-development"];
+  const primary = primarySlugs.flatMap(slug => services.filter(s => s.slug === slug));
+  const additional = services.filter(s => !primarySlugs.includes(s.slug));
   const baseUrl = getSiteUrl();
-  const pricingHighlights = pageT.raw("pricing.highlights") as string[];
-  const pricingPrinciples = pageT.raw("pricing.principles") as Array<{
-    title: string;
-    description: string;
-  }>;
-  const pricingCategories = pageT.raw("pricing.categories") as Array<{
-    title: string;
-    audience: string;
-    items: Array<{
-      name: string;
-      price: string;
-      timeline: string;
-      stack: string;
-      scope: string;
-    }>;
-  }>;
-
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: pageT("schema.name"),
-    description: pageT("schema.description"),
-    url: `${baseUrl}${pagePath}`,
+    "@context": "https://schema.org", "@type": "CollectionPage",
+    name: t("schema.name"), description: t("schema.description"),
+    url: baseUrl + getLocalizedPath(currentLocale, "/services"),
     mainEntity: {
       "@type": "ItemList",
-      name: pageT("schema.itemListName"),
-      itemListElement: servicePages.map((service, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        url: `${baseUrl}${getLocalizedPath(currentLocale, `/services/${service.slug}`)}`,
-        name: service.title,
+      itemListElement: [...primary, ...additional].map((service, index) => ({
+        "@type": "ListItem", position: index + 1, name: service.title,
+        url: baseUrl + getLocalizedPath(currentLocale, "/services/" + service.slug),
       })),
     },
   };
-
   const breadcrumb = buildBreadcrumbList(currentLocale, [
-    { name: breadcrumbT("home"), path: "" },
-    { name: breadcrumbT("services"), path: "/services" },
+    {name: breadcrumbT("home"), path: ""},
+    {name: breadcrumbT("services"), path: "/services"},
   ]);
-
   return (
     <>
       <JsonLd data={[jsonLd, breadcrumb]} />
       <div className="px-4 py-8 md:px-6 md:py-12">
         <div className="mx-auto max-w-7xl">
-          <section className="relative overflow-hidden rounded-[2rem] border border-[rgba(255,255,255,0.14)] bg-[hsl(var(--foreground))] text-white shadow-[0_40px_120px_rgba(24,31,43,0.22)]">
-            <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(10,14,24,0.98)_8%,rgba(10,14,24,0.88)_52%,rgba(16,23,36,0.76)_100%)]" />
-            <div className="absolute -left-12 top-10 h-72 w-72 rounded-full bg-[rgba(230,90,48,0.18)] blur-3xl" />
-            <div className="absolute right-10 top-8 h-80 w-80 rounded-full bg-[rgba(108,132,173,0.15)] blur-3xl" />
-
-            <div className="relative z-10 grid gap-10 px-6 py-8 md:px-10 md:py-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12 lg:px-14 lg:py-14">
-              <AnimationWrapper animation="slide-right">
-                <div className="flex h-full flex-col">
-                  <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/54">
-                    {pageT("hero.pageLabel")}
-                  </p>
-                  <div className="max-w-xl min-h-[15rem]">
-                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/42">
-                      {pageT("hero.archiveLabel")}
-                    </p>
-                    <h1 className="mt-4 max-w-[12ch] text-5xl leading-[0.92] text-white md:text-7xl">
-                      {pageT("hero.title")}
-                    </h1>
-                    <p className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg">
-                      {pageT("hero.description")}
-                    </p>
-                  </div>
-                </div>
-              </AnimationWrapper>
-
-              <AnimationWrapper animation="slide-left">
-                <div className="grid gap-6">
-                  <div className="rounded-[1.7rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
-                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/44">
-                      {pageT("hero.manifestoLabel")}
-                    </p>
-                    <p className="mt-4 max-w-[30rem] text-[2rem] leading-[1.02] text-white md:text-[2.6rem]">
-                      {pageT("hero.manifesto")}
-                    </p>
-                  </div>
-
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
-                      <div className="flex items-center gap-2 text-white/44">
-                        <BriefcaseBusiness className="h-4 w-4" />
-                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-                          {pageT("includesTitle")}
-                        </p>
-                      </div>
-                      <p className="mt-3 text-lg text-white">{servicePages.length}</p>
-                    </div>
-                    <div className="rounded-[1.6rem] border border-white/10 bg-white/6 p-6 backdrop-blur-sm">
-                      <div className="flex items-center gap-2 text-white/44">
-                        <Sparkles className="h-4 w-4" />
-                        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-                          {pageT("hero.stackLabel")}
-                        </p>
-                      </div>
-                      <p className="mt-3 text-lg text-white">{pageT("hero.resultDelivery")}</p>
-                    </div>
-                  </div>
-                </div>
-              </AnimationWrapper>
+          <section className="relative overflow-hidden rounded-[2rem] border border-white/14 bg-[hsl(var(--foreground))] px-6 py-10 text-white shadow-[0_34px_100px_rgba(24,31,43,0.2)] md:px-12 md:py-16">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(214,101,45,0.2),transparent_65%)]" />
+            <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/60">{t("hero.pageLabel")}</p>
+                <h1 className="mt-5 max-w-3xl text-5xl leading-[0.98] md:text-7xl">{t("catalog.title")}</h1>
+              </div>
+              <div>
+                <p className="text-lg leading-8 text-white/75">{t("catalog.description")}</p>
+                <Button asChild size="lg" className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/90">
+                  <Link href="/estimate">{t("catalog.estimateCta")}<ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
+                </Button>
+              </div>
             </div>
           </section>
-
-          <section className="mt-20">
-            <AnimationWrapper animation="fade-in">
-              <div className="mb-10 grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
-                <div>
-                  <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                    {pageT("pricing.label")}
-                  </p>
-                  <h2 className="max-w-[12ch] text-4xl leading-[0.96] text-[hsl(var(--foreground))] md:text-5xl">
-                    {pageT("pricing.title")}
-                  </h2>
-                </div>
-                <div className="grid gap-4">
-                  <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">
-                    {pageT("pricing.description")}
-                  </p>
-                  <div className="flex flex-wrap gap-3">
-                    {pricingHighlights.map((item) => (
-                      <Badge key={item} variant="secondary" className="px-3 py-1.5">
-                        {item}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </AnimationWrapper>
-
-            <div className="grid gap-5 md:grid-cols-3">
-              {pricingPrinciples.map((principle) => (
-                <AnimationWrapper key={principle.title} animation="slide-up">
-                  <Card className="h-full rounded-[1.6rem] border-[rgba(24,31,43,0.08)] shadow-[0_18px_55px_rgba(24,31,43,0.05)]">
-                    <CardContent className="p-6">
-                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
-                        {pageT("pricing.principlesLabel")}
-                      </p>
-                      <h3 className="mt-4 text-[1.6rem] leading-tight text-[hsl(var(--foreground))]">
-                        {principle.title}
-                      </h3>
-                      <p className="mt-4 text-sm leading-7 text-[hsl(var(--muted-foreground))]">
-                        {principle.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </AnimationWrapper>
-              ))}
-            </div>
-
-            <div className="mt-8 grid gap-6">
-              {pricingCategories.map((category) => (
-                <AnimationWrapper key={category.title} animation="slide-up">
-                  <article className="overflow-hidden rounded-[1.9rem] border border-[rgba(24,31,43,0.08)] bg-white shadow-[0_24px_80px_rgba(24,31,43,0.06)]">
-                    <div className="grid gap-6 border-b border-[rgba(24,31,43,0.08)] px-6 py-6 lg:grid-cols-[0.44fr_0.56fr] lg:px-8">
-                      <div>
-                        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
-                          {pageT("pricing.audienceLabel")}
-                        </p>
-                        <h3 className="mt-3 text-[2rem] leading-[1.02] text-[hsl(var(--foreground))]">
-                          {category.title}
-                        </h3>
-                      </div>
-                      <p className="max-w-3xl text-base leading-8 text-[hsl(var(--muted-foreground))]">
-                        {category.audience}
-                      </p>
-                    </div>
-
-                    <div className="grid gap-px bg-[rgba(24,31,43,0.08)] md:grid-cols-2">
-                      {category.items.map((item) => (
-                        <div key={item.name} className="bg-white p-6 lg:p-8">
-                          <div className="flex flex-wrap items-start justify-between gap-4">
-                            <div>
-                              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
-                                {item.timeline}
-                              </p>
-                              <h4 className="mt-3 text-[1.55rem] leading-tight text-[hsl(var(--foreground))]">
-                                {item.name}
-                              </h4>
-                            </div>
-                            <Badge variant="secondary" className="px-3 py-1.5">
-                              {item.price}
-                            </Badge>
-                          </div>
-
-                          <div className="mt-6 space-y-4">
-                            <div>
-                              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--muted-foreground))]">
-                                {pageT("pricing.stackLabel")}
-                              </p>
-                              <p className="mt-2 text-sm leading-7 text-[hsl(var(--foreground))]">
-                                {item.stack}
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--muted-foreground))]">
-                                {pageT("pricing.scopeLabel")}
-                              </p>
-                              <p className="mt-2 text-sm leading-7 text-[hsl(var(--muted-foreground))]">
-                                {item.scope}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+          <section className="mt-16" aria-labelledby="website-services">
+            <h2 id="website-services" className="mb-8 text-4xl md:text-5xl">{t("catalog.primary")}</h2>
+            <ul className="grid gap-6 lg:grid-cols-3" aria-label={t("listAriaLabel")}>
+              {primary.map(service => (
+                <li key={service.slug} className="flex">
+                  <article className="flex w-full flex-col rounded-[1.75rem] border border-[rgba(24,31,43,0.1)] bg-white p-6 shadow-[0_18px_60px_rgba(24,31,43,0.05)]">
+                    <Badge variant="secondary" className="w-fit">{service.priceFrom}</Badge>
+                    <h3 className="mt-5 text-3xl leading-tight">{service.title}</h3>
+                    <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.metaDescription}</p>
+                    <ul className="my-6 space-y-3 border-t pt-6">
+                      {service.deliverables.slice(0,4).map(item => (
+                        <li key={item} className="flex gap-3 text-sm leading-7"><CheckCircle className="mt-1 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />{item}</li>
                       ))}
-                    </div>
+                    </ul>
+                    <Button asChild variant="outline" className="mt-auto w-full">
+                      <Link href={"/services/" + service.slug} aria-label={t("detailsCta") + ": " + service.title}>
+                        {service.shortTitle}<ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </Link>
+                    </Button>
                   </article>
-                </AnimationWrapper>
-              ))}
-            </div>
-          </section>
-
-          <section className="mt-20">
-            <AnimationWrapper animation="fade-in">
-              <div className="mb-10 grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
-                <div>
-                  <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[hsl(var(--muted-foreground))]">
-                    {pageT("archive.label")}
-                  </p>
-                  <h2 className="text-4xl text-[hsl(var(--foreground))] md:text-5xl">
-                    {pageT("archive.title")}
-                  </h2>
-                </div>
-                <p className="max-w-3xl text-lg leading-8 text-[hsl(var(--muted-foreground))]">
-                  {pageT("consultation.description")}
-                </p>
-              </div>
-            </AnimationWrapper>
-
-            <ul className="grid grid-cols-1 gap-5 md:grid-cols-2" aria-label={pageT("listAriaLabel")}>
-              {servicePages.map((service) => (
-                <li key={service.slug}>
-                  <AnimationWrapper animation="slide-up">
-                    <article
-                      className="group flex h-full flex-col rounded-[1.75rem] border border-[rgba(24,31,43,0.08)] bg-white p-6 shadow-[0_18px_60px_rgba(24,31,43,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(24,31,43,0.14)] hover:shadow-[0_24px_70px_rgba(24,31,43,0.08)]"
-                      aria-labelledby={`service-title-${service.slug}`}
-                    >
-                      <div className="flex min-h-[11.5rem] flex-col">
-                        <div className="flex flex-wrap items-center justify-between gap-3">
-                          <Badge variant="secondary">{service.priceFrom}</Badge>
-                          <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[hsl(var(--muted-foreground))]">
-                            {service.shortTitle}
-                          </span>
-                        </div>
-                        <h3
-                          id={`service-title-${service.slug}`}
-                          className="mt-5 max-w-[18ch] text-[2rem] leading-[1.02] text-[hsl(var(--foreground))]"
-                        >
-                          {service.title}
-                        </h3>
-                        <p className="mt-4 max-w-2xl text-sm leading-7 text-[hsl(var(--muted-foreground))]">
-                          {service.metaDescription}
-                        </p>
-                      </div>
-
-                      <div className="mt-8 flex flex-1 flex-col gap-6 border-t border-[rgba(24,31,43,0.08)] pt-6">
-                        <div className="min-h-[12rem]">
-                          <h4 className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[hsl(var(--muted-foreground))]">
-                            {pageT("outcomesPreviewTitle")}
-                          </h4>
-                          <ul className="space-y-3">
-                            {service.outcomes.slice(0, 4).map((item) => (
-                              <li key={item} className="flex items-start gap-3">
-                                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[hsl(var(--primary))]" />
-                                <p className="text-sm leading-7 text-[hsl(var(--muted-foreground))]">
-                                  {item}
-                                </p>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <Button asChild variant="outline" className="mt-auto w-full bg-transparent">
-                          <Link href={`/services/${service.slug}`} aria-label={`${pageT("detailsCta")}: ${service.title}`}>
-                            {service.title}
-                            <ArrowRight className="button-arrow-right h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </div>
-                    </article>
-                  </AnimationWrapper>
                 </li>
               ))}
             </ul>
           </section>
-
-          <section className="mt-20 rounded-[2rem] border border-[rgba(255,255,255,0.14)] bg-[hsl(var(--foreground))] px-8 py-10 text-white shadow-[0_34px_100px_rgba(24,31,43,0.2)] md:px-10">
-            <AnimationWrapper animation="fade-in">
-              <div className="grid gap-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
-                <div>
-                  <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-white/44">
-                    {pageT("hero.pageLabel")}
-                  </p>
-                  <h2 className="max-w-3xl text-4xl leading-[0.96] md:text-5xl">
-                    {pageT("consultation.title")}
-                  </h2>
-                </div>
-                <div>
-                  <p className="text-base leading-8 text-white/70">
-                    {pageT("consultation.description")}
-                  </p>
-                  <Button asChild size="lg" className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/92">
-                    <Link href="/#contact">
-                      {pageT("consultation.cta")}
-                      <ArrowUpRight className="button-arrow-up-right h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </AnimationWrapper>
+          <section className="mt-16" aria-labelledby="additional-services">
+            <h2 id="additional-services" className="text-4xl md:text-5xl">{t("catalog.additional")}</h2>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">{t("catalog.additionalDescription")}</p>
+            <ul className="mt-8 grid gap-x-10 md:grid-cols-2">
+              {additional.map(service => (
+                <li key={service.slug} className="border-t py-5">
+                  <Link href={"/services/" + service.slug} className="group flex items-start justify-between gap-4 hover:text-primary">
+                    <span><span className="block text-xl font-semibold">{service.title}</span><span className="mt-2 block text-sm text-muted-foreground">{service.priceFrom}</span></span>
+                    <ArrowUpRight className="mt-1 h-5 w-5 shrink-0" aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="mt-16 rounded-[2rem] bg-[hsl(var(--foreground))] px-6 py-10 text-white md:p-12">
+            <h2 className="text-4xl md:text-5xl">{t("catalog.estimate")}</h2>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-white/75">{t("catalog.estimateDescription")}</p>
+            <Button asChild size="lg" className="mt-8 bg-white text-[hsl(var(--foreground))] hover:bg-white/90">
+              <Link href="/estimate">{t("catalog.estimateCta")}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            </Button>
           </section>
         </div>
       </div>

@@ -1,6 +1,6 @@
 {
-  "title": "Services",
-  "subtitle": "Each offer is framed around a business outcome rather than a feature list: leads, trust, sales, scale or a stronger launch path.",
+  "title": "What kind of website do you need?",
+  "subtitle": "A landing page for one offer, a company website for your services or an online store for your products. I also update existing websites.",
   "popularBadge": "Popular",
   "detailsCta": "Learn more",
   "approachTitle": "Why this approach works",
@@ -13,8 +13,8 @@
   },
   "services": [
     {
-      "title": "Landing pages",
-      "description": "For paid traffic, demand testing or fast offer launches, when the website should drive one clear action instead of behaving like a brochure.",
+      "title": "Landing page",
+      "description": "One page for a product, service or advertising campaign, with a clear offer, answers to common questions and an enquiry form.",
       "price": "from 800 EUR",
       "features": [
         "clear offer and CTA",
@@ -24,8 +24,8 @@
       ]
     },
     {
-      "title": "Corporate websites",
-      "description": "For companies that need to look stronger, explain services with authority and turn qualified traffic into inquiries.",
+      "title": "Company website",
+      "description": "A multi-page company website with services, business information, case studies and contact details.",
       "price": "from 1600 EUR",
       "features": [
         "service pages built to sell",
@@ -35,8 +35,8 @@
       ]
     },
     {
-      "title": "E-commerce stores",
-      "description": "For businesses that want to sell online through a stronger storefront, a clearer checkout flow and a scalable catalogue structure.",
+      "title": "Online store",
+      "description": "An online store with a product catalogue, cart, checkout, payments and delivery.",
       "price": "from 2500 EUR",
       "features": [
         "custom storefront",
@@ -46,14 +46,14 @@
       ]
     },
     {
-      "title": "Web applications",
-      "description": "For SaaS, internal platforms, client portals and MVPs where a working product with logic and scalable architecture matters more than a generic website shell.",
-      "price": "from 3000 EUR",
+      "title": "Website redesign",
+      "description": "Design updates, performance improvements and migration of an existing website, preserving important pages and redirecting changed URLs.",
+      "price": "from 900 EUR",
       "features": [
-        "roles and permissions",
-        "API integrations",
-        "dashboards",
-        "scalable architecture"
+        "updated design",
+        "faster pages",
+        "content migration",
+        "URL redirects"
       ]
     }
   ],

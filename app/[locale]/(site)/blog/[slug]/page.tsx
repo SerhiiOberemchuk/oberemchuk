@@ -5,7 +5,7 @@ import {
   ArrowUpRight,
   CalendarDays,
 } from "lucide-react";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
@@ -73,7 +73,6 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { locale, slug } = await params;
-  setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const t = await getTranslations({ locale, namespace: "BlogPostPage" });
   const breadcrumbT = await getTranslations({ locale, namespace: "Breadcrumbs" });

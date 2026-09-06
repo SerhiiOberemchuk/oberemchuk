@@ -1,10 +1,10 @@
 {
   "navigation": {
     "services": "Servizi",
-    "portfolio": "Casi",
-    "estimate": "Calcolatore",
+    "portfolio": "Progetti",
+    "estimate": "Costi",
     "about": "Processo",
-    "contact": "Stima"
+    "contact": "Contatti"
   },
   "cta": "Richiedi una stima",
   "menu": "Menu",

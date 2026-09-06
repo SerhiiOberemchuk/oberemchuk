@@ -1,10 +1,10 @@
 {
   "navigation": {
     "services": "Services",
-    "portfolio": "Cases",
-    "estimate": "Calculator",
+    "portfolio": "Work",
+    "estimate": "Pricing",
     "about": "Process",
-    "contact": "Estimate"
+    "contact": "Contact"
   },
   "cta": "Get an estimate",
   "menu": "Menu",

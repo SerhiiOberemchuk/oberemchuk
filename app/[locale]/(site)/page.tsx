@@ -1,7 +1,8 @@
 ﻿import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { loadMessages } from "@/i18n/load-messages";
 import AboutSection from "@/components/sections/about-section";
-import ClientOutcomesSection from "@/components/sections/client-outcomes-section";
 import ContactSection from "@/components/sections/contact-section";
 import HeroSection from "@/components/sections/hero-section";
 import PortfolioSection from "@/components/sections/portfolio-section";
@@ -69,10 +70,6 @@ export default async function HomePage({ params }: HomePageProps) {
     locale,
     namespace: "HomeServices",
   });
-  const outcomesT = await getTranslations({
-    locale,
-    namespace: "HomeOutcomes",
-  });
   const contactT = await getTranslations({ locale, namespace: "HomeContact" });
   const faqT = await getTranslations({ locale, namespace: "FaqSection" });
   const faqs = pageT.raw("faq.items") as FaqItem[];
@@ -81,17 +78,9 @@ export default async function HomePage({ params }: HomePageProps) {
     label: string;
   }>;
   const aboutParagraphs = aboutT.raw("paragraphs") as string[];
-  const aboutSkills = aboutT.raw("skills") as Array<{
-    title: string;
-    description: string;
-  }>;
   const aboutProcess = aboutT.raw("process") as Array<{
     title: string;
     description: string;
-  }>;
-  const aboutSummaryStats = aboutT.raw("summaryStats") as Array<{
-    value: string;
-    label: string;
   }>;
   const serviceCards = servicesT.raw("services") as Array<{
     title: string;
@@ -100,10 +89,6 @@ export default async function HomePage({ params }: HomePageProps) {
     features: string[];
   }>;
   const serviceAdvantages = servicesT.raw("advantages") as Array<{
-    title: string;
-    description: string;
-  }>;
-  const clientOutcomes = outcomesT.raw("items") as Array<{
     title: string;
     description: string;
   }>;
@@ -153,7 +138,8 @@ export default async function HomePage({ params }: HomePageProps) {
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      name: "Serhii Oberemchuk - Digital Product and Web Development Services",
+      "@id": `${siteUrl}/#service`,
+      name: schemaT("service.name"),
       description: schemaT("service.description"),
       url: siteUrl,
       telephone: "+393516648498",
@@ -162,7 +148,7 @@ export default async function HomePage({ params }: HomePageProps) {
       provider: { "@type": "Person", name: "Serhii Oberemchuk" },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Digital Product and Web Development Services",
+        name: schemaT("service.name"),
         itemListElement: (
           schemaT.raw("service.offers") as Array<{
             name: string;
@@ -218,20 +204,9 @@ export default async function HomePage({ params }: HomePageProps) {
       <AboutSection
         title={aboutT("title")}
         subtitle={aboutT("subtitle")}
-        valueTitle={aboutT("valueTitle")}
-        skillsTitle={aboutT("skillsTitle")}
         processTitle={aboutT("processTitle")}
-        technologiesTitle={aboutT("technologiesTitle")}
         paragraphs={aboutParagraphs}
-        skills={aboutSkills}
         process={aboutProcess}
-        summaryStats={aboutSummaryStats}
-      />
-      <ClientOutcomesSection
-        title={outcomesT("title")}
-        subtitle={outcomesT("subtitle")}
-        cta={outcomesT("cta")}
-        items={clientOutcomes}
       />
       <FaqSection
         label={faqT("label")}
@@ -239,6 +214,7 @@ export default async function HomePage({ params }: HomePageProps) {
         subtitle={pageT("faq.subtitle")}
         faqs={faqs}
       />
+      <NextIntlClientProvider messages={await loadMessages(locale, ["ContactForm"])}>
       <ContactSection
         badge={contactT("badge")}
         title={contactT("title")}
@@ -255,6 +231,7 @@ export default async function HomePage({ params }: HomePageProps) {
         advantages={contactAdvantages}
         contactItems={contactItems}
       />
+      </NextIntlClientProvider>
     </>
   );
 }

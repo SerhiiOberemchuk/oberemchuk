@@ -9,7 +9,7 @@ import {
   Layers3,
   User,
 } from "lucide-react";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
 import { Badge } from "@/components/ui/badge";
@@ -253,7 +253,6 @@ export async function generateMetadata({
   params,
 }: PortfolioProjectPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const pageT = await getTranslations({
     locale,
@@ -304,7 +303,6 @@ export default async function ProjectPage({
   params,
 }: PortfolioProjectPageProps) {
   const { locale, slug } = await params;
-  setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const pageT = await getTranslations({
     locale,

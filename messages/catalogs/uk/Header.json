@@ -1,10 +1,10 @@
 {
   "navigation": {
     "services": "Послуги",
-    "portfolio": "Кейси",
-    "estimate": "Калькулятор",
+    "portfolio": "Роботи",
+    "estimate": "Вартість",
     "about": "Процес",
-    "contact": "Оцінка"
+    "contact": "Контакти"
   },
   "cta": "Отримати оцінку",
   "menu": "Меню",

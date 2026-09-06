@@ -30,31 +30,29 @@
     ]
   },
   "metadata": {
-    "title": "Sviluppatore web per siti, e-commerce e web app",
-    "description": "Serhii Oberemchuk è uno sviluppatore web fullstack e partner digitale. Creo siti aziendali, landing page, e-commerce e web application con React, Next.js e SEO tecnico.",
+    "title": "Realizzazione siti web per aziende",
+    "description": "Landing page, siti aziendali ed e-commerce con Serhii Oberemchuk. Struttura, design, sviluppo, SEO tecnica e pubblicazione con uno sviluppatore indipendente.",
     "keywords": [
-      "sviluppatore web fullstack",
-      "sviluppo siti web",
-      "sviluppo web application",
-      "sviluppo siti aziendali",
-      "sviluppo e-commerce",
-      "sviluppatore React",
-      "sviluppatore Next.js",
-      "SEO tecnico"
+      "Realizzazione siti web per aziende",
+      "Landing page",
+      "Sito aziendale",
+      "Negozio online",
+      "Restyling del sito",
+      "Serhii Oberemchuk"
     ],
     "openGraph": {
-      "title": "Serhii Oberemchuk | Sviluppatore web per siti, e-commerce e web app",
-      "description": "Siti aziendali, landing page, e-commerce e web app con struttura forte, esecuzione chiara e profondità tecnica.",
+      "title": "Realizzazione siti web per aziende",
+      "description": "Landing page, siti aziendali ed e-commerce con Serhii Oberemchuk. Struttura, design, sviluppo, SEO tecnica e pubblicazione con uno sviluppatore indipendente.",
       "imageAlt": "Serhii Oberemchuk - sviluppatore web per siti, e-commerce e web app"
     },
     "twitter": {
-      "title": "Serhii Oberemchuk | Sviluppatore web per siti, e-commerce e web app",
-      "description": "Siti business, web app e SEO tecnico con struttura forte, presentazione curata e solidità tecnica."
+      "title": "Realizzazione siti web per aziende",
+      "description": "Landing page, siti aziendali ed e-commerce con Serhii Oberemchuk. Struttura, design, sviluppo, SEO tecnica e pubblicazione con uno sviluppatore indipendente."
     }
   },
   "schema": {
     "person": {
-      "description": "Sviluppatore web fullstack e partner digitale che crea siti e web application con struttura forte, qualità dell'interfaccia e disciplina tecnica.",
+      "description": "Sono Serhii Oberemchuk, sviluppatore web indipendente. Lavori direttamente con me dal primo confronto alla pubblicazione.",
       "knowsAbout": [
         "Web Development",
         "React",
@@ -67,33 +65,35 @@
       ]
     },
     "website": {
-      "description": "Siti web e web application per aziende ambiziose"
+      "description": "Landing page, siti aziendali ed e-commerce con Serhii Oberemchuk. Struttura, design, sviluppo, SEO tecnica e pubblicazione con uno sviluppatore indipendente."
     },
     "service": {
-      "description": "Servizi di sviluppo web di Serhii Oberemchuk: landing page, siti aziendali, e-commerce, web application custom e SEO tecnico.",
+      "description": "Landing page, siti aziendali e negozi online. Struttura, design, sviluppo e pubblicazione con uno sviluppatore web indipendente.",
       "serviceType": [
-        "Web Development",
-        "E-commerce Development",
-        "Technical SEO"
+        "Landing page",
+        "Sito aziendale",
+        "Negozio online",
+        "Restyling del sito"
       ],
       "offers": [
         {
-          "name": "Sviluppo landing page",
-          "description": "Sviluppo completo di landing page"
+          "name": "Landing page",
+          "description": "Una pagina per un prodotto, un servizio o una campagna pubblicitaria, con proposta, risposte alle domande e modulo di contatto."
         },
         {
-          "name": "Sviluppo siti aziendali",
-          "description": "Sviluppo di siti aziendali"
+          "name": "Sito aziendale",
+          "description": "Un sito aziendale con più pagine: servizi, informazioni sull’attività, lavori realizzati e contatti."
         },
         {
-          "name": "Sviluppo e-commerce",
-          "description": "Sviluppo di storefront e-commerce"
+          "name": "Negozio online",
+          "description": "Un negozio online con catalogo, carrello, ordini, pagamenti e consegna."
         },
         {
-          "name": "Sviluppo web application",
-          "description": "Sviluppo di web application"
+          "name": "Restyling del sito",
+          "description": "Aggiornamento del design, miglioramento delle prestazioni e migrazione del sito, conservando le pagine importanti e reindirizzando gli URL modificati."
         }
-      ]
+      ],
+      "name": "Realizzazione siti web per aziende"
     }
   }
 }

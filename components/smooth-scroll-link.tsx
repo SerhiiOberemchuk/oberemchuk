@@ -19,14 +19,14 @@ export default function SmoothScrollLink({
 }: SmoothScrollLinkProps) {
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (href.startsWith("#")) {
-        e.preventDefault();
-
+      if (href.startsWith("#") && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
         const targetId = href.substring(1);
         const targetElement = document.getElementById(targetId);
 
         if (targetElement) {
-          targetElement.scrollIntoView({ behavior: "smooth" });
+          e.preventDefault();
+          history.pushState(null, "", href);
+          targetElement.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
         }
 
         if (onClick) onClick();

@@ -22,6 +22,7 @@ const PROJECTS_REVALIDATE_SECONDS = 86400;
 async function fetchProjectsJson<T>(path: string, tags: string[]): Promise<T | null> {
   try {
     const response = await fetch(`${PROJECTS_API_BASE_URL}${path}`, {
+      signal: AbortSignal.timeout(8000),
       cache: "force-cache",
       next: {
         revalidate: PROJECTS_REVALIDATE_SECONDS,

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
 import PortfolioItem from "@/components/portfolio-item";
 import PortfolioShowcase from "@/components/portfolio-showcase";
+import { NextIntlClientProvider } from "next-intl";
+import { loadMessages } from "@/i18n/load-messages";
 import SeoText from "@/components/seo-text";
 import { type AppLocale } from "@/i18n/locales";
 import { localizeProjects } from "@/lib/projects-i18n";
@@ -20,7 +22,6 @@ export async function generateMetadata({
   params,
 }: PortfolioPageProps): Promise<Metadata> {
   const { locale } = await params;
-  setRequestLocale(locale);
   const t = await getTranslations({
     locale,
     namespace: "PortfolioPage.metadata",
@@ -58,7 +59,6 @@ export async function generateMetadata({
 
 export default async function PortfolioPage({ params }: PortfolioPageProps) {
   const { locale } = await params;
-  setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const pageT = await getTranslations({ locale, namespace: "PortfolioPage" });
   const breadcrumbT = await getTranslations({ locale, namespace: "Breadcrumbs" });
@@ -133,7 +133,9 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
         {projects.length > 0 ? (
           <>
             <AnimationWrapper animation="fade-in" delay={100}>
-              <PortfolioShowcase projects={projects} />
+              <NextIntlClientProvider messages={await loadMessages(currentLocale, ["PortfolioShowcase"])}>
+                <PortfolioShowcase projects={projects.slice(0, 6)} />
+              </NextIntlClientProvider>
             </AnimationWrapper>
 
             <section

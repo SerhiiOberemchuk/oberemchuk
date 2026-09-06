@@ -73,7 +73,7 @@ export default function HeroSection({
               </div>
 
               <div className="hidden lg:block">
-                <div className="premium-float-delayed rounded-[28px] border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.78)] p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+                <div className="rounded-[28px] border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.78)] p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] ">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-[hsl(var(--foreground))]/54">
                     {t("proof.label")}
                   </p>
@@ -84,7 +84,7 @@ export default function HeroSection({
           </div>
 
           <div className="grid gap-8 lg:pt-18">
-            <div className="premium-float rounded-[34px] border border-[rgba(24,31,43,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(247,249,251,0.78))] p-6 shadow-[0_28px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl md:p-8">
+            <div className="rounded-[34px] border border-[rgba(24,31,43,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(247,249,251,0.78))] p-6 shadow-[0_28px_80px_rgba(15,23,42,0.08)]  md:p-8">
               <div className="grid gap-8 md:grid-cols-[1.05fr_0.95fr] lg:grid-cols-1">
                 <div>
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-[hsl(var(--foreground))]/54">
@@ -100,7 +100,7 @@ export default function HeroSection({
               </div>
             </div>
 
-            <dl className="grid gap-0 rounded-[30px] border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.82)] px-6 shadow-[0_22px_60px_rgba(15,23,42,0.07)] backdrop-blur-xl">
+            <dl className="grid gap-0 rounded-[30px] border border-[rgba(24,31,43,0.12)] bg-[rgba(255,255,255,0.82)] px-6 shadow-[0_22px_60px_rgba(15,23,42,0.07)] ">
               {stats.map((stat, index) => (
                 <div
                   key={`${stat.value}-${stat.label}`}

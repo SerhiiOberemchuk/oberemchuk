@@ -150,7 +150,7 @@
 }
 
 @utility shell {
-  @apply rounded-[32px] border backdrop-blur-xl;
+  @apply rounded-[32px] border;
   border-color: var(--line-soft);
   background: var(--surface);
   box-shadow: var(--shadow-soft);
@@ -205,107 +205,14 @@
   -webkit-mask-image: none;
 }
 
+/* Content stays visible without scroll-linked animation or permanent GPU layers. */
 .inview-reveal {
-  --inview-delay: 0ms;
+  opacity: 1;
+  transform: none;
 }
 
-@supports (animation-timeline: view()) {
-  .inview-reveal {
-    animation-duration: 0.9s;
-    animation-delay: var(--inview-delay);
-    animation-fill-mode: both;
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-    animation-timeline: view();
-    animation-range: entry 12% cover 34%;
-    will-change: opacity, transform;
-  }
-
-  .animate-fade-in {
-    animation-name: inview-fade-in;
-  }
-
-  .animate-slide-up {
-    animation-name: inview-slide-up;
-  }
-
-  .animate-slide-right {
-    animation-name: inview-slide-right;
-  }
-
-  .animate-slide-left {
-    animation-name: inview-slide-left;
-  }
-
-  .animate-scale {
-    animation-name: inview-scale;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .inview-reveal {
-    animation: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-}
-
-@keyframes inview-fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes inview-slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes inview-slide-right {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes inview-slide-left {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes inview-scale {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 6rem; }
 
 .prose {
   max-width: 65ch;
@@ -412,92 +319,13 @@
   margin-top: 0;
 }
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-  }
-}
-
-.scroll-to-top-pulse {
-  animation: pulse 2s infinite;
-}
-
-@keyframes premiumFloat {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -6px, 0);
-  }
-}
-
-@keyframes premiumSheen {
-  0% {
-    transform: translateX(-140%);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.08;
-  }
-  55% {
-    opacity: 0.16;
-  }
-  100% {
-    transform: translateX(140%);
-    opacity: 0;
-  }
-}
-
-@keyframes premiumGlow {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.72;
-    transform: scale(1.06);
-  }
-}
-
-.premium-sheen {
-  position: relative;
-  overflow: visible;
-}
-
-.premium-sheen::after {
-  content: "";
-  position: absolute;
-  inset: -20% auto -20% -30%;
-  width: 30%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
-  transform: skewX(-18deg);
-  animation: premiumSheen 8.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.premium-float {
-  animation: premiumFloat 7s ease-in-out infinite;
-}
-
-.premium-float-delayed {
-  animation: premiumFloat 9s ease-in-out 1.2s infinite;
-}
-
+/* Keep the glass composition still; animate only small interactive controls. */
+.premium-sheen { position: relative; }
 .premium-logo-orb {
   position: absolute;
   inset: 18%;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 72%);
-  filter: blur(1px);
-  animation: premiumGlow 4.8s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255,255,255,.92), transparent 72%);
   pointer-events: none;
 }
 
@@ -535,5 +363,15 @@ button:hover .button-arrow-up-right {
   .button-arrow-up-right {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

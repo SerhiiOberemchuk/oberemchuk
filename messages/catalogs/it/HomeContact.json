@@ -1,7 +1,7 @@
 {
   "badge": "Stima progetto e avvio",
-  "title": "Richiedi una stima per il tuo progetto",
-  "description": "Condividi il compito, la fascia di budget e l'obiettivo del sito. Riceverai un prossimo passo pratico, non una risposta vaga.",
+  "title": "Parliamo del tuo sito web",
+  "description": "Descrivi la tua attività, il sito di cui hai bisogno e i tempi desiderati. Ti aiuto a definire il lavoro e preparo una stima dei costi.",
   "infoTitle": "Informazioni di contatto",
   "infoDescription": "Brief iniziale, logica di stima chiara e un prossimo passo pratico.",
   "startTitle": "Cosa ottieni all'inizio",
@@ -28,7 +28,7 @@
     },
     "workMode": {
       "label": "Collaborazione",
-      "value": "Partner tecnico indipendente per siti commerciali e prodotti digitali"
+      "value": "Sono Serhii Oberemchuk, sviluppatore web indipendente. Lavori direttamente con me dal primo confronto alla pubblicazione."
     },
     "workRhythm": {
       "label": "Tempi di risposta",

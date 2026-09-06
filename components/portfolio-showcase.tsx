@@ -70,14 +70,14 @@ export default function PortfolioShowcase({
           src={activeProject.image_src || "/placeholder.svg"}
           alt={activeProject.title}
           fill
-          sizes="100vw"
+          sizes="(min-width: 1280px) 1280px, 100vw"
           className={cn(
-            "object-cover transition-[opacity,transform,filter] duration-500 ease-out",
+            "object-cover transition-opacity duration-300 ease-out",
             isTransitioning
-              ? "scale-[1.015] opacity-0 blur-[1.5px]"
-              : "scale-100 opacity-22 blur-0",
+              ? "opacity-0"
+              : "opacity-22",
           )}
-          priority
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,14,24,0.96)_8%,rgba(10,14,24,0.76)_52%,rgba(10,14,24,0.5)_100%)]" />
         <div className="absolute -left-16 top-20 h-64 w-64 rounded-full bg-[rgba(230,90,48,0.18)] blur-3xl" />
@@ -98,7 +98,7 @@ export default function PortfolioShowcase({
             </p>
           </div>
 
-          <div className="mt-10 rounded-[1.8rem] border border-white/12 bg-white/6 p-6 backdrop-blur-md">
+          <div className="mt-10 rounded-[1.8rem] border border-white/12 bg-white/6 p-6 ">
             <div className="flex items-start justify-between gap-4">
               <div className="min-h-[8.5rem] md:min-h-[10.5rem]">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/48">
@@ -246,7 +246,7 @@ export default function PortfolioShowcase({
 
             <Link
               href={`/portfolio/${activeProject.slug}`}
-              className="group/overlay absolute -bottom-6 left-6 right-6 hidden rounded-[1.4rem] border border-white/12 bg-[rgba(11,15,24,0.82)] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-[border-color,background-color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/20 hover:bg-[rgba(11,15,24,0.9)] hover:shadow-[0_26px_70px_rgba(0,0,0,0.3)] md:block"
+              className="group/overlay absolute -bottom-6 left-6 right-6 hidden rounded-[1.4rem] border border-white/12 bg-[rgba(11,15,24,0.82)] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.24)]  transition-[border-color,background-color,box-shadow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-white/20 hover:bg-[rgba(11,15,24,0.9)] hover:shadow-[0_26px_70px_rgba(0,0,0,0.3)] md:block"
             >
               <div className="flex items-center justify-between gap-4">
                 <div className="min-w-0">

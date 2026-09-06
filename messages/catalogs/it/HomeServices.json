@@ -1,6 +1,6 @@
 {
-  "title": "Servizi",
-  "subtitle": "Ogni offerta e costruita intorno a un risultato di business, non a una lista di funzioni: lead, fiducia, vendite, scala o un lancio più forte.",
+  "title": "Di quale sito hai bisogno?",
+  "subtitle": "Una landing page per una proposta, un sito aziendale per i servizi o un negozio online per i prodotti. Aggiorno anche siti esistenti.",
   "popularBadge": "Popolare",
   "detailsCta": "Scopri di più",
   "approachTitle": "Perché questo approccio funziona",
@@ -14,7 +14,7 @@
   "services": [
     {
       "title": "Landing page",
-      "description": "Per traffico a pagamento, test della domanda o lanci rapidi, quando il sito deve spingere un'azione chiara invece di fare solo da brochure.",
+      "description": "Una pagina per un prodotto, un servizio o una campagna pubblicitaria, con proposta, risposte alle domande e modulo di contatto.",
       "price": "da 800 EUR",
       "features": [
         "offerta chiara e CTA",
@@ -24,8 +24,8 @@
       ]
     },
     {
-      "title": "Siti aziendali",
-      "description": "Per aziende che devono apparire più solide, spiegare i servizi con autorevolezza e trasformare traffico qualificato in richieste.",
+      "title": "Sito aziendale",
+      "description": "Un sito aziendale con più pagine: servizi, informazioni sull’attività, lavori realizzati e contatti.",
       "price": "da 1600 EUR",
       "features": [
         "pagine servizio pensate per vendere",
@@ -35,8 +35,8 @@
       ]
     },
     {
-      "title": "Negozi e-commerce",
-      "description": "Per aziende che vogliono vendere online con uno storefront più forte, un checkout più chiaro e una struttura catalogo scalabile.",
+      "title": "Negozio online",
+      "description": "Un negozio online con catalogo, carrello, ordini, pagamenti e consegna.",
       "price": "da 2500 EUR",
       "features": [
         "storefront personalizzato",
@@ -46,14 +46,14 @@
       ]
     },
     {
-      "title": "Web application",
-      "description": "Per SaaS, piattaforme interne, portali cliente e MVP dove conta più un prodotto funzionante con logica e architettura scalabile che un guscio generico.",
-      "price": "da 3000 EUR",
+      "title": "Restyling del sito",
+      "description": "Aggiornamento del design, miglioramento delle prestazioni e migrazione del sito, conservando le pagine importanti e reindirizzando gli URL modificati.",
+      "price": "da 900 EUR",
       "features": [
-        "ruoli e permessi",
-        "integrazioni API",
-        "dashboard",
-        "architettura scalabile"
+        "design aggiornato",
+        "pagine più veloci",
+        "migrazione dei contenuti",
+        "redirect degli URL"
       ]
     }
   ],

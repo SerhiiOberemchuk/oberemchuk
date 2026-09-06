@@ -2,7 +2,7 @@ import type React from "react";
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import "../globals.css";
 import Footer from "@/components/footer";
@@ -117,7 +117,7 @@ export async function generateMetadata({
       },
     },
     category: "technology",
-    classification: "Digital Product and Web Development Services",
+    classification: "Website Design and Development Services",
     referrer: "origin-when-cross-origin",
     verification: {
       other: { "msvalidate.01": "4CC5472328D38C599ED3D0D8DE1788DB" },
@@ -138,8 +138,6 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   // produce a 404 page; a notFound() thrown here has no root boundary and
   // would surface as a 500. The (site) layout rejects invalid locales.
   const currentLocale = resolveAppLocale(locale);
-
-  setRequestLocale(currentLocale);
 
   const [clientMessages, layoutT, headerT, footerT] = await Promise.all([
     loadMessages(currentLocale, clientMessageNamespaces),

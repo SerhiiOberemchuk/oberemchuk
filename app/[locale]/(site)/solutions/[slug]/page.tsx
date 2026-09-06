@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Search } from "lucide-react";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
@@ -75,7 +75,6 @@ export default async function SolutionDetailPage({
   params,
 }: SolutionDetailPageProps) {
   const { locale, slug } = await params;
-  setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const t = await getTranslations({ locale, namespace: "SolutionDetailPage" });
   const breadcrumbT = await getTranslations({ locale, namespace: "Breadcrumbs" });

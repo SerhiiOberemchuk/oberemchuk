@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Web development services",
-    "description": "Landing pages, company websites, e-commerce stores, web apps and technical SEO for businesses that need more than a website: they need a commercial asset.",
+    "title": "Website development services",
+    "description": "Choose a website type, review what is included and compare starting prices. Integrations and support are scoped to your website.",
     "keywords": [
       "web development services",
       "landing page development",
@@ -11,18 +11,18 @@
       "technical SEO"
     ],
     "openGraph": {
-      "title": "Services | Serhii Oberemchuk",
-      "description": "Websites, e-commerce and web products with clearer structure, stronger positioning and a technical base for leads, SEO and growth.",
+      "title": "Website development services",
+      "description": "Choose a website type, review what is included and compare starting prices. Integrations and support are scoped to your website.",
       "imageAlt": "Web development services by Serhii Oberemchuk"
     },
     "twitter": {
-      "title": "Services | Serhii Oberemchuk",
-      "description": "Commercial websites and web products for businesses that need leads, trust and room to grow."
+      "title": "Website development services",
+      "description": "Choose a website type, review what is included and compare starting prices. Integrations and support are scoped to your website."
     }
   },
   "schema": {
-    "name": "Web development services",
-    "description": "Landing page development, business website development, e-commerce development, custom web applications and technical SEO.",
+    "name": "Website development services",
+    "description": "Choose a website type, review what is included and compare starting prices. Integrations and support are scoped to your website.",
     "itemListName": "List of web development services"
   },
   "hero": {
@@ -159,5 +159,15 @@
     "title": "Not sure which format will create the best result?",
     "description": "That is normal. The difference between a landing page, a company website, a store or a web app often becomes clear only after a short brief. I can help choose the right format without wasted budget or the wrong start.",
     "cta": "Get an estimate"
+  },
+  "catalog": {
+    "title": "Website development services",
+    "description": "Choose a website type, review what is included and compare starting prices. Integrations and support are scoped to your website.",
+    "primary": "Build a new website",
+    "additional": "Updates, support and integrations",
+    "additionalDescription": "Additional work for new or existing websites: performance, technical SEO, payments, delivery and sending enquiries to your CRM.",
+    "estimate": "How much will your website cost?",
+    "estimateDescription": "Cost depends on the number of pages, design, content and integrations. Use the calculator for an initial estimate or describe your project for a tailored quote.",
+    "estimateCta": "Estimate website cost"
   }
 }

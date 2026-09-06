@@ -1,7 +1,7 @@
 {
   "badge": "Project estimate and kickoff",
-  "title": "Get an estimate for your project",
-  "description": "Share the task, budget range and website goal. You will get a practical next step on structure, format and launch rather than a vague reply.",
+  "title": "Let’s discuss your website",
+  "description": "Tell me about your business, the website you need and your preferred timing. I will help define the work and prepare a cost estimate.",
   "infoTitle": "Contact information",
   "infoDescription": "Short intake, clear estimate logic and a practical next step.",
   "startTitle": "What you get at the start",
@@ -28,7 +28,7 @@
     },
     "workMode": {
       "label": "Engagement",
-      "value": "Independent technical partner for commercial websites and digital products"
+      "value": "I am Serhii Oberemchuk, an independent web developer. You work directly with me from the first conversation to launch."
     },
     "workRhythm": {
       "label": "Response rhythm",

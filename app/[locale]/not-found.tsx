@@ -3,9 +3,8 @@ import NotFoundPageShell from "@/components/not-found-page-shell";
 import { localizePath, resolveAppLocale } from "@/i18n/locales";
 import { getLocale, getTranslations } from "next-intl/server";
 
-// getLocale()/getTranslations() are dynamic APIs; with cacheComponents they
-// must run inside a Suspense boundary or the whole 404 render dies with
-// DYNAMIC_SERVER_USAGE (surfacing as a 500 for unknown slugs).
+// Keep on-demand not-found rendering behind Suspense. Locale now comes from
+// next/root-params via i18n/request.ts, including the unknown-locale fallback.
 async function LocalizedNotFound() {
   const locale = resolveAppLocale(await getLocale());
   const t = await getTranslations({ locale, namespace: "NotFoundPage" });

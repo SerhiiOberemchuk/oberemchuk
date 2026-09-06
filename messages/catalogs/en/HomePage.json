@@ -30,31 +30,29 @@
     ]
   },
   "metadata": {
-    "title": "Web developer for websites, e-commerce and web apps",
-    "description": "Serhii Oberemchuk is a fullstack web developer and digital partner. I build business websites, landing pages, e-commerce stores and custom web applications with React, Next.js, TypeScript and technical SEO.",
+    "title": "Website design and development for businesses",
+    "description": "Landing pages, company websites and online stores by Serhii Oberemchuk. Website structure, design, development, technical SEO and launch with one independent developer.",
     "keywords": [
-      "fullstack web developer",
-      "website development",
-      "web application development",
-      "corporate website development",
-      "e-commerce development",
-      "React developer",
-      "Next.js developer",
-      "technical SEO"
+      "Website design and development for businesses",
+      "Landing page",
+      "Company website",
+      "Online store",
+      "Website redesign",
+      "Serhii Oberemchuk"
     ],
     "openGraph": {
-      "title": "Serhii Oberemchuk | Web developer for websites, e-commerce and web apps",
-      "description": "Business websites, landing pages, e-commerce stores and web applications with strong structure, clear execution and technical depth.",
+      "title": "Website design and development for businesses",
+      "description": "Landing pages, company websites and online stores by Serhii Oberemchuk. Website structure, design, development, technical SEO and launch with one independent developer.",
       "imageAlt": "Serhii Oberemchuk - web developer for websites, e-commerce and web apps"
     },
     "twitter": {
-      "title": "Serhii Oberemchuk | Web developer for websites, e-commerce and web apps",
-      "description": "Business websites, web apps and technical SEO with strong structure, premium presentation and technical confidence."
+      "title": "Website design and development for businesses",
+      "description": "Landing pages, company websites and online stores by Serhii Oberemchuk. Website structure, design, development, technical SEO and launch with one independent developer."
     }
   },
   "schema": {
     "person": {
-      "description": "A fullstack web developer and digital partner building websites and web applications with strong structure, interface quality and technical discipline.",
+      "description": "I am Serhii Oberemchuk, an independent web developer. You work directly with me from the first conversation to launch.",
       "knowsAbout": [
         "Web Development",
         "React",
@@ -67,33 +65,35 @@
       ]
     },
     "website": {
-      "description": "Websites and web applications for ambitious businesses"
+      "description": "Landing pages, company websites and online stores by Serhii Oberemchuk. Website structure, design, development, technical SEO and launch with one independent developer."
     },
     "service": {
-      "description": "Web development services by Serhii Oberemchuk: landing page development, corporate websites, e-commerce stores, custom web applications and technical SEO.",
+      "description": "Landing pages, company websites and online stores. Website structure, design, development and launch by an independent web developer.",
       "serviceType": [
-        "Web Development",
-        "E-commerce Development",
-        "Technical SEO"
+        "Landing page",
+        "Company website",
+        "Online store",
+        "Website redesign"
       ],
       "offers": [
         {
-          "name": "Landing Page Development",
-          "description": "End-to-end landing page development"
+          "name": "Landing page",
+          "description": "One page for a product, service or advertising campaign, with a clear offer, answers to common questions and an enquiry form."
         },
         {
-          "name": "Corporate Website Development",
-          "description": "Corporate website development"
+          "name": "Company website",
+          "description": "A multi-page company website with services, business information, case studies and contact details."
         },
         {
-          "name": "E-commerce Development",
-          "description": "E-commerce store development"
+          "name": "Online store",
+          "description": "An online store with a product catalogue, cart, checkout, payments and delivery."
         },
         {
-          "name": "Web Application Development",
-          "description": "Web application development"
+          "name": "Website redesign",
+          "description": "Design updates, performance improvements and migration of an existing website, preserving important pages and redirecting changed URLs."
         }
-      ]
+      ],
+      "name": "Website design and development for businesses"
     }
   }
 }

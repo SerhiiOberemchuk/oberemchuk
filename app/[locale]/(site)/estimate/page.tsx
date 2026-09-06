@@ -1,10 +1,12 @@
 import type {Metadata} from "next";
 import Image from "next/image";
-import {getTranslations, setRequestLocale} from "next-intl/server";
+import {NextIntlClientProvider} from "next-intl";
+import {loadMessages} from "@/i18n/load-messages";
+import {getTranslations} from "next-intl/server";
 import {BarChart3, Clock3, Euro, FileText} from "lucide-react";
 import JsonLd from "@/components/json-ld";
 import ProjectEstimateForm from "@/components/project-estimate-form";
-import {isAppLocale, resolveAppLocale} from "@/i18n/locales";
+import {resolveAppLocale} from "@/i18n/locales";
 import {getLocalizedPath, getPageAlternates} from "@/lib/seo";
 import {getSiteUrl} from "@/lib/site-config";
 import {buildBreadcrumbList} from "@/lib/structured-data";
@@ -55,11 +57,8 @@ export default async function EstimatePage({params}: EstimatePageProps) {
   const {locale} = await params;
   const currentLocale = resolveAppLocale(locale);
 
-  if (isAppLocale(locale)) {
-    setRequestLocale(locale);
-  }
-
   const t = await getTranslations({locale: currentLocale, namespace: "EstimatePage"});
+  const formMessages = await loadMessages(currentLocale, ["EstimatePage"]);
   const baseUrl = getSiteUrl();
   const pagePath = getLocalizedPath(currentLocale, "/estimate");
   const useCases = t.raw("seo.useCases.items") as Array<{
@@ -198,7 +197,9 @@ export default async function EstimatePage({params}: EstimatePageProps) {
           </p>
         </div>
 
-        <ProjectEstimateForm />
+        <NextIntlClientProvider messages={formMessages}>
+          <ProjectEstimateForm />
+        </NextIntlClientProvider>
       </section>
 
       <section className="mx-auto mt-24 max-w-7xl" aria-labelledby="estimate-seo-title">

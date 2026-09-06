@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Servizi di sviluppo web",
-    "description": "Landing page, siti aziendali, e-commerce, web app e SEO tecnico per aziende che hanno bisogno di più di un sito: hanno bisogno di un asset commerciale.",
+    "title": "Servizi di realizzazione siti web",
+    "description": "Scegli il tipo di sito, scopri cosa include il lavoro e confronta i prezzi iniziali. Integrazioni e assistenza dipendono dalle esigenze del sito.",
     "keywords": [
       "servizi sviluppo web",
       "sviluppo landing page",
@@ -11,18 +11,18 @@
       "SEO tecnico"
     ],
     "openGraph": {
-      "title": "Servizi | Serhii Oberemchuk",
-      "description": "Siti web, e-commerce e prodotti digitali con struttura più chiara, posizionamento più forte e una base tecnica per lead, SEO e crescita.",
+      "title": "Servizi di realizzazione siti web",
+      "description": "Scegli il tipo di sito, scopri cosa include il lavoro e confronta i prezzi iniziali. Integrazioni e assistenza dipendono dalle esigenze del sito.",
       "imageAlt": "Servizi di sviluppo web di Serhii Oberemchuk"
     },
     "twitter": {
-      "title": "Servizi | Serhii Oberemchuk",
-      "description": "Siti commerciali e prodotti web per aziende che hanno bisogno di lead, fiducia e spazio per crescere."
+      "title": "Servizi di realizzazione siti web",
+      "description": "Scegli il tipo di sito, scopri cosa include il lavoro e confronta i prezzi iniziali. Integrazioni e assistenza dipendono dalle esigenze del sito."
     }
   },
   "schema": {
-    "name": "Servizi di sviluppo web",
-    "description": "Sviluppo landing page, siti aziendali, e-commerce, web application custom e SEO tecnico.",
+    "name": "Servizi di realizzazione siti web",
+    "description": "Scegli il tipo di sito, scopri cosa include il lavoro e confronta i prezzi iniziali. Integrazioni e assistenza dipendono dalle esigenze del sito.",
     "itemListName": "Elenco dei servizi di sviluppo web"
   },
   "hero": {
@@ -159,5 +159,15 @@
     "title": "Non sai quale formato possa portare il risultato migliore?",
     "description": "È normale. La differenza tra una landing page, un sito aziendale, uno store o una web app spesso si chiarisce solo dopo un breve briefing. Posso aiutarti a scegliere il formato giusto senza budget sprecato o una partenza sbagliata.",
     "cta": "Richiedi una stima"
+  },
+  "catalog": {
+    "title": "Servizi di realizzazione siti web",
+    "description": "Scegli il tipo di sito, scopri cosa include il lavoro e confronta i prezzi iniziali. Integrazioni e assistenza dipendono dalle esigenze del sito.",
+    "primary": "Creare un nuovo sito",
+    "additional": "Aggiornamenti, assistenza e integrazioni",
+    "additionalDescription": "Lavori aggiuntivi per siti nuovi o esistenti: prestazioni, SEO tecnica, pagamenti, consegna e collegamento dei contatti al CRM.",
+    "estimate": "Quanto costerà il tuo sito?",
+    "estimateDescription": "Il costo dipende da pagine, design, contenuti e integrazioni. Usa il calcolatore per una stima iniziale o descrivi il progetto per un preventivo personalizzato.",
+    "estimateCta": "Calcola il costo del sito"
   }
 }

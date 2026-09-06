@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight, Search, Sparkles } from "lucide-react";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import AnimationWrapper from "@/components/animation-wrapper";
 import JsonLd from "@/components/json-ld";
 import { Badge } from "@/components/ui/badge";
@@ -53,7 +53,6 @@ export async function generateMetadata({
 
 export default async function SolutionsPage({ params }: SolutionsPageProps) {
   const { locale } = await params;
-  setRequestLocale(locale);
   const currentLocale = locale as AppLocale;
   const t = await getTranslations({ locale: currentLocale, namespace: "SolutionsPage" });
   const breadcrumbT = await getTranslations({ locale: currentLocale, namespace: "Breadcrumbs" });
